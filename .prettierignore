@@ -1,0 +1,28 @@
+# Ignore build output directories
+.nuxt/
+dist/
+
+# Ignore node modules
+node_modules/
+
+# Ignore lock file
+pnpm-lock.yaml
+
+# Ignore logs
+*.log
+
+# Ignore compiled files
+*.min.js
+*.min.css
+
+# Ignore specific file types
+*.png
+*.jpg
+*.jpeg
+*.avif
+*.webp
+*.gif
+*.svg
+
+# Ignore other generated files
+coverage/
