@@ -1,5 +1,7 @@
 import type { Config } from 'tailwindcss';
 
+import { fontFamily } from 'tailwindcss/defaultTheme';
+
 import animate from 'tailwindcss-animate';
 import typography from '@tailwindcss/typography';
 
@@ -84,6 +86,10 @@ const config: Config = {
         'collapsible-down': 'collapsible-down 0.2s ease-in-out',
         'collapsible-up': 'collapsible-up 0.2s ease-in-out'
       }
+    },
+    fontFamily: {
+      sans: ['Geist', ...fontFamily.sans],
+      mono: ['GeistMono', ...fontFamily.mono]
     }
   },
   plugins: [animate, typography]
