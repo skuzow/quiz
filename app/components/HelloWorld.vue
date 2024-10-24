@@ -1,3 +1,3 @@
 <template>
-  <h1 class="text-6xl">hello world</h1>
+  <h1 class="text-xl">Hello Tailwind</h1>
 </template>
