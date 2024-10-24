@@ -4,5 +4,7 @@ import { LucideRocket } from 'lucide-vue-next';
 
 <template>
   <h1 class="text-xl">Hello Tailwind</h1>
-  <LucideRocket :size="18" />
+  <Button size="icon" variant="ghost">
+    <LucideRocket :size="18" />
+  </Button>
 </template>
