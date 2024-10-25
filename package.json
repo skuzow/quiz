@@ -13,6 +13,9 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@nuxtjs/robots": "^4.1.9",
+    "@nuxtjs/sitemap": "^6.1.2",
+    "@pinia/nuxt": "^0.5.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.453.0",
