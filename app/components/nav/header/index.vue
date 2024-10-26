@@ -7,16 +7,16 @@
           <span class="font-bold">skuzow/quiz</span>
         </NuxtLink>
 
-        <NavMenu class="hidden md:flex" />
+        <NavHeaderMenuDesktop class="hidden md:flex" />
       </div>
 
       <ul class="hidden md:flex md:gap-x-4">
         <li>
-          <NavLanguageToggle />
+          <NavHeaderDropdownLang />
         </li>
 
         <li>
-          <NavThemeToggle />
+          <NavHeaderDropdownTheme />
         </li>
 
         <li>
@@ -32,7 +32,7 @@
         </li>
       </ul>
 
-      <NavMobile class="md:hidden" />
+      <NavHeaderMenuMobile class="md:hidden" />
     </nav>
   </header>
 </template>
