@@ -15,13 +15,13 @@ import { AtSignIcon } from 'lucide-vue-next';
 
         <ul class="flex gap-x-1">
           <li>
-            <NuxtLink to="/home" title="Home">
+            <NuxtLink to="/" title="Home">
               <Button variant="link">Home</Button>
             </NuxtLink>
           </li>
 
           <li>
-            <NuxtLink to="/explore" title="Explore">
+            <NuxtLink to="/tests" title="Explore">
               <Button variant="link">Explore</Button>
             </NuxtLink>
           </li>
