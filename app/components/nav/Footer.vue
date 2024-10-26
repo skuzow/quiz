@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { AtSignIcon } from 'lucide-vue-next';
+
+const currentYear: number = new Date().getFullYear();
 </script>
 
 <template>
@@ -10,7 +12,7 @@ import { AtSignIcon } from 'lucide-vue-next';
       <div class="flex flex-col gap-y-2 md:flex-row md:gap-x-5">
         <div class="flex items-center justify-center gap-x-2">
           <NavLogo />
-          <span class="font-bold">/ © skuzow/quiz 2024</span>
+          <span class="font-bold">/ © skuzow/quiz {{ currentYear }}</span>
         </div>
 
         <ul class="flex gap-x-1">
