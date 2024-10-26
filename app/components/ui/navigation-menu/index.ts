@@ -11,13 +11,6 @@ export const navigationMenuTriggerStyle = cva(
   'group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50'
 );
 
-export { default as NavigationMenuContentList } from './NavigationMenuContentList.vue';
-export { default as NavigationMenuContentItem } from './NavigationMenuContentItem.vue';
-
-export { default as NavigationMenuContentItemAside } from './NavigationMenuContentItemAside.vue';
-export { default as NavigationMenuContentItemAsideTitle } from './NavigationMenuContentItemAsideTitle.vue';
-export { default as NavigationMenuContentItemAsideDescription } from './NavigationMenuContentItemAsideDescription.vue';
-
-export { default as NavigationMenuContentItemButton } from './NavigationMenuContentItemButton.vue';
-export { default as NavigationMenuContentItemButtonTitle } from './NavigationMenuContentItemButtonTitle.vue';
-export { default as NavigationMenuContentItemButtonDescription } from './NavigationMenuContentItemButtonDescription.vue';
+export { default as NavigationMenuContentList } from './menu/NavigationMenuContentList.vue';
+export { default as NavigationMenuContentAside } from './menu/NavigationMenuContentAside.vue';
+export { default as NavigationMenuContentButtons } from './menu/NavigationMenuContentButtons.vue';

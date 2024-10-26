@@ -4,6 +4,12 @@ export interface NavMenuItem {
   description: string;
 }
 
+export const exploreNavMenuAside: NavMenuItem = {
+  link: '/tests',
+  title: 'Search Tests',
+  description: 'Search in our large and varied collection of tests.'
+};
+
 export const exploreNavMenuItems: NavMenuItem[] = [
   {
     link: '/tests',
@@ -21,6 +27,12 @@ export const exploreNavMenuItems: NavMenuItem[] = [
     description: 'Difficultest tests that will challenge you.'
   }
 ];
+
+export const createNavMenuAside: NavMenuItem = {
+  link: '/createai',
+  title: 'AI Creation',
+  description: 'Take the advantage of AI to create your own tests.'
+};
 
 export const createNavMenuItems: NavMenuItem[] = [
   {

@@ -3,7 +3,12 @@ import { SearchIcon, SparkleIcon } from 'lucide-vue-next';
 
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 
-import { exploreNavMenuItems, createNavMenuItems } from '@/constants/navMenu';
+import {
+  exploreNavMenuAside,
+  exploreNavMenuItems,
+  createNavMenuAside,
+  createNavMenuItems
+} from '@/constants/navMenu';
 import { cn } from '@/lib/utils';
 </script>
 
@@ -16,39 +21,13 @@ import { cn } from '@/lib/utils';
         </NavigationMenuTrigger>
         <NavigationMenuContent>
           <NavigationMenuContentList>
-            <NavigationMenuContentItem class="row-span-3">
-              <NavigationMenuLink as-child>
-                <NuxtLink to="/tests" title="Search tests">
-                  <NavigationMenuContentItemAside>
-                    <SearchIcon :size="30" stroke="url(#gradient-svg)" />
-                    <NavigationMenuContentItemAsideTitle>
-                      Search Tests
-                    </NavigationMenuContentItemAsideTitle>
-                    <NavigationMenuContentItemAsideDescription>
-                      Search in our large and varied collection of tests.
-                    </NavigationMenuContentItemAsideDescription>
-                  </NavigationMenuContentItemAside>
-                </NuxtLink>
-              </NavigationMenuLink>
-            </NavigationMenuContentItem>
+            <NavigationMenuContentAside :nav-menu-aside="exploreNavMenuAside">
+              <SearchIcon :size="30" stroke="url(#gradient-svg)" />
+            </NavigationMenuContentAside>
 
-            <NavigationMenuContentItem
-              v-for="{ link, title, description } in exploreNavMenuItems"
-              :key="title"
-            >
-              <NavigationMenuLink as-child>
-                <NuxtLink :to="link" :title="title">
-                  <NavigationMenuContentItemButton>
-                    <NavigationMenuContentItemButtonTitle>
-                      {{ title }}
-                    </NavigationMenuContentItemButtonTitle>
-                    <NavigationMenuContentItemButtonDescription>
-                      {{ description }}
-                    </NavigationMenuContentItemButtonDescription>
-                  </NavigationMenuContentItemButton>
-                </NuxtLink>
-              </NavigationMenuLink>
-            </NavigationMenuContentItem>
+            <NavigationMenuContentButtons
+              :nav-menu-items="exploreNavMenuItems"
+            />
           </NavigationMenuContentList>
         </NavigationMenuContent>
       </NavigationMenuItem>
@@ -59,39 +38,13 @@ import { cn } from '@/lib/utils';
         </NavigationMenuTrigger>
         <NavigationMenuContent>
           <NavigationMenuContentList>
-            <NavigationMenuContentItem class="row-span-3">
-              <NavigationMenuLink as-child>
-                <NuxtLink to="/createai" title="Create AI">
-                  <NavigationMenuContentItemAside>
-                    <SparkleIcon :size="30" stroke="url(#gradient-svg)" />
-                    <NavigationMenuContentItemAsideTitle>
-                      AI Creation
-                    </NavigationMenuContentItemAsideTitle>
-                    <NavigationMenuContentItemAsideDescription>
-                      Take the advantage of AI to create your own tests.
-                    </NavigationMenuContentItemAsideDescription>
-                  </NavigationMenuContentItemAside>
-                </NuxtLink>
-              </NavigationMenuLink>
-            </NavigationMenuContentItem>
+            <NavigationMenuContentAside :nav-menu-aside="createNavMenuAside">
+              <SparkleIcon :size="30" stroke="url(#gradient-svg)" />
+            </NavigationMenuContentAside>
 
-            <NavigationMenuContentItem
-              v-for="{ link, title, description } in createNavMenuItems"
-              :key="title"
-            >
-              <NavigationMenuLink as-child>
-                <NuxtLink :to="link" :title="title">
-                  <NavigationMenuContentItemButton>
-                    <NavigationMenuContentItemButtonTitle>
-                      {{ title }}
-                    </NavigationMenuContentItemButtonTitle>
-                    <NavigationMenuContentItemButtonDescription>
-                      {{ description }}
-                    </NavigationMenuContentItemButtonDescription>
-                  </NavigationMenuContentItemButton>
-                </NuxtLink>
-              </NavigationMenuLink>
-            </NavigationMenuContentItem>
+            <NavigationMenuContentButtons
+              :nav-menu-items="createNavMenuItems"
+            />
           </NavigationMenuContentList>
         </NavigationMenuContent>
       </NavigationMenuItem>
