@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 useHead({
+  htmlAttrs: {
+    class: 'dark' // TODO: remove when make theme toggle
+  },
   link: [
     {
       rel: 'preload',
