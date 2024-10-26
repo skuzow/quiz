@@ -1,5 +1,8 @@
 <script lang="ts" setup>
 useHead({
+  htmlAttrs: {
+    class: 'dark' // TODO: remove when make theme toggle
+  },
   link: [
     {
       rel: 'preload',
@@ -24,7 +27,7 @@ useHead({
     {
       rel: 'mask-icon',
       href: '/favicon.svg',
-      color: '#FFFFFF'
+      color: '#FF4D88'
     },
 
     {
@@ -50,6 +53,8 @@ useSeoMeta({
 </script>
 
 <template>
+  <GradientSVG />
+
   <NuxtRouteAnnouncer />
   <NuxtLayout>
     <NuxtPage />
