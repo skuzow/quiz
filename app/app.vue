@@ -24,7 +24,7 @@ useHead({
     {
       rel: 'mask-icon',
       href: '/favicon.svg',
-      color: '#FFFFFF'
+      color: '#FF4D88'
     },
 
     {
