@@ -21,9 +21,3 @@ export { default as NavigationMenuContentItemAsideDescription } from './Navigati
 export { default as NavigationMenuContentItemButton } from './NavigationMenuContentItemButton.vue';
 export { default as NavigationMenuContentItemButtonTitle } from './NavigationMenuContentItemButtonTitle.vue';
 export { default as NavigationMenuContentItemButtonDescription } from './NavigationMenuContentItemButtonDescription.vue';
-
-export interface NavigationMenuContentItem {
-  link: string;
-  title: string;
-  description: string;
-}

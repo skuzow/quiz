@@ -1,43 +1,10 @@
 <script lang="ts" setup>
 import { SearchIcon, SparkleIcon } from 'lucide-vue-next';
 
-import {
-  type NavigationMenuContentItem,
-  navigationMenuTriggerStyle
-} from '@/components/ui/navigation-menu';
+import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 
+import { exploreNavMenuItems, createNavMenuItems } from '@/constants/navMenu';
 import { cn } from '@/lib/utils';
-
-const exploreItems: NavigationMenuContentItem[] = [
-  {
-    link: '/tests',
-    title: 'Most Popular',
-    description: 'Best selection of most popular tests.'
-  },
-  {
-    link: '/tests',
-    title: 'Top Rated',
-    description: 'Most rated tests by our users.'
-  },
-  {
-    link: '/tests',
-    title: 'Most Difficult',
-    description: 'Difficultest tests that will challenge you.'
-  }
-];
-
-const createItems: NavigationMenuContentItem[] = [
-  {
-    link: '/create',
-    title: 'Create with Blocks',
-    description: 'Start creating your own test with our easy to use interface.'
-  },
-  {
-    link: '/createai',
-    title: 'Create with AI',
-    description: 'Use AI to create your own test fast and easy.'
-  }
-];
 </script>
 
 <template>
@@ -66,17 +33,17 @@ const createItems: NavigationMenuContentItem[] = [
             </NavigationMenuContentItem>
 
             <NavigationMenuContentItem
-              v-for="exploreItem in exploreItems"
-              :key="exploreItem.title"
+              v-for="{ link, title, description } in exploreNavMenuItems"
+              :key="title"
             >
               <NavigationMenuLink as-child>
-                <NuxtLink :to="exploreItem.link" :title="exploreItem.title">
+                <NuxtLink :to="link" :title="title">
                   <NavigationMenuContentItemButton>
                     <NavigationMenuContentItemButtonTitle>
-                      {{ exploreItem.title }}
+                      {{ title }}
                     </NavigationMenuContentItemButtonTitle>
                     <NavigationMenuContentItemButtonDescription>
-                      {{ exploreItem.description }}
+                      {{ description }}
                     </NavigationMenuContentItemButtonDescription>
                   </NavigationMenuContentItemButton>
                 </NuxtLink>
@@ -109,17 +76,17 @@ const createItems: NavigationMenuContentItem[] = [
             </NavigationMenuContentItem>
 
             <NavigationMenuContentItem
-              v-for="createItem in createItems"
-              :key="createItem.title"
+              v-for="{ link, title, description } in createNavMenuItems"
+              :key="title"
             >
               <NavigationMenuLink as-child>
-                <NuxtLink :to="createItem.link" :title="createItem.title">
+                <NuxtLink :to="link" :title="title">
                   <NavigationMenuContentItemButton>
                     <NavigationMenuContentItemButtonTitle>
-                      {{ createItem.title }}
+                      {{ title }}
                     </NavigationMenuContentItemButtonTitle>
                     <NavigationMenuContentItemButtonDescription>
-                      {{ createItem.description }}
+                      {{ description }}
                     </NavigationMenuContentItemButtonDescription>
                   </NavigationMenuContentItemButton>
                 </NuxtLink>
