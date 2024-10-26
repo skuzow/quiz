@@ -53,6 +53,8 @@ useSeoMeta({
 </script>
 
 <template>
+  <GradientSVG />
+
   <NuxtRouteAnnouncer />
   <NuxtLayout>
     <NuxtPage />

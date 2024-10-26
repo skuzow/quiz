@@ -54,6 +54,9 @@
     --ring: 240 10% 3.9%;
 
     --radius: 0.5rem;
+
+    --gradient-start: 340, 100%, 65%;
+    --gradient-end: 15, 99%, 69%;
   }
 
   .dark {
