@@ -4,7 +4,15 @@ seoMeta();
 
 <template>
   <div>
-    <h1>index</h1>
-    <NuxtLink to="/test">test</NuxtLink>
+    <h1 class="text-9xl">index</h1>
+    <h1 class="text-9xl">index</h1>
+    <h1 class="text-9xl">index</h1>
+    <h1 class="text-9xl">index</h1>
+    <h1 class="text-9xl">index</h1>
+    <h1 class="text-9xl">index</h1>
+    <h1 class="text-9xl">index</h1>
+    <h1 class="text-9xl">index</h1>
+    <h1 class="text-9xl">index</h1>
+    <h1 class="text-9xl">index</h1>
   </div>
 </template>
