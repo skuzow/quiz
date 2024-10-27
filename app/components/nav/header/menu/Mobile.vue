@@ -15,13 +15,14 @@ import {
         <MenuIcon :size="18" />
       </Button>
     </SheetTrigger>
-    <SheetContent>
+    <SheetContent class="overflow-y-auto">
       <SheetHeader>
         <SheetTitle>
           <NavLogo />
           <span class="sr-only">Menu</span>
         </SheetTitle>
       </SheetHeader>
+
       <SheetMenu>
         <SheetMenuContent
           nav-menu-title="Explore"
@@ -38,6 +39,20 @@ import {
           :nav-menu-items="aboutNavMenuItems"
         />
       </SheetMenu>
+
+      <div class="mt-8 flex flex-col gap-y-3">
+        <SheetClose as-child>
+          <NuxtLink to="/login" title="Log In">
+            <Button variant="secondary" class="w-full">Log In</Button>
+          </NuxtLink>
+        </SheetClose>
+
+        <SheetClose as-child>
+          <NuxtLink to="/signup" title="Sign Up">
+            <Button class="w-full">Sign Up</Button>
+          </NuxtLink>
+        </SheetClose>
+      </div>
     </SheetContent>
   </Sheet>
 </template>
