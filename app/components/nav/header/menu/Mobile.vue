@@ -18,8 +18,12 @@ import {
     <SheetContent class="overflow-y-auto">
       <SheetHeader>
         <SheetTitle>
-          <NavLogo />
-          <span class="sr-only">Menu</span>
+          <SheetClose as-child>
+            <NuxtLink to="/" title="Home">
+              <NavLogo />
+              <span class="sr-only">Menu</span>
+            </NuxtLink>
+          </SheetClose>
         </SheetTitle>
       </SheetHeader>
 
