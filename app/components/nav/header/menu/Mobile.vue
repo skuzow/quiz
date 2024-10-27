@@ -6,6 +6,8 @@ import {
   createNavMenuItems,
   aboutNavMenuItems
 } from '@/constants/navMenu';
+
+const localePath = useLocalePath();
 </script>
 
 <template>
@@ -13,13 +15,14 @@ import {
     <SheetTrigger as-child>
       <Button variant="ghost" size="icon" class="md:hidden">
         <MenuIcon :size="18" />
+        <span class="sr-only">Open menu</span>
       </Button>
     </SheetTrigger>
     <SheetContent class="overflow-y-auto">
       <SheetHeader>
         <SheetTitle>
           <SheetClose as-child>
-            <NuxtLink to="/" title="Home">
+            <NuxtLink :to="localePath('/')" title="Home">
               <NavLogo />
               <span class="sr-only">Menu</span>
             </NuxtLink>
@@ -46,13 +49,13 @@ import {
 
       <div class="mt-8 flex flex-col gap-y-3">
         <SheetClose as-child>
-          <NuxtLink to="/login" title="Log In">
+          <NuxtLink :to="localePath('/login')" title="Log In">
             <Button variant="secondary" class="w-full">Log In</Button>
           </NuxtLink>
         </SheetClose>
 
         <SheetClose as-child>
-          <NuxtLink to="/signup" title="Sign Up">
+          <NuxtLink :to="localePath('/signup')" title="Sign Up">
             <Button class="w-full">Sign Up</Button>
           </NuxtLink>
         </SheetClose>

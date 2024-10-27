@@ -10,6 +10,8 @@ import {
   createNavMenuItems
 } from '@/constants/navMenu';
 import { cn } from '@/lib/utils';
+
+const localePath = useLocalePath();
 </script>
 
 <template>
@@ -52,7 +54,7 @@ import { cn } from '@/lib/utils';
       <NavigationMenuItem>
         <NavigationMenuLink as-child>
           <NuxtLink
-            to="/about"
+            :to="localePath('/about')"
             title="About"
             :class="cn(navigationMenuTriggerStyle(), 'bg-transparent')"
           >

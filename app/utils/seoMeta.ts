@@ -16,9 +16,6 @@ const seoMeta = ({
   const imageURL: string = originURL + image;
 
   useHead({
-    htmlAttrs: {
-      lang: 'en' // TODO: make this language dynamic
-    },
     link: [
       {
         rel: 'canonical',
@@ -29,7 +26,6 @@ const seoMeta = ({
 
   useSeoMeta({
     title: title,
-    themeColor: '#0B0A0B', // TODO: make this color dynamic
     description: description,
 
     twitterTitle: title,
@@ -37,7 +33,6 @@ const seoMeta = ({
     twitterImage: imageURL,
     twitterImageAlt: title,
 
-    ogLocale: 'en_EN', // TODO: make this language dynamic
     ogUrl: websiteURL,
     ogTitle: title,
     ogDescription: description,

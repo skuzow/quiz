@@ -7,6 +7,8 @@ interface Props {
 }
 
 const { navMenuTitle, navMenuItems } = defineProps<Props>();
+
+const localePath = useLocalePath();
 </script>
 
 <template>
@@ -17,7 +19,7 @@ const { navMenuTitle, navMenuItems } = defineProps<Props>();
       <li v-for="{ link, title, description } in navMenuItems" :key="title">
         <SheetClose as-child>
           <NuxtLink
-            :to="link"
+            :to="localePath(link)"
             :title="title"
             class="flex flex-col gap-y-1 text-sm"
           >

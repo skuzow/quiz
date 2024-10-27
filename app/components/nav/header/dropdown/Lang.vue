@@ -1,16 +1,28 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { locale, locales } = useI18n();
+
+const switchLocalePath = useSwitchLocalePath();
+</script>
 
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
       <Button variant="ghost" size="icon">
-        <span class="mt-0.5 text-base">EN</span>
+        <span class="mt-0.5 text-base">{{ locale.toUpperCase() }}</span>
         <span class="sr-only">Toggle language</span>
       </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" class="font-medium">
-      <DropdownMenuItem class="cursor-pointer">English</DropdownMenuItem>
-      <DropdownMenuItem class="cursor-pointer">Spanish</DropdownMenuItem>
+      <NuxtLink
+        v-for="{ code, name } in locales"
+        :key="code"
+        :to="switchLocalePath(code)"
+        :title="code.toUpperCase()"
+      >
+        <DropdownMenuItem class="cursor-pointer">
+          {{ name }}
+        </DropdownMenuItem>
+      </NuxtLink>
     </DropdownMenuContent>
   </DropdownMenu>
 </template>

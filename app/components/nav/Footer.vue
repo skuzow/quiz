@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { AtSignIcon } from 'lucide-vue-next';
 
+const localePath = useLocalePath();
+
 const currentYear: number = new Date().getFullYear();
 </script>
 
@@ -17,25 +19,25 @@ const currentYear: number = new Date().getFullYear();
 
         <ul class="flex gap-x-1">
           <li>
-            <NuxtLink to="/" title="Home">
+            <NuxtLink :to="localePath('/')" title="Home">
               <Button variant="link">Home</Button>
             </NuxtLink>
           </li>
 
           <li>
-            <NuxtLink to="/tests" title="Explore">
+            <NuxtLink :to="localePath('/tests')" title="Explore">
               <Button variant="link">Explore</Button>
             </NuxtLink>
           </li>
 
           <li>
-            <NuxtLink to="/create" title="Create">
+            <NuxtLink :to="localePath('/create')" title="Create">
               <Button variant="link">Create</Button>
             </NuxtLink>
           </li>
 
           <li>
-            <NuxtLink to="/about" title="About">
+            <NuxtLink :to="localePath('/about')" title="About">
               <Button variant="link">About</Button>
             </NuxtLink>
           </li>

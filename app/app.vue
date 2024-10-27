@@ -1,6 +1,19 @@
 <script lang="ts" setup>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { locale, locales } = useI18n();
+
+type LocaleCode = (typeof locales.value)[number]['code'];
+
+const ogLocales: Record<LocaleCode, string> = {
+  en: 'en_US',
+  es: 'es_ES'
+};
+
+const ogLocale = computed(() => ogLocales[locale.value as LocaleCode]);
+
 useHead({
   htmlAttrs: {
+    lang: locale,
     class: 'dark' // TODO: remove when make theme toggle
   },
   link: [
@@ -38,6 +51,7 @@ useHead({
 });
 
 useSeoMeta({
+  themeColor: '#0B0A0B', // TODO: make this color dynamic
   author: 'Alejandro Porras - skuzow',
   keywords: 'quiz, test, exam, ai',
 
@@ -45,6 +59,7 @@ useSeoMeta({
   twitterSite: '@skuzow',
   twitterCreator: '@skuzow',
 
+  ogLocale: ogLocale,
   ogType: 'website',
   ogImageType: 'image/png',
   ogImageWidth: '1200',

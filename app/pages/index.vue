@@ -4,18 +4,18 @@ seoMeta();
 
 <template>
   <div>
-    <h1 class="text-8xl">index</h1>
-    <h1 class="text-8xl">index</h1>
-    <h1 class="text-8xl">index</h1>
-    <h1 class="text-8xl">index</h1>
-    <h1 class="text-8xl">index</h1>
-    <h1 class="text-8xl">index</h1>
-    <h1 class="text-8xl">index</h1>
-    <h1 class="text-8xl">index</h1>
-    <h1 class="text-8xl">index</h1>
-    <h1 class="text-8xl">index</h1>
-    <h1 class="text-8xl">index</h1>
-    <h1 class="text-8xl">index</h1>
-    <h1 class="text-8xl">index</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
+    <h1 class="text-8xl">{{ $t('test') }}</h1>
   </div>
 </template>
