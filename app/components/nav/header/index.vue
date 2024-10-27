@@ -1,6 +1,6 @@
 <template>
   <header class="sticky top-0 z-10 bg-background/80 py-2.5 backdrop-blur-md">
-    <nav class="container flex max-w-[90rem] flex-1 justify-between">
+    <nav class="container flex max-w-[92rem] flex-1 justify-between md:px-8">
       <div class="flex gap-x-5">
         <NuxtLink to="/" title="Home" class="flex items-center gap-x-2">
           <NavLogo />
