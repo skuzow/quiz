@@ -4,7 +4,7 @@
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
       <Button variant="ghost" size="icon">
-        EN
+        <span class="mt-0.5 text-base">EN</span>
         <span class="sr-only">Toggle language</span>
       </Button>
     </DropdownMenuTrigger>
