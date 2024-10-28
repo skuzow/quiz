@@ -6,9 +6,15 @@ interface SeoMeta {
 
 const seoMeta = ({
   title = 'skuzow/quiz',
-  description = 'Make, create, and share tests in a simple and easy way. Best method to prepare your exams.',
+  description,
   image = '/images/website.png'
 }: SeoMeta = {}) => {
+  const {
+    $i18n: { t }
+  } = useNuxtApp();
+
+  const $t = t;
+
   const originURL: string = useRequestURL().origin;
   const routePath: string = useRoute().path;
 
@@ -23,6 +29,8 @@ const seoMeta = ({
       }
     ]
   });
+
+  if (!description) description = $t('description');
 
   useSeoMeta({
     title: title,

@@ -15,16 +15,16 @@ const localePath = useLocalePath();
     <SheetTrigger as-child>
       <Button variant="ghost" size="icon" class="md:hidden">
         <MenuIcon :size="18" />
-        <span class="sr-only">Open menu</span>
+        <span class="sr-only">{{ $t('nav.header.menu.button') }}</span>
       </Button>
     </SheetTrigger>
     <SheetContent class="overflow-y-auto">
       <SheetHeader>
         <SheetTitle>
           <SheetClose as-child>
-            <NuxtLink :to="localePath('/')" title="Home">
+            <NuxtLink :to="localePath('/')" :title="$t('nav.home')">
               <NavLogo />
-              <span class="sr-only">Menu</span>
+              <span class="sr-only">{{ $t('nav.header.menu.title') }}</span>
             </NuxtLink>
           </SheetClose>
         </SheetTitle>
@@ -32,31 +32,38 @@ const localePath = useLocalePath();
 
       <SheetMenu>
         <SheetMenuContent
-          nav-menu-title="Explore"
+          :nav-menu-title="$t('nav.explore')"
           :nav-menu-items="exploreNavMenuItems"
         />
 
         <SheetMenuContent
-          nav-menu-title="Create"
+          :nav-menu-title="$t('nav.create')"
           :nav-menu-items="createNavMenuItems"
         />
 
         <SheetMenuContent
-          nav-menu-title="About"
+          :nav-menu-title="$t('nav.about')"
           :nav-menu-items="aboutNavMenuItems"
         />
       </SheetMenu>
 
       <div class="mt-8 flex flex-col gap-y-3">
         <SheetClose as-child>
-          <NuxtLink :to="localePath('/login')" title="Log In">
-            <Button variant="secondary" class="w-full">Log In</Button>
+          <NuxtLink :to="localePath('/login')" :title="$t('nav.header.login')">
+            <Button variant="secondary" class="w-full">
+              {{ $t('nav.header.login') }}
+            </Button>
           </NuxtLink>
         </SheetClose>
 
         <SheetClose as-child>
-          <NuxtLink :to="localePath('/signup')" title="Sign Up">
-            <Button class="w-full">Sign Up</Button>
+          <NuxtLink
+            :to="localePath('/signup')"
+            :title="$t('nav.header.signup')"
+          >
+            <Button class="w-full">
+              {{ $t('nav.header.signup') }}
+            </Button>
           </NuxtLink>
         </SheetClose>
       </div>

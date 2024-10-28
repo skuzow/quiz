@@ -19,35 +19,46 @@ const currentYear: number = new Date().getFullYear();
 
         <ul class="flex gap-x-1">
           <li>
-            <NuxtLink :to="localePath('/')" title="Home">
-              <Button variant="link">Home</Button>
+            <NuxtLink :to="localePath('/')" :title="$t('nav.home')">
+              <Button variant="link">
+                {{ $t('nav.home') }}
+              </Button>
             </NuxtLink>
           </li>
 
           <li>
-            <NuxtLink :to="localePath('/tests')" title="Explore">
-              <Button variant="link">Explore</Button>
+            <NuxtLink :to="localePath('/tests')" :title="$t('nav.explore')">
+              <Button variant="link">
+                {{ $t('nav.explore') }}
+              </Button>
             </NuxtLink>
           </li>
 
           <li>
-            <NuxtLink :to="localePath('/create')" title="Create">
-              <Button variant="link">Create</Button>
+            <NuxtLink :to="localePath('/create')" :title="$t('nav.create')">
+              <Button variant="link">
+                {{ $t('nav.create') }}
+              </Button>
             </NuxtLink>
           </li>
 
           <li>
-            <NuxtLink :to="localePath('/about')" title="About">
-              <Button variant="link">About</Button>
+            <NuxtLink :to="localePath('/about')" :title="$t('nav.about')">
+              <Button variant="link">
+                {{ $t('nav.about') }}
+              </Button>
             </NuxtLink>
           </li>
         </ul>
       </div>
 
-      <NuxtLink to="mailto:contact@quiz.skuzow.com" title="Contact email">
+      <NuxtLink
+        to="mailto:contact@quiz.skuzow.com"
+        :title="$t('nav.footer.contact')"
+      >
         <Button class="gap-x-1">
           <AtSignIcon :size="16" />
-          Contact
+          {{ $t('nav.footer.contact') }}
         </Button>
       </NuxtLink>
     </nav>

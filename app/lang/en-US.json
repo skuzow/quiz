@@ -1,3 +1,65 @@
 {
-  "test": "home"
+  "description": "Make, create, and share tests in a simple and easy way. Best method to prepare your exams.",
+  "nav": {
+    "home": "Home",
+    "explore": "Explore",
+    "create": "Create",
+    "about": "About",
+    "header": {
+      "login": "Log In",
+      "signup": "Sign Up",
+      "explore": {
+        "aside": {
+          "title": "Search Tests",
+          "description": "Search in our large and varied collection of tests."
+        },
+        "popular": {
+          "title": "Most Popular",
+          "description": "Best selection of most popular tests."
+        },
+        "rated": {
+          "title": "Top Rated",
+          "description": "Most rated tests by our users."
+        },
+        "difficult": {
+          "title": "Most Difficult",
+          "description": "Difficultest tests that will challenge you."
+        }
+      },
+      "create": {
+        "aside": {
+          "title": "AI Creation",
+          "description": "Take the advantage of AI to create your own tests."
+        },
+        "create": {
+          "title": "Create with Blocks",
+          "description": "Start creating your own test with our easy to use interface."
+        },
+        "createai": {
+          "title": "Create with AI",
+          "description": "Use AI to create your own test fast and easy."
+        }
+      },
+      "about": {
+        "title": "About the Project",
+        "description": "Learn more about the project and the people behind it."
+      },
+      "lang": {
+        "button": "Toggle language"
+      },
+      "theme": {
+        "button": "Toggle theme",
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+      },
+      "menu": {
+        "button": "Open menu",
+        "title": "Menu"
+      }
+    },
+    "footer": {
+      "contact": "Contact"
+    }
+  }
 }

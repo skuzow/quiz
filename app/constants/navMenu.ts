@@ -1,3 +1,9 @@
+const {
+  $i18n: { t }
+} = useNuxtApp();
+
+const $t = t;
+
 export interface NavMenuItem {
   link: string;
   title: string;
@@ -6,51 +12,51 @@ export interface NavMenuItem {
 
 export const exploreNavMenuAside: NavMenuItem = {
   link: '/tests',
-  title: 'Search Tests',
-  description: 'Search in our large and varied collection of tests.'
+  title: $t('nav.header.explore.aside.title'),
+  description: $t('nav.header.explore.aside.description')
 };
 
 export const exploreNavMenuItems: NavMenuItem[] = [
   {
     link: '/tests',
-    title: 'Most Popular',
-    description: 'Best selection of most popular tests.'
+    title: $t('nav.header.explore.popular.title'),
+    description: $t('nav.header.explore.popular.description')
   },
   {
     link: '/tests',
-    title: 'Top Rated',
-    description: 'Most rated tests by our users.'
+    title: $t('nav.header.explore.rated.title'),
+    description: $t('nav.header.explore.rated.description')
   },
   {
     link: '/tests',
-    title: 'Most Difficult',
-    description: 'Difficultest tests that will challenge you.'
+    title: $t('nav.header.explore.difficult.title'),
+    description: $t('nav.header.explore.difficult.description')
   }
 ];
 
 export const createNavMenuAside: NavMenuItem = {
   link: '/createai',
-  title: 'AI Creation',
-  description: 'Take the advantage of AI to create your own tests.'
+  title: $t('nav.header.create.aside.title'),
+  description: $t('nav.header.create.aside.description')
 };
 
 export const createNavMenuItems: NavMenuItem[] = [
   {
     link: '/create',
-    title: 'Create with Blocks',
-    description: 'Start creating your own test with our easy to use interface.'
+    title: $t('nav.header.create.create.title'),
+    description: $t('nav.header.create.create.description')
   },
   {
     link: '/createai',
-    title: 'Create with AI',
-    description: 'Use AI to create your own test fast and easy.'
+    title: $t('nav.header.create.createai.title'),
+    description: $t('nav.header.create.createai.description')
   }
 ];
 
 export const aboutNavMenuItems: NavMenuItem[] = [
   {
     link: '/about',
-    title: 'About the Project',
-    description: 'Learn more about the project and the people behind it.'
+    title: $t('nav.header.about.title'),
+    description: $t('nav.header.about.description')
   }
 ];

@@ -19,7 +19,7 @@ const localePath = useLocalePath();
     <NavigationMenuList>
       <NavigationMenuItem>
         <NavigationMenuTrigger class="bg-transparent">
-          Explore
+          {{ $t('nav.explore') }}
         </NavigationMenuTrigger>
         <NavigationMenuContent>
           <NavigationMenuContentList>
@@ -36,7 +36,7 @@ const localePath = useLocalePath();
 
       <NavigationMenuItem>
         <NavigationMenuTrigger class="bg-transparent">
-          Create
+          {{ $t('nav.create') }}
         </NavigationMenuTrigger>
         <NavigationMenuContent>
           <NavigationMenuContentList>
@@ -55,10 +55,10 @@ const localePath = useLocalePath();
         <NavigationMenuLink as-child>
           <NuxtLink
             :to="localePath('/about')"
-            title="About"
+            :title="$t('nav.about')"
             :class="cn(navigationMenuTriggerStyle(), 'bg-transparent')"
           >
-            About
+            {{ $t('nav.about') }}
           </NuxtLink>
         </NavigationMenuLink>
       </NavigationMenuItem>

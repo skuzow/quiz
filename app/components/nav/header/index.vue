@@ -8,7 +8,7 @@ const localePath = useLocalePath();
       <div class="flex gap-x-5">
         <NuxtLink
           :to="localePath('/')"
-          title="Home"
+          :title="$t('nav.home')"
           class="flex items-center gap-x-2"
         >
           <NavLogo />
@@ -28,14 +28,21 @@ const localePath = useLocalePath();
         </li>
 
         <li class="hidden md:flex">
-          <NuxtLink :to="localePath('/login')" title="Log In">
-            <Button variant="secondary">Log In</Button>
+          <NuxtLink :to="localePath('/login')" :title="$t('nav.header.login')">
+            <Button variant="secondary">
+              {{ $t('nav.header.login') }}
+            </Button>
           </NuxtLink>
         </li>
 
         <li class="hidden md:flex">
-          <NuxtLink :to="localePath('/signup')" title="Sign Up">
-            <Button>Sign Up</Button>
+          <NuxtLink
+            :to="localePath('/signup')"
+            :title="$t('nav.header.signup')"
+          >
+            <Button>
+              {{ $t('nav.header.signup') }}
+            </Button>
           </NuxtLink>
         </li>
 
