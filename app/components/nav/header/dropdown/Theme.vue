@@ -1,5 +1,9 @@
 <script lang="ts" setup>
 import { SunIcon, MoonIcon, LaptopMinimalIcon } from 'lucide-vue-next';
+
+import { Theme } from '@/constants/theme';
+
+const colorMode = useColorMode();
 </script>
 
 <template>
@@ -12,17 +16,26 @@ import { SunIcon, MoonIcon, LaptopMinimalIcon } from 'lucide-vue-next';
       </Button>
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" class="font-medium">
-      <DropdownMenuItem class="cursor-pointer gap-2">
+      <DropdownMenuItem
+        class="cursor-pointer gap-2"
+        @click="colorMode.preference = Theme.LIGHT"
+      >
         <SunIcon :size="16" />
         {{ $t('nav.header.theme.light') }}
       </DropdownMenuItem>
 
-      <DropdownMenuItem class="cursor-pointer gap-2">
+      <DropdownMenuItem
+        class="cursor-pointer gap-2"
+        @click="colorMode.preference = Theme.DARK"
+      >
         <MoonIcon :size="16" />
         {{ $t('nav.header.theme.dark') }}
       </DropdownMenuItem>
 
-      <DropdownMenuItem class="cursor-pointer gap-2">
+      <DropdownMenuItem
+        class="cursor-pointer gap-2"
+        @click="colorMode.preference = Theme.SYSTEM"
+      >
         <LaptopMinimalIcon :size="16" />
         {{ $t('nav.header.theme.system') }}
       </DropdownMenuItem>
