@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
+    '@nuxtjs/color-mode',
     '@nuxt/eslint',
     '@nuxtjs/i18n',
     '@nuxtjs/robots',
@@ -9,6 +10,14 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'shadcn-nuxt'
   ],
+
+  colorMode: {
+    preference: 'system',
+    fallback: 'dark',
+    classSuffix: '',
+    storage: 'cookie',
+    storageKey: 'color-mode'
+  },
 
   i18n: {
     locales: [

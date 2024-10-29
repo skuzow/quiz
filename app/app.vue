@@ -1,6 +1,10 @@
 <script lang="ts" setup>
+import { Theme, ThemeColor } from '@/constants/theme';
+
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { locale, locales } = useI18n();
+
+const colorMode = useColorMode();
 
 type LocaleCode = (typeof locales.value)[number]['code'];
 
@@ -11,10 +15,13 @@ const ogLocales: Record<LocaleCode, string> = {
 
 const ogLocale = computed(() => ogLocales[locale.value as LocaleCode]);
 
+const themeColor = computed(() =>
+  colorMode.value === Theme.DARK ? ThemeColor.DARK : ThemeColor.LIGHT
+);
+
 useHead({
   htmlAttrs: {
-    lang: locale,
-    class: 'dark' // TODO: remove when make theme toggle
+    lang: locale
   },
   link: [
     {
@@ -51,7 +58,7 @@ useHead({
 });
 
 useSeoMeta({
-  themeColor: '#0B0A0B', // TODO: make this color dynamic
+  themeColor: themeColor,
   author: 'Alejandro Porras - skuzow',
   keywords: 'quiz, test, exam, ai',
 
