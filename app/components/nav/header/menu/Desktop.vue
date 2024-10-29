@@ -3,15 +3,16 @@ import { SearchIcon, SparkleIcon } from 'lucide-vue-next';
 
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 
-import {
+import { cn } from '@/lib/utils';
+
+const localePath = useLocalePath();
+
+const {
   exploreNavMenuAside,
   exploreNavMenuItems,
   createNavMenuAside,
   createNavMenuItems
-} from '@/constants/navMenu';
-import { cn } from '@/lib/utils';
-
-const localePath = useLocalePath();
+} = useNavMenu();
 </script>
 
 <template>

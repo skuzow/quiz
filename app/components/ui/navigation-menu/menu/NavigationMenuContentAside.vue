@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { NavMenuItem } from '@/constants/navMenu';
-
 interface Props {
   navMenuAside: NavMenuItem;
 }

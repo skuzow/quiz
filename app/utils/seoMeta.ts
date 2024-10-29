@@ -9,11 +9,7 @@ const seoMeta = ({
   description,
   image = '/images/website.png'
 }: SeoMeta = {}) => {
-  const {
-    $i18n: { t }
-  } = useNuxtApp();
-
-  const $t = t;
+  const { t: $t } = useI18n();
 
   const originURL: string = useRequestURL().origin;
   const routePath: string = useRoute().path;

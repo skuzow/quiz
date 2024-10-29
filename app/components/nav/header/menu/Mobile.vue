@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { MenuIcon } from 'lucide-vue-next';
 
-import {
-  exploreNavMenuItems,
-  createNavMenuItems,
-  aboutNavMenuItems
-} from '@/constants/navMenu';
-
 const localePath = useLocalePath();
+
+const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
+  useNavMenu();
 </script>
 
 <template>
