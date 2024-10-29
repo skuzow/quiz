@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import type { NavMenuItem } from '@/constants/navMenu';
-
 interface Props {
   navMenuTitle: string;
   navMenuItems: NavMenuItem[];
 }
 
 const { navMenuTitle, navMenuItems } = defineProps<Props>();
+
+const localePath = useLocalePath();
 </script>
 
 <template>
@@ -15,17 +15,19 @@ const { navMenuTitle, navMenuItems } = defineProps<Props>();
 
     <ul class="flex flex-col gap-y-4">
       <li v-for="{ link, title, description } in navMenuItems" :key="title">
-        <NuxtLink
-          :to="link"
-          :title="title"
-          class="flex flex-col gap-y-1 text-sm"
-        >
-          <h4 class="font-medium">{{ title }}</h4>
+        <SheetClose as-child>
+          <NuxtLink
+            :to="localePath(link)"
+            :title="title"
+            class="flex flex-col gap-y-1 text-sm"
+          >
+            <h4 class="font-medium">{{ title }}</h4>
 
-          <p class="leading-snug text-muted-foreground">
-            {{ description }}
-          </p>
-        </NuxtLink>
+            <p class="leading-snug text-muted-foreground">
+              {{ description }}
+            </p>
+          </NuxtLink>
+        </SheetClose>
       </li>
     </ul>
   </div>

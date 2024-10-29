@@ -1,0 +1,65 @@
+{
+  "description": "Haz, crea y comparte exámenes de forma fácil y sencilla. El mejor método para preparar tus exámenes.",
+  "nav": {
+    "home": "Inicio",
+    "explore": "Explorar",
+    "create": "Crear",
+    "about": "Acerca de",
+    "header": {
+      "login": "Iniciar Sesión",
+      "signup": "Registrarse",
+      "explore": {
+        "aside": {
+          "title": "Buscar Tests",
+          "description": "Buscar en nuestra amplia y variada colección de tests."
+        },
+        "popular": {
+          "title": "Más populares",
+          "description": "La mejor selección de los tests más populares."
+        },
+        "rated": {
+          "title": "Mejor valorados",
+          "description": "Tests más valorados por nuestros usuarios."
+        },
+        "difficult": {
+          "title": "Más difíciles",
+          "description": "Los tests más difíciles que te pondrán a prueba."
+        }
+      },
+      "create": {
+        "aside": {
+          "title": "Creación con IA",
+          "description": "Aprovecha las ventajas de la IA para crear tus propios tests."
+        },
+        "create": {
+          "title": "Crear con Bloques",
+          "description": "Empieza a crear tu propio test con nuestra sencilla interfaz."
+        },
+        "createai": {
+          "title": "Crear con IA",
+          "description": "Utiliza la IA para crear tu propio test de forma rápida y sencilla."
+        }
+      },
+      "about": {
+        "title": "Sobre el Proyecto",
+        "description": "Más información sobre el proyecto y las personas detrás de él."
+      },
+      "lang": {
+        "button": "Alternar idioma"
+      },
+      "theme": {
+        "button": "Alternar tema",
+        "light": "Claro",
+        "dark": "Oscuro",
+        "system": "Sistema"
+      },
+      "menu": {
+        "button": "Abrir menú",
+        "title": "Menú"
+      }
+    },
+    "footer": {
+      "contact": "Contactar"
+    }
+  }
+}

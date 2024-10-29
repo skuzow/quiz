@@ -2,12 +2,31 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxt/eslint',
+    '@nuxtjs/i18n',
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     'shadcn-nuxt'
   ],
+
+  i18n: {
+    locales: [
+      {
+        code: 'en',
+        name: 'English',
+        file: 'en-US.json'
+      },
+      {
+        code: 'es',
+        name: 'Español',
+        file: 'es-ES.json'
+      }
+    ],
+    lazy: true,
+    langDir: 'lang',
+    defaultLocale: 'en'
+  },
 
   site: {
     url: 'https://quiz.skuzow.com',

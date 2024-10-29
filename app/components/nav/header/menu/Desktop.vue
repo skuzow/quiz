@@ -3,13 +3,16 @@ import { SearchIcon, SparkleIcon } from 'lucide-vue-next';
 
 import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 
-import {
+import { cn } from '@/lib/utils';
+
+const localePath = useLocalePath();
+
+const {
   exploreNavMenuAside,
   exploreNavMenuItems,
   createNavMenuAside,
   createNavMenuItems
-} from '@/constants/navMenu';
-import { cn } from '@/lib/utils';
+} = useNavMenu();
 </script>
 
 <template>
@@ -17,7 +20,7 @@ import { cn } from '@/lib/utils';
     <NavigationMenuList>
       <NavigationMenuItem>
         <NavigationMenuTrigger class="bg-transparent">
-          Explore
+          {{ $t('nav.explore') }}
         </NavigationMenuTrigger>
         <NavigationMenuContent>
           <NavigationMenuContentList>
@@ -34,7 +37,7 @@ import { cn } from '@/lib/utils';
 
       <NavigationMenuItem>
         <NavigationMenuTrigger class="bg-transparent">
-          Create
+          {{ $t('nav.create') }}
         </NavigationMenuTrigger>
         <NavigationMenuContent>
           <NavigationMenuContentList>
@@ -52,11 +55,11 @@ import { cn } from '@/lib/utils';
       <NavigationMenuItem>
         <NavigationMenuLink as-child>
           <NuxtLink
-            to="/about"
-            title="About"
+            :to="localePath('/about')"
+            :title="$t('nav.about')"
             :class="cn(navigationMenuTriggerStyle(), 'bg-transparent')"
           >
-            About
+            {{ $t('nav.about') }}
           </NuxtLink>
         </NavigationMenuLink>
       </NavigationMenuItem>
