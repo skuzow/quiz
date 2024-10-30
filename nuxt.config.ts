@@ -11,6 +11,13 @@ export default defineNuxtConfig({
     'shadcn-nuxt'
   ],
 
+  runtimeConfig: {
+    turso: {
+      databaseUrl: '',
+      authToken: ''
+    }
+  },
+
   colorMode: {
     preference: 'system',
     fallback: 'dark',
