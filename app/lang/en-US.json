@@ -61,5 +61,18 @@
     "footer": {
       "contact": "Contact"
     }
+  },
+  "form": {
+    "email": "Email",
+    "username": "Username",
+    "password": "Password",
+    "emailFormat": "Invalid email format.",
+    "required": "is required",
+    "least": "must be at least",
+    "most": "must be at most",
+    "characters": "characters"
+  },
+  "signup": {
+    "description": "Sign up to create your own tests."
   }
 }

@@ -1,7 +1,9 @@
 <script lang="ts" setup>
+const { t: $t } = useI18n();
+
 seoMeta({
-  title: 'Sign Up',
-  description: 'Sign up for an account to access exclusive features.'
+  title: $t('nav.header.signup'),
+  description: $t('signup.description')
 });
 
 const { formSchema, fieldConfig, onSubmit } = useSignupForm();
@@ -12,9 +14,9 @@ const { formSchema, fieldConfig, onSubmit } = useSignupForm();
     <h1
       class="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-3xl font-bold text-transparent"
     >
-      Sign Up
+      {{ $t('nav.header.signup') }}
     </h1>
-    <p class="mt-2">Enter your information to sign up.</p>
+    <p class="mt-2">{{ $t('signup.description') }}</p>
 
     <AutoForm
       class="mt-10 flex w-72 flex-col gap-y-6"
@@ -22,7 +24,7 @@ const { formSchema, fieldConfig, onSubmit } = useSignupForm();
       :field-config="fieldConfig"
       @submit="onSubmit"
     >
-      <Button type="submit">Sign Up</Button>
+      <Button type="submit">{{ $t('nav.header.signup') }}</Button>
     </AutoForm>
   </div>
 </template>

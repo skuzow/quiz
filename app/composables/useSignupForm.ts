@@ -1,44 +1,47 @@
 import * as z from 'zod';
 
 export const useSignupForm = () => {
-  // const { t: $t } = useI18n();
+  const { t: $t } = useI18n();
+
+  const { FormInput, requiredMessage, minMessage, maxMessage } =
+    useFormMessage();
 
   const formSchema = z.object({
     email: z
       .string({
-        required_error: 'Email is required.'
+        required_error: requiredMessage(FormInput.EMAIL)
       })
-      .email('Invalid email format.')
+      .email($t('form.emailFormat'))
       .max(35, {
-        message: 'Email must be at most 35 characters.'
+        message: maxMessage(FormInput.EMAIL, 35)
       }),
 
     username: z
       .string({
-        required_error: 'Username is required.'
+        required_error: requiredMessage(FormInput.USERNAME)
       })
       .min(3, {
-        message: 'Username must be at least 3 characters.'
+        message: minMessage(FormInput.USERNAME, 3)
       })
       .max(20, {
-        message: 'Username must be at most 20 characters.'
+        message: maxMessage(FormInput.USERNAME, 20)
       }),
 
     password: z
       .string({
-        required_error: 'Password is required.'
+        required_error: requiredMessage(FormInput.PASSWORD)
       })
       .min(6, {
-        message: 'Password must be at least 6 characters.'
+        message: minMessage(FormInput.PASSWORD, 6)
       })
       .max(50, {
-        message: 'Password must be at most 50 characters.'
+        message: maxMessage(FormInput.PASSWORD, 50)
       })
   });
 
   const fieldConfig = {
     email: {
-      label: 'Email',
+      label: $t('form.email'),
       inputProps: {
         type: 'email',
         placeholder: 'example@skuzow.com'
@@ -46,7 +49,7 @@ export const useSignupForm = () => {
     },
 
     username: {
-      label: 'Username',
+      label: $t('form.username'),
       inputProps: {
         type: 'text',
         placeholder: 'skuzow'
@@ -54,7 +57,7 @@ export const useSignupForm = () => {
     },
 
     password: {
-      label: 'Password',
+      label: $t('form.password'),
       inputProps: {
         type: 'password',
         placeholder: '••••••••'
