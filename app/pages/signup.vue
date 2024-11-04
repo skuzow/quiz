@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 seoMeta({
-  title: 'Sign Up - skuzow/quiz',
+  title: 'Sign Up',
   description: 'Sign up for an account to access exclusive features.'
 });
 

@@ -5,7 +5,7 @@ interface SeoMeta {
 }
 
 const seoMeta = ({
-  title = 'skuzow/quiz',
+  title,
   description,
   image = '/images/website.png'
 }: SeoMeta = {}) => {
@@ -25,6 +25,9 @@ const seoMeta = ({
       }
     ]
   });
+
+  if (title) title = `${title} - skuzow/quiz`;
+  else title = 'skuzow/quiz';
 
   if (!description) description = $t('description');
 
