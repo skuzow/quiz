@@ -72,6 +72,9 @@
     "most": "debe ser como máximo",
     "characters": "caracteres"
   },
+  "login": {
+    "description": "Inicia sesión para gestionar tus tests."
+  },
   "signup": {
     "description": "Regístrate para crear tus propios tests."
   }
