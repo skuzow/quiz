@@ -24,6 +24,7 @@ logs
 !.env.example
 
 # Prisma
-prisma/migrations/
+prisma/migrations/*
+!prisma/migrations/migration_lock.toml
 *.db
 *.db-journal
