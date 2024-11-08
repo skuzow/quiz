@@ -11,7 +11,9 @@
     "migrate:reset": "pnpx prisma migrate reset",
     "migrate:dev": "pnpx prisma migrate dev",
     "migrate:generate": "pnpx prisma migrate generate",
+    "prisma:format": "pnpx prisma format",
     "prisma:studio": "pnpx prisma studio",
+    "turso:shell": "turso db shell",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write ."

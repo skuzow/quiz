@@ -2,7 +2,7 @@
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters"]
+  previewFeatures = ["driverAdapters", "omitApi"]
 }
 
 datasource db {
@@ -11,17 +11,121 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  tests Test[]
+  id            String  @id @default(uuid())
+  email         String  @unique
+  username      String  @unique
+  password      String
+  emailVerified Boolean @default(false)
+  image         Bytes?
+
+  roles UserToRole[]
+  tests UserTest[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
-model Test {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+model Role {
+  id   String @id @default(cuid())
+  name String @unique
+
+  users UserToRole[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserToRole {
+  id String @id @default(cuid())
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  role   Role   @relation(fields: [roleId], references: [id])
+  roleId String
+
+  @@unique([userId, roleId])
+}
+
+model UserTest {
+  id          String  @id @default(cuid())
+  title       String
+  description String
+  image       Bytes?
+  published   Boolean @default(false)
+
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String
+
+  categories UserTestToTestCategory[]
+  questions  UserTestQuestion[]
+  views      UserTestView[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TestCategory {
+  id   String @id @default(cuid())
+  name String
+
+  tests UserTestToTestCategory[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserTestToTestCategory {
+  id String @id @default(cuid())
+
+  test   UserTest @relation(fields: [testId], references: [id], onDelete: Cascade)
+  testId String
+
+  category   TestCategory @relation(fields: [categoryId], references: [id])
+  categoryId String
+
+  @@unique([testId, categoryId])
+}
+
+model UserTestQuestion {
+  id     String @id @default(cuid())
+  number Int
+  text   String
+  image  Bytes?
+
+  type   TestQuestionType @relation(fields: [typeId], references: [id])
+  typeId String
+
+  test   UserTest @relation(fields: [testId], references: [id], onDelete: Cascade)
+  testId String
+
+  options UserTestQuestionOption[]
+}
+
+model UserTestQuestionOption {
+  id        String  @id @default(cuid())
+  text      String
+  isCorrect Boolean
+
+  question   UserTestQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  questionId String
+}
+
+model TestQuestionType {
+  id   String @id @default(cuid())
+  name String @unique
+
+  questions UserTestQuestion[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserTestView {
+  id String @id @default(cuid())
+
+  test   UserTest @relation(fields: [testId], references: [id], onDelete: Cascade)
+  testId String
+
+  viewedAt DateTime @default(now())
 }
