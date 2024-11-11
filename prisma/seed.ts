@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcrypt';
-import { PrismaClient, type Role } from '@prisma/client';
-import { PrismaLibSQL } from '@prisma/adapter-libsql';
-import { createClient } from '@libsql/client';
+import type { PrismaClient, Role } from '@prisma/client';
+
+import { setupTursoDatabase } from './setup';
 
 import { ROLE, TEST_CATEGORY, TEST_QUESTION_TYPE } from '@/constants/seed';
 
@@ -14,13 +14,10 @@ const {
   ADMIN_PASSWORD
 } = process.env;
 
-const libsql = createClient({
-  url: NUXT_TURSO_DATABASE_URL!,
-  authToken: NUXT_TURSO_AUTH_TOKEN!
-});
-
-const adapter = new PrismaLibSQL(libsql);
-const prisma = new PrismaClient({ adapter });
+const prisma: PrismaClient = setupTursoDatabase(
+  NUXT_TURSO_DATABASE_URL!,
+  NUXT_TURSO_AUTH_TOKEN!
+);
 
 const seedRoles = async () => {
   const ROLES: string[] = Object.values(ROLE);
