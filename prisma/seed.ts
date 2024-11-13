@@ -56,14 +56,6 @@ const seedTestQuestionTypes = async () => {
 };
 
 const seedAdminUser = async () => {
-  const adminRole: Role | null = await prisma.role.findUnique({
-    where: { name: ROLE.ADMIN }
-  });
-
-  const userRole: Role | null = await prisma.role.findUnique({
-    where: { name: ROLE.USER }
-  });
-
   await prisma.user.upsert({
     where: { email: ADMIN_EMAIL! },
     update: {},
@@ -74,8 +66,8 @@ const seedAdminUser = async () => {
       emailVerified: true,
       roles: {
         create: [
-          { role: { connect: { id: adminRole!.id } } },
-          { role: { connect: { id: userRole!.id } } }
+          { role: { connect: { name: ROLE.ADMIN } } },
+          { role: { connect: { name: ROLE.USER } } }
         ]
       }
     }
