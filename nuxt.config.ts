@@ -8,7 +8,21 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
-    'shadcn-nuxt'
+    'shadcn-nuxt',
+
+    (_options, nuxt) => {
+      nuxt.hook('devtools:customTabs', (tabs) => {
+        tabs.push({
+          name: 'api-docs',
+          title: 'API Docs',
+          icon: 'lucide:telescope',
+          view: {
+            type: 'iframe',
+            src: '/_nitro/scalar'
+          }
+        });
+      });
+    }
   ],
 
   runtimeConfig: {
@@ -59,6 +73,11 @@ export default defineNuxtConfig({
     componentDir: './app/components/ui'
   },
 
+  nitro: {
+    experimental: {
+      openAPI: true
+    }
+  },
   future: { compatibilityVersion: 4 },
   devtools: { enabled: true },
   compatibilityDate: '2024-04-03'
