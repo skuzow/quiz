@@ -1,5 +1,5 @@
 import * as bcrypt from 'bcrypt';
-import type { PrismaClient, Role } from '@prisma/client';
+import type { PrismaClient } from '@prisma/client';
 
 import { setupTursoDatabase } from './setup';
 
@@ -68,6 +68,53 @@ const seedAdminUser = async () => {
         create: [
           { role: { connect: { name: ROLE.ADMIN } } },
           { role: { connect: { name: ROLE.USER } } }
+        ]
+      },
+      tests: {
+        create: [
+          {
+            title: 'Example test title',
+            description: 'Example test description',
+            categories: {
+              create: [
+                { category: { connect: { name: TEST_CATEGORY.TECHNOLOGY } } },
+                { category: { connect: { name: TEST_CATEGORY.UNIVERSITY } } }
+              ]
+            },
+            questions: {
+              create: [
+                {
+                  number: 1,
+                  text: 'Single example question',
+                  type: { connect: { name: TEST_QUESTION_TYPE.SINGLE } },
+                  options: {
+                    create: [
+                      { text: 'Single example option 1', isCorrect: true },
+                      { text: 'Single example option 2', isCorrect: false },
+                      { text: 'Single example option 3', isCorrect: false },
+                      { text: 'Single example option 4', isCorrect: false }
+                    ]
+                  }
+                },
+                {
+                  number: 2,
+                  text: 'Multiple example question',
+                  type: { connect: { name: TEST_QUESTION_TYPE.MULTIPLE } },
+                  options: {
+                    create: [
+                      { text: 'Multiple example option 1', isCorrect: true },
+                      { text: 'Multiple example option 2', isCorrect: true },
+                      { text: 'Multiple example option 3', isCorrect: false },
+                      { text: 'Multiple example option 4', isCorrect: false }
+                    ]
+                  }
+                }
+              ]
+            },
+            views: {
+              create: [{}, {}] // 2 views
+            }
+          }
         ]
       }
     }
