@@ -8,16 +8,33 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
+    "migrate:reset": "pnpx prisma migrate reset",
+    "migrate:dev": "pnpx prisma migrate dev",
+    "migrate:generate": "pnpx prisma migrate generate",
+    "prisma:seed": "pnpx prisma db seed",
+    "prisma:format": "pnpx prisma format",
+    "prisma:studio": "pnpx prisma studio",
+    "turso:login": "turso auth login",
+    "turso:shell": "turso db shell",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write ."
   },
+  "prisma": {
+    "seed": "pnpx tsx prisma/seed.ts"
+  },
   "dependencies": {
+    "@libsql/client": "^0.14.0",
     "@nuxtjs/color-mode": "^3.5.2",
     "@nuxtjs/i18n": "^8.5.5",
     "@nuxtjs/robots": "^4.1.9",
     "@nuxtjs/sitemap": "^6.1.2",
     "@pinia/nuxt": "^0.5.5",
+    "@prisma/adapter-libsql": "^5.21.1",
+    "@prisma/client": "^5.21.1",
+    "@vee-validate/zod": "^4.14.6",
+    "@vueuse/core": "^11.2.0",
+    "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.453.0",
@@ -25,20 +42,25 @@
     "radix-vue": "^1.9.7",
     "shadcn-nuxt": "^0.10.4",
     "tailwind-merge": "^2.5.4",
+    "vee-validate": "^4.14.6",
     "vue": "latest",
-    "vue-router": "latest"
+    "vue-router": "latest",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@nuxt/eslint": "^0.6.0",
     "@nuxtjs/tailwindcss": "^6.12.2",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/bcrypt": "^5.0.2",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
     "prettier-plugin-tailwindcss": "^0.6.8",
+    "prisma": "^5.21.1",
     "tailwindcss": "^3.4.14",
     "tailwindcss-animate": "^1.0.7",
+    "tsx": "^4.19.2",
     "typescript": "^5.6.3"
   }
 }

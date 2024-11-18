@@ -1,5 +1,14 @@
 <script lang="ts" setup>
 seoMeta();
+
+// const userStore = useUserStore();
+
+// const { status, data } = useAsyncData('getUser', () =>
+//   userStore.getUser('skuzow')
+// );
+
+// console.log('status', status.value);
+// console.log('data', data.value);
 </script>
 
 <template>
