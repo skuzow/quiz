@@ -54,6 +54,7 @@ export default defineNuxtConfig({
       }
     ],
     lazy: true,
+    restructureDir: 'app',
     langDir: 'lang',
     defaultLocale: 'en'
   },
