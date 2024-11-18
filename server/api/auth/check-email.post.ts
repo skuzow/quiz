@@ -14,13 +14,11 @@ export default defineEventHandler(async (event) => {
     );
   }
 
-  const emailTaken: boolean = !!(await prisma.user.findFirst({
-    where: { email: email }
-  }));
+  const emailTaken: boolean = await repository.auth.checkEmail(email);
 
   if (emailTaken) {
     return {
-      statusCode: 200,
+      statusCode: 409,
       body: {
         available: false,
         message: 'Email is already in use'

@@ -1,0 +1,54 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { IUserTest, IUserTestPartial } from '~~/shared/types/test.type';
+
+import { USER_TEST_SELECT, USER_TEST_PARTIAL_SELECT } from './queries/selects';
+
+class TestRepository {
+  private userTestModel = prisma.userTest;
+
+  async findById(id: string): Promise<IUserTest | null> {
+    const test = await this.userTestModel.findFirst({
+      where: { id: id },
+      select: USER_TEST_SELECT
+    });
+
+    if (!test) return null;
+
+    return {
+      ...test,
+      categories: test.categories.map(
+        (category: any) => category.category.name
+      ),
+      questions: test.questions.map((question: any) => ({
+        ...question,
+        type: question.type.name
+      })),
+      views: test._count.views,
+      _count: undefined
+    } as IUserTest;
+  }
+
+  async findAll(
+    skip: number,
+    take: number
+  ): Promise<IUserTestPartial[] | null> {
+    const tests = await this.userTestModel.findMany({
+      skip: skip,
+      take: take,
+      select: USER_TEST_PARTIAL_SELECT
+    });
+
+    if (!tests || tests.length === 0) return null;
+
+    return tests.map((test) => ({
+      ...test,
+      categories: test.categories.map(
+        (category: any) => category.category.name
+      ),
+      views: test._count.views,
+      _count: undefined
+    })) as IUserTestPartial[];
+  }
+}
+
+export default TestRepository;

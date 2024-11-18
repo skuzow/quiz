@@ -1,11 +1,9 @@
-import type { User } from '@prisma/client';
+import type { IUser } from '~~/shared/types/user.type';
 
 export default defineEventHandler(async (event) => {
   const { username } = getRouterParams(event);
 
-  const user: User | null = await prisma.user.findFirst({
-    where: { username: username }
-  });
+  const user: IUser | null = await repository.user.findByUsername(username);
 
   if (!user) {
     return {
@@ -20,7 +18,8 @@ export default defineEventHandler(async (event) => {
   return {
     statusCode: 200,
     body: {
-      user
+      user,
+      message: 'User found'
     }
   };
 });

@@ -14,13 +14,11 @@ export default defineEventHandler(async (event) => {
     );
   }
 
-  const usernameTaken: boolean = !!(await prisma.user.findFirst({
-    where: { username: username }
-  }));
+  const usernameTaken: boolean = await repository.auth.checkUsername(username);
 
   if (usernameTaken) {
     return {
-      statusCode: 200,
+      statusCode: 409,
       body: {
         available: false,
         message: 'Username is already in use'
