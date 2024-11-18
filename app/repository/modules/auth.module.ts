@@ -2,7 +2,7 @@ import FetchFactory from '@/repository/factory';
 import Routes from '@/repository/routes.client';
 import type { User } from '@prisma/client';
 
-import type { ISignup, ILogin } from '@/types/model';
+import type { ISignup, ILogin } from '~~/shared/types/auth.type';
 
 class AuthModule extends FetchFactory {
   private readonly ROUTE = Routes.Auth;

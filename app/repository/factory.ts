@@ -16,7 +16,7 @@ interface IHttpFactory {
   fetchOptions?: NitroFetchOptions<'json'>;
 }
 
-class HttpFactory {
+abstract class HttpFactory {
   private readonly $fetch: $Fetch;
   private accessToken: string = '';
 
@@ -51,4 +51,5 @@ class HttpFactory {
       : {};
   }
 }
+
 export default HttpFactory;
