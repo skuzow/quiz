@@ -6,7 +6,13 @@ seoMeta({
   description: $t('login.description')
 });
 
-const { formSchema, fieldConfig, onSubmit } = useLoginForm();
+const {
+  formSchema,
+  fieldConfig,
+  onSubmitForm,
+  loginWithGoogle,
+  loginWithGithub
+} = useLoginForm();
 </script>
 
 <template>
@@ -16,13 +22,27 @@ const { formSchema, fieldConfig, onSubmit } = useLoginForm();
       :description="$t('login.description')"
     />
 
-    <AutoForm
-      class="flex w-72 flex-col gap-y-6"
-      :schema="formSchema"
-      :field-config="fieldConfig"
-      @submit="onSubmit"
-    >
-      <Button type="submit">{{ $t('nav.header.login') }}</Button>
-    </AutoForm>
+    <section class="flex w-72 flex-col gap-y-6">
+      <AutoForm
+        class="flex flex-col gap-y-6"
+        :schema="formSchema"
+        :field-config="fieldConfig"
+        @submit="onSubmitForm"
+      >
+        <Button type="submit">{{ $t('nav.header.login') }}</Button>
+      </AutoForm>
+
+      <Separator :label="$t('auth.or')" />
+
+      <Button variant="outline" @click="loginWithGoogle">
+        <IconGoogle class="mr-2" />
+        {{ $t('auth.google') }}
+      </Button>
+
+      <Button variant="outline" @click="loginWithGithub">
+        <IconGithub class="mr-2" />
+        {{ $t('auth.github') }}
+      </Button>
+    </section>
   </div>
 </template>

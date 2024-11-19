@@ -72,6 +72,11 @@
     "most": "must be at most",
     "characters": "characters"
   },
+  "auth": {
+    "or": "OR",
+    "google": "Continue with Google",
+    "github": "Continue with Github"
+  },
   "login": {
     "description": "Log in to manage your tests."
   },

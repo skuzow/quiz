@@ -67,13 +67,19 @@ export const useSignupForm = () => {
 
   type FormValues = z.TypeOf<typeof formSchema>;
 
-  const onSubmit = (formValues: FormValues) => {
+  const onSubmitForm = (formValues: FormValues) => {
     console.log(formValues);
   };
+
+  const signupWithGoogle = () => {};
+
+  const signupWithGithub = () => {};
 
   return {
     formSchema,
     fieldConfig,
-    onSubmit
+    onSubmitForm,
+    signupWithGoogle,
+    signupWithGithub
   };
 };

@@ -72,6 +72,11 @@
     "most": "debe ser como máximo",
     "characters": "caracteres"
   },
+  "auth": {
+    "or": "O",
+    "google": "Continuar con Google",
+    "github": "Continuar con Github"
+  },
   "login": {
     "description": "Inicia sesión para gestionar tus tests."
   },
