@@ -7,9 +7,7 @@ export default defineEventHandler(async (event) => {
       createError({
         statusCode: 400,
         statusMessage: 'Missing required fields',
-        data: {
-          message: 'Username is required'
-        }
+        data: 'Username required'
       })
     );
   }
@@ -17,20 +15,17 @@ export default defineEventHandler(async (event) => {
   const usernameTaken: boolean = await repository.auth.checkUsername(username);
 
   if (usernameTaken) {
-    return {
-      statusCode: 409,
-      body: {
-        available: false,
-        message: 'Username is already in use'
-      }
-    };
+    return sendError(
+      event,
+      createError({
+        statusCode: 409,
+        statusMessage: 'Username already in use'
+      })
+    );
   }
 
   return {
     statusCode: 200,
-    body: {
-      available: true,
-      message: 'Username is available'
-    }
+    statusMessage: 'Username available'
   };
 });

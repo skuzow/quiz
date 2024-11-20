@@ -7,9 +7,7 @@ export default defineEventHandler(async (event) => {
       createError({
         statusCode: 400,
         statusMessage: 'Missing required fields',
-        data: {
-          message: 'Email is required'
-        }
+        data: 'Email required'
       })
     );
   }
@@ -17,20 +15,17 @@ export default defineEventHandler(async (event) => {
   const emailTaken: boolean = await repository.auth.checkEmail(email);
 
   if (emailTaken) {
-    return {
-      statusCode: 409,
-      body: {
-        available: false,
-        message: 'Email is already in use'
-      }
-    };
+    return sendError(
+      event,
+      createError({
+        statusCode: 409,
+        statusMessage: 'Email already in use'
+      })
+    );
   }
 
   return {
     statusCode: 200,
-    body: {
-      available: true,
-      message: 'Email is available'
-    }
+    statusMessage: 'Email available'
   };
 });

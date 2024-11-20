@@ -6,20 +6,20 @@ export default defineEventHandler(async (event) => {
   const user: IUser | null = await repository.user.findById(id);
 
   if (!user) {
-    return {
-      statusCode: 404,
-      statusMessage: 'Not Found',
-      body: {
-        message: 'User not found'
-      }
-    };
+    return sendError(
+      event,
+      createError({
+        statusCode: 404,
+        statusMessage: 'User not found'
+      })
+    );
   }
 
   return {
     statusCode: 200,
+    statusMessage: 'User found',
     body: {
-      user,
-      message: 'User found'
+      user
     }
   };
 });

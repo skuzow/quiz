@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
         statusCode: 400,
         statusMessage: 'Missing required fields',
         data: {
-          message: 'Skip & Take are required'
+          message: 'Skip & Take required'
         }
       })
     );
@@ -22,20 +22,20 @@ export default defineEventHandler(async (event) => {
   );
 
   if (!tests) {
-    return {
-      statusCode: 404,
-      statusMessage: 'Not Found',
-      body: {
-        message: 'Tests not found'
-      }
-    };
+    return sendError(
+      event,
+      createError({
+        statusCode: 404,
+        statusMessage: 'Tests not found'
+      })
+    );
   }
 
   return {
     statusCode: 200,
+    statusMessage: 'Tests found',
     body: {
-      tests,
-      message: 'Tests found'
+      tests
     }
   };
 });
