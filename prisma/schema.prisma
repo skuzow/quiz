@@ -11,18 +11,86 @@ datasource db {
 }
 
 model User {
-  id            String  @id @default(uuid())
-  email         String  @unique
-  username      String  @unique
-  password      String
-  emailVerified Boolean @default(false)
-  image         Bytes?
+  id               String   @id @default(uuid())
+  email            String   @unique
+  username         String?  @unique
+  name             String
+  image            String?
+  emailVerified    Boolean  @default(false)
+  twoFactorEnabled Boolean?
 
-  roles UserToRole[]
-  tests UserTest[]
+  accounts   Account[]
+  sessions   Session[]
+  twoFactors TwoFactor[]
+  roles      UserToRole[]
+  tests      UserTest[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  @@map("session")
+}
+
+model Account {
+  id           String    @id @default(cuid())
+  accountId    String
+  providerId   String
+  accessToken  String?
+  refreshToken String?
+  idToken      String?
+  expiresAt    DateTime?
+  password     String?
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime?
+
+  @@map("verification")
+}
+
+model Jwks {
+  id         String @id @default(cuid())
+  publicKey  String
+  privateKey String
+
+  createdAt DateTime @default(now())
+
+  @@map("jwks")
+}
+
+model TwoFactor {
+  id          String @id @default(cuid())
+  secret      String
+  backupCodes String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("twoFactor")
 }
 
 model Role {
@@ -51,7 +119,7 @@ model UserTest {
   id          String  @id @default(cuid())
   title       String
   description String
-  image       Bytes?
+  image       String?
   published   Boolean @default(false)
 
   author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
@@ -88,10 +156,10 @@ model UserTestToTestCategory {
 }
 
 model UserTestQuestion {
-  id     String @id @default(cuid())
+  id     String  @id @default(cuid())
   number Int
   text   String
-  image  Bytes?
+  image  String?
 
   type   TestQuestionType @relation(fields: [typeId], references: [id])
   typeId String

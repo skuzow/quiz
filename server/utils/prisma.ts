@@ -1,12 +1,7 @@
 import type { PrismaClient } from '@prisma/client';
 
-import { setupTursoDatabase } from '@/../prisma/setup';
+import { setupTursoDatabase } from '../../prisma/setup';
 
-const { turso } = useRuntimeConfig();
-
-const prisma: PrismaClient = setupTursoDatabase(
-  turso.databaseUrl,
-  turso.authToken
-);
+const prisma: PrismaClient = setupTursoDatabase();
 
 export default prisma;

@@ -25,13 +25,6 @@ export default defineNuxtConfig({
     }
   ],
 
-  runtimeConfig: {
-    turso: {
-      databaseUrl: '',
-      authToken: ''
-    }
-  },
-
   colorMode: {
     preference: 'system',
     fallback: 'dark',

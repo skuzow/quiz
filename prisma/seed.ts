@@ -1,23 +1,10 @@
 import * as bcrypt from 'bcrypt';
-import type { PrismaClient } from '@prisma/client';
 
-import { setupTursoDatabase } from './setup';
+import prisma from '../server/utils/prisma';
 
 import { ROLE, TEST_CATEGORY, TEST_QUESTION_TYPE } from '@/constants/seed';
 
-const {
-  NUXT_TURSO_DATABASE_URL,
-  NUXT_TURSO_AUTH_TOKEN,
-
-  ADMIN_EMAIL,
-  ADMIN_USERNAME,
-  ADMIN_PASSWORD
-} = process.env;
-
-const prisma: PrismaClient = setupTursoDatabase(
-  NUXT_TURSO_DATABASE_URL!,
-  NUXT_TURSO_AUTH_TOKEN!
-);
+const { ADMIN_EMAIL, ADMIN_USERNAME, ADMIN_PASSWORD } = process.env;
 
 const seedRoles = async () => {
   const ROLES: string[] = Object.values(ROLE);
@@ -57,12 +44,13 @@ const seedTestQuestionTypes = async () => {
 
 const seedAdminUser = async () => {
   await prisma.user.upsert({
-    where: { email: ADMIN_EMAIL! },
+    where: { email: ADMIN_EMAIL as string },
     update: {},
     create: {
-      email: ADMIN_EMAIL!,
-      username: ADMIN_USERNAME!,
-      password: await bcrypt.hash(ADMIN_PASSWORD!, 10),
+      email: ADMIN_EMAIL as string,
+      name: ADMIN_USERNAME as string,
+      username: ADMIN_USERNAME as string,
+      password: await bcrypt.hash(ADMIN_PASSWORD as string, 10),
       emailVerified: true,
       roles: {
         create: [
@@ -126,7 +114,7 @@ const seed = async () => {
   seedTestCategories();
   seedTestQuestionTypes();
 
-  seedAdminUser();
+  // seedAdminUser();
 };
 
 seed()
