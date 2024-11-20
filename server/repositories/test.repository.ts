@@ -14,18 +14,7 @@ class TestRepository {
 
     if (!test) return null;
 
-    return {
-      ...test,
-      categories: test.categories.map(
-        (category: any) => category.category.name
-      ),
-      questions: test.questions.map((question: any) => ({
-        ...question,
-        type: question.type.name
-      })),
-      views: test._count.views,
-      _count: undefined
-    } as IUserTest;
+    return this.transformUserTest(test);
   }
 
   async findAll(
@@ -40,14 +29,33 @@ class TestRepository {
 
     if (!tests || tests.length === 0) return null;
 
-    return tests.map((test) => ({
+    return this.transformUserTestsPartial(tests);
+  }
+
+  private transformUserTest(test: any): IUserTest {
+    return {
+      ...test,
+      categories: test.categories.map(
+        (category: any) => category.category.name
+      ),
+      questions: test.questions.map((question: any) => ({
+        ...question,
+        type: question.type.name
+      })),
+      views: test._count.views,
+      _count: undefined
+    };
+  }
+
+  private transformUserTestsPartial(tests: any): IUserTestPartial[] {
+    return tests.map((test: any) => ({
       ...test,
       categories: test.categories.map(
         (category: any) => category.category.name
       ),
       views: test._count.views,
       _count: undefined
-    })) as IUserTestPartial[];
+    }));
   }
 }
 

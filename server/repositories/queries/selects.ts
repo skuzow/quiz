@@ -4,18 +4,9 @@ export const ROLE_SELECT: Prisma.UserToRoleSelect = {
   role: { select: { name: true } }
 };
 
-export const AUTH_USER_SELECT: Prisma.UserSelect = {
-  email: true,
-  username: true,
-  password: true,
-  image: true,
-  roles: {
-    select: ROLE_SELECT
-  },
-  createdAt: true
-};
-
 export const USER_PARTIAL_SELECT: Prisma.UserSelect = {
+  id: true,
+  name: true,
   username: true,
   image: true
 };

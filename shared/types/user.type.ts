@@ -1,13 +1,17 @@
 import type { IUserTestPartial } from './test.type';
 
 export interface IUserPartial {
-  username: string;
-  image: Buffer<ArrayBufferLike> | null;
+  id: string;
+  name: string;
+  username: string | null;
+  image: string | null;
 }
 
 export interface IUser {
-  username: string;
-  image: Buffer<ArrayBufferLike> | null;
+  id: string;
+  name: string;
+  username: string | null;
+  image: string | null;
   roles: string[];
   tests: IUserTestPartial[];
   createdAt: Date;
