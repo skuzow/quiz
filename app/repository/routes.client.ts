@@ -8,17 +8,12 @@ const PREFIX = {
 
 const Routes = {
   Auth: {
-    CheckEmail: (email: string) => `${PREFIX.AUTH}/check-email/${email}`,
-    CheckUsername: (username: string) =>
-      `${PREFIX.AUTH}/check-username/${username}`,
-    Signup: () => `${PREFIX.AUTH}/signup`,
-    Login: () => `${PREFIX.AUTH}/login`,
-    Logout: () => `${PREFIX.AUTH}/logout`,
-    Verify: () => `${PREFIX.AUTH}/verify`
+    CheckEmail: () => `${PREFIX.AUTH}/check-email`,
+    CheckUsername: () => `${PREFIX.AUTH}/check-username`
   },
   User: {
-    FetchUsername: (username: string) => `${PREFIX.USER}/${username}`,
-    FetchId: (id: string) => `${PREFIX.USER}/${id}`
+    FetchId: (id: string) => `${PREFIX.USER}/${id}`,
+    FetchUsername: (username: string) => `${PREFIX.USER}/username/${username}`
   },
   Test: {
     Fetch: () => PREFIX.TEST,

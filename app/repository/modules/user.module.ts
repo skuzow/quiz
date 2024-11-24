@@ -1,19 +1,25 @@
 import FetchFactory from '@/repository/factory';
 import Routes from '@/repository/routes.client';
-import type { User } from '@prisma/client';
 
 class UserModule extends FetchFactory {
   private readonly ROUTE = Routes.User;
 
-  async get(username: string) {
-    return this.call<User>({
+  async get(id: string) {
+    return this.call<IUser>({
+      method: 'GET',
+      url: this.ROUTE.FetchId(id)
+    });
+  }
+
+  async getByUsername(username: string) {
+    return this.call<IUser>({
       method: 'GET',
       url: this.ROUTE.FetchUsername(username)
     });
   }
 
-  async update(id: string, dto: User) {
-    return this.call<User>({
+  async update(id: string, dto: IUser) {
+    return this.call<IUser>({
       method: 'PUT',
       url: this.ROUTE.FetchId(id),
       body: dto,
@@ -26,7 +32,7 @@ class UserModule extends FetchFactory {
   }
 
   async delete(id: string) {
-    return this.call<User>({
+    return this.call({
       method: 'DELETE',
       url: this.ROUTE.FetchId(id),
       fetchOptions: {
