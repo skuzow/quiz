@@ -20,15 +20,6 @@ class AuthModule extends FetchFactory {
       body: { username }
     });
   }
-
-  async signupWithEmail(dto: ISignup) {
-    return authClient.signUp.email({
-      email: dto.email,
-      name: dto.name,
-      password: dto.password,
-      username: dto.username
-    });
-  }
 }
 
 export default AuthModule;

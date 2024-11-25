@@ -13,6 +13,7 @@ const MAX_USERNAME_LENGTH: number = 20;
 export const useSignupForm = () => {
   const { $api } = useNuxtApp();
   const { t: $t } = useI18n();
+  const localePath = useLocalePath();
 
   const {
     FormInput,
@@ -182,33 +183,40 @@ export const useSignupForm = () => {
     }
   };
 
-  // TODO: signup with loading, when error, navigation with success
-  const signupWithEmail = (formValues: FormValues) => {
-    const { status, data } = useAsyncData('signupWithEmail', () =>
-      $api.auth.signupWithEmail(formValues)
-    );
+  // TODO: show loading thing when processing and proper error handling
+  const signupWithEmail = async ({
+    email,
+    name,
+    username,
+    password
+  }: FormValues) => {
+    const { error } = await authClient.signUp.email({
+      email,
+      name,
+      password,
+      username
+    });
 
-    console.log(status.value);
-    console.log('data', data.value!.data);
-    console.log('error', data.value!.error);
+    if (error) console.error('Error signing:', error);
+    else await navigateTo(localePath('/'));
   };
 
-  // TODO: signup with loading, when error, navigation with success
+  // TODO: show loading thing when processing and proper error handling
   const signupWithGoogle = async () => {
-    const value = await authClient.signIn.social({
+    const { error } = await authClient.signIn.social({
       provider: 'google'
     });
 
-    console.log(value);
+    if (error) console.error('Error signing in with Github:', error);
   };
 
-  // TODO: signup with loading, when error, navigation with success
+  // TODO: show loading thing when processing and proper error handling
   const signupWithGithub = async () => {
-    const value = await authClient.signIn.social({
+    const { error } = await authClient.signIn.social({
       provider: 'github'
     });
 
-    console.log(value);
+    if (error) console.error('Error signing in with Github:', error);
   };
 
   return {
