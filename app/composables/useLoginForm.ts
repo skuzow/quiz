@@ -28,6 +28,8 @@ export const useLoginForm = () => {
       })
   });
 
+  type ILogin = z.TypeOf<typeof formSchema>;
+
   const fieldConfig = {
     email: {
       label: $t('form.email'),
@@ -46,9 +48,7 @@ export const useLoginForm = () => {
     }
   };
 
-  type FormValues = z.TypeOf<typeof formSchema>;
-
-  const loginWithEmail = (formValues: FormValues) => {
+  const loginWithEmail = (formValues: ILogin) => {
     console.log(formValues);
   };
 

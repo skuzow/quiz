@@ -77,6 +77,8 @@ export const useSignupForm = () => {
       })
   });
 
+  type ISignup = z.TypeOf<typeof formSchema>;
+
   const fieldConfig = {
     email: {
       label: $t('form.email'),
@@ -110,8 +112,6 @@ export const useSignupForm = () => {
       }
     }
   };
-
-  type FormValues = z.TypeOf<typeof formSchema>;
 
   let emailTimeout: NodeJS.Timeout;
 
@@ -189,7 +189,7 @@ export const useSignupForm = () => {
     name,
     username,
     password
-  }: FormValues) => {
+  }: ISignup) => {
     const { error } = await authClient.signUp.email({
       email,
       name,
