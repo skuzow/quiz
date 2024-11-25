@@ -5,6 +5,8 @@ const localePath = useLocalePath();
 
 const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
   useNavMenu();
+
+const sessionStore = useSessionStore();
 </script>
 
 <template>
@@ -27,7 +29,24 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
         </SheetTitle>
       </SheetHeader>
 
-      <SheetMenu>
+      <div v-if="sessionStore.isAuthenticated" class="mt-6">
+        <SheetMenuContentSeparator
+          :nav-menu-title="$t('nav.explore')"
+          :nav-menu-items="exploreNavMenuItems"
+        />
+
+        <SheetMenuContentSeparator
+          :nav-menu-title="$t('nav.create')"
+          :nav-menu-items="createNavMenuItems"
+        />
+
+        <SheetMenuContentSeparator
+          :nav-menu-title="$t('nav.about')"
+          :nav-menu-items="aboutNavMenuItems"
+        />
+      </div>
+
+      <div v-else class="mt-6 flex flex-col gap-y-6">
         <SheetMenuContent
           :nav-menu-title="$t('nav.explore')"
           :nav-menu-items="exploreNavMenuItems"
@@ -42,7 +61,7 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
           :nav-menu-title="$t('nav.about')"
           :nav-menu-items="aboutNavMenuItems"
         />
-      </SheetMenu>
+      </div>
 
       <div class="mt-8 flex flex-col gap-y-3">
         <SheetClose as-child>

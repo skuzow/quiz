@@ -30,5 +30,6 @@ export const sheetVariants = cva(
 
 export type SheetVariants = VariantProps<typeof sheetVariants>;
 
-export { default as SheetMenu } from './menu/SheetMenu.vue';
 export { default as SheetMenuContent } from './menu/SheetMenuContent.vue';
+export { default as SheetMenuContentItems } from './menu/SheetMenuContentItems.vue';
+export { default as SheetMenuContentSeparator } from './menu/SheetMenuContentSeparator.vue';
