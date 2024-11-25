@@ -64,13 +64,15 @@
   },
   "form": {
     "email": "Email",
+    "name": "Name",
     "username": "Username",
     "password": "Password",
     "emailFormat": "Invalid email format.",
     "required": "is required",
     "least": "must be at least",
     "most": "must be at most",
-    "characters": "characters"
+    "characters": "characters",
+    "use": "is already in use"
   },
   "auth": {
     "or": "OR",

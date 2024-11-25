@@ -9,7 +9,7 @@ seoMeta({
 const {
   formSchema,
   fieldConfig,
-  onSubmitForm,
+  loginWithEmail,
   loginWithGoogle,
   loginWithGithub
 } = useLoginForm();
@@ -27,7 +27,7 @@ const {
         class="flex flex-col gap-y-6"
         :schema="formSchema"
         :field-config="fieldConfig"
-        @submit="onSubmitForm"
+        @submit="loginWithEmail"
       >
         <Button type="submit">{{ $t('nav.header.login') }}</Button>
       </AutoForm>

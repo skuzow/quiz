@@ -7,9 +7,10 @@ seoMeta({
 });
 
 const {
+  loading,
   formSchema,
   fieldConfig,
-  onSubmitForm,
+  signupWithEmail,
   signupWithGoogle,
   signupWithGithub
 } = useSignupForm();
@@ -27,9 +28,11 @@ const {
         class="flex flex-col gap-y-6"
         :schema="formSchema"
         :field-config="fieldConfig"
-        @submit="onSubmitForm"
+        @submit="signupWithEmail"
       >
-        <Button type="submit">{{ $t('nav.header.signup') }}</Button>
+        <Button type="submit">
+          {{ loading ? 'loading' : $t('nav.header.signup') }}
+        </Button>
       </AutoForm>
 
       <Separator :label="$t('auth.or')" />

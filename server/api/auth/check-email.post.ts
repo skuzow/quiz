@@ -1,3 +1,5 @@
+import type { CheckResponse } from '~~/shared/types/response.type';
+
 export default defineEventHandler(async (event) => {
   const { email } = await readBody(event);
 
@@ -15,17 +17,20 @@ export default defineEventHandler(async (event) => {
   const emailTaken: boolean = await repository.auth.checkEmail(email);
 
   if (emailTaken) {
-    return sendError(
-      event,
-      createError({
-        statusCode: 409,
-        statusMessage: 'Email already in use'
-      })
-    );
+    return {
+      statusCode: 409,
+      statusMessage: 'Email already in use',
+      body: {
+        isAvailable: false
+      }
+    } as CheckResponse;
   }
 
   return {
     statusCode: 200,
-    statusMessage: 'Email available'
-  };
+    statusMessage: 'Email available',
+    body: {
+      isAvailable: true
+    }
+  } as CheckResponse;
 });

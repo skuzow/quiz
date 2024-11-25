@@ -1,3 +1,5 @@
+import type { CheckResponse } from '~~/shared/types/response.type';
+
 export default defineEventHandler(async (event) => {
   const { username } = await readBody(event);
 
@@ -15,17 +17,20 @@ export default defineEventHandler(async (event) => {
   const usernameTaken: boolean = await repository.auth.checkUsername(username);
 
   if (usernameTaken) {
-    return sendError(
-      event,
-      createError({
-        statusCode: 409,
-        statusMessage: 'Username already in use'
-      })
-    );
+    return {
+      statusCode: 409,
+      statusMessage: 'Username already in use',
+      body: {
+        isAvailable: false
+      }
+    } as CheckResponse;
   }
 
   return {
     statusCode: 200,
-    statusMessage: 'Username available'
-  };
+    statusMessage: 'Username available',
+    body: {
+      isAvailable: true
+    }
+  } as CheckResponse;
 });
