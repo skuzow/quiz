@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 const localePath = useLocalePath();
+
+const sessionStore = useSessionStore();
 </script>
 
 <template>
@@ -27,7 +29,7 @@ const localePath = useLocalePath();
           <NavHeaderDropdownTheme />
         </li>
 
-        <li class="hidden md:flex">
+        <li v-if="!sessionStore.isAuthenticated" class="hidden md:flex">
           <NuxtLink :to="localePath('/login')" :title="$t('nav.header.login')">
             <Button variant="secondary">
               {{ $t('nav.header.login') }}
@@ -35,7 +37,7 @@ const localePath = useLocalePath();
           </NuxtLink>
         </li>
 
-        <li class="hidden md:flex">
+        <li v-if="!sessionStore.isAuthenticated" class="hidden md:flex">
           <NuxtLink
             :to="localePath('/signup')"
             :title="$t('nav.header.signup')"

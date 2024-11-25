@@ -63,7 +63,10 @@ const sessionStore = useSessionStore();
         />
       </div>
 
-      <div class="mt-8 flex flex-col gap-y-3">
+      <div
+        v-if="!sessionStore.isAuthenticated"
+        class="mt-8 flex flex-col gap-y-3"
+      >
         <SheetClose as-child>
           <NuxtLink :to="localePath('/login')" :title="$t('nav.header.login')">
             <Button variant="secondary" class="w-full">
