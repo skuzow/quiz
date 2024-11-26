@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { MenuIcon } from 'lucide-vue-next';
 
+const sessionStore = await useSessionStore();
+
 const localePath = useLocalePath();
 
 const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
   useNavMenu();
-
-const sessionStore = useSessionStore();
 </script>
 
 <template>

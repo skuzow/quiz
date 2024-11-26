@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-const localePath = useLocalePath();
+const sessionStore = await useSessionStore();
 
-const sessionStore = useSessionStore();
+const localePath = useLocalePath();
 </script>
 
 <template>

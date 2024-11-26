@@ -1,8 +1,7 @@
-export const useSessionStore = defineStore('session', () => {
-  const session = authClient.useSession();
+export const useSessionStore = defineStore('session', async () => {
+  const { data: session } = await authClient.useSession(useFetch);
 
-  const sessionData = computed(() => session?.value?.data);
-  const isAuthenticated = computed(() => !!sessionData);
+  const isAuthenticated = computed(() => !!session);
 
-  return { sessionData, isAuthenticated };
+  return { session, isAuthenticated };
 });
