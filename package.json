@@ -11,6 +11,7 @@
     "migrate:reset": "pnpx prisma migrate reset",
     "migrate:dev": "pnpx prisma migrate dev",
     "auth:generate": "pnpx @better-auth/cli generate --config ./server/utils/auth.ts",
+    "prisma:generate": "pnpx prisma generate",
     "prisma:seed": "pnpx prisma db seed",
     "prisma:format": "pnpx prisma format",
     "prisma:studio": "pnpx prisma studio",
