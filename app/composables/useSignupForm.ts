@@ -2,8 +2,6 @@ import * as z from 'zod';
 
 import { isValidEmail } from '~/lib/utils';
 
-import type { CheckResponse } from '~~/shared/types/response.type';
-
 const CHECK_TIMEOUT: number = 1000;
 
 const MAX_EMAIL_LENGTH: number = 35;

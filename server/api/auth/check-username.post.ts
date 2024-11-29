@@ -1,5 +1,3 @@
-import type { CheckResponse } from '~~/shared/types/response.type';
-
 export default defineEventHandler(async (event) => {
   const { username } = await readBody(event);
 

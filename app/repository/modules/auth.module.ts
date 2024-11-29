@@ -1,6 +1,5 @@
 import FetchFactory from '@/repository/factory';
 import Routes from '@/repository/routes.client';
-import type { CheckResponse } from '~~/shared/types/response.type';
 
 class AuthModule extends FetchFactory {
   private readonly ROUTE = Routes.Auth;

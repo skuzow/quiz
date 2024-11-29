@@ -73,6 +73,9 @@ export default defineNuxtConfig({
     }
   },
   nitro: {
+    imports: {
+      dirs: ['./server/utils']
+    },
     experimental: {
       openAPI: true
     }
