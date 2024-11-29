@@ -67,6 +67,11 @@ export default defineNuxtConfig({
     componentDir: './app/components/ui'
   },
 
+  vite: {
+    optimizeDeps: {
+      exclude: ['vee-validate']
+    }
+  },
   nitro: {
     experimental: {
       openAPI: true
