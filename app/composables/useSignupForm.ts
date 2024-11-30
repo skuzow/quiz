@@ -1,7 +1,5 @@
 import * as z from 'zod';
 
-import { isValidEmail } from '~/lib/utils';
-
 const CHECK_TIMEOUT: number = 1000;
 
 const MAX_EMAIL_LENGTH: number = 35;

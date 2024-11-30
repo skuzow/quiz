@@ -67,6 +67,9 @@ export default defineNuxtConfig({
     componentDir: './app/components/ui'
   },
 
+  imports: {
+    dirs: ['lib']
+  },
   vite: {
     optimizeDeps: {
       exclude: ['vee-validate']
