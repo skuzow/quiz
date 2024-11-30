@@ -20,11 +20,11 @@ export const useLoginForm = () => {
       .string({
         required_error: requiredMessage(FormInput.PASSWORD)
       })
-      .min(6, {
-        message: minMessage(FormInput.PASSWORD, 6)
+      .min(8, {
+        message: minMessage(FormInput.PASSWORD, 8)
       })
-      .max(50, {
-        message: maxMessage(FormInput.PASSWORD, 50)
+      .max(32, {
+        message: maxMessage(FormInput.PASSWORD, 32)
       })
   });
 
