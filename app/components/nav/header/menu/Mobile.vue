@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { MenuIcon } from 'lucide-vue-next';
 
+const { isAuthenticated, signOut } = useAuth();
+
 const localePath = useLocalePath();
 
 const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
@@ -27,7 +29,24 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
         </SheetTitle>
       </SheetHeader>
 
-      <SheetMenu>
+      <div v-if="isAuthenticated" class="mt-6">
+        <SheetMenuContentSeparator
+          :nav-menu-title="$t('nav.explore')"
+          :nav-menu-items="exploreNavMenuItems"
+        />
+
+        <SheetMenuContentSeparator
+          :nav-menu-title="$t('nav.create')"
+          :nav-menu-items="createNavMenuItems"
+        />
+
+        <SheetMenuContentSeparator
+          :nav-menu-title="$t('nav.about')"
+          :nav-menu-items="aboutNavMenuItems"
+        />
+      </div>
+
+      <div v-else class="mt-6 flex flex-col gap-y-6">
         <SheetMenuContent
           :nav-menu-title="$t('nav.explore')"
           :nav-menu-items="exploreNavMenuItems"
@@ -42,27 +61,38 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
           :nav-menu-title="$t('nav.about')"
           :nav-menu-items="aboutNavMenuItems"
         />
-      </SheetMenu>
+      </div>
 
       <div class="mt-8 flex flex-col gap-y-3">
-        <SheetClose as-child>
-          <NuxtLink :to="localePath('/login')" :title="$t('nav.header.login')">
-            <Button variant="secondary" class="w-full">
-              {{ $t('nav.header.login') }}
-            </Button>
-          </NuxtLink>
+        <SheetClose v-if="isAuthenticated" as-child>
+          <Button class="w-full" @click="signOut">
+            {{ $t('nav.header.logout') }}
+          </Button>
         </SheetClose>
 
-        <SheetClose as-child>
-          <NuxtLink
-            :to="localePath('/signup')"
-            :title="$t('nav.header.signup')"
-          >
-            <Button class="w-full">
-              {{ $t('nav.header.signup') }}
-            </Button>
-          </NuxtLink>
-        </SheetClose>
+        <template v-else>
+          <SheetClose as-child>
+            <NuxtLink
+              :to="localePath('/login')"
+              :title="$t('nav.header.login')"
+            >
+              <Button variant="secondary" class="w-full">
+                {{ $t('nav.header.login') }}
+              </Button>
+            </NuxtLink>
+          </SheetClose>
+
+          <SheetClose as-child>
+            <NuxtLink
+              :to="localePath('/signup')"
+              :title="$t('nav.header.signup')"
+            >
+              <Button class="w-full">
+                {{ $t('nav.header.signup') }}
+              </Button>
+            </NuxtLink>
+          </SheetClose>
+        </template>
       </div>
     </SheetContent>
   </Sheet>

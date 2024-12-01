@@ -7,9 +7,7 @@ export default defineEventHandler(async (event) => {
       createError({
         statusCode: 400,
         statusMessage: 'Missing required fields',
-        data: {
-          message: 'Username is required'
-        }
+        data: 'Username required'
       })
     );
   }
@@ -19,18 +17,18 @@ export default defineEventHandler(async (event) => {
   if (usernameTaken) {
     return {
       statusCode: 409,
+      statusMessage: 'Username already in use',
       body: {
-        available: false,
-        message: 'Username is already in use'
+        isAvailable: false
       }
-    };
+    } as CheckResponse;
   }
 
   return {
     statusCode: 200,
+    statusMessage: 'Username available',
     body: {
-      available: true,
-      message: 'Username is available'
+      isAvailable: true
     }
-  };
+  } as CheckResponse;
 });

@@ -25,13 +25,6 @@ export default defineNuxtConfig({
     }
   ],
 
-  runtimeConfig: {
-    turso: {
-      databaseUrl: '',
-      authToken: ''
-    }
-  },
-
   colorMode: {
     preference: 'system',
     fallback: 'dark',
@@ -74,7 +67,18 @@ export default defineNuxtConfig({
     componentDir: './app/components/ui'
   },
 
+  imports: {
+    dirs: ['lib']
+  },
+  vite: {
+    optimizeDeps: {
+      exclude: ['vee-validate']
+    }
+  },
   nitro: {
+    imports: {
+      dirs: ['./server/utils']
+    },
     experimental: {
       openAPI: true
     }

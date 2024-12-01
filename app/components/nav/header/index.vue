@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const { isAuthenticated, signOut } = useAuth();
+
 const localePath = useLocalePath();
 </script>
 
@@ -27,24 +29,35 @@ const localePath = useLocalePath();
           <NavHeaderDropdownTheme />
         </li>
 
-        <li class="hidden md:flex">
-          <NuxtLink :to="localePath('/login')" :title="$t('nav.header.login')">
-            <Button variant="secondary">
-              {{ $t('nav.header.login') }}
-            </Button>
-          </NuxtLink>
+        <li v-if="isAuthenticated" class="hidden md:flex">
+          <Button @click="signOut">
+            {{ $t('nav.header.logout') }}
+          </Button>
         </li>
 
-        <li class="hidden md:flex">
-          <NuxtLink
-            :to="localePath('/signup')"
-            :title="$t('nav.header.signup')"
-          >
-            <Button>
-              {{ $t('nav.header.signup') }}
-            </Button>
-          </NuxtLink>
-        </li>
+        <template v-else>
+          <li class="hidden md:flex">
+            <NuxtLink
+              :to="localePath('/login')"
+              :title="$t('nav.header.login')"
+            >
+              <Button variant="secondary">
+                {{ $t('nav.header.login') }}
+              </Button>
+            </NuxtLink>
+          </li>
+
+          <li class="hidden md:flex">
+            <NuxtLink
+              :to="localePath('/signup')"
+              :title="$t('nav.header.signup')"
+            >
+              <Button>
+                {{ $t('nav.header.signup') }}
+              </Button>
+            </NuxtLink>
+          </li>
+        </template>
 
         <li class="md:hidden">
           <NavHeaderMenuMobile />

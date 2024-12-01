@@ -8,6 +8,7 @@ export const useFormMessage = () => {
 
   enum FormInput {
     EMAIL = 'email',
+    NAME = 'name',
     USERNAME = 'username',
     PASSWORD = 'password'
   }
@@ -24,10 +25,14 @@ export const useFormMessage = () => {
   const minMaxMessage = (input: FormInput, type: MinMax, value: number) =>
     `${$t(`form.${input}`)} ${$t(`form.${type}`)} ${value} ${$t('form.characters')}.`;
 
+  const alreadyUseMessage = (input: FormInput) =>
+    `${$t(`form.${input}`)} ${$t('form.use')}.`;
+
   return {
     FormInput,
     requiredMessage,
     minMessage,
-    maxMessage
+    maxMessage,
+    alreadyUseMessage
   };
 };

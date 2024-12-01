@@ -4,7 +4,7 @@ export interface IUserTestPartial {
   id: string;
   title: string;
   description: string;
-  image: Buffer<ArrayBufferLike> | null;
+  image: string | null;
   author: IUserPartial;
   categories: string[];
   views: number;
@@ -15,7 +15,7 @@ export interface IUserTest {
   id: string;
   title: string;
   description: string;
-  image: Buffer<ArrayBufferLike> | null;
+  image: string | null;
   author: IUserPartial;
   categories: string[];
   questions: IUserTestQuestion[];
@@ -26,7 +26,7 @@ export interface IUserTest {
 export interface IUserTestQuestion {
   number: number;
   text: string;
-  image: Buffer<ArrayBufferLike> | null;
+  image: string | null;
   type: string;
   options: IUserTestQuestionOption[];
 }

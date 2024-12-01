@@ -20,13 +20,15 @@ export const useLoginForm = () => {
       .string({
         required_error: requiredMessage(FormInput.PASSWORD)
       })
-      .min(6, {
-        message: minMessage(FormInput.PASSWORD, 6)
+      .min(8, {
+        message: minMessage(FormInput.PASSWORD, 8)
       })
-      .max(50, {
-        message: maxMessage(FormInput.PASSWORD, 50)
+      .max(32, {
+        message: maxMessage(FormInput.PASSWORD, 32)
       })
   });
+
+  type ILogin = z.TypeOf<typeof formSchema>;
 
   const fieldConfig = {
     email: {
@@ -46,15 +48,19 @@ export const useLoginForm = () => {
     }
   };
 
-  type FormValues = z.TypeOf<typeof formSchema>;
-
-  const onSubmit = (formValues: FormValues) => {
+  const loginWithEmail = (formValues: ILogin) => {
     console.log(formValues);
   };
+
+  const loginWithGoogle = () => {};
+
+  const loginWithGithub = () => {};
 
   return {
     formSchema,
     fieldConfig,
-    onSubmit
+    loginWithEmail,
+    loginWithGoogle,
+    loginWithGithub
   };
 };

@@ -8,6 +8,7 @@
     "header": {
       "login": "Iniciar Sesión",
       "signup": "Registrarse",
+      "logout": "Cerrar Sesión",
       "explore": {
         "aside": {
           "title": "Buscar Tests",
@@ -64,13 +65,20 @@
   },
   "form": {
     "email": "Correo electrónico",
+    "name": "Nombre",
     "username": "Nombre de usuario",
     "password": "Contraseña",
     "emailFormat": "Formato de correo electrónico no válido.",
     "required": "obligatorio",
     "least": "debe ser como mínimo",
     "most": "debe ser como máximo",
-    "characters": "caracteres"
+    "characters": "caracteres",
+    "use": "está en uso"
+  },
+  "auth": {
+    "or": "O",
+    "google": "Continuar con Google",
+    "github": "Continuar con Github"
   },
   "login": {
     "description": "Inicia sesión para gestionar tus tests."

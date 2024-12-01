@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+definePageMeta({ middleware: ['auth'] });
+
 const { t: $t } = useI18n();
 
 seoMeta({
@@ -6,7 +8,16 @@ seoMeta({
   description: $t('signup.description')
 });
 
-const { formSchema, fieldConfig, onSubmit } = useSignupForm();
+const {
+  isLoadingWithEmail,
+  isLoadingWithGoogle,
+  isLoadingWithGithub,
+  formSchema,
+  fieldConfig,
+  signupWithEmail,
+  signupWithGoogle,
+  signupWithGithub
+} = useSignupForm();
 </script>
 
 <template>
@@ -16,13 +27,35 @@ const { formSchema, fieldConfig, onSubmit } = useSignupForm();
       :description="$t('signup.description')"
     />
 
-    <AutoForm
-      class="flex w-72 flex-col gap-y-6"
-      :schema="formSchema"
-      :field-config="fieldConfig"
-      @submit="onSubmit"
-    >
-      <Button type="submit">{{ $t('nav.header.signup') }}</Button>
-    </AutoForm>
+    <section class="flex w-72 flex-col gap-y-6">
+      <AutoForm
+        class="flex flex-col gap-y-6"
+        :schema="formSchema"
+        :field-config="fieldConfig"
+        @submit="signupWithEmail"
+      >
+        <Button type="submit">
+          <IconLoader
+            v-if="isLoadingWithEmail"
+            class="fill-primary-foreground"
+          />
+          <template v-else>{{ $t('nav.header.signup') }}</template>
+        </Button>
+      </AutoForm>
+
+      <Separator :label="$t('auth.or')" />
+
+      <Button variant="outline" @click="signupWithGoogle">
+        <IconLoader v-if="isLoadingWithGoogle" class="mr-2" />
+        <IconGoogle v-else class="mr-2" />
+        {{ $t('auth.google') }}
+      </Button>
+
+      <Button variant="outline" @click="signupWithGithub">
+        <IconLoader v-if="isLoadingWithGithub" class="mr-2" />
+        <IconGithub v-else class="mr-2" />
+        {{ $t('auth.github') }}
+      </Button>
+    </section>
   </div>
 </template>

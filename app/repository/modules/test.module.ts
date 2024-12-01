@@ -1,33 +1,32 @@
 import FetchFactory from '@/repository/factory';
 import Routes from '@/repository/routes.client';
-import type { UserTest } from '@prisma/client';
 
 class TestModule extends FetchFactory {
   private readonly ROUTE = Routes.Test;
 
   async getAll() {
-    return this.call<UserTest[]>({
+    return this.call<IUserTestPartial[]>({
       method: 'GET',
       url: this.ROUTE.Fetch()
     });
   }
 
   async get(id: string) {
-    return this.call<UserTest>({
+    return this.call<IUserTest>({
       method: 'GET',
       url: this.ROUTE.FetchId(id)
     });
   }
 
   async view(id: string) {
-    return this.call<UserTest>({
+    return this.call({
       method: 'POST',
       url: this.ROUTE.View(id)
     });
   }
 
-  async create(dto: UserTest) {
-    return this.call<UserTest>({
+  async create(dto: IUserTest) {
+    return this.call<IUserTest>({
       method: 'POST',
       url: this.ROUTE.Fetch(),
       body: dto,
@@ -39,8 +38,8 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async update(id: string, dto: UserTest) {
-    return this.call<UserTest>({
+  async update(id: string, dto: IUserTest) {
+    return this.call<IUserTest>({
       method: 'PUT',
       url: this.ROUTE.FetchId(id),
       body: dto,
@@ -53,7 +52,7 @@ class TestModule extends FetchFactory {
   }
 
   async delete(id: string) {
-    return this.call<UserTest>({
+    return this.call({
       method: 'DELETE',
       url: this.ROUTE.FetchId(id),
       fetchOptions: {

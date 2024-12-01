@@ -76,6 +76,7 @@ useSeoMeta({
 
 <template>
   <GradientSVG />
+  <Toaster />
 
   <NuxtRouteAnnouncer />
   <NuxtLayout>

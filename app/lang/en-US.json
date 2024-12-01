@@ -8,6 +8,7 @@
     "header": {
       "login": "Log In",
       "signup": "Sign Up",
+      "logout": "Log Out",
       "explore": {
         "aside": {
           "title": "Search Tests",
@@ -64,13 +65,20 @@
   },
   "form": {
     "email": "Email",
+    "name": "Name",
     "username": "Username",
     "password": "Password",
     "emailFormat": "Invalid email format.",
     "required": "is required",
     "least": "must be at least",
     "most": "must be at most",
-    "characters": "characters"
+    "characters": "characters",
+    "use": "is already in use"
+  },
+  "auth": {
+    "or": "OR",
+    "google": "Continue with Google",
+    "github": "Continue with Github"
   },
   "login": {
     "description": "Log in to manage your tests."

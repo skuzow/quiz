@@ -7,9 +7,7 @@ export default defineEventHandler(async (event) => {
       createError({
         statusCode: 400,
         statusMessage: 'Missing required fields',
-        data: {
-          message: 'Email is required'
-        }
+        data: 'Email required'
       })
     );
   }
@@ -19,18 +17,18 @@ export default defineEventHandler(async (event) => {
   if (emailTaken) {
     return {
       statusCode: 409,
+      statusMessage: 'Email already in use',
       body: {
-        available: false,
-        message: 'Email is already in use'
+        isAvailable: false
       }
-    };
+    } as CheckResponse;
   }
 
   return {
     statusCode: 200,
+    statusMessage: 'Email available',
     body: {
-      available: true,
-      message: 'Email is available'
+      isAvailable: true
     }
-  };
+  } as CheckResponse;
 });
