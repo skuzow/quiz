@@ -1,9 +1,9 @@
-export default defineNuxtRouteMiddleware(async (to, _from) => {
-  const sessionStore = await useSessionStore();
+export default defineNuxtRouteMiddleware((to, _from) => {
+  const { isAuthenticated } = useAuth();
 
   const localePath = useLocalePath();
 
-  if (sessionStore.isAuthenticated) {
+  if (isAuthenticated.value) {
     if (to.path === localePath('/login') || to.path === localePath('/signup')) {
       return abortNavigation('Already logged in');
     }

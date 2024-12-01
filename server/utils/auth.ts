@@ -13,10 +13,10 @@ const {
 
 export const auth = betterAuth({
   appName: 'skuzow/quiz',
-  plugins: [jwt(), bearer(), username(), twoFactor()],
   database: prismaAdapter(prisma, {
     provider: 'sqlite'
   }),
+  plugins: [jwt(), bearer(), username(), twoFactor()],
   emailVerification: {
     sendOnSignUp: true
   },

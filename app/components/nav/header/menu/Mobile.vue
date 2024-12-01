@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { MenuIcon } from 'lucide-vue-next';
 
-const sessionStore = await useSessionStore();
+const { isAuthenticated, signOut } = useAuth();
 
 const localePath = useLocalePath();
 
@@ -29,7 +29,7 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
         </SheetTitle>
       </SheetHeader>
 
-      <div v-if="sessionStore.isAuthenticated" class="mt-6">
+      <div v-if="isAuthenticated" class="mt-6">
         <SheetMenuContentSeparator
           :nav-menu-title="$t('nav.explore')"
           :nav-menu-items="exploreNavMenuItems"
@@ -63,28 +63,36 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
         />
       </div>
 
-      <div
-        v-if="!sessionStore.isAuthenticated"
-        class="mt-8 flex flex-col gap-y-3"
-      >
-        <SheetClose as-child>
-          <NuxtLink :to="localePath('/login')" :title="$t('nav.header.login')">
-            <Button variant="secondary" class="w-full">
-              {{ $t('nav.header.login') }}
-            </Button>
-          </NuxtLink>
+      <div class="mt-8 flex flex-col gap-y-3">
+        <SheetClose v-if="isAuthenticated" as-child>
+          <Button class="w-full" @click="signOut">
+            {{ $t('nav.header.logout') }}
+          </Button>
         </SheetClose>
 
-        <SheetClose as-child>
-          <NuxtLink
-            :to="localePath('/signup')"
-            :title="$t('nav.header.signup')"
-          >
-            <Button class="w-full">
-              {{ $t('nav.header.signup') }}
-            </Button>
-          </NuxtLink>
-        </SheetClose>
+        <template v-else>
+          <SheetClose as-child>
+            <NuxtLink
+              :to="localePath('/login')"
+              :title="$t('nav.header.login')"
+            >
+              <Button variant="secondary" class="w-full">
+                {{ $t('nav.header.login') }}
+              </Button>
+            </NuxtLink>
+          </SheetClose>
+
+          <SheetClose as-child>
+            <NuxtLink
+              :to="localePath('/signup')"
+              :title="$t('nav.header.signup')"
+            >
+              <Button class="w-full">
+                {{ $t('nav.header.signup') }}
+              </Button>
+            </NuxtLink>
+          </SheetClose>
+        </template>
       </div>
     </SheetContent>
   </Sheet>

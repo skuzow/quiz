@@ -11,6 +11,8 @@ export const useSignupForm = () => {
   const { t: $t } = useI18n();
   const localePath = useLocalePath();
 
+  const { signUp, signIn } = useAuth();
+
   const {
     FormInput,
     requiredMessage,
@@ -186,7 +188,7 @@ export const useSignupForm = () => {
     username,
     password
   }: ISignup) => {
-    const { error } = await authClient.signUp.email({
+    const { error } = await signUp.email({
       email,
       name,
       password,
@@ -199,7 +201,7 @@ export const useSignupForm = () => {
 
   // TODO: show loading thing when processing and proper error handling
   const signupWithGoogle = async () => {
-    const { error } = await authClient.signIn.social({
+    const { error } = await signIn.social({
       provider: 'google'
     });
 
@@ -208,7 +210,7 @@ export const useSignupForm = () => {
 
   // TODO: show loading thing when processing and proper error handling
   const signupWithGithub = async () => {
-    const { error } = await authClient.signIn.social({
+    const { error } = await signIn.social({
       provider: 'github'
     });
 
