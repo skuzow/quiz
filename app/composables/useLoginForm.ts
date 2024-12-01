@@ -2,9 +2,15 @@ import * as z from 'zod';
 
 export const useLoginForm = () => {
   const { t: $t } = useI18n();
+  const localePath = useLocalePath();
+
+  const { signIn } = useAuth();
 
   const { FormInput, requiredMessage, minMessage, maxMessage } =
     useFormMessage();
+
+  const isLoadingWithEmail: Ref<boolean> = ref(false);
+  const errorMessageWithEmail: Ref<string | undefined> = ref(undefined);
 
   const formSchema = z.object({
     email: z
@@ -48,15 +54,32 @@ export const useLoginForm = () => {
     }
   };
 
-  const loginWithEmail = (formValues: ILogin) => {
-    console.log(formValues);
+  const loginWithEmail = async ({ email, password }: ILogin) => {
+    isLoadingWithEmail.value = true;
+
+    const { error } = await signIn.email({ email, password });
+
+    isLoadingWithEmail.value = false;
+
+    if (error) {
+      errorMessageWithEmail.value = error.message;
+      clearPasswordInput();
+    } else await navigateTo(localePath('/'));
   };
 
   const loginWithGoogle = () => {};
 
   const loginWithGithub = () => {};
 
+  const clearPasswordInput = () => {
+    (
+      document.querySelector('input[name="password"]') as HTMLInputElement
+    ).value = '';
+  };
+
   return {
+    isLoadingWithEmail,
+    errorMessageWithEmail,
     formSchema,
     fieldConfig,
     loginWithEmail,

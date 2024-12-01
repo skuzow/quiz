@@ -9,6 +9,8 @@ seoMeta({
 });
 
 const {
+  isLoadingWithEmail,
+  errorMessageWithEmail,
   formSchema,
   fieldConfig,
   loginWithEmail,
@@ -31,7 +33,20 @@ const {
         :field-config="fieldConfig"
         @submit="loginWithEmail"
       >
-        <Button type="submit">{{ $t('nav.header.login') }}</Button>
+        <p
+          v-if="errorMessageWithEmail"
+          class="text-[0.8rem] font-medium text-destructive"
+        >
+          {{ errorMessageWithEmail }}
+        </p>
+
+        <Button type="submit">
+          <IconLoader
+            v-if="isLoadingWithEmail"
+            class="fill-primary-foreground"
+          />
+          <template v-else>{{ $t('nav.header.login') }}</template>
+        </Button>
       </AutoForm>
 
       <Separator :label="$t('auth.or')" />
