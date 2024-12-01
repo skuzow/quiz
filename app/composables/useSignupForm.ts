@@ -1,5 +1,7 @@
 import * as z from 'zod';
 
+import { useToast } from '@/components/ui/toast/use-toast';
+
 const CHECK_TIMEOUT: number = 1000;
 
 const MAX_EMAIL_LENGTH: number = 35;
@@ -20,6 +22,8 @@ export const useSignupForm = () => {
     maxMessage,
     alreadyUseMessage
   } = useFormMessage();
+
+  const { toast } = useToast();
 
   const loading: Ref<boolean> = ref(false);
 
@@ -181,7 +185,7 @@ export const useSignupForm = () => {
     }
   };
 
-  // TODO: show loading thing when processing and proper error handling
+  // TODO: show loading thing when processing
   const signupWithEmail = async ({
     email,
     name,
@@ -195,26 +199,34 @@ export const useSignupForm = () => {
       username
     });
 
-    if (error) console.error('Error signing:', error);
+    if (error) showErrorToast('Email', error.message);
     else await navigateTo(localePath('/'));
   };
 
-  // TODO: show loading thing when processing and proper error handling
+  // TODO: show loading thing when processing
   const signupWithGoogle = async () => {
     const { error } = await signIn.social({
       provider: 'google'
     });
 
-    if (error) console.error('Error signing in with Github:', error);
+    if (error) showErrorToast('Google', error.message);
   };
 
-  // TODO: show loading thing when processing and proper error handling
+  // TODO: show loading thing when processing
   const signupWithGithub = async () => {
     const { error } = await signIn.social({
       provider: 'github'
     });
 
-    if (error) console.error('Error signing in with Github:', error);
+    if (error) showErrorToast('Github', error.message);
+  };
+
+  const showErrorToast = (provider: string, description?: string) => {
+    toast({
+      title: `Error signing up with ${provider}`,
+      description: description,
+      variant: 'destructive'
+    });
   };
 
   return {
