@@ -25,7 +25,9 @@ export const useSignupForm = () => {
 
   const { toast } = useToast();
 
-  const loading: Ref<boolean> = ref(false);
+  const isLoadingWithEmail: Ref<boolean> = ref(false);
+  const isLoadingWithGoogle: Ref<boolean> = ref(false);
+  const isLoadingWithGithub: Ref<boolean> = ref(false);
 
   const formSchema = z.object({
     email: z
@@ -185,13 +187,14 @@ export const useSignupForm = () => {
     }
   };
 
-  // TODO: show loading thing when processing
   const signupWithEmail = async ({
     email,
     name,
     username,
     password
   }: ISignup) => {
+    isLoadingWithEmail.value = true;
+
     const { error } = await signUp.email({
       email,
       name,
@@ -199,24 +202,32 @@ export const useSignupForm = () => {
       username
     });
 
+    isLoadingWithEmail.value = false;
+
     if (error) showErrorToast('Email', error.message);
     else await navigateTo(localePath('/'));
   };
 
-  // TODO: show loading thing when processing
   const signupWithGoogle = async () => {
+    isLoadingWithGoogle.value = true;
+
     const { error } = await signIn.social({
       provider: 'google'
     });
 
+    isLoadingWithGoogle.value = false;
+
     if (error) showErrorToast('Google', error.message);
   };
 
-  // TODO: show loading thing when processing
   const signupWithGithub = async () => {
+    isLoadingWithGithub.value = true;
+
     const { error } = await signIn.social({
       provider: 'github'
     });
+
+    isLoadingWithGithub.value = false;
 
     if (error) showErrorToast('Github', error.message);
   };
@@ -230,7 +241,9 @@ export const useSignupForm = () => {
   };
 
   return {
-    loading,
+    isLoadingWithEmail,
+    isLoadingWithGoogle,
+    isLoadingWithGithub,
     formSchema,
     fieldConfig,
     signupWithEmail,

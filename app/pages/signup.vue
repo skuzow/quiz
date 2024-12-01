@@ -9,7 +9,9 @@ seoMeta({
 });
 
 const {
-  loading,
+  isLoadingWithEmail,
+  isLoadingWithGoogle,
+  isLoadingWithGithub,
   formSchema,
   fieldConfig,
   signupWithEmail,
@@ -33,19 +35,25 @@ const {
         @submit="signupWithEmail"
       >
         <Button type="submit">
-          {{ loading ? 'loading' : $t('nav.header.signup') }}
+          <IconLoader
+            v-if="isLoadingWithEmail"
+            class="fill-primary-foreground"
+          />
+          <template v-else>{{ $t('nav.header.signup') }}</template>
         </Button>
       </AutoForm>
 
       <Separator :label="$t('auth.or')" />
 
       <Button variant="outline" @click="signupWithGoogle">
-        <IconGoogle class="mr-2" />
+        <IconLoader v-if="isLoadingWithGoogle" class="mr-2" />
+        <IconGoogle v-else class="mr-2" />
         {{ $t('auth.google') }}
       </Button>
 
       <Button variant="outline" @click="signupWithGithub">
-        <IconGithub class="mr-2" />
+        <IconLoader v-if="isLoadingWithGithub" class="mr-2" />
+        <IconGithub v-else class="mr-2" />
         {{ $t('auth.github') }}
       </Button>
     </section>
