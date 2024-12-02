@@ -27,6 +27,9 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
             </NuxtLink>
           </SheetClose>
         </SheetTitle>
+        <SheetDescription class="sr-only">
+          {{ $t('nav.header.menu.title') }}
+        </SheetDescription>
       </SheetHeader>
 
       <div v-if="isAuthenticated" class="mt-6">
