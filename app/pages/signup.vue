@@ -10,13 +10,10 @@ seoMeta({
 
 const {
   isLoadingWithEmail,
-  isLoadingWithGoogle,
-  isLoadingWithGithub,
+  errorMessageWithEmail,
   formSchema,
   fieldConfig,
-  signupWithEmail,
-  signupWithGoogle,
-  signupWithGithub
+  signupWithEmail
 } = useSignupForm();
 </script>
 
@@ -34,6 +31,10 @@ const {
         :field-config="fieldConfig"
         @submit="signupWithEmail"
       >
+        <AuthErrorMessage v-if="errorMessageWithEmail">
+          {{ errorMessageWithEmail }}
+        </AuthErrorMessage>
+
         <Button type="submit">
           <IconLoader
             v-if="isLoadingWithEmail"
@@ -45,17 +46,12 @@ const {
 
       <Separator :label="$t('auth.or')" />
 
-      <Button variant="outline" @click="signupWithGoogle">
-        <IconLoader v-if="isLoadingWithGoogle" class="mr-2" />
-        <IconGoogle v-else class="mr-2" />
-        {{ $t('auth.google') }}
-      </Button>
+      <AuthProviderButtons />
 
-      <Button variant="outline" @click="signupWithGithub">
-        <IconLoader v-if="isLoadingWithGithub" class="mr-2" />
-        <IconGithub v-else class="mr-2" />
-        {{ $t('auth.github') }}
-      </Button>
+      <AuthBottomConnect
+        :text="$t('auth.alreadyHaveAccount')"
+        connection="login"
+      />
     </section>
   </div>
 </template>

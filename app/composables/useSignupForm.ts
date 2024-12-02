@@ -1,7 +1,5 @@
 import * as z from 'zod';
 
-import { useToast } from '@/components/ui/toast/use-toast';
-
 const CHECK_TIMEOUT: number = 1000;
 
 const MAX_EMAIL_LENGTH: number = 35;
@@ -13,7 +11,7 @@ export const useSignupForm = () => {
   const { t: $t } = useI18n();
   const localePath = useLocalePath();
 
-  const { signUp, signIn } = useAuth();
+  const { signUp } = useAuth();
 
   const {
     FormInput,
@@ -23,11 +21,8 @@ export const useSignupForm = () => {
     alreadyUseMessage
   } = useFormMessage();
 
-  const { toast } = useToast();
-
   const isLoadingWithEmail: Ref<boolean> = ref(false);
-  const isLoadingWithGoogle: Ref<boolean> = ref(false);
-  const isLoadingWithGithub: Ref<boolean> = ref(false);
+  const errorMessageWithEmail: Ref<string | undefined> = ref(undefined);
 
   const formSchema = z.object({
     email: z
@@ -204,50 +199,17 @@ export const useSignupForm = () => {
 
     isLoadingWithEmail.value = false;
 
-    if (error) showErrorToast('Email', error.message);
-    else await navigateTo(localePath('/'));
-  };
-
-  const signupWithGoogle = async () => {
-    isLoadingWithGoogle.value = true;
-
-    const { error } = await signIn.social({
-      provider: 'google'
-    });
-
-    isLoadingWithGoogle.value = false;
-
-    if (error) showErrorToast('Google', error.message);
-  };
-
-  const signupWithGithub = async () => {
-    isLoadingWithGithub.value = true;
-
-    const { error } = await signIn.social({
-      provider: 'github'
-    });
-
-    isLoadingWithGithub.value = false;
-
-    if (error) showErrorToast('Github', error.message);
-  };
-
-  const showErrorToast = (provider: string, description?: string) => {
-    toast({
-      title: `Error signing up with ${provider}`,
-      description: description,
-      variant: 'destructive'
-    });
+    if (error) {
+      errorMessageWithEmail.value = error.message;
+      clearPasswordInput();
+    } else await navigateTo(localePath('/'));
   };
 
   return {
     isLoadingWithEmail,
-    isLoadingWithGoogle,
-    isLoadingWithGithub,
+    errorMessageWithEmail,
     formSchema,
     fieldConfig,
-    signupWithEmail,
-    signupWithGoogle,
-    signupWithGithub
+    signupWithEmail
   };
 };

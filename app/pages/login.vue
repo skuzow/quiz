@@ -9,11 +9,11 @@ seoMeta({
 });
 
 const {
+  isLoadingWithEmail,
+  errorMessageWithEmail,
   formSchema,
   fieldConfig,
-  loginWithEmail,
-  loginWithGoogle,
-  loginWithGithub
+  loginWithEmail
 } = useLoginForm();
 </script>
 
@@ -31,20 +31,27 @@ const {
         :field-config="fieldConfig"
         @submit="loginWithEmail"
       >
-        <Button type="submit">{{ $t('nav.header.login') }}</Button>
+        <AuthErrorMessage v-if="errorMessageWithEmail">
+          {{ errorMessageWithEmail }}
+        </AuthErrorMessage>
+
+        <Button type="submit">
+          <IconLoader
+            v-if="isLoadingWithEmail"
+            class="fill-primary-foreground"
+          />
+          <template v-else>{{ $t('nav.header.login') }}</template>
+        </Button>
       </AutoForm>
 
       <Separator :label="$t('auth.or')" />
 
-      <Button variant="outline" @click="loginWithGoogle">
-        <IconGoogle class="mr-2" />
-        {{ $t('auth.google') }}
-      </Button>
+      <AuthProviderButtons />
 
-      <Button variant="outline" @click="loginWithGithub">
-        <IconGithub class="mr-2" />
-        {{ $t('auth.github') }}
-      </Button>
+      <AuthBottomConnect
+        :text="$t('auth.dontHaveAccount')"
+        connection="signup"
+      />
     </section>
   </div>
 </template>

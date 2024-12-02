@@ -73,12 +73,15 @@
     "least": "debe ser como mínimo",
     "most": "debe ser como máximo",
     "characters": "caracteres",
-    "use": "está en uso"
+    "use": "está en uso",
+    "invalidEmailOrPassword": "Correo electrónico o contraseña no válidos."
   },
   "auth": {
     "or": "O",
     "google": "Continuar con Google",
-    "github": "Continuar con Github"
+    "github": "Continuar con Github",
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?"
   },
   "login": {
     "description": "Inicia sesión para gestionar tus tests."
