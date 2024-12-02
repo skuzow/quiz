@@ -67,23 +67,11 @@ export const useLoginForm = () => {
     } else await navigateTo(localePath('/'));
   };
 
-  const loginWithGoogle = () => {};
-
-  const loginWithGithub = () => {};
-
-  const clearPasswordInput = () => {
-    (
-      document.querySelector('input[name="password"]') as HTMLInputElement
-    ).value = '';
-  };
-
   return {
     isLoadingWithEmail,
     errorMessageWithEmail,
     formSchema,
     fieldConfig,
-    loginWithEmail,
-    loginWithGoogle,
-    loginWithGithub
+    loginWithEmail
   };
 };

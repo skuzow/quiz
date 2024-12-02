@@ -13,9 +13,7 @@ const {
   errorMessageWithEmail,
   formSchema,
   fieldConfig,
-  loginWithEmail,
-  loginWithGoogle,
-  loginWithGithub
+  loginWithEmail
 } = useLoginForm();
 </script>
 
@@ -51,15 +49,7 @@ const {
 
       <Separator :label="$t('auth.or')" />
 
-      <Button variant="outline" @click="loginWithGoogle">
-        <IconGoogle class="mr-2" />
-        {{ $t('auth.google') }}
-      </Button>
-
-      <Button variant="outline" @click="loginWithGithub">
-        <IconGithub class="mr-2" />
-        {{ $t('auth.github') }}
-      </Button>
+      <AuthProviderButtons />
     </section>
   </div>
 </template>

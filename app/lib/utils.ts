@@ -10,3 +10,8 @@ export const isValidEmail = (email: string): boolean => {
 
   return EMAIL_PATTERN.test(email);
 };
+
+export const clearPasswordInput = () => {
+  (document.querySelector('input[name="password"]') as HTMLInputElement).value =
+    '';
+};
