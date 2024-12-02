@@ -1,34 +1,31 @@
 import { createAuthClient } from 'better-auth/client';
-import { usernameClient, twoFactorClient } from 'better-auth/client/plugins';
-import type {
-  InferSessionFromClient,
-  InferUserFromClient,
-  ClientOptions
-} from 'better-auth/types';
+import {
+  usernameClient,
+  twoFactorClient,
+  inferAdditionalFields
+} from 'better-auth/client/plugins';
 
 export const useAuth = () => {
-  const localePath = useLocalePath();
-
   const url = useRequestURL();
   const headers = import.meta.server ? useRequestHeaders() : undefined;
 
   const authClient = createAuthClient({
     baseURL: url.origin,
-    plugins: [usernameClient(), twoFactorClient()],
+    plugins: [
+      usernameClient(),
+      twoFactorClient(),
+      inferAdditionalFields<typeof auth>()
+    ],
     fetchOptions: {
       headers
     }
   });
 
-  const session = useState<InferSessionFromClient<ClientOptions> | null>(
-    'auth:session',
-    () => null
-  );
+  type Session = typeof authClient.$Infer.Session.session;
+  type User = typeof authClient.$Infer.Session.user;
 
-  const user = useState<InferUserFromClient<ClientOptions> | null>(
-    'auth:user',
-    () => null
-  );
+  const session = useState<Session | null>('auth:session', () => null);
+  const user = useState<User | null>('auth:user', () => null);
 
   const isAuthenticated: ComputedRef<boolean> = computed(() => !!session.value);
 
@@ -62,6 +59,8 @@ export const useAuth = () => {
       await fetchSession();
     });
   }
+
+  const localePath = useLocalePath();
 
   const signOut = async () => {
     const res = await authClient.signOut();
