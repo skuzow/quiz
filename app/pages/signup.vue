@@ -47,6 +47,11 @@ const {
       <Separator :label="$t('auth.or')" />
 
       <AuthProviderButtons />
+
+      <AuthBottomConnect
+        :text="$t('auth.alreadyHaveAccount')"
+        connection="login"
+      />
     </section>
   </div>
 </template>
