@@ -73,7 +73,8 @@
     "least": "debe ser como mínimo",
     "most": "debe ser como máximo",
     "characters": "caracteres",
-    "use": "está en uso"
+    "use": "está en uso",
+    "invalidEmailOrPassword": "Correo electrónico o contraseña no válidos."
   },
   "auth": {
     "or": "O",

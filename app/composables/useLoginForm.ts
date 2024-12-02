@@ -62,7 +62,10 @@ export const useLoginForm = () => {
     isLoadingWithEmail.value = false;
 
     if (error) {
-      errorMessageWithEmail.value = error.message;
+      if (error.code === 'INVALID_EMAIL_OR_PASSWORD')
+        errorMessageWithEmail.value = $t('form.invalidEmailOrPassword');
+      else errorMessageWithEmail.value = error.message;
+
       clearPasswordInput();
     } else await navigateTo(localePath('/'));
   };

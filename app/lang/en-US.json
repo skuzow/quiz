@@ -73,7 +73,8 @@
     "least": "must be at least",
     "most": "must be at most",
     "characters": "characters",
-    "use": "is already in use"
+    "use": "is already in use",
+    "invalidEmailOrPassword": "Invalid email or password."
   },
   "auth": {
     "or": "OR",
