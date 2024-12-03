@@ -9,7 +9,6 @@
       "login": "Iniciar Sesión",
       "signup": "Registrarse",
       "user": {
-        "myAccount": "Mi Cuenta",
         "profile": "Perfil",
         "settings": "Ajustes",
         "logout": "Cerrar Sesión"

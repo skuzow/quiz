@@ -9,7 +9,6 @@
       "login": "Log In",
       "signup": "Sign Up",
       "user": {
-        "myAccount": "My Account",
         "profile": "Profile",
         "settings": "Settings",
         "logout": "Log Out"

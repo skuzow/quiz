@@ -21,9 +21,13 @@ const { user, nameAbbreviation, userURL, signOut } = useAuth();
         </AvatarFallback>
       </Avatar>
     </DropdownMenuTrigger>
-    <DropdownMenuContent class="w-56">
+    <DropdownMenuContent align="end" class="w-56 font-medium">
       <DropdownMenuLabel>
-        {{ $t('nav.header.user.myAccount') }}
+        <h3>{{ user?.name }}</h3>
+
+        <p class="text-xs font-medium">
+          {{ user?.username ? `@${user?.username}` : user?.email }}
+        </p>
       </DropdownMenuLabel>
 
       <DropdownMenuSeparator />

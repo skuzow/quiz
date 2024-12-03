@@ -38,11 +38,11 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
                   </AvatarFallback>
                 </Avatar>
 
-                <div class="flex flex-col items-start justify-between">
-                  <h3 class="text-sm font-semibold">{{ user?.name }}</h3>
+                <div class="flex flex-col items-start">
+                  <h3 class="text-sm">{{ user?.name }}</h3>
 
-                  <p class="text-xs">
-                    {{ user?.username ? user?.username : user?.email }}
+                  <p class="text-xs font-medium">
+                    {{ user?.username ? `@${user?.username}` : user?.email }}
                   </p>
                 </div>
               </div>
