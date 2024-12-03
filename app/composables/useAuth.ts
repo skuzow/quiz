@@ -62,6 +62,22 @@ export const useAuth = () => {
 
   const localePath = useLocalePath();
 
+  const nameAbbreviation = computed(() => {
+    if (!user.value) return '';
+
+    return user.value.username
+      ? abbreviate(user.value.username)
+      : abbreviate(user.value.name);
+  });
+
+  const userURL = computed(() => {
+    if (!user.value) return '';
+
+    return user.value.username
+      ? localePath(`/user/${user.value.username}`)
+      : localePath(`/user/${user.value.id}`);
+  });
+
   const signOut = async () => {
     const res = await authClient.signOut();
 
@@ -78,6 +94,8 @@ export const useAuth = () => {
     user,
     isAuthenticated,
     fetchSession,
+    nameAbbreviation,
+    userURL,
     signUp: authClient.signUp,
     signIn: authClient.signIn,
     signOut

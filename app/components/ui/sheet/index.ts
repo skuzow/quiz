@@ -32,4 +32,4 @@ export type SheetVariants = VariantProps<typeof sheetVariants>;
 
 export { default as SheetMenuContent } from './menu/SheetMenuContent.vue';
 export { default as SheetMenuContentItems } from './menu/SheetMenuContentItems.vue';
-export { default as SheetMenuContentSeparator } from './menu/SheetMenuContentSeparator.vue';
+export { default as SheetMenuContentAccordionItem } from './menu/SheetMenuContentAccordionItem.vue';

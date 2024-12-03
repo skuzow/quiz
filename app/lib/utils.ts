@@ -16,6 +16,6 @@ export const clearPasswordInput = () => {
     '';
 };
 
-export const getAbbreviation = (value: string): string => {
+export const abbreviate = (value: string): string => {
   return value.slice(0, 2).toLocaleUpperCase();
 };

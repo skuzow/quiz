@@ -1,32 +1,21 @@
 <script lang="ts" setup>
 import { UserRoundIcon, Settings2Icon, LogOutIcon } from 'lucide-vue-next';
 
-const { user, signOut } = useAuth();
-
-const localePath = useLocalePath();
-
-const nameAbbreviation = computed(() => {
-  if (!user.value) return '';
-
-  return user.value.username
-    ? getAbbreviation(user.value.username)
-    : getAbbreviation(user.value.name);
-});
-
-const userURL = computed(() => {
-  if (!user.value) return '';
-
-  return user.value.username
-    ? localePath(`/user/${user.value.username}`)
-    : localePath(`/user/${user.value.id}`);
-});
+const { user, nameAbbreviation, userURL, signOut } = useAuth();
 </script>
 
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
       <Avatar size="xs" shape="square" class="cursor-pointer">
-        <AvatarImage v-if="user?.image" :src="user?.image" alt="Avatar" />
+        <AvatarImage
+          v-if="user?.image"
+          :src="user?.image"
+          width="36"
+          height="36"
+          title="Avatar"
+          alt="Avatar"
+        />
         <AvatarFallback>
           {{ nameAbbreviation }}
         </AvatarFallback>
