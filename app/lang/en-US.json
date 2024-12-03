@@ -92,5 +92,8 @@
   },
   "signup": {
     "description": "Sign up to create your own tests."
+  },
+  "error": {
+    "alreadyLoggedIn": "Already logged in"
   }
 }
