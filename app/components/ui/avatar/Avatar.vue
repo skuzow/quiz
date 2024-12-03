@@ -12,8 +12,8 @@ const props = withDefaults(
     shape?: AvatarVariants['shape'];
   }>(),
   {
-    size: 'sm',
-    shape: 'circle'
+    size: 'xs',
+    shape: 'square'
   }
 );
 </script>

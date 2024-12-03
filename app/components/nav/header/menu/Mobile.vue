@@ -23,7 +23,7 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
           <SheetClose as-child>
             <NuxtLink :to="localePath('/')" :title="$t('nav.home')">
               <div v-if="isAuthenticated" class="flex justify-start gap-x-2">
-                <Avatar size="xs" shape="square" class="cursor-pointer">
+                <Avatar class="cursor-pointer">
                   <AvatarImage
                     v-if="user?.image"
                     :src="user?.image"

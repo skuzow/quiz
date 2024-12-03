@@ -7,7 +7,7 @@ const { user, nameAbbreviation, userURL, signOut } = useAuth();
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Avatar size="xs" shape="square" class="cursor-pointer">
+      <Avatar class="cursor-pointer">
         <AvatarImage
           v-if="user?.image"
           :src="user?.image"
