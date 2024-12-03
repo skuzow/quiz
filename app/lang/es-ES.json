@@ -8,7 +8,11 @@
     "header": {
       "login": "Iniciar Sesión",
       "signup": "Registrarse",
-      "logout": "Cerrar Sesión",
+      "user": {
+        "profile": "Perfil",
+        "settings": "Ajustes",
+        "logout": "Cerrar Sesión"
+      },
       "explore": {
         "aside": {
           "title": "Buscar Tests",

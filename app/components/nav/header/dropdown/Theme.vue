@@ -21,7 +21,7 @@ const colorMode = useColorMode();
         @click="colorMode.preference = Theme.LIGHT"
       >
         <SunIcon :size="16" />
-        {{ $t('nav.header.theme.light') }}
+        <span>{{ $t('nav.header.theme.light') }}</span>
       </DropdownMenuItem>
 
       <DropdownMenuItem
@@ -29,7 +29,7 @@ const colorMode = useColorMode();
         @click="colorMode.preference = Theme.DARK"
       >
         <MoonIcon :size="16" />
-        {{ $t('nav.header.theme.dark') }}
+        <span>{{ $t('nav.header.theme.dark') }}</span>
       </DropdownMenuItem>
 
       <DropdownMenuItem
@@ -37,7 +37,7 @@ const colorMode = useColorMode();
         @click="colorMode.preference = Theme.SYSTEM"
       >
         <LaptopMinimalIcon :size="16" />
-        {{ $t('nav.header.theme.system') }}
+        <span>{{ $t('nav.header.theme.system') }}</span>
       </DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>

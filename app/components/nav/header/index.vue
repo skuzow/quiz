@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { isAuthenticated, signOut } = useAuth();
+const { isAuthenticated } = useAuth();
 
 const localePath = useLocalePath();
 </script>
@@ -30,9 +30,7 @@ const localePath = useLocalePath();
         </li>
 
         <li v-if="isAuthenticated" class="hidden md:flex">
-          <Button @click="signOut">
-            {{ $t('nav.header.logout') }}
-          </Button>
+          <NavHeaderDropdownUser />
         </li>
 
         <template v-else>
