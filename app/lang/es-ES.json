@@ -92,5 +92,8 @@
   },
   "signup": {
     "description": "Regístrate para crear tus propios tests."
+  },
+  "error": {
+    "alreadyLoggedIn": "Ya iniciaste sesión"
   }
 }
