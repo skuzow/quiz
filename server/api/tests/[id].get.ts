@@ -1,5 +1,3 @@
-import type { IUserTest } from '~~/shared/types/test.type';
-
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event);
 

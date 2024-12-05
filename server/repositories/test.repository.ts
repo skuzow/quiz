@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { IUserTest, IUserTestPartial } from '~~/shared/types/test.type';
-
 import { USER_TEST_SELECT, USER_TEST_PARTIAL_SELECT } from './queries/selects';
 
 class TestRepository {

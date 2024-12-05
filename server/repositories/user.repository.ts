@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { IUser } from '~~/shared/types/user.type';
-
 import { USER_SELECT } from './queries/selects';
 
 class UserRepository {
