@@ -30,19 +30,11 @@ class TestRepository {
     return this.transformUserTestsPartial(tests);
   }
 
-  async createWithAI(
-    { lang, questions, info }: IUserTestAI,
-    headers: any
-  ): Promise<IUserTest> {
-    const session = await auth.api.getSession({ headers });
-
-    if (!session) {
-      throw {
-        statusCode: 401,
-        statusMessage: 'Unauthorized'
-      };
-    }
-
+  async createWithAI({
+    lang,
+    questions,
+    info
+  }: IUserTestAI): Promise<IUserTest> {
     const { quizAi } = useRuntimeConfig();
 
     const test = await $fetch(`${quizAi.apiUrl}/tests`, {
