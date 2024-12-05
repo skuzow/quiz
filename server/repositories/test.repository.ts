@@ -32,6 +32,33 @@ class TestRepository {
     return this.transformUserTestsPartial(tests);
   }
 
+  async createWithAI(
+    { lang, questions, info }: IUserTestAI,
+    headers: any
+  ): Promise<IUserTest> {
+    const session = await auth.api.getSession({ headers });
+
+    if (!session) {
+      throw {
+        statusCode: 401,
+        statusMessage: 'Unauthorized'
+      };
+    }
+
+    const { quizAi } = useRuntimeConfig();
+
+    const test: IUserTest = await $fetch(`${quizAi.apiUrl}/tests`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${quizAi.apiKey}`
+      },
+      body: JSON.stringify({ lang, questions, info })
+    });
+
+    return test;
+  }
+
   private transformUserTest(test: any): IUserTest {
     return {
       ...test,

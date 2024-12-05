@@ -25,6 +25,13 @@ export default defineNuxtConfig({
     }
   ],
 
+  runtimeConfig: {
+    quizAi: {
+      apiUrl: '',
+      apiKey: ''
+    }
+  },
+
   colorMode: {
     preference: 'system',
     fallback: 'dark',
