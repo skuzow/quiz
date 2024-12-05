@@ -45,7 +45,7 @@ class TestRepository {
 
     const { quizAi } = useRuntimeConfig();
 
-    const test: IUserTest = await $fetch(`${quizAi.apiUrl}/tests`, {
+    const test = await $fetch(`${quizAi.apiUrl}/tests`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ class TestRepository {
       body: JSON.stringify({ lang, questions, info })
     });
 
-    return test;
+    return test as IUserTest;
   }
 
   private transformUserTest(test: any): IUserTest {
