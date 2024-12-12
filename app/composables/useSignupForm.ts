@@ -188,6 +188,8 @@ export const useSignupForm = () => {
     username,
     password
   }: ISignup) => {
+    if (isLoadingWithEmail.value) return;
+
     isLoadingWithEmail.value = true;
 
     const { error } = await signUp.email({

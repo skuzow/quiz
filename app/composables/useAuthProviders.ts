@@ -9,6 +9,8 @@ export const useAuthProviders = () => {
   const isLoadingWithGithub: Ref<boolean> = ref(false);
 
   const loginWithGoogle = async () => {
+    if (isLoadingWithGoogle.value) return;
+
     isLoadingWithGoogle.value = true;
 
     const { error } = await signIn.social({
@@ -21,6 +23,8 @@ export const useAuthProviders = () => {
   };
 
   const loginWithGithub = async () => {
+    if (isLoadingWithGithub.value) return;
+
     isLoadingWithGithub.value = true;
 
     const { error } = await signIn.social({
