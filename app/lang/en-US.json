@@ -93,6 +93,23 @@
   "signup": {
     "description": "Sign up to create your own tests."
   },
+  "createai": {
+    "title": "Generate test with AI",
+    "description": "Upload a readable file, or describe with text what you want to create.",
+    "file": {
+      "tab": "Upload File",
+      "title": "Fastest way",
+      "description": "Valid formats: .pdf, .docx, .txt",
+      "input": "Click or Drag & Drop to Upload"
+    },
+    "text": {
+      "tab": "Generate with text",
+      "title": "Most accurate way",
+      "description": "Explain down what you want to generate",
+      "input": "Write here..."
+    },
+    "generate": "Generate"
+  },
   "error": {
     "alreadyLoggedIn": "Already logged in"
   }
