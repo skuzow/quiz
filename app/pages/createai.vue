@@ -16,7 +16,7 @@ seoMeta({
       :description="$t('createai.description')"
     />
 
-    <section class="flex w-80 flex-col gap-y-6 md:w-96">
+    <section class="flex w-full flex-col gap-y-6 sm:max-w-md">
       <CreateAiTabs />
     </section>
   </div>
