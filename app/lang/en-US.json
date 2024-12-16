@@ -72,6 +72,8 @@
     "name": "Name",
     "username": "Username",
     "password": "Password",
+    "text": "Text",
+    "questions": "Questions",
     "emailFormat": "Invalid email format.",
     "required": "is required",
     "least": "must be at least",
@@ -111,6 +113,7 @@
     "generate": "Generate"
   },
   "error": {
+    "internalServer": "Internal server error",
     "alreadyLoggedIn": "Already logged in"
   }
 }

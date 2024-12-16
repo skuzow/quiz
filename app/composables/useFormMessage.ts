@@ -10,7 +10,9 @@ export const useFormMessage = () => {
     EMAIL = 'email',
     NAME = 'name',
     USERNAME = 'username',
-    PASSWORD = 'password'
+    PASSWORD = 'password',
+    TEXT = 'text',
+    QUESTIONS = 'questions'
   }
 
   const requiredMessage = (input: FormInput) =>

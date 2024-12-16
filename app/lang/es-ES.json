@@ -72,6 +72,8 @@
     "name": "Nombre",
     "username": "Nombre de usuario",
     "password": "Contraseña",
+    "text": "Texto",
+    "questions": "Preguntas",
     "emailFormat": "Formato de correo electrónico no válido.",
     "required": "obligatorio",
     "least": "debe ser como mínimo",
@@ -111,6 +113,7 @@
     "generate": "Generar"
   },
   "error": {
+    "internalServer": "Error interno del servidor",
     "alreadyLoggedIn": "Ya iniciaste sesión"
   }
 }

@@ -38,8 +38,8 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async createWithAI(dto: IUserTestAI): Promise<IUserTest> {
-    return this.call<IUserTest>({
+  async createWithAI(dto: IUserTestAI) {
+    return this.call({
       method: 'POST',
       url: this.ROUTE.FetchAI(),
       body: dto
