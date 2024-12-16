@@ -101,8 +101,7 @@
     "file": {
       "tab": "Upload File",
       "title": "Fastest way",
-      "description": "Valid formats: .pdf, .docx, .txt",
-      "input": "Click or Drag & Drop to Upload"
+      "description": "Valid formats: .pdf, .docx, .txt"
     },
     "text": {
       "tab": "Generate with text",
@@ -111,6 +110,11 @@
       "input": "Write here..."
     },
     "generate": "Generate"
+  },
+  "file": {
+    "upload": "Click or Drag & Drop to Upload",
+    "drag": "Drop it to Upload",
+    "invalidType": "Invalid file type"
   },
   "error": {
     "internalServer": "Internal server error",

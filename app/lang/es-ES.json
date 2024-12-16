@@ -101,8 +101,7 @@
     "file": {
       "tab": "Subir Archivo",
       "title": "Forma más rápida",
-      "description": "Formatos válidos: .pdf, .docx, .txt",
-      "input": "Haz click o Arrastra y Suelta para Cargar"
+      "description": "Formatos válidos: .pdf, .docx, .txt"
     },
     "text": {
       "tab": "Generar con texto",
@@ -111,6 +110,11 @@
       "input": "Escribe aquí..."
     },
     "generate": "Generar"
+  },
+  "file": {
+    "upload": "Haz Click o Arrastra y Suelta para Cargar",
+    "drag": "Suéltalo para Cargar",
+    "invalidType": "Tipo de archivo no válido"
   },
   "error": {
     "internalServer": "Error interno del servidor",
