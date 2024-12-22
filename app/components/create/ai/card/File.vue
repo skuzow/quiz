@@ -15,9 +15,13 @@ const {
 
 const { FormInput, requiredMessage } = useFormMessage();
 
-const accept = [FILE_EXTENSIONS.PDF, FILE_EXTENSIONS.DOCX, FILE_EXTENSIONS.TXT];
+const accept: FILE_EXTENSIONS[] = [
+  FILE_EXTENSIONS.PDF,
+  FILE_EXTENSIONS.DOCX,
+  FILE_EXTENSIONS.TXT
+];
 
-const types = [FILE_TYPES.PDF, FILE_TYPES.DOCX, FILE_TYPES.TXT];
+const types: FILE_TYPES[] = [FILE_TYPES.PDF, FILE_TYPES.DOCX, FILE_TYPES.TXT];
 </script>
 
 <template>
