@@ -1,9 +1,11 @@
 <script lang="ts" setup>
-import { XIcon, FileSearchIcon, CloudUploadIcon } from 'lucide-vue-next';
+import { XIcon, CloudUploadIcon } from 'lucide-vue-next';
+
+import type { FILE_EXTENSIONS, FILE_TYPES } from '~/constants/file';
 
 interface Props {
-  accept: string[];
-  types: string[];
+  accept: FILE_EXTENSIONS[];
+  types: FILE_TYPES[];
 }
 
 const { accept, types } = defineProps<Props>();
@@ -39,7 +41,7 @@ const onFileChange = (files: FileList) => {
 
   invalidFileType.value = false;
 
-  if (!types.includes(file.type)) {
+  if (!types.includes(file.type as FILE_TYPES)) {
     invalidFileType.value = true;
     active.value = false;
 
@@ -54,7 +56,7 @@ const readFile = (file: File) => {
 
   reader.readAsDataURL(file);
 
-  reader.onload = () => {
+  reader.onloadend = () => {
     filePreview.value = {
       file,
       name: file.name,
