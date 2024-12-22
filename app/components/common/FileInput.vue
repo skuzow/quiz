@@ -106,7 +106,7 @@ onMounted(() => {
         />
 
         <div class="flex flex-col items-center gap-y-2 font-medium">
-          <FileSearchIcon :size="50" />
+          <slot />
           <span>{{ filePreview.name }}</span>
         </div>
       </template>
