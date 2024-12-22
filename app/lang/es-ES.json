@@ -72,6 +72,7 @@
     "name": "Nombre",
     "username": "Nombre de usuario",
     "password": "Contraseña",
+    "file": "Archivo",
     "text": "Texto",
     "questions": "Preguntas",
     "emailFormat": "Formato de correo electrónico no válido.",
@@ -101,10 +102,10 @@
     "file": {
       "tab": "Subir Archivo",
       "title": "Forma más rápida",
-      "description": "Formatos válidos: .pdf, .docx, .txt"
+      "description": "Formatos válidos:"
     },
     "text": {
-      "tab": "Generar con texto",
+      "tab": "Generar con Texto",
       "title": "Forma más precisa",
       "description": "Explica abajo lo que quieres generar",
       "input": "Escribe aquí..."

@@ -11,6 +11,7 @@ export const useFormMessage = () => {
     NAME = 'name',
     USERNAME = 'username',
     PASSWORD = 'password',
+    FILE = 'file',
     TEXT = 'text',
     QUESTIONS = 'questions'
   }

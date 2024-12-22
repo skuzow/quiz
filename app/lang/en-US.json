@@ -72,6 +72,7 @@
     "name": "Name",
     "username": "Username",
     "password": "Password",
+    "file": "File",
     "text": "Text",
     "questions": "Questions",
     "emailFormat": "Invalid email format.",
@@ -101,10 +102,10 @@
     "file": {
       "tab": "Upload File",
       "title": "Fastest way",
-      "description": "Valid formats: .pdf, .docx, .txt"
+      "description": "Valid formats:"
     },
     "text": {
-      "tab": "Generate with text",
+      "tab": "Generate with Text",
       "title": "Most accurate way",
       "description": "Explain down what you want to generate",
       "input": "Write here..."
