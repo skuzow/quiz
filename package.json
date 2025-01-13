@@ -41,6 +41,7 @@
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.462.0",
     "nuxt": "^3.14.1592",
+    "pdfjs-dist": "^4.10.38",
     "pinia": "^2.2.8",
     "radix-vue": "^1.9.10",
     "shadcn-nuxt": "^0.11.3",
