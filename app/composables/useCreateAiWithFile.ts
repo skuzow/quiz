@@ -61,14 +61,14 @@ export const useCreateAiWithFile = () => {
       internalServerErrorWithFile.value = false;
 
       try {
-        const text: string | null = await readFileContent(file.value);
+        const text: string | null = await parseFile(file.value);
 
         if (!text) return;
 
         const result = await $api.test.createWithAI({
           lang: locale.value,
           questions: questions,
-          info: text
+          info: formatTextContent(text)
         });
 
         createStore.createTestValue = result?.body?.test as IUserTest;
@@ -84,58 +84,19 @@ export const useCreateAiWithFile = () => {
     }
   );
 
-  const readFileContent = async (file: File) => {
-    if (file.type === FILE_TYPES.TXT) return readTxtContent(file);
-    else if (file.type === FILE_TYPES.PDF) return readPdfContent(file);
-    else if (file.type === FILE_TYPES.DOCX) return readDocxContent(file);
+  const parseFile = async (file: File) => {
+    const fileParsers = {
+      [FILE_TYPES.TXT]: txtParse,
+      [FILE_TYPES.PDF]: pdfParse,
+      [FILE_TYPES.DOCX]: docxParse
+    };
 
-    return null;
+    const parser = fileParsers[file.type as keyof typeof fileParsers];
+
+    return parser ? parser(file) : null;
   };
 
-  const readTxtContent = async (file: File): Promise<string> => {
-    return new Promise<string>((resolve) => {
-      const reader = new FileReader();
-
-      reader.onloadend = (e) => {
-        const content = e.target?.result;
-
-        const result: string = formatFileContent(content as string);
-
-        resolve(result);
-      };
-
-      reader.readAsText(file);
-    });
-  };
-
-  const readPdfContent = async (file: File): Promise<string> => {
-    // return new Promise<string>((resolve) => {
-    //   const reader = new FileReader();
-    //   reader.onloadend = (e) => {
-    //     const content = e.target?.result;
-    //     pdfParse(content).then((result) => {
-    //       const resultFormatted: string = formatFileContent(
-    //         result.text as string
-    //       );
-    //       resolve(resultFormatted);
-    //     });
-    //   };
-    // });
-  };
-
-  const readDocxContent = async (file: File): Promise<string> => {
-    // return new Promise<string>((resolve) => {
-    //   const reader = new FileReader();
-    //   reader.onloadend = (e) => {
-    //     const content = e.target?.result;
-    //     const result: string = formatFileContent(content as string);
-    //     resolve(result);
-    //   };
-    //   reader.readAsText(file);
-    // });
-  };
-
-  const formatFileContent = (content: string): string => {
+  const formatTextContent = (content: string): string => {
     return content.replace(/[\s\\]/g, '').replace(/"/g, '\\"');
   };
 
