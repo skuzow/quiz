@@ -11,7 +11,8 @@ const {
   exploreNavMenuAside,
   exploreNavMenuItems,
   createNavMenuAside,
-  createNavMenuItems
+  createNavMenuItems,
+  aboutNavMenuItems
 } = useNavMenu();
 </script>
 
@@ -19,7 +20,13 @@ const {
   <NavigationMenu>
     <NavigationMenuList>
       <NavigationMenuItem>
-        <NavigationMenuTrigger class="bg-transparent">
+        <NavigationMenuTrigger
+          :class="
+            $route.path.startsWith(localePath(exploreNavMenuItems[0]!.link))
+              ? 'bg-accent'
+              : 'bg-transparent'
+          "
+        >
           {{ $t('nav.explore') }}
         </NavigationMenuTrigger>
         <NavigationMenuContent>
@@ -36,7 +43,13 @@ const {
       </NavigationMenuItem>
 
       <NavigationMenuItem>
-        <NavigationMenuTrigger class="bg-transparent">
+        <NavigationMenuTrigger
+          :class="
+            $route.path.startsWith(localePath(createNavMenuItems[0]!.link))
+              ? 'bg-accent'
+              : 'bg-transparent'
+          "
+        >
           {{ $t('nav.create') }}
         </NavigationMenuTrigger>
         <NavigationMenuContent>
@@ -55,9 +68,16 @@ const {
       <NavigationMenuItem>
         <NavigationMenuLink as-child>
           <NuxtLink
-            :to="localePath('/about')"
+            :to="localePath(aboutNavMenuItems[0]!.link)"
             :title="$t('nav.about')"
-            :class="cn(navigationMenuTriggerStyle(), 'bg-transparent')"
+            :class="
+              cn(
+                navigationMenuTriggerStyle(),
+                $route.path.startsWith(localePath(aboutNavMenuItems[0]!.link))
+                  ? 'bg-accent'
+                  : 'bg-transparent'
+              )
+            "
           >
             {{ $t('nav.about') }}
           </NuxtLink>
