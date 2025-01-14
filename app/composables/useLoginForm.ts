@@ -55,6 +55,8 @@ export const useLoginForm = () => {
   };
 
   const loginWithEmail = async ({ email, password }: ILogin) => {
+    if (isLoadingWithEmail.value) return;
+
     isLoadingWithEmail.value = true;
 
     const { error } = await signIn.email({ email, password });

@@ -35,3 +35,9 @@ export interface IUserTestQuestionOption {
   text: string;
   isCorrect: boolean;
 }
+
+export interface IUserTestAI {
+  lang: string;
+  questions: number;
+  info: string;
+}

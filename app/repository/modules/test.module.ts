@@ -4,14 +4,14 @@ import Routes from '@/repository/routes.client';
 class TestModule extends FetchFactory {
   private readonly ROUTE = Routes.Test;
 
-  async getAll() {
+  async getAll(): Promise<IUserTestPartial[]> {
     return this.call<IUserTestPartial[]>({
       method: 'GET',
       url: this.ROUTE.Fetch()
     });
   }
 
-  async get(id: string) {
+  async get(id: string): Promise<IUserTest> {
     return this.call<IUserTest>({
       method: 'GET',
       url: this.ROUTE.FetchId(id)
@@ -25,7 +25,7 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async create(dto: IUserTest) {
+  async create(dto: IUserTest): Promise<IUserTest> {
     return this.call<IUserTest>({
       method: 'POST',
       url: this.ROUTE.Fetch(),
@@ -38,7 +38,15 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async update(id: string, dto: IUserTest) {
+  async createWithAI(dto: IUserTestAI) {
+    return this.call({
+      method: 'POST',
+      url: this.ROUTE.FetchAI(),
+      body: dto
+    });
+  }
+
+  async update(id: string, dto: IUserTest): Promise<IUserTest> {
     return this.call<IUserTest>({
       method: 'PUT',
       url: this.ROUTE.FetchId(id),

@@ -1,5 +1,17 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 class AuthRepository {
   private userModel = prisma.user;
+
+  async checkSession(headers: any) {
+    const session = await auth.api.getSession({ headers });
+
+    if (!session) {
+      throw {
+        statusCode: 401,
+        statusMessage: 'Unauthorized'
+      };
+    }
+  }
 
   async checkEmail(email: string): Promise<boolean> {
     return !!(await this.userModel.findFirst({

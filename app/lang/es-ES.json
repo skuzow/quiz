@@ -72,6 +72,9 @@
     "name": "Nombre",
     "username": "Nombre de usuario",
     "password": "Contraseña",
+    "file": "Archivo",
+    "text": "Texto",
+    "questions": "Preguntas",
     "emailFormat": "Formato de correo electrónico no válido.",
     "required": "obligatorio",
     "least": "debe ser como mínimo",
@@ -93,7 +96,29 @@
   "signup": {
     "description": "Regístrate para crear tus propios tests."
   },
+  "createai": {
+    "title": "Generar test con IA",
+    "description": "Sube un archivo legible, o describe con texto lo que quieres crear.",
+    "file": {
+      "tab": "Subir Archivo",
+      "title": "Forma más rápida",
+      "description": "Formatos válidos:"
+    },
+    "text": {
+      "tab": "Generar con Texto",
+      "title": "Forma más precisa",
+      "description": "Explica abajo lo que quieres generar",
+      "input": "Escribe aquí..."
+    },
+    "generate": "Generar"
+  },
+  "file": {
+    "upload": "Haz Click o Arrastra y Suelta para Cargar",
+    "drag": "Suéltalo para Cargar",
+    "invalidType": "Tipo de archivo no válido"
+  },
   "error": {
+    "internalServer": "Error interno del servidor",
     "alreadyLoggedIn": "Ya iniciaste sesión"
   }
 }

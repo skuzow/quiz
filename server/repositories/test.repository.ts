@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { IUserTest, IUserTestPartial } from '~~/shared/types/test.type';
-
 import { USER_TEST_SELECT, USER_TEST_PARTIAL_SELECT } from './queries/selects';
 
 class TestRepository {
@@ -30,6 +28,25 @@ class TestRepository {
     if (!tests || tests.length === 0) return null;
 
     return this.transformUserTestsPartial(tests);
+  }
+
+  async createWithAI({
+    lang,
+    questions,
+    info
+  }: IUserTestAI): Promise<IUserTest> {
+    const { quizAi } = useRuntimeConfig();
+
+    const test = await $fetch(`${quizAi.apiUrl}/tests`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${quizAi.apiKey}`
+      },
+      body: JSON.stringify({ lang, questions, info })
+    });
+
+    return test as IUserTest;
   }
 
   private transformUserTest(test: any): IUserTest {

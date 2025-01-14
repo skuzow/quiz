@@ -1,5 +1,3 @@
-import type { IUser } from '~~/shared/types/user.type';
-
 export default defineEventHandler(async (event) => {
   const { username } = getRouterParams(event);
 

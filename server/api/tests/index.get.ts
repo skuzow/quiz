@@ -1,5 +1,3 @@
-import type { IUserTestPartial } from '~~/shared/types/test.type';
-
 export default defineEventHandler(async (event) => {
   const { skip, take } = getQuery(event);
 

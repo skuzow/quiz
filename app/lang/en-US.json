@@ -72,6 +72,9 @@
     "name": "Name",
     "username": "Username",
     "password": "Password",
+    "file": "File",
+    "text": "Text",
+    "questions": "Questions",
     "emailFormat": "Invalid email format.",
     "required": "is required",
     "least": "must be at least",
@@ -93,7 +96,29 @@
   "signup": {
     "description": "Sign up to create your own tests."
   },
+  "createai": {
+    "title": "Generate test with AI",
+    "description": "Upload a readable file, or describe with text what you want to create.",
+    "file": {
+      "tab": "Upload File",
+      "title": "Fastest way",
+      "description": "Valid formats:"
+    },
+    "text": {
+      "tab": "Generate with Text",
+      "title": "Most accurate way",
+      "description": "Explain down what you want to generate",
+      "input": "Write here..."
+    },
+    "generate": "Generate"
+  },
+  "file": {
+    "upload": "Click or Drag & Drop to Upload",
+    "drag": "Drop it to Upload",
+    "invalidType": "Invalid file type"
+  },
   "error": {
+    "internalServer": "Internal server error",
     "alreadyLoggedIn": "Already logged in"
   }
 }
