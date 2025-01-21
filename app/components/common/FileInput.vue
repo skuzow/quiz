@@ -10,7 +10,7 @@ interface Props {
 
 const { accept, types } = defineProps<Props>();
 
-const inputId: Ref<string> = ref('');
+const id: string = useId();
 
 const active: Ref<boolean> = ref(false);
 const filePreview: Ref<PreviewFile | null> = ref(null);
@@ -79,14 +79,10 @@ const resetFile = () => {
 };
 
 const resetFileInput = () => {
-  const fileInput = document.getElementById(inputId.value) as HTMLInputElement;
+  const fileInput = document.getElementById(id) as HTMLInputElement;
 
   fileInput.value = '';
 };
-
-onMounted(() => {
-  inputId.value = `file-input-${Math.random()}`;
-});
 </script>
 
 <template>
@@ -123,7 +119,7 @@ onMounted(() => {
       </div>
 
       <input
-        :id="inputId"
+        :id="id"
         type="file"
         :accept="accept.join(',')"
         class="absolute h-full w-full cursor-pointer opacity-0"
