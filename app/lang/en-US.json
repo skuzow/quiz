@@ -1,5 +1,8 @@
 {
   "description": "Make, create, and share tests in a simple and easy way. Best method to prepare your exams.",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "continue": "Continue",
   "nav": {
     "home": "Home",
     "explore": "Explore",
@@ -116,6 +119,12 @@
     "upload": "Click or Drag & Drop to Upload",
     "drag": "Drop it to Upload",
     "invalidType": "Invalid file type"
+  },
+  "alert": {
+    "overrideTest": {
+      "title": "You already have a test in progress",
+      "description": "If you continue, you will lose your current test. Do you want to continue?"
+    }
   },
   "error": {
     "internalServer": "Internal server error",
