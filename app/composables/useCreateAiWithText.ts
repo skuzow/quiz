@@ -5,12 +5,14 @@ import { useField, useForm } from 'vee-validate';
 export const useCreateAiWithText = () => {
   const { $api } = useNuxtApp();
   const localePath = useLocalePath();
-  const { locale } = useI18n();
+  const { t: $t, locale } = useI18n();
 
   const createStore = useCreateStore();
 
   const { FormInput, requiredMessage, minMessage, maxMessage } =
     useFormMessage();
+
+  const { alert } = useAlert();
 
   const isLoadingWithText: Ref<boolean> = ref(false);
   const internalServerErrorWithText: Ref<boolean> = ref(false);
@@ -51,6 +53,16 @@ export const useCreateAiWithText = () => {
   const generateWithText = handleSubmitWithText(
     async ({ text, questions }: IText) => {
       if (isLoadingWithText.value) return;
+
+      if (createStore.createTestValue) {
+        const response: boolean = await alert({
+          title: $t('alert.overrideTest.title'),
+          description: $t('alert.overrideTest.description'),
+          confirm: $t('continue')
+        });
+
+        if (!response) return;
+      }
 
       isLoadingWithText.value = true;
       internalServerErrorWithText.value = false;

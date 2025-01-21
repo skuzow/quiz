@@ -120,6 +120,12 @@
     "drag": "Drop it to Upload",
     "invalidType": "Invalid file type"
   },
+  "alert": {
+    "overrideTest": {
+      "title": "You already have a test in progress",
+      "description": "If you continue, you will lose your current test. Do you want to continue?"
+    }
+  },
   "error": {
     "internalServer": "Internal server error",
     "alreadyLoggedIn": "Already logged in"

@@ -120,6 +120,12 @@
     "drag": "Suéltalo para Cargar",
     "invalidType": "Tipo de archivo no válido"
   },
+  "alert": {
+    "overrideTest": {
+      "title": "Ya tienes un test en curso",
+      "description": "Si continúas, se perderá el test actual. ¿Estás seguro de que quieres continuar?"
+    }
+  },
   "error": {
     "internalServer": "Error interno del servidor",
     "alreadyLoggedIn": "Ya iniciaste sesión"

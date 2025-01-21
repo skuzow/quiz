@@ -7,12 +7,14 @@ import { FILE_TYPES } from '~/constants/file';
 export const useCreateAiWithFile = () => {
   const { $api } = useNuxtApp();
   const localePath = useLocalePath();
-  const { locale } = useI18n();
+  const { t: $t, locale } = useI18n();
 
   const createStore = useCreateStore();
 
   const { FormInput, requiredMessage, minMessage, maxMessage } =
     useFormMessage();
+
+  const { alert } = useAlert();
 
   const file: Ref<File | undefined> = ref(undefined);
   const requiredFileError: Ref<boolean> = ref(false);
@@ -57,13 +59,23 @@ export const useCreateAiWithFile = () => {
 
       if (!file.value) return (requiredFileError.value = true);
 
+      if (createStore.createTestValue) {
+        const response: boolean = await alert({
+          title: $t('alert.overrideTest.title'),
+          description: $t('alert.overrideTest.description'),
+          confirm: $t('continue')
+        });
+
+        if (!response) return;
+      }
+
       isLoadingWithFile.value = true;
       internalServerErrorWithFile.value = false;
 
       try {
         const text: string | null = await parseFile(file.value);
 
-        if (!text) return;
+        if (!text) throw new Error('Failed to parse file');
 
         const result = await $api.test.createWithAI({
           lang: locale.value,
