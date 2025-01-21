@@ -1,5 +1,6 @@
 <template>
   <GradientSVG />
+  <AlertProvider />
   <Toaster />
 
   <NuxtRouteAnnouncer />

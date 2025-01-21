@@ -1,5 +1,8 @@
 {
   "description": "Make, create, and share tests in a simple and easy way. Best method to prepare your exams.",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "continue": "Continue",
   "nav": {
     "home": "Home",
     "explore": "Explore",

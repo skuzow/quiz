@@ -1,5 +1,8 @@
 {
   "description": "Haz, crea y comparte exámenes de forma fácil y sencilla. El mejor método para preparar tus exámenes.",
+  "cancel": "Cancelar",
+  "confirm": "Confirmar",
+  "continue": "Continuar",
   "nav": {
     "home": "Inicio",
     "explore": "Explorar",
