@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { Trash2Icon, ImageUpIcon } from 'lucide-vue-next';
+
 definePageMeta({ middleware: ['auth'] });
 
 const { t: $t } = useI18n();
@@ -8,12 +10,56 @@ seoMeta({
   description: $t('create.description')
 });
 
+const localePath = useLocalePath();
+
 const createStore = useCreateStore();
+
+const { user, nameAbbreviation, userURL } = useAuth();
 </script>
 
 <template>
-  <div>
-    <h1 class="text-8xl">create</h1>
+  <div class="flex flex-col items-center">
+    <div class="relative w-full">
+      <CommonPicture
+        src="/images/test-image.avif"
+        height="172"
+        width="100%"
+        loading="lazy"
+        alt="Test image"
+        class="h-[172px] w-full rounded-md object-cover"
+      />
+
+      <NuxtLink
+        :to="localePath(userURL)"
+        :title="$t('nav.header.user.profile')"
+        class="absolute left-2 top-2"
+      >
+        <Avatar size="sm">
+          <AvatarImage
+            v-if="user?.image"
+            :src="user?.image"
+            width="40"
+            height="40"
+            loading="lazy"
+            title="Avatar"
+            alt="Avatar"
+          />
+          <AvatarFallback>
+            {{ nameAbbreviation }}
+          </AvatarFallback>
+        </Avatar>
+      </NuxtLink>
+
+      <Button size="icon" variant="secondary" class="absolute right-2 top-2">
+        <Trash2Icon :size="16" />
+        <span class="sr-only">Delete test creation</span>
+      </Button>
+
+      <Button class="absolute bottom-2 right-2 gap-x-1">
+        <ImageUpIcon :size="16" />
+        Upload Image
+      </Button>
+    </div>
 
     <div v-if="createStore.createTestValue">
       <h2>{{ createStore.createTestValue.title }}</h2>
