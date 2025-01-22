@@ -1,7 +1,12 @@
 <script lang="ts" setup>
 definePageMeta({ middleware: ['auth'] });
 
-seoMeta();
+const { t: $t } = useI18n();
+
+seoMeta({
+  title: $t('create.title'),
+  description: $t('create.description')
+});
 
 const createStore = useCreateStore();
 </script>

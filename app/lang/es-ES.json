@@ -115,6 +115,10 @@
     },
     "generate": "Generar"
   },
+  "create": {
+    "title": "Crear test con Bloques",
+    "description": "Rellena el formulario para crear tu propio test."
+  },
   "file": {
     "upload": "Haz Click o Arrastra y Suelta para Cargar",
     "drag": "Suéltalo para Cargar",

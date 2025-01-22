@@ -115,6 +115,10 @@
     },
     "generate": "Generate"
   },
+  "create": {
+    "title": "Create test with Blocks",
+    "description": "Fill out the form to create your own test."
+  },
   "file": {
     "upload": "Click or Drag & Drop to Upload",
     "drag": "Drop it to Upload",
