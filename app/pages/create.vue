@@ -19,16 +19,7 @@ const { user, nameAbbreviation, userURL } = useAuth();
 
 <template>
   <div class="flex flex-col items-center">
-    <div class="relative w-full">
-      <CommonPicture
-        src="/images/test-image.avif"
-        height="172"
-        width="100%"
-        loading="lazy"
-        alt="Test image"
-        class="h-[172px] w-full rounded-md object-cover"
-      />
-
+    <CommonTopImage src="/images/test-image.avif" alt="Test image">
       <NuxtLink
         :to="localePath(userURL)"
         :title="$t('nav.header.user.profile')"
@@ -59,7 +50,7 @@ const { user, nameAbbreviation, userURL } = useAuth();
         <ImageUpIcon :size="16" />
         Upload Image
       </Button>
-    </div>
+    </CommonTopImage>
 
     <div v-if="createStore.createTestValue">
       <h2>{{ createStore.createTestValue.title }}</h2>
