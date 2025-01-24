@@ -103,7 +103,8 @@ export const useCreate = () => {
   const {
     fields: questionFields,
     push: pushQuestion,
-    remove: removeQuestion
+    remove: removeQuestion,
+    swap: swapQuestion
   } = useFieldArray(FormInput.QUESTIONS);
 
   const createTest = handleSubmit(async (create: ICreate) => {
@@ -153,6 +154,7 @@ export const useCreate = () => {
     questionFields,
     pushQuestion,
     removeQuestion,
+    swapQuestion,
     createTest
   };
 };

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Trash2Icon } from 'lucide-vue-next';
+import { ChevronUpIcon, ChevronDownIcon, Trash2Icon } from 'lucide-vue-next';
 
 const {
   initialQuestionValue,
@@ -7,6 +7,7 @@ const {
   questionFields,
   pushQuestion,
   removeQuestion,
+  swapQuestion,
   createTest
 } = useCreate();
 
@@ -54,7 +55,7 @@ const { FormInput, exampleMessage } = useFormMessage();
     <div
       v-for="(questionField, indexQuestion) in questionFields"
       :key="indexQuestion"
-      class="space-y-4 pb-6"
+      class="flex flex-col gap-y-4 pb-6"
     >
       <FormField
         v-slot="{ componentField }"
@@ -75,6 +76,32 @@ const { FormInput, exampleMessage } = useFormMessage();
                 "
                 v-bind="componentField"
               />
+
+              <Button
+                v-if="indexQuestion !== 0"
+                size="icon"
+                variant="secondary"
+                class="w-10"
+                @click.prevent="swapQuestion(indexQuestion, indexQuestion - 1)"
+              >
+                <ChevronUpIcon :size="16" />
+                <span class="sr-only">
+                  Swap Up test option {{ indexQuestion + 1 }}
+                </span>
+              </Button>
+
+              <Button
+                v-if="indexQuestion !== questionFields.length - 1"
+                size="icon"
+                variant="secondary"
+                class="w-10"
+                @click.prevent="swapQuestion(indexQuestion, indexQuestion + 1)"
+              >
+                <ChevronDownIcon :size="16" />
+                <span class="sr-only">
+                  Swap Down test option {{ indexQuestion + 1 }}
+                </span>
+              </Button>
 
               <Button
                 size="icon"
