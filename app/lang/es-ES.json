@@ -80,12 +80,16 @@
     "questions": "Preguntas",
     "title": "Título",
     "description": "Descripción",
+    "question": "Pregunta",
+    "option": "Opción",
+    "options": "Opciones",
     "emailFormat": "Formato de correo electrónico no válido.",
     "required": "obligatorio",
     "least": "debe ser como mínimo",
     "most": "debe ser como máximo",
     "characters": "caracteres",
     "use": "está en uso",
+    "example": "Ejemplo de",
     "invalidEmailOrPassword": "Correo electrónico o contraseña no válidos."
   },
   "auth": {
