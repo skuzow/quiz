@@ -65,9 +65,9 @@ export const useAuth = () => {
   const nameAbbreviation = computed(() => {
     if (!user.value) return '';
 
-    return user.value.username
-      ? abbreviate(user.value.username)
-      : abbreviate(user.value.name);
+    const name: string = user.value.username || user.value.name;
+
+    return abbreviate(name);
   });
 
   const userURL = computed(() => {
