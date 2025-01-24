@@ -1,5 +1,8 @@
 <script lang="ts" setup>
+import { Trash2Icon } from 'lucide-vue-next';
+
 const {
+  initialQuestionValue,
   isFieldDirty,
   questionFields,
   pushQuestion,
@@ -7,7 +10,7 @@ const {
   createTest
 } = useCreate();
 
-const { FormInput } = useFormMessage();
+const { FormInput, exampleMessage } = useFormMessage();
 </script>
 
 <template>
@@ -22,7 +25,7 @@ const { FormInput } = useFormMessage();
         <FormControl>
           <Input
             type="text"
-            placeholder="Example title"
+            :placeholder="exampleMessage(FormInput.TITLE)"
             v-bind="componentField"
           />
         </FormControl>
@@ -40,7 +43,7 @@ const { FormInput } = useFormMessage();
         <FormControl>
           <Textarea
             type="text"
-            placeholder="Example description"
+            :placeholder="exampleMessage(FormInput.DESCRIPTION)"
             v-bind="componentField"
           />
         </FormControl>
@@ -48,80 +51,101 @@ const { FormInput } = useFormMessage();
       </FormItem>
     </FormField>
 
-    <!-- <div
-        v-for="(question, indexQuestion) in createStore.createTestValue
-          .questions"
-        :key="indexQuestion"
-        class="space-y-4 pb-6"
+    <div
+      v-for="(questionField, indexQuestion) in questionFields"
+      :key="indexQuestion"
+      class="space-y-4 pb-6"
+    >
+      <FormField
+        v-slot="{ componentField }"
+        v-model="(questionField.value as IUserTestQuestion).text"
+        :name="`${FormInput.QUESTIONS}.${indexQuestion}.text`"
+        :validate-on-blur="!isFieldDirty"
       >
-        <FormField
-          v-slot="{ componentField }"
-          v-model="question.text"
-          :name="`questions.${indexQuestion}.text`"
-          :validate-on-blur="!createStore.isFieldDirty"
-        >
-          <FormItem>
-            <FormLabel>{{ indexQuestion + 1 }}. Question</FormLabel>
-            <FormControl>
+        <FormItem>
+          <FormLabel>
+            {{ indexQuestion + 1 }}. {{ $t('form.question') }}
+          </FormLabel>
+          <FormControl>
+            <div class="flex flex-row gap-x-2">
               <Input
                 type="text"
-                :placeholder="`${indexQuestion + 1} Question text`"
+                :placeholder="
+                  exampleMessage(FormInput.QUESTION, indexQuestion + 1)
+                "
                 v-bind="componentField"
               />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        </FormField>
 
-        <FormField
-          v-for="(option, indexOption) in question.options"
-          v-slot="{ componentField }"
-          :key="indexOption"
-          v-model="option.text"
-          :name="`questions.${indexQuestion}.options.${indexOption}.text`"
-          :validate-on-blur="!createStore.isFieldDirty"
-        >
-          <FormItem>
-            <FormLabel>{{ indexOption + 1 }}. Option</FormLabel>
-            <FormControl>
-              <div class="flex flex-row gap-x-2">
-                <FormField
-                  v-slot="{ handleChange }"
-                  type="checkbox"
-                  :name="`questions.${indexQuestion}.options.${indexOption}.isCorrect`"
-                >
-                  <FormItem>
-                    <FormControl>
-                      <Checkbox
-                        :checked="option.isCorrect"
-                        class="h-9 w-9"
-                        @update:checked="handleChange"
-                      />
-                    </FormControl>
-                  </FormItem>
-                </FormField>
+              <Button
+                size="icon"
+                variant="secondary"
+                class="w-10"
+                @click="removeQuestion(indexQuestion)"
+              >
+                <Trash2Icon :size="16" />
+                <span class="sr-only">
+                  Delete test option {{ indexQuestion + 1 }}
+                </span>
+              </Button>
+            </div>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      </FormField>
 
-                <Input
-                  type="text"
-                  :placeholder="`${indexOption + 1} Option text`"
-                  v-bind="componentField"
-                />
+      <FormField
+        v-for="(option, indexOption) in (
+          questionField.value as IUserTestQuestion
+        ).options"
+        v-slot="{ componentField }"
+        :key="indexOption"
+        v-model="option.text"
+        :name="`${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}.${indexOption}.text`"
+        :validate-on-blur="!isFieldDirty"
+      >
+        <FormItem>
+          <FormLabel>{{ indexOption + 1 }}. {{ $t('form.option') }}</FormLabel>
+          <FormControl>
+            <div class="flex flex-row gap-x-2">
+              <FormField
+                v-slot="{ handleChange }"
+                type="checkbox"
+                :name="`${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}.${indexOption}.isCorrect`"
+              >
+                <FormItem>
+                  <FormControl>
+                    <Checkbox
+                      :checked="option.isCorrect"
+                      class="h-9 w-9"
+                      @update:checked="handleChange"
+                    />
+                  </FormControl>
+                </FormItem>
+              </FormField>
 
-                <Button size="icon" variant="secondary" class="w-10">
-                  <Trash2Icon :size="16" />
-                  <span class="sr-only">
-                    Delete test question {{ indexOption + 1 }}
-                  </span>
-                </Button>
-              </div>
-            </FormControl>
-            <FormMessage />
-          </FormItem>
-        </FormField>
-      </div> -->
+              <Input
+                type="text"
+                :placeholder="exampleMessage(FormInput.OPTION, indexOption + 1)"
+                v-bind="componentField"
+              />
+
+              <Button size="icon" variant="secondary" class="w-10">
+                <Trash2Icon :size="16" />
+                <span class="sr-only">
+                  Delete test option {{ indexOption + 1 }}
+                </span>
+              </Button>
+            </div>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+    </div>
 
     <div class="flex gap-x-2">
-      <Button>Add Question</Button>
+      <Button @click.prevent="pushQuestion(initialQuestionValue)">
+        Add Question
+      </Button>
       <Button type="submit">Create</Button>
     </div>
   </form>

@@ -8,16 +8,34 @@ export const useCreate = () => {
   const { FormInput, requiredMessage, minMessage, maxMessage } =
     useFormMessage();
 
-  // const zodOptionFormSchema = z.object({
-  //   text: z.string(),
-  //   isCorrect: z.boolean()
-  // });
+  const zodOptionFormSchema = z.object({
+    text: z
+      .string({
+        required_error: requiredMessage(FormInput.OPTION)
+      })
+      .min(10, {
+        message: minMessage(FormInput.OPTION, 10)
+      })
+      .max(100, {
+        message: maxMessage(FormInput.OPTION, 100)
+      }),
+    isCorrect: z.boolean()
+  });
 
-  // const zodQuestionFormSchema = z.object({
-  //   text: z.string(),
-  //   options: z.array(zodOptionFormSchema).min(2).max(5),
-  //   image: z.string().optional()
-  // });
+  const zodQuestionFormSchema = z.object({
+    text: z
+      .string({
+        required_error: requiredMessage(FormInput.QUESTION)
+      })
+      .min(10, {
+        message: minMessage(FormInput.QUESTION, 10)
+      })
+      .max(100, {
+        message: maxMessage(FormInput.QUESTION, 100)
+      }),
+    options: z.array(zodOptionFormSchema).min(2).max(100)
+    // image: z.string().optional()
+  });
 
   const zodFormSchema = z.object({
     title: z
@@ -39,17 +57,37 @@ export const useCreate = () => {
       })
       .max(300, {
         message: maxMessage(FormInput.DESCRIPTION, 300)
-      })
-    // questions: z.array(zodQuestionFormSchema).min(1).max(100)
+      }),
+    questions: z.array(zodQuestionFormSchema).min(1).max(100)
   });
 
   type ICreate = z.TypeOf<typeof zodFormSchema>;
 
   const validationSchema = toTypedSchema(zodFormSchema);
 
+  const initialQuestionValue: ICreate['questions'][0] = {
+    text: '',
+    options: [
+      {
+        text: '',
+        isCorrect: false
+      },
+      {
+        text: '',
+        isCorrect: false
+      }
+    ]
+  };
+
+  const initialFormValues: ICreate = {
+    title: '',
+    description: '',
+    questions: [initialQuestionValue, initialQuestionValue]
+  };
+
   const { resetForm, isFieldDirty, handleSubmit, values } = useForm({
     validationSchema,
-    initialValues: testStore.createTest
+    initialValues: testStore.createTest || initialFormValues
   });
 
   // watch(
@@ -110,6 +148,7 @@ export const useCreate = () => {
   });
 
   return {
+    initialQuestionValue,
     isFieldDirty,
     questionFields,
     pushQuestion,
