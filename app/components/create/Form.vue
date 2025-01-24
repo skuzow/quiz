@@ -2,12 +2,14 @@
 import { ChevronUpIcon, ChevronDownIcon, Trash2Icon } from 'lucide-vue-next';
 
 const {
+  initialOptionValue,
   initialQuestionValue,
   isFieldDirty,
   questionFields,
   pushQuestion,
   removeQuestion,
   swapQuestion,
+  options,
   createTest
 } = useCreate();
 
@@ -78,7 +80,7 @@ const { FormInput, exampleMessage } = useFormMessage();
               />
 
               <Button
-                v-if="indexQuestion !== 0"
+                v-if="!questionField.isFirst"
                 size="icon"
                 variant="secondary"
                 class="w-10"
@@ -91,7 +93,7 @@ const { FormInput, exampleMessage } = useFormMessage();
               </Button>
 
               <Button
-                v-if="indexQuestion !== questionFields.length - 1"
+                v-if="!questionField.isLast"
                 size="icon"
                 variant="secondary"
                 class="w-10"
@@ -107,7 +109,7 @@ const { FormInput, exampleMessage } = useFormMessage();
                 size="icon"
                 variant="secondary"
                 class="w-10"
-                @click="removeQuestion(indexQuestion)"
+                @click.prevent="removeQuestion(indexQuestion)"
               >
                 <Trash2Icon :size="16" />
                 <span class="sr-only">
@@ -121,12 +123,10 @@ const { FormInput, exampleMessage } = useFormMessage();
       </FormField>
 
       <FormField
-        v-for="(option, indexOption) in (
-          questionField.value as IUserTestQuestion
-        ).options"
+        v-for="(option, indexOption) in options[indexQuestion]?.fields.value"
         v-slot="{ componentField }"
         :key="indexOption"
-        v-model="option.text"
+        v-model="option.value.text"
         :name="`${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}.${indexOption}.text`"
         :validate-on-blur="!isFieldDirty"
       >
@@ -142,7 +142,7 @@ const { FormInput, exampleMessage } = useFormMessage();
                 <FormItem>
                   <FormControl>
                     <Checkbox
-                      :checked="option.isCorrect"
+                      :checked="option.value.isCorrect"
                       class="h-9 w-9"
                       @update:checked="handleChange"
                     />
@@ -156,7 +156,12 @@ const { FormInput, exampleMessage } = useFormMessage();
                 v-bind="componentField"
               />
 
-              <Button size="icon" variant="secondary" class="w-10">
+              <Button
+                size="icon"
+                variant="secondary"
+                class="w-10"
+                @click.prevent="options[indexQuestion]?.remove(indexOption)"
+              >
                 <Trash2Icon :size="16" />
                 <span class="sr-only">
                   Delete test option {{ indexOption + 1 }}
@@ -167,6 +172,10 @@ const { FormInput, exampleMessage } = useFormMessage();
           <FormMessage />
         </FormItem>
       </FormField>
+
+      <Button @click.prevent="options[indexQuestion]?.push(initialOptionValue)">
+        Add Option
+      </Button>
     </div>
 
     <div class="flex gap-x-2">

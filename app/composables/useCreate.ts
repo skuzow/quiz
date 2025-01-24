@@ -33,7 +33,7 @@ export const useCreate = () => {
       .max(100, {
         message: maxMessage(FormInput.QUESTION, 100)
       }),
-    options: z.array(zodOptionFormSchema).min(2).max(100)
+    options: z.array(zodOptionFormSchema).min(2).max(10)
     // image: z.string().optional()
   });
 
@@ -65,18 +65,14 @@ export const useCreate = () => {
 
   const validationSchema = toTypedSchema(zodFormSchema);
 
+  const initialOptionValue: ICreate['questions'][0]['options'][0] = {
+    text: '',
+    isCorrect: false
+  };
+
   const initialQuestionValue: ICreate['questions'][0] = {
     text: '',
-    options: [
-      {
-        text: '',
-        isCorrect: false
-      },
-      {
-        text: '',
-        isCorrect: false
-      }
-    ]
+    options: [initialOptionValue, initialOptionValue]
   };
 
   const initialFormValues: ICreate = {
@@ -107,9 +103,18 @@ export const useCreate = () => {
     swap: swapQuestion
   } = useFieldArray(FormInput.QUESTIONS);
 
+  const options = computed(() => {
+    return questionFields.value.map((_questionField, indexQuestionField) => {
+      return useFieldArray(
+        `${FormInput.QUESTIONS}.${indexQuestionField}.${FormInput.OPTIONS}`
+      );
+    });
+  });
+
   const createTest = handleSubmit(async (create: ICreate) => {
-    console.log(create);
-    console.log(testStore.createTest);
+    console.log(options.value);
+    // console.log(create);
+    // console.log(testStore.createTest);
 
     // TODO: know how to reset the form completely, not placing initial values again
     // testStore.createTest = undefined;
@@ -149,12 +154,14 @@ export const useCreate = () => {
   });
 
   return {
+    initialOptionValue,
     initialQuestionValue,
     isFieldDirty,
     questionFields,
     pushQuestion,
     removeQuestion,
     swapQuestion,
+    options,
     createTest
   };
 };
