@@ -9,7 +9,7 @@ export const useCreateAiWithFile = () => {
   const localePath = useLocalePath();
   const { t: $t, locale } = useI18n();
 
-  const createStore = useCreateStore();
+  const testStore = useTestStore();
 
   const { FormInput, requiredMessage, minMessage, maxMessage } =
     useFormMessage();
@@ -59,7 +59,7 @@ export const useCreateAiWithFile = () => {
 
       if (!file.value) return (requiredFileError.value = true);
 
-      if (createStore.createTestValue) {
+      if (testStore.createTest) {
         const response: boolean = await alert({
           title: $t('alert.overrideTest.title'),
           description: $t('alert.overrideTest.description'),
@@ -83,7 +83,7 @@ export const useCreateAiWithFile = () => {
           info: formatTextContent(text)
         });
 
-        createStore.createTestValue = result?.body?.test as IUserTest;
+        testStore.createTest = result?.body?.test as IUserTest;
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         internalServerErrorWithFile.value = true;

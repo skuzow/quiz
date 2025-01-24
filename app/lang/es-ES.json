@@ -78,6 +78,8 @@
     "file": "Archivo",
     "text": "Texto",
     "questions": "Preguntas",
+    "title": "Título",
+    "description": "Descripción",
     "emailFormat": "Formato de correo electrónico no válido.",
     "required": "obligatorio",
     "least": "debe ser como mínimo",

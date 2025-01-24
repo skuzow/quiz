@@ -12,8 +12,6 @@ seoMeta({
 
 const localePath = useLocalePath();
 
-const createStore = useCreateStore();
-
 const { user, nameAbbreviation, userURL } = useAuth();
 </script>
 
@@ -52,7 +50,9 @@ const { user, nameAbbreviation, userURL } = useAuth();
       </Button>
     </CommonTopImage>
 
-    <div v-if="createStore.createTestValue">
+    <CreateForm />
+
+    <!-- <div v-if="createStore.createTestValue">
       <h2>{{ createStore.createTestValue.title }}</h2>
       <p class="mb-10">{{ createStore.createTestValue.description }}</p>
 
@@ -82,6 +82,6 @@ const { user, nameAbbreviation, userURL } = useAuth();
           </ul>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </template>

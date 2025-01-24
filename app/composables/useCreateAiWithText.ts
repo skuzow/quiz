@@ -7,7 +7,7 @@ export const useCreateAiWithText = () => {
   const localePath = useLocalePath();
   const { t: $t, locale } = useI18n();
 
-  const createStore = useCreateStore();
+  const testStore = useTestStore();
 
   const { FormInput, requiredMessage, minMessage, maxMessage } =
     useFormMessage();
@@ -54,7 +54,7 @@ export const useCreateAiWithText = () => {
     async ({ text, questions }: IText) => {
       if (isLoadingWithText.value) return;
 
-      if (createStore.createTestValue) {
+      if (testStore.createTest) {
         const response: boolean = await alert({
           title: $t('alert.overrideTest.title'),
           description: $t('alert.overrideTest.description'),
@@ -74,7 +74,7 @@ export const useCreateAiWithText = () => {
           info: text
         });
 
-        createStore.createTestValue = result?.body?.test as IUserTest;
+        testStore.createTest = result?.body?.test as IUserTest;
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         internalServerErrorWithText.value = true;
