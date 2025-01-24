@@ -73,9 +73,9 @@ export const useAuth = () => {
   const userURL = computed(() => {
     if (!user.value) return '';
 
-    return user.value.username
-      ? localePath(`/user/${user.value.username}`)
-      : localePath(`/user/${user.value.id}`);
+    const URL: string = user.value.username || user.value.id;
+
+    return localePath(`/user/${URL}`);
   });
 
   const signOut = async () => {
