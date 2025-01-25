@@ -35,7 +35,10 @@ const { FormInput, exampleMessage } = useFormMessage();
           >
             <FormItem class="h-9">
               <FormControl>
-                <Checkbox class="h-9 w-9" @update:checked="handleChange" />
+                <Checkbox
+                  class="h-9 w-9 border-input"
+                  @update:checked="handleChange"
+                />
               </FormControl>
             </FormItem>
           </FormField>

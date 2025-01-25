@@ -80,6 +80,7 @@ const { FormInput, exampleMessage } = useFormMessage();
 
       <Button
         class="w-fit"
+        variant="secondary"
         @click.prevent="options[indexQuestion]!.push(initialOptionValue)"
       >
         Add Option
@@ -87,7 +88,10 @@ const { FormInput, exampleMessage } = useFormMessage();
     </div>
 
     <div class="flex gap-x-2">
-      <Button @click.prevent="question.push(initialQuestionValue)">
+      <Button
+        variant="secondary"
+        @click.prevent="question.push(initialQuestionValue)"
+      >
         Add Question
       </Button>
 
