@@ -1,15 +1,12 @@
 <script lang="ts" setup>
-import { ChevronUpIcon, ChevronDownIcon, Trash2Icon } from 'lucide-vue-next';
-
 const {
   initialOptionValue,
   initialQuestionValue,
   isFieldDirty,
-  questionFields,
-  pushQuestion,
-  removeQuestion,
-  swapQuestion,
+  question,
   options,
+  questionPath,
+  optionPath,
   createTest
 } = useCreate();
 
@@ -56,149 +53,41 @@ const { FormInput, exampleMessage } = useFormMessage();
       </FormField>
     </div>
 
-    <FormField
-      v-for="(questionField, indexQuestion) in questionFields"
+    <div
+      v-for="(questionField, indexQuestion) in question.fields.value"
       :key="indexQuestion"
-      v-slot="{ componentField }"
-      v-model="(questionField.value as IUserTestQuestion).text"
-      :name="`${FormInput.QUESTIONS}.${indexQuestion}.text`"
-      :validate-on-blur="!isFieldDirty"
+      class="flex flex-col gap-y-6"
     >
-      <FormItem>
-        <FormLabel>
-          <CommonGradientText>{{ indexQuestion + 1 }}.</CommonGradientText>
-          {{ $t('form.question') }}
-        </FormLabel>
-        <FormControl>
-          <div class="flex flex-col gap-y-6">
-            <div class="flex gap-x-2">
-              <Input
-                type="text"
-                :placeholder="
-                  exampleMessage(FormInput.QUESTION, indexQuestion + 1)
-                "
-                v-bind="componentField"
-              />
+      <CreateQuestionForm
+        :field="questionField"
+        :index="indexQuestion"
+        :path="questionPath(indexQuestion)"
+        :is-field-dirty="isFieldDirty"
+        :question="question"
+      />
 
-              <Button
-                v-if="!questionField.isFirst"
-                size="icon"
-                variant="secondary"
-                class="w-10"
-                @click.prevent="swapQuestion(indexQuestion, indexQuestion - 1)"
-              >
-                <ChevronUpIcon :size="16" />
-                <span class="sr-only">
-                  Swap Up test option {{ indexQuestion + 1 }}
-                </span>
-              </Button>
+      <div class="flex flex-col gap-y-4">
+        <CreateOptionForm
+          v-for="(_optionField, indexOption) in options[indexQuestion]!.fields
+            .value"
+          :key="indexOption"
+          :index="indexOption"
+          :path="optionPath(indexQuestion, indexOption)"
+          :is-field-dirty="isFieldDirty"
+          :option="options[indexQuestion]!"
+        />
+      </div>
 
-              <Button
-                v-if="!questionField.isLast"
-                size="icon"
-                variant="secondary"
-                class="w-10"
-                @click.prevent="swapQuestion(indexQuestion, indexQuestion + 1)"
-              >
-                <ChevronDownIcon :size="16" />
-                <span class="sr-only">
-                  Swap Down test option {{ indexQuestion + 1 }}
-                </span>
-              </Button>
-
-              <Button
-                size="icon"
-                variant="secondary"
-                class="w-10"
-                @click.prevent="removeQuestion(indexQuestion)"
-              >
-                <Trash2Icon :size="16" />
-                <span class="sr-only">
-                  Delete test option {{ indexQuestion + 1 }}
-                </span>
-              </Button>
-            </div>
-
-            <div class="flex flex-col gap-y-4">
-              <FormField
-                v-for="(option, indexOption) in options[indexQuestion]?.fields
-                  .value"
-                :key="indexOption"
-                v-slot="{ componentField: componentFieldOption }"
-                v-model="(option.value as IUserTestQuestionOption).text"
-                :name="`${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}.${indexOption}.text`"
-                :validate-on-blur="!isFieldDirty"
-              >
-                <FormItem>
-                  <FormLabel>
-                    <CommonGradientText>
-                      {{ indexOption + 1 }}.
-                    </CommonGradientText>
-                    {{ $t('form.option') }}
-                  </FormLabel>
-                  <FormControl>
-                    <div class="flex gap-x-2">
-                      <FormField
-                        v-slot="{ handleChange }"
-                        type="checkbox"
-                        :name="`${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}.${indexOption}.isCorrect`"
-                      >
-                        <FormItem>
-                          <FormControl>
-                            <Checkbox
-                              :checked="
-                                (option.value as IUserTestQuestionOption)
-                                  .isCorrect
-                              "
-                              class="h-9 w-9"
-                              @update:checked="handleChange"
-                            />
-                          </FormControl>
-                        </FormItem>
-                      </FormField>
-
-                      <Input
-                        type="text"
-                        :placeholder="
-                          exampleMessage(FormInput.OPTION, indexOption + 1)
-                        "
-                        v-bind="componentFieldOption"
-                      />
-
-                      <Button
-                        size="icon"
-                        variant="secondary"
-                        class="w-10"
-                        @click.prevent="
-                          options[indexQuestion]?.remove(indexOption)
-                        "
-                      >
-                        <Trash2Icon :size="16" />
-                        <span class="sr-only">
-                          Delete test option {{ indexOption + 1 }}
-                        </span>
-                      </Button>
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              </FormField>
-            </div>
-
-            <Button
-              class="w-fit"
-              @click.prevent="options[indexQuestion]?.push(initialOptionValue)"
-            >
-              Add Option
-            </Button>
-          </div>
-        </FormControl>
-        <FormMessage />
-      </FormItem>
-    </FormField>
+      <Button
+        class="w-fit"
+        @click.prevent="options[indexQuestion]!.push(initialOptionValue)"
+      >
+        Add Option
+      </Button>
+    </div>
 
     <div class="flex gap-x-2">
-      <Button @click.prevent="pushQuestion(initialQuestionValue)">
+      <Button @click.prevent="question.push(initialQuestionValue)">
         Add Question
       </Button>
 

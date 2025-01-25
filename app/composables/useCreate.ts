@@ -1,6 +1,6 @@
 import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
-import { useForm, useFieldArray } from 'vee-validate';
+import { useForm, useFieldArray, type FieldArrayContext } from 'vee-validate';
 
 export const useCreate = () => {
   const testStore = useTestStore();
@@ -63,27 +63,30 @@ export const useCreate = () => {
 
   type ICreate = z.TypeOf<typeof zodFormSchema>;
 
-  const validationSchema = toTypedSchema(zodFormSchema);
+  type ICreateQuestion = ICreate['questions'][0];
+  type ICreateOption = ICreate['questions'][0]['options'][0];
 
-  const initialOptionValue: ICreate['questions'][0]['options'][0] = {
+  const initialOptionValue: ICreateOption = {
     text: '',
     isCorrect: false
   };
 
-  const initialQuestionValue: ICreate['questions'][0] = {
+  const initialQuestionValue: ICreateQuestion = {
     text: '',
     options: [initialOptionValue, initialOptionValue]
   };
 
-  const initialFormValues: ICreate = {
+  const initialFormValue: ICreate = {
     title: '',
     description: '',
     questions: [initialQuestionValue, initialQuestionValue]
   };
 
+  const validationSchema = toTypedSchema(zodFormSchema);
+
   const { resetForm, isFieldDirty, handleSubmit, values } = useForm({
     validationSchema,
-    initialValues: testStore.createTest || initialFormValues
+    initialValues: testStore.createTest || initialFormValue
   });
 
   // watch(
@@ -96,24 +99,29 @@ export const useCreate = () => {
   //   { deep: true }
   // );
 
-  const {
-    fields: questionFields,
-    push: pushQuestion,
-    remove: removeQuestion,
-    swap: swapQuestion
-  } = useFieldArray(FormInput.QUESTIONS);
+  const question: FieldArrayContext<ICreateQuestion> = useFieldArray(
+    FormInput.QUESTIONS
+  );
 
-  const options = computed(() => {
-    return questionFields.value.map((_questionField, indexQuestionField) => {
-      return useFieldArray(
-        `${FormInput.QUESTIONS}.${indexQuestionField}.${FormInput.OPTIONS}`
-      );
-    });
-  });
+  const options: ComputedRef<FieldArrayContext<ICreateOption>[]> = computed(
+    () => {
+      return question.fields.value.map((_questionField, indexQuestionField) => {
+        return useFieldArray(
+          `${questionPath(indexQuestionField)}.${FormInput.OPTIONS}`
+        );
+      });
+    }
+  );
+
+  const questionPath = (indexQuestion: number) =>
+    `${FormInput.QUESTIONS}.${indexQuestion}`;
+
+  const optionPath = (indexQuestion: number, indexOption: number) =>
+    `${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}.${indexOption}`;
 
   const createTest = handleSubmit(async (create: ICreate) => {
-    console.log(options.value);
-    // console.log(create);
+    // console.log(options.value);
+    console.log(create);
     // console.log(testStore.createTest);
 
     // TODO: know how to reset the form completely, not placing initial values again
@@ -157,11 +165,10 @@ export const useCreate = () => {
     initialOptionValue,
     initialQuestionValue,
     isFieldDirty,
-    questionFields,
-    pushQuestion,
-    removeQuestion,
-    swapQuestion,
+    question,
     options,
+    questionPath,
+    optionPath,
     createTest
   };
 };
