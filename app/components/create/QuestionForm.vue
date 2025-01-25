@@ -39,7 +39,7 @@ const { FormInput, exampleMessage } = useFormMessage();
             v-if="!field.isFirst"
             size="icon"
             variant="secondary"
-            class="w-10"
+            class="shrink-0"
             @click.prevent="question.swap(index, index - 1)"
           >
             <ChevronUpIcon :size="16" />
@@ -50,7 +50,7 @@ const { FormInput, exampleMessage } = useFormMessage();
             v-if="!field.isLast"
             size="icon"
             variant="secondary"
-            class="w-10"
+            class="shrink-0"
             @click.prevent="question.swap(index, index + 1)"
           >
             <ChevronDownIcon :size="16" />
@@ -60,7 +60,7 @@ const { FormInput, exampleMessage } = useFormMessage();
           <Button
             size="icon"
             variant="secondary"
-            class="w-10"
+            class="shrink-0"
             @click.prevent="question.remove(index)"
           >
             <Trash2Icon :size="16" />

@@ -49,7 +49,7 @@ const { FormInput, exampleMessage } = useFormMessage();
           <Button
             size="icon"
             variant="secondary"
-            class="w-10"
+            class="shrink-0"
             @click.prevent="option.remove(index)"
           >
             <Trash2Icon :size="16" />
