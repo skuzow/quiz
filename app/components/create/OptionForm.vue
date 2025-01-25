@@ -29,13 +29,14 @@ const { FormInput, exampleMessage } = useFormMessage();
       <FormControl>
         <div class="flex gap-x-2">
           <FormField
-            v-slot="{ handleChange }"
+            v-slot="{ value, handleChange }"
             type="checkbox"
             :name="`${path}.isCorrect`"
           >
             <FormItem class="h-9">
               <FormControl>
                 <Checkbox
+                  :checked="value"
                   class="h-9 w-9 border-input"
                   @update:checked="handleChange"
                 />
