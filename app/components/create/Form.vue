@@ -126,7 +126,7 @@ const { FormInput, exampleMessage } = useFormMessage();
         v-for="(option, indexOption) in options[indexQuestion]?.fields.value"
         v-slot="{ componentField }"
         :key="indexOption"
-        v-model="option.value.text"
+        v-model="(option.value as IUserTestQuestionOption).text"
         :name="`${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}.${indexOption}.text`"
         :validate-on-blur="!isFieldDirty"
       >
@@ -142,7 +142,9 @@ const { FormInput, exampleMessage } = useFormMessage();
                 <FormItem>
                   <FormControl>
                     <Checkbox
-                      :checked="option.value.isCorrect"
+                      :checked="
+                        (option.value as IUserTestQuestionOption).isCorrect
+                      "
                       class="h-9 w-9"
                       @update:checked="handleChange"
                     />
