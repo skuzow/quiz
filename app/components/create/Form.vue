@@ -66,7 +66,8 @@ const { FormInput, exampleMessage } = useFormMessage();
     >
       <FormItem>
         <FormLabel>
-          {{ indexQuestion + 1 }}. {{ $t('form.question') }}
+          <CommonGradientText>{{ indexQuestion + 1 }}.</CommonGradientText>
+          {{ $t('form.question') }}
         </FormLabel>
         <FormControl>
           <div class="flex flex-col gap-y-6">
@@ -129,9 +130,12 @@ const { FormInput, exampleMessage } = useFormMessage();
                 :validate-on-blur="!isFieldDirty"
               >
                 <FormItem>
-                  <FormLabel
-                    >{{ indexOption + 1 }}. {{ $t('form.option') }}</FormLabel
-                  >
+                  <FormLabel>
+                    <CommonGradientText>
+                      {{ indexOption + 1 }}.
+                    </CommonGradientText>
+                    {{ $t('form.option') }}
+                  </FormLabel>
                   <FormControl>
                     <div class="flex gap-x-2">
                       <FormField
