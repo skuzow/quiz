@@ -16,7 +16,7 @@ const { user, nameAbbreviation, userURL } = useAuth();
 </script>
 
 <template>
-  <div class="flex flex-col items-center">
+  <div class="flex flex-col items-center gap-y-6">
     <CommonTopImage src="/images/test-image.avif" alt="Test image">
       <NuxtLink
         :to="localePath(userURL)"
