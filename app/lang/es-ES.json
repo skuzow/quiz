@@ -91,7 +91,11 @@
     "characters": "caracteres",
     "use": "está en uso",
     "example": "Ejemplo de",
-    "invalidEmailOrPassword": "Correo electrónico o contraseña no válidos."
+    "invalidEmailOrPassword": "Correo electrónico o contraseña no válidos.",
+    "types": {
+      "single": "Única",
+      "multiple": "Múltiple"
+    }
   },
   "auth": {
     "or": "O",

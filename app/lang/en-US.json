@@ -91,7 +91,11 @@
     "characters": "characters",
     "use": "is already in use",
     "example": "Example",
-    "invalidEmailOrPassword": "Invalid email or password."
+    "invalidEmailOrPassword": "Invalid email or password.",
+    "types": {
+      "single": "Single",
+      "multiple": "Multiple"
+    }
   },
   "auth": {
     "or": "OR",

@@ -82,18 +82,29 @@ const { FormInput, exampleMessage } = useFormMessage();
         />
       </div>
 
-      <CommonErrorBagMessages
-        :error-bag="errorBag"
-        :error-key="`questions[${indexQuestion}].options`"
-      />
+      <div>
+        <CommonErrorBagMessages
+          :error-bag="errorBag"
+          :error-key="`questions[${indexQuestion}].options`"
+        />
 
-      <Button
-        class="w-fit"
-        variant="secondary"
-        @click.prevent="options[indexQuestion]!.push(initialOptionValue)"
-      >
-        Add Option
-      </Button>
+        <CommonErrorBagMessages
+          :error-bag="errorBag"
+          :error-key="`questions[${indexQuestion}]`"
+        />
+      </div>
+
+      <div class="flex gap-x-2">
+        <Button
+          class="w-fit"
+          variant="secondary"
+          @click.prevent="options[indexQuestion]!.push(initialOptionValue)"
+        >
+          Add Option
+        </Button>
+
+        <CreateTypeForm :path="questionPath(indexQuestion)" />
+      </div>
     </div>
 
     <CommonErrorBagMessages :error-bag="errorBag" error-key="questions" />

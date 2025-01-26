@@ -2,6 +2,8 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm, useFieldArray, type FieldArrayContext } from 'vee-validate';
 
+import { TestQuestionType } from '#shared/constants/test';
+
 export const useCreate = () => {
   const testStore = useTestStore();
 
@@ -11,28 +13,38 @@ export const useCreate = () => {
   const zodOptionFormSchema = z.object({
     text: z
       .string({ required_error: requiredMessage(FormInput.OPTION) })
-      .min(5, minMessage(FormInput.OPTION, 5))
+      .min(3, minMessage(FormInput.OPTION, 3))
       .max(150, maxMessage(FormInput.OPTION, 150)),
     isCorrect: z.boolean()
   });
 
-  const zodQuestionFormSchema = z.object({
-    text: z
-      .string({ required_error: requiredMessage(FormInput.QUESTION) })
-      .min(10, minMessage(FormInput.QUESTION, 10))
-      .max(150, maxMessage(FormInput.QUESTION, 150)),
-    options: z
-      .array(zodOptionFormSchema, {
-        required_error: requiredMessage(FormInput.OPTIONS)
-      })
-      .min(2, minMessage(FormInput.OPTIONS, 2, false))
-      .max(10, maxMessage(FormInput.OPTIONS, 10, false))
-      .refine(
-        (options) => options.some((option) => option.isCorrect),
-        minMessage(FormInput.CORRECT_OPTIONS, 1, false)
-      )
-    // image: z.string().optional()
-  });
+  const zodQuestionFormSchema = z
+    .object({
+      text: z
+        .string({ required_error: requiredMessage(FormInput.QUESTION) })
+        .min(10, minMessage(FormInput.QUESTION, 10))
+        .max(150, maxMessage(FormInput.QUESTION, 150)),
+      type: z.enum(
+        Object.values(TestQuestionType) as [keyof typeof TestQuestionType]
+      ),
+      options: z
+        .array(zodOptionFormSchema, {
+          required_error: requiredMessage(FormInput.OPTIONS)
+        })
+        .min(2, minMessage(FormInput.OPTIONS, 2, false))
+        .max(10, maxMessage(FormInput.OPTIONS, 10, false))
+        .refine(
+          (options) => options.some((option) => option.isCorrect),
+          minMessage(FormInput.CORRECT_OPTIONS, 1, false)
+        )
+      // image: z.string().optional()
+    })
+    .refine(
+      (question) =>
+        question.type !== TestQuestionType.SINGLE ||
+        question.options.filter((option) => option.isCorrect).length === 1,
+      maxMessage(FormInput.CORRECT_OPTIONS, 1, false)
+    );
 
   const zodFormSchema = z.object({
     title: z
@@ -68,6 +80,7 @@ export const useCreate = () => {
 
   const initialQuestionValue: ICreateQuestion = {
     text: '',
+    type: TestQuestionType.SINGLE,
     options: [correctInitialOptionValue, initialOptionValue]
   };
 
