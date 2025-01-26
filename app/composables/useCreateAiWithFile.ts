@@ -2,7 +2,7 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useField, useForm } from 'vee-validate';
 
-import { FILE_TYPES } from '~/constants/file';
+import { FileTypes } from '@/constants/file';
 
 export const useCreateAiWithFile = () => {
   const { $api } = useNuxtApp();
@@ -98,9 +98,9 @@ export const useCreateAiWithFile = () => {
 
   const parseFile = async (file: File) => {
     const fileParsers = {
-      [FILE_TYPES.TXT]: txtParse,
-      [FILE_TYPES.PDF]: pdfParse,
-      [FILE_TYPES.DOCX]: docxParse
+      [FileTypes.TXT]: txtParse,
+      [FileTypes.PDF]: pdfParse,
+      [FileTypes.DOCX]: docxParse
     };
 
     const parser = fileParsers[file.type as keyof typeof fileParsers];

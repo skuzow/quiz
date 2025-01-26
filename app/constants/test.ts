@@ -1,0 +1,12 @@
+export enum TestCategory {
+  TECHNOLOGY = 'TECHNOLOGY',
+  UNIVERSITY = 'UNIVERSITY',
+  SCIENCE = 'SCIENCE',
+  HISTORY = 'HISTORY',
+  LITERATURE = 'LITERATURE'
+}
+
+export enum TestQuestionType {
+  SINGLE = 'SINGLE',
+  MULTIPLE = 'MULTIPLE'
+}

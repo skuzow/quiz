@@ -2,14 +2,15 @@ import * as bcrypt from 'bcrypt';
 
 import prisma from '../server/utils/prisma';
 
-import { ROLE, TEST_CATEGORY, TEST_QUESTION_TYPE } from '@/constants/seed';
+import { UserRole } from '@/constants/user';
+import { TestCategory, TestQuestionType } from '@/constants/test';
 
 const { ADMIN_EMAIL, ADMIN_USERNAME, ADMIN_PASSWORD } = process.env;
 
 const seedRoles = async () => {
-  const ROLES: string[] = Object.values(ROLE);
+  const roles: string[] = Object.values(UserRole);
 
-  ROLES.forEach(async (role) => {
+  roles.forEach(async (role) => {
     await prisma.role.upsert({
       where: { name: role },
       update: {},
@@ -19,9 +20,9 @@ const seedRoles = async () => {
 };
 
 const seedTestCategories = async () => {
-  const TEST_CATEGORIES: string[] = Object.values(TEST_CATEGORY);
+  const testCategories: string[] = Object.values(TestCategory);
 
-  TEST_CATEGORIES.forEach(async (testCategory) => {
+  testCategories.forEach(async (testCategory) => {
     await prisma.testCategory.upsert({
       where: { name: testCategory },
       update: {},
@@ -31,9 +32,9 @@ const seedTestCategories = async () => {
 };
 
 const seedTestQuestionTypes = async () => {
-  const TEST_QUESTION_TYPES: string[] = Object.values(TEST_QUESTION_TYPE);
+  const testQuestionTypes: string[] = Object.values(TestQuestionType);
 
-  TEST_QUESTION_TYPES.forEach(async (testQuestionType) => {
+  testQuestionTypes.forEach(async (testQuestionType) => {
     await prisma.testQuestionType.upsert({
       where: { name: testQuestionType },
       update: {},
@@ -54,8 +55,8 @@ const seedAdminUser = async () => {
       emailVerified: true,
       roles: {
         create: [
-          { role: { connect: { name: ROLE.ADMIN } } },
-          { role: { connect: { name: ROLE.USER } } }
+          { role: { connect: { name: UserRole.ADMIN } } },
+          { role: { connect: { name: UserRole.USER } } }
         ]
       },
       tests: {
@@ -65,8 +66,8 @@ const seedAdminUser = async () => {
             description: 'Example test description',
             categories: {
               create: [
-                { category: { connect: { name: TEST_CATEGORY.TECHNOLOGY } } },
-                { category: { connect: { name: TEST_CATEGORY.UNIVERSITY } } }
+                { category: { connect: { name: TestCategory.TECHNOLOGY } } },
+                { category: { connect: { name: TestCategory.UNIVERSITY } } }
               ]
             },
             questions: {
@@ -74,7 +75,7 @@ const seedAdminUser = async () => {
                 {
                   number: 1,
                   text: 'Single example question',
-                  type: { connect: { name: TEST_QUESTION_TYPE.SINGLE } },
+                  type: { connect: { name: TestQuestionType.SINGLE } },
                   options: {
                     create: [
                       { text: 'Single example option 1', isCorrect: true },
@@ -87,7 +88,7 @@ const seedAdminUser = async () => {
                 {
                   number: 2,
                   text: 'Multiple example question',
-                  type: { connect: { name: TEST_QUESTION_TYPE.MULTIPLE } },
+                  type: { connect: { name: TestQuestionType.MULTIPLE } },
                   options: {
                     create: [
                       { text: 'Multiple example option 1', isCorrect: true },
