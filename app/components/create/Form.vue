@@ -2,6 +2,7 @@
 const {
   initialOptionValue,
   initialQuestionValue,
+  errorBag,
   isFieldDirty,
   question,
   options,
@@ -66,7 +67,10 @@ const { FormInput, exampleMessage } = useFormMessage();
         :question="question"
       />
 
-      <div class="flex flex-col gap-y-4">
+      <div
+        v-if="options[indexQuestion]!.fields.value.length !== 0"
+        class="flex flex-col gap-y-4"
+      >
         <CreateOptionForm
           v-for="(_optionField, indexOption) in options[indexQuestion]!.fields
             .value"
@@ -78,6 +82,11 @@ const { FormInput, exampleMessage } = useFormMessage();
         />
       </div>
 
+      <CommonErrorBagMessages
+        :error-bag="errorBag"
+        :error-key="`questions[${indexQuestion}].options`"
+      />
+
       <Button
         class="w-fit"
         variant="secondary"
@@ -86,6 +95,8 @@ const { FormInput, exampleMessage } = useFormMessage();
         Add Option
       </Button>
     </div>
+
+    <CommonErrorBagMessages :error-bag="errorBag" error-key="questions" />
 
     <div class="flex gap-x-2">
       <Button
