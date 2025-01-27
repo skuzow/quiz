@@ -5,10 +5,16 @@ import { useForm, useFieldArray, type FieldArrayContext } from 'vee-validate';
 import { TestQuestionType } from '#shared/constants/test';
 
 export const useCreate = () => {
+  const { $api } = useNuxtApp();
+  const localePath = useLocalePath();
+
   const testStore = useTestStore();
 
   const { FormInput, requiredMessage, minMessage, maxMessage } =
     useFormMessage();
+
+  const isLoadingCreate: Ref<boolean> = ref(false);
+  const internalServerErrorCreate: Ref<boolean> = ref(false);
 
   const zodOptionFormSchema = z.object({
     text: z
@@ -128,48 +134,26 @@ export const useCreate = () => {
     `${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}.${indexOption}`;
 
   const createTest = handleSubmit(async (create: ICreate) => {
-    // console.log(options.value);
-    console.log(create);
-    // console.log(testStore.createTest);
+    if (isLoadingCreate.value) return;
 
-    // TODO: know how to reset the form completely, not placing initial values again
-    // testStore.createTest = undefined;
-    // resetForm(testStore.createTest);
-    //   if (isLoadingWithText.value) return;
+    isLoadingCreate.value = true;
+    internalServerErrorCreate.value = false;
 
-    //   if (createStore.createTestValue) {
-    //     const response: boolean = await alert({
-    //       title: $t('alert.overrideTest.title'),
-    //       description: $t('alert.overrideTest.description'),
-    //       confirm: $t('continue')
-    //     });
+    try {
+      const result = await $api.test.create(create as IUserTest);
 
-    //     if (!response) return;
-    //   }
-
-    //   isLoadingWithText.value = true;
-    //   internalServerErrorWithText.value = false;
-
-    //   try {
-    //     const result = await $api.test.createWithAI({
-    //       lang: locale.value,
-    //       questions: questions,
-    //       info: text
-    //     });
-
-    //     createStore.createTestValue = result?.body?.test as IUserTest;
-    //     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    //   } catch (error) {
-    //     internalServerErrorWithText.value = true;
-    //   }
-
-    //   isLoadingWithText.value = false;
-
-    //   if (!internalServerErrorWithText.value)
-    //     await navigateTo(localePath('/create'));
+      await navigateTo(localePath(`/test/${result?.body?.test?.id}`));
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      internalServerErrorCreate.value = true;
+    } finally {
+      isLoadingCreate.value = false;
+    }
   });
 
   return {
+    isLoadingCreate,
+    internalServerErrorCreate,
     initialOptionValue,
     initialQuestionValue,
     errorBag,

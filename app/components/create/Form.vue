@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 const {
+  isLoadingCreate,
+  internalServerErrorCreate,
   initialOptionValue,
   initialQuestionValue,
   errorBag,
@@ -82,17 +84,15 @@ const { FormInput, exampleMessage } = useFormMessage();
         />
       </div>
 
-      <div>
-        <CommonErrorBagMessages
-          :error-bag="errorBag"
-          :error-key="`questions[${indexQuestion}].options`"
-        />
+      <CommonErrorBagMessages
+        :error-bag="errorBag"
+        :error-key="`questions[${indexQuestion}].options`"
+      />
 
-        <CommonErrorBagMessages
-          :error-bag="errorBag"
-          :error-key="`questions[${indexQuestion}]`"
-        />
-      </div>
+      <CommonErrorBagMessages
+        :error-bag="errorBag"
+        :error-key="`questions[${indexQuestion}]`"
+      />
 
       <div class="flex gap-x-2">
         <Button
@@ -100,7 +100,7 @@ const { FormInput, exampleMessage } = useFormMessage();
           variant="secondary"
           @click.prevent="options[indexQuestion]!.push(initialOptionValue)"
         >
-          Add Option
+          {{ $t('create.form.addOption') }}
         </Button>
 
         <CreateTypeForm :path="questionPath(indexQuestion)" />
@@ -109,15 +109,25 @@ const { FormInput, exampleMessage } = useFormMessage();
 
     <CommonErrorBagMessages :error-bag="errorBag" error-key="questions" />
 
+    <CommonErrorMessage v-if="internalServerErrorCreate">
+      {{ $t('error.internalServer') }}
+    </CommonErrorMessage>
+
     <div class="flex gap-x-2">
       <Button
         variant="secondary"
         @click.prevent="question.push(initialQuestionValue)"
       >
-        Add Question
+        {{ $t('create.form.addQuestion') }}
       </Button>
 
-      <Button type="submit">Create</Button>
+      <Button type="submit">
+        <IconLoader
+          v-if="isLoadingCreate"
+          class="mr-2 fill-primary-foreground"
+        />
+        {{ $t('create.form.create') }}
+      </Button>
     </div>
   </form>
 </template>

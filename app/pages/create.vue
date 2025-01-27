@@ -46,7 +46,7 @@ const { user, nameAbbreviation, userURL } = useAuth();
 
       <Button class="absolute bottom-2 right-2 gap-x-1">
         <ImageUpIcon :size="16" />
-        Upload Image
+        {{ $t('create.form.uploadImage') }}
       </Button>
     </CommonTopImage>
 

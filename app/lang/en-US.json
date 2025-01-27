@@ -128,7 +128,13 @@
   },
   "create": {
     "title": "Create test with Blocks",
-    "description": "Fill out the form to create your own test."
+    "description": "Fill out the form to create your own test.",
+    "form": {
+      "uploadImage": "Upload Image",
+      "addOption": "Add Option",
+      "addQuestion": "Add Question",
+      "create": "Create Test"
+    }
   },
   "file": {
     "upload": "Click or Drag & Drop to Upload",

@@ -128,7 +128,13 @@
   },
   "create": {
     "title": "Crear test con Bloques",
-    "description": "Rellena el formulario para crear tu propio test."
+    "description": "Rellena el formulario para crear tu propio test.",
+    "form": {
+      "uploadImage": "Subir Imagen",
+      "addOption": "Añadir Opción",
+      "addQuestion": "Añadir Pregunta",
+      "create": "Crear Test"
+    }
   },
   "file": {
     "upload": "Haz Click o Arrastra y Suelta para Cargar",
