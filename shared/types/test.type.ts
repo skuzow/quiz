@@ -8,7 +8,7 @@ export interface IUserTestPartial {
   description: string;
   image: string | null;
   author: IUserPartial;
-  categories: string[];
+  categories: TestCategory[];
   views: number;
   createdAt: Date;
 }

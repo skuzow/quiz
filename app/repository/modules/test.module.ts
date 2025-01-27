@@ -29,7 +29,7 @@ class TestModule extends FetchFactory {
     return this.call<IUserTest>({
       method: 'POST',
       url: this.ROUTE.Fetch(),
-      body: dto
+      body: { test: dto }
     });
   }
 
