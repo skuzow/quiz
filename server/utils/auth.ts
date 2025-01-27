@@ -1,6 +1,6 @@
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
-import { jwt, bearer, username, twoFactor } from 'better-auth/plugins';
+import { username, twoFactor } from 'better-auth/plugins';
 
 import prisma from './prisma';
 
@@ -16,7 +16,7 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'sqlite'
   }),
-  plugins: [jwt(), bearer(), username(), twoFactor()],
+  plugins: [username(), twoFactor()],
   emailVerification: {
     sendOnSignUp: true
   },
