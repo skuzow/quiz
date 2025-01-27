@@ -1,4 +1,9 @@
-import type { $Fetch, NitroFetchOptions } from 'nitropack';
+import type {
+  $Fetch,
+  NitroFetchOptions,
+  NitroFetchRequest,
+  TypedInternalResponse
+} from 'nitropack';
 
 interface IHttpFactory {
   url: string;
@@ -23,7 +28,12 @@ abstract class HttpFactory {
     this.$fetch = fetch;
   }
 
-  async call<T>({ method, url, body, fetchOptions }: IHttpFactory): Promise<T> {
+  async call<T>({
+    method,
+    url,
+    body,
+    fetchOptions
+  }: IHttpFactory): Promise<TypedInternalResponse<NitroFetchRequest, T>> {
     return this.$fetch<T>(url, {
       method,
       body,
