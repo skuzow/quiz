@@ -10,8 +10,6 @@ seoMeta({
   description: $t('create.description')
 });
 
-const localePath = useLocalePath();
-
 const { user, nameAbbreviation, userURL } = useAuth();
 </script>
 
@@ -19,7 +17,7 @@ const { user, nameAbbreviation, userURL } = useAuth();
   <div class="flex flex-col items-center gap-y-6">
     <CommonTopImage src="/images/test-image.avif" alt="Test image">
       <NuxtLink
-        :to="localePath(userURL)"
+        :to="userURL"
         :title="$t('nav.header.user.profile')"
         class="absolute left-2 top-2"
       >

@@ -142,7 +142,7 @@ export const useCreate = () => {
     try {
       const result = await $api.test.create(create as IUserTest);
 
-      await navigateTo(localePath(`/test/${result?.body?.test?.id}`));
+      await navigateTo(localePath(`/tests/${result?.body?.test?.id}`));
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       internalServerErrorCreate.value = true;
