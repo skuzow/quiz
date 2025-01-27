@@ -78,13 +78,24 @@
     "file": "File",
     "text": "Text",
     "questions": "Questions",
+    "title": "Title",
+    "description": "Description",
+    "question": "Question",
+    "option": "Option",
+    "options": "Options",
+    "correctOptions": "Correct Options",
     "emailFormat": "Invalid email format.",
     "required": "is required",
     "least": "must be at least",
     "most": "must be at most",
     "characters": "characters",
     "use": "is already in use",
-    "invalidEmailOrPassword": "Invalid email or password."
+    "example": "Example",
+    "invalidEmailOrPassword": "Invalid email or password.",
+    "types": {
+      "single": "Single",
+      "multiple": "Multiple"
+    }
   },
   "auth": {
     "or": "OR",
@@ -114,6 +125,16 @@
       "input": "Write here..."
     },
     "generate": "Generate"
+  },
+  "create": {
+    "title": "Create test with Blocks",
+    "description": "Fill out the form to create your own test.",
+    "form": {
+      "uploadImage": "Upload Image",
+      "addOption": "Add Option",
+      "addQuestion": "Add Question",
+      "create": "Create Test"
+    }
   },
   "file": {
     "upload": "Click or Drag & Drop to Upload",

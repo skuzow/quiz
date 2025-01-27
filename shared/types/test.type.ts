@@ -1,12 +1,14 @@
 import type { IUserPartial } from './user.type';
 
+import type { TestCategory, TestQuestionType } from '../constants/test';
+
 export interface IUserTestPartial {
   id: string;
   title: string;
   description: string;
   image: string | null;
   author: IUserPartial;
-  categories: string[];
+  categories: TestCategory[];
   views: number;
   createdAt: Date;
 }
@@ -17,7 +19,7 @@ export interface IUserTest {
   description: string;
   image: string | null;
   author: IUserPartial;
-  categories: string[];
+  categories: TestCategory[];
   questions: IUserTestQuestion[];
   views: number;
   createdAt: Date;
@@ -27,7 +29,7 @@ export interface IUserTestQuestion {
   number: number;
   text: string;
   image: string | null;
-  type: string;
+  type: TestQuestionType;
   options: IUserTestQuestionOption[];
 }
 

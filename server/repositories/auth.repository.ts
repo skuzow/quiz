@@ -11,6 +11,8 @@ class AuthRepository {
         statusMessage: 'Unauthorized'
       };
     }
+
+    return session;
   }
 
   async checkEmail(email: string): Promise<boolean> {

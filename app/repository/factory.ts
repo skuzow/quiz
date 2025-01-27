@@ -1,4 +1,9 @@
-import type { $Fetch, NitroFetchOptions } from 'nitropack';
+import type {
+  $Fetch,
+  NitroFetchOptions,
+  NitroFetchRequest,
+  TypedInternalResponse
+} from 'nitropack';
 
 interface IHttpFactory {
   url: string;
@@ -18,13 +23,17 @@ interface IHttpFactory {
 
 abstract class HttpFactory {
   private readonly $fetch: $Fetch;
-  private accessToken: string = '';
 
   constructor(fetch: $Fetch) {
     this.$fetch = fetch;
   }
 
-  async call<T>({ method, url, body, fetchOptions }: IHttpFactory): Promise<T> {
+  async call<T>({
+    method,
+    url,
+    body,
+    fetchOptions
+  }: IHttpFactory): Promise<TypedInternalResponse<NitroFetchRequest, T>> {
     return this.$fetch<T>(url, {
       method,
       body,
@@ -33,22 +42,6 @@ abstract class HttpFactory {
       },
       ...fetchOptions
     });
-  }
-
-  setAccessToken(accessToken: string) {
-    this.accessToken = accessToken;
-  }
-
-  clearAccessToken() {
-    this.accessToken = '';
-  }
-
-  bearerAccessToken(): { Authorization: string } | Record<string, never> {
-    return this.accessToken
-      ? {
-          Authorization: `Bearer ${this.accessToken}`
-        }
-      : {};
   }
 }
 

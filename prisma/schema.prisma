@@ -2,7 +2,7 @@
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["driverAdapters", "omitApi"]
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
@@ -21,7 +21,7 @@ model User {
 
   accounts   Account[]
   sessions   Session[]
-  twoFactors TwoFactor[]
+  twofactors TwoFactor[]
   roles      UserToRole[]
   tests      UserTest[]
 
@@ -78,16 +78,6 @@ model Verification {
   updatedAt DateTime?
 
   @@map("verification")
-}
-
-model Jwks {
-  id         String @id @default(cuid())
-  publicKey  String
-  privateKey String
-
-  createdAt DateTime @default(now())
-
-  @@map("jwks")
 }
 
 model TwoFactor {

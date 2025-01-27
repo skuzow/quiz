@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { FileSearchIcon } from 'lucide-vue-next';
 
-import { FILE_EXTENSIONS, FILE_TYPES } from '@/constants/file';
+import { FileExtensions, FileTypes } from '@/constants/file';
 
 const {
   isLoadingWithFile,
@@ -15,13 +15,13 @@ const {
 
 const { FormInput, requiredMessage } = useFormMessage();
 
-const accept: FILE_EXTENSIONS[] = [
-  FILE_EXTENSIONS.PDF,
-  FILE_EXTENSIONS.DOCX,
-  FILE_EXTENSIONS.TXT
+const accept: FileExtensions[] = [
+  FileExtensions.PDF,
+  FileExtensions.DOCX,
+  FileExtensions.TXT
 ];
 
-const types: FILE_TYPES[] = [FILE_TYPES.PDF, FILE_TYPES.DOCX, FILE_TYPES.TXT];
+const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
 </script>
 
 <template>

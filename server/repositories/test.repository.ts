@@ -30,6 +30,42 @@ class TestRepository {
     return this.transformUserTestsPartial(tests);
   }
 
+  async create(
+    userId: string,
+    { title, description, categories, questions }: IUserTest
+  ): Promise<IUserTest> {
+    const test = await this.userTestModel.create({
+      data: {
+        author: { connect: { id: userId } },
+        title: title,
+        description: description,
+        categories: categories
+          ? {
+              create: categories.map((category) => ({
+                category: { connect: { name: category } }
+              }))
+            }
+          : undefined,
+        questions: {
+          create: questions.map((question, indexQuestion) => ({
+            number: indexQuestion,
+            text: question.text,
+            type: { connect: { name: question.type } },
+            options: {
+              create: question.options.map((option) => ({
+                text: option.text,
+                isCorrect: option.isCorrect
+              }))
+            }
+          }))
+        }
+      },
+      select: USER_TEST_SELECT
+    });
+
+    return this.transformUserTest(test);
+  }
+
   async createWithAI({
     lang,
     questions,

@@ -1,5 +1,7 @@
 import type { IUserTestPartial } from './test.type';
 
+import type { UserRole } from '../constants/user';
+
 export interface IUserPartial {
   id: string;
   name: string;
@@ -12,7 +14,7 @@ export interface IUser {
   name: string;
   username: string | null;
   image: string | null;
-  roles: string[];
+  roles: UserRole[];
   tests: IUserTestPartial[];
   createdAt: Date;
 }

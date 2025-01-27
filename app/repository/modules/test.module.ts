@@ -29,12 +29,7 @@ class TestModule extends FetchFactory {
     return this.call<IUserTest>({
       method: 'POST',
       url: this.ROUTE.Fetch(),
-      body: dto,
-      fetchOptions: {
-        headers: {
-          ...this.bearerAccessToken()
-        }
-      }
+      body: { test: dto }
     });
   }
 
@@ -50,24 +45,14 @@ class TestModule extends FetchFactory {
     return this.call<IUserTest>({
       method: 'PUT',
       url: this.ROUTE.FetchId(id),
-      body: dto,
-      fetchOptions: {
-        headers: {
-          ...this.bearerAccessToken()
-        }
-      }
+      body: dto
     });
   }
 
   async delete(id: string) {
     return this.call({
       method: 'DELETE',
-      url: this.ROUTE.FetchId(id),
-      fetchOptions: {
-        headers: {
-          ...this.bearerAccessToken()
-        }
-      }
+      url: this.ROUTE.FetchId(id)
     });
   }
 }

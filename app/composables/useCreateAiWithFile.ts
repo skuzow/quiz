@@ -2,14 +2,14 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useField, useForm } from 'vee-validate';
 
-import { FILE_TYPES } from '~/constants/file';
+import { FileTypes } from '@/constants/file';
 
 export const useCreateAiWithFile = () => {
   const { $api } = useNuxtApp();
   const localePath = useLocalePath();
   const { t: $t, locale } = useI18n();
 
-  const createStore = useCreateStore();
+  const testStore = useTestStore();
 
   const { FormInput, requiredMessage, minMessage, maxMessage } =
     useFormMessage();
@@ -59,7 +59,7 @@ export const useCreateAiWithFile = () => {
 
       if (!file.value) return (requiredFileError.value = true);
 
-      if (createStore.createTestValue) {
+      if (testStore.createTest) {
         const response: boolean = await alert({
           title: $t('alert.overrideTest.title'),
           description: $t('alert.overrideTest.description'),
@@ -83,24 +83,23 @@ export const useCreateAiWithFile = () => {
           info: formatTextContent(text)
         });
 
-        createStore.createTestValue = result?.body?.test as IUserTest;
+        testStore.createTest = result?.body?.test as IUserTest;
+
+        await navigateTo(localePath('/create'));
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         internalServerErrorWithFile.value = true;
+      } finally {
+        isLoadingWithFile.value = false;
       }
-
-      isLoadingWithFile.value = false;
-
-      if (!internalServerErrorWithFile.value)
-        await navigateTo(localePath('/create'));
     }
   );
 
   const parseFile = async (file: File) => {
     const fileParsers = {
-      [FILE_TYPES.TXT]: txtParse,
-      [FILE_TYPES.PDF]: pdfParse,
-      [FILE_TYPES.DOCX]: docxParse
+      [FileTypes.TXT]: txtParse,
+      [FileTypes.PDF]: pdfParse,
+      [FileTypes.DOCX]: docxParse
     };
 
     const parser = fileParsers[file.type as keyof typeof fileParsers];
