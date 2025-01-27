@@ -84,15 +84,14 @@ export const useCreateAiWithFile = () => {
         });
 
         testStore.createTest = result?.body?.test as IUserTest;
+
+        await navigateTo(localePath('/create'));
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         internalServerErrorWithFile.value = true;
+      } finally {
+        isLoadingWithFile.value = false;
       }
-
-      isLoadingWithFile.value = false;
-
-      if (!internalServerErrorWithFile.value)
-        await navigateTo(localePath('/create'));
     }
   );
 
