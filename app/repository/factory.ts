@@ -18,7 +18,6 @@ interface IHttpFactory {
 
 abstract class HttpFactory {
   private readonly $fetch: $Fetch;
-  private accessToken: string = '';
 
   constructor(fetch: $Fetch) {
     this.$fetch = fetch;
@@ -33,22 +32,6 @@ abstract class HttpFactory {
       },
       ...fetchOptions
     });
-  }
-
-  setAccessToken(accessToken: string) {
-    this.accessToken = accessToken;
-  }
-
-  clearAccessToken() {
-    this.accessToken = '';
-  }
-
-  bearerAccessToken(): { Authorization: string } | Record<string, never> {
-    return this.accessToken
-      ? {
-          Authorization: `Bearer ${this.accessToken}`
-        }
-      : {};
   }
 }
 

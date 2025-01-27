@@ -22,24 +22,14 @@ class UserModule extends FetchFactory {
     return this.call<IUser>({
       method: 'PUT',
       url: this.ROUTE.FetchId(id),
-      body: dto,
-      fetchOptions: {
-        headers: {
-          ...this.bearerAccessToken()
-        }
-      }
+      body: dto
     });
   }
 
   async delete(id: string) {
     return this.call({
       method: 'DELETE',
-      url: this.ROUTE.FetchId(id),
-      fetchOptions: {
-        headers: {
-          ...this.bearerAccessToken()
-        }
-      }
+      url: this.ROUTE.FetchId(id)
     });
   }
 }
