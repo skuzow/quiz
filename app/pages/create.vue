@@ -10,7 +10,7 @@ seoMeta({
   description: $t('create.description')
 });
 
-const { user, nameAbbreviation, userURL } = useAuth();
+const { userURL } = useAuth();
 </script>
 
 <template>
@@ -21,20 +21,7 @@ const { user, nameAbbreviation, userURL } = useAuth();
         :title="$t('nav.header.user.profile')"
         class="absolute left-2 top-2"
       >
-        <Avatar size="sm">
-          <AvatarImage
-            v-if="user?.image"
-            :src="user?.image"
-            width="40"
-            height="40"
-            loading="lazy"
-            title="Avatar"
-            alt="Avatar"
-          />
-          <AvatarFallback>
-            {{ nameAbbreviation }}
-          </AvatarFallback>
-        </Avatar>
+        <CommonAvatar size="sm" :width="40" :height="40" loading="lazy" />
       </NuxtLink>
 
       <Button size="icon" variant="secondary" class="absolute right-2 top-2">

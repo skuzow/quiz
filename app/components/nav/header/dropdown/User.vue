@@ -1,25 +1,13 @@
 <script lang="ts" setup>
 import { UserRoundIcon, Settings2Icon, LogOutIcon } from 'lucide-vue-next';
 
-const { user, nameAbbreviation, userURL, signOut } = useAuth();
+const { user, userURL, signOut } = useAuth();
 </script>
 
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Avatar class="cursor-pointer">
-        <AvatarImage
-          v-if="user?.image"
-          :src="user?.image"
-          width="36"
-          height="36"
-          title="Avatar"
-          alt="Avatar"
-        />
-        <AvatarFallback>
-          {{ nameAbbreviation }}
-        </AvatarFallback>
-      </Avatar>
+      <CommonAvatar />
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" class="w-56 font-medium">
       <DropdownMenuLabel>
