@@ -1,5 +1,5 @@
 {
-  "description": "Haz, crea y comparte exámenes de forma fácil y sencilla. El mejor método para preparar tus exámenes.",
+  "description": "Haz, crea y comparte tests de forma fácil y sencilla. El mejor método para preparar tus exámenes.",
   "cancel": "Cancelar",
   "confirm": "Confirmar",
   "continue": "Continuar",
@@ -103,6 +103,16 @@
     "github": "Continuar con Github",
     "dontHaveAccount": "¿No tienes una cuenta?",
     "alreadyHaveAccount": "¿Ya tienes una cuenta?"
+  },
+  "landing": {
+    "title": {
+      "gradient": "Hacer Tests",
+      "normal": "nunca fue tan fácil"
+    },
+    "buttons": {
+      "start": "Empezar Ahora",
+      "ai": "Probar IA"
+    }
   },
   "login": {
     "description": "Inicia sesión para gestionar tus tests."
