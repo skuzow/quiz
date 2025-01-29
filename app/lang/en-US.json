@@ -121,7 +121,7 @@
     "description": "Sign up to create your own tests."
   },
   "createai": {
-    "title": "Generate test with AI",
+    "title": "Generate Test with AI",
     "description": "Upload a readable file, or describe with text what you want to create.",
     "file": {
       "tab": "Upload File",

@@ -121,7 +121,7 @@
     "description": "Regístrate para crear tus propios tests."
   },
   "createai": {
-    "title": "Generar test con IA",
+    "title": "Generar Test con IA",
     "description": "Sube un archivo legible, o describe con texto lo que quieres crear.",
     "file": {
       "tab": "Subir Archivo",
