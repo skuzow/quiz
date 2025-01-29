@@ -7,11 +7,11 @@ const currentYear: number = new Date().getFullYear();
 </script>
 
 <template>
-  <footer class="py-2.5">
+  <footer class="pb-6 pt-5">
     <nav
       class="container flex max-w-6xl flex-1 flex-col items-center justify-between md:flex-row md:px-8"
     >
-      <div class="flex flex-col gap-y-2 md:flex-row md:gap-x-5">
+      <div class="flex flex-col gap-y-3 md:flex-row md:gap-x-5 md:gap-y-0">
         <div class="flex items-center justify-center gap-x-2">
           <NavLogo />
           <span class="font-bold">/ © skuzow/quiz {{ currentYear }}</span>
