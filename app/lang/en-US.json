@@ -104,6 +104,16 @@
     "dontHaveAccount": "Don't have an account?",
     "alreadyHaveAccount": "Already have an account?"
   },
+  "landing": {
+    "title": {
+      "gradient": "Making Tests",
+      "normal": "wasn't so easy before"
+    },
+    "buttons": {
+      "start": "Start Now",
+      "ai": "Try AI"
+    }
+  },
   "login": {
     "description": "Log in to manage your tests."
   },
