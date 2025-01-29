@@ -3,8 +3,10 @@ const route = useRoute();
 
 const testStore = useTestStore();
 
-const { status, data } = useAsyncData('getTest', () =>
-  testStore.getTest(route.params.id as string)
+const id = route.params.id as string;
+
+const { status, data } = useAsyncData(`test-${id}`, () =>
+  testStore.getTest(id)
 );
 </script>
 
