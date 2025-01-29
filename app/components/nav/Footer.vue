@@ -9,7 +9,7 @@ const currentYear: number = new Date().getFullYear();
 <template>
   <footer class="py-2.5">
     <nav
-      class="container flex max-w-6xl flex-1 flex-col items-center justify-between gap-y-4 md:flex-row md:px-8"
+      class="container flex max-w-6xl flex-1 flex-col items-center justify-between md:flex-row md:px-8"
     >
       <div class="flex flex-col gap-y-2 md:flex-row md:gap-x-5">
         <div class="flex items-center justify-center gap-x-2">
@@ -56,7 +56,7 @@ const currentYear: number = new Date().getFullYear();
         to="mailto:contact@quiz.skuzow.com"
         :title="$t('nav.footer.contact')"
       >
-        <Button class="gap-x-1">
+        <Button variant="link" class="hidden md:flex md:gap-x-1">
           <AtSignIcon :size="16" />
           {{ $t('nav.footer.contact') }}
         </Button>
