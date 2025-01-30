@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-seoMeta();
+const { t: $t } = useI18n();
+
+seoMeta({
+  title: $t('tests.title'),
+  description: $t('tests.description')
+});
 </script>
 
 <template>
