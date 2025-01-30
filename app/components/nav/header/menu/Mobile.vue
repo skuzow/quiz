@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { MenuIcon, UserRoundIcon, Settings2Icon } from 'lucide-vue-next';
 
-const { user, isAuthenticated, userURL, signOut } = useAuth();
+const { user, isAuthenticated, userInfo, userURL, signOut } = useAuth();
 
 const localePath = useLocalePath();
 
@@ -29,7 +29,7 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
                   <h3 class="text-sm">{{ user?.name }}</h3>
 
                   <p class="text-xs font-medium">
-                    {{ user?.username ? `@${user?.username}` : user?.email }}
+                    {{ userInfo }}
                   </p>
                 </div>
               </div>

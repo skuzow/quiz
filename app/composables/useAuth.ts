@@ -62,6 +62,12 @@ export const useAuth = () => {
 
   const localePath = useLocalePath();
 
+  const userInfo = computed(() => {
+    if (!user.value) return '';
+
+    return user.value.username ? `@${user.value.username}` : user.value.email;
+  });
+
   const userURL = computed(() => {
     if (!user.value) return '';
 
@@ -86,6 +92,7 @@ export const useAuth = () => {
     user,
     isAuthenticated,
     fetchSession,
+    userInfo,
     userURL,
     signUp: authClient.signUp,
     signIn: authClient.signIn,

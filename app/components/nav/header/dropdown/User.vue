@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { UserRoundIcon, Settings2Icon, LogOutIcon } from 'lucide-vue-next';
 
-const { user, userURL, signOut } = useAuth();
+const { user, userInfo, userURL, signOut } = useAuth();
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const { user, userURL, signOut } = useAuth();
         <h3>{{ user?.name }}</h3>
 
         <p class="text-xs font-medium">
-          {{ user?.username ? `@${user?.username}` : user?.email }}
+          {{ userInfo }}
         </p>
       </DropdownMenuLabel>
 
