@@ -19,14 +19,31 @@ const tempCategories = ['Education', 'Science'];
     class="flex cursor-pointer flex-col rounded-xl border bg-card text-card-foreground shadow md:flex-row"
     @click="navigateTo(localePath(`/tests/${test.id}`))"
   >
-    <img
-      src="/images/test-image.avif"
-      height="110px"
-      width="100%"
-      :title="imageAlt"
-      :alt="imageAlt"
-      class="h-[110px] rounded-t-xl border-b object-cover md:h-auto md:w-1/3 md:rounded-bl-xl md:rounded-tr-none md:border-b-0 md:border-r"
-    />
+    <div class="relative h-[110px] md:h-auto md:w-1/3">
+      <img
+        src="/images/test-image.avif"
+        height="110"
+        width="100%"
+        loading="lazy"
+        :title="imageAlt"
+        :alt="imageAlt"
+        class="h-full rounded-t-xl border-b object-cover md:rounded-bl-xl md:rounded-tr-none md:border-b-0 md:border-r"
+      />
+
+      <NuxtLink
+        :to="localePath(`/users/${test.author.username || test.author.id}`)"
+        :title="`${$t('nav.header.user.profile')} ${test.author.name}`"
+        class="absolute bottom-2 left-2 h-10"
+      >
+        <CommonAvatar
+          size="sm"
+          :height="40"
+          :width="40"
+          loading="lazy"
+          :user="test.author"
+        />
+      </NuxtLink>
+    </div>
 
     <div class="p-6 md:w-2/3">
       <h2 class="mb-1.5 overflow-hidden text-ellipsis text-lg font-bold">
