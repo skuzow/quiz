@@ -4,38 +4,38 @@ import type { AvatarVariants } from '@/components/ui/avatar';
 interface Props {
   size?: AvatarVariants['size'];
   shape?: AvatarVariants['shape'];
-  width?: number;
   height?: number;
+  width?: number;
   loading?: 'lazy' | 'eager';
   alt?: string;
+  user: IUserPartial;
 }
 
 const {
   size,
   shape,
-  width = 36,
   height = 36,
+  width = 36,
   loading,
-  alt = 'Avatar'
+  alt = 'Avatar',
+  user
 } = defineProps<Props>();
-
-const { user, nameAbbreviation } = useAuth();
 </script>
 
 <template>
-  <Avatar :size="size" :shape="shape" class="cursor-pointer">
+  <Avatar :size="size" :shape="shape" :user="user" class="cursor-pointer">
     <AvatarImage
       v-if="user?.image"
       :src="user?.image"
-      :width="width"
       :height="height"
+      :width="width"
       :loading="loading"
       :title="alt"
       :alt="alt"
     />
 
-    <AvatarFallback>
-      {{ nameAbbreviation }}
+    <AvatarFallback v-else>
+      {{ abbreviate(user?.username || user.name) }}
     </AvatarFallback>
   </Avatar>
 </template>

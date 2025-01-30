@@ -23,7 +23,7 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
           <SheetClose as-child>
             <NuxtLink :to="localePath('/')" :title="$t('nav.home')">
               <div v-if="isAuthenticated" class="flex justify-start gap-x-2">
-                <CommonAvatar loading="lazy" />
+                <CommonAvatar loading="lazy" :user="user as IUserPartial" />
 
                 <div class="flex flex-col items-start">
                   <h3 class="text-sm">{{ user?.name }}</h3>
