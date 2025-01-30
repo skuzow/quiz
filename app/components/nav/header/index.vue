@@ -2,6 +2,8 @@
 const { isAuthenticated } = useAuth();
 
 const localePath = useLocalePath();
+
+const { user } = useAuth();
 </script>
 
 <template>
@@ -9,8 +11,8 @@ const localePath = useLocalePath();
     <nav class="container flex max-w-[92rem] flex-1 justify-between md:px-8">
       <div class="flex gap-x-5">
         <NuxtLink
-          :to="localePath('/')"
-          :title="$t('nav.home')"
+          :to="localePath(user ? '/tests' : '/')"
+          :title="user ? $t('tests.title') : $t('nav.home')"
           class="flex items-center gap-x-2"
         >
           <NavLogo />
