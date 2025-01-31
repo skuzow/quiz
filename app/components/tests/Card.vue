@@ -16,18 +16,18 @@ const tempCategories = ['Education', 'Science'];
 
 <template>
   <div
-    class="flex cursor-pointer flex-col rounded-xl border bg-card text-card-foreground shadow md:flex-row"
+    class="flex cursor-pointer flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow md:flex-row"
     @click="navigateTo(localePath(`/tests/${test.id}`))"
   >
-    <div class="relative h-[110px] md:h-auto md:w-1/3">
+    <div class="relative border-b md:w-1/3 md:border-b-0 md:border-r">
       <img
         src="/images/test-image.avif"
-        height="110"
+        height="140"
         width="100%"
         loading="lazy"
         :title="imageAlt"
         :alt="imageAlt"
-        class="h-full rounded-t-xl border-b object-cover md:rounded-bl-xl md:rounded-tr-none md:border-b-0 md:border-r"
+        class="h-[110px] object-cover md:h-[140px]"
       />
 
       <NuxtLink
@@ -46,7 +46,7 @@ const tempCategories = ['Education', 'Science'];
     </div>
 
     <div class="p-6 md:w-2/3">
-      <h2 class="mb-1.5 overflow-hidden text-ellipsis text-lg font-bold">
+      <h2 class="mb-1.5 truncate text-lg font-bold">
         <span
           class="bg-gradient-to-b from-gradient-start to-gradient-end bg-clip-text text-transparent"
         >
