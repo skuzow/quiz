@@ -116,7 +116,14 @@
   },
   "tests": {
     "title": "Listado Tests",
-    "description": "Buscar y filtrar en nuestra amplia y variada colección de pruebas."
+    "description": "Buscar y filtrar en nuestra amplia y variada colección de pruebas.",
+    "search": {
+      "placeholder": "Buscar Tests...",
+      "buttons": {
+        "sort": "Ordenar",
+        "filter": "Filtrar"
+      }
+    }
   },
   "login": {
     "description": "Inicia sesión para gestionar tus tests."
