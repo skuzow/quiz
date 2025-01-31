@@ -5,14 +5,12 @@ class TestModule extends FetchFactory {
   private readonly ROUTE = Routes.Test;
 
   async getAll(skip: number, take: number): Promise<IUserTestPartial[]> {
-    const url: URL = new URL(this.ROUTE.Fetch(), window.location.origin);
-
-    url.searchParams.set('skip', skip.toString());
-    url.searchParams.set('take', take.toString());
-
     return this.call<IUserTestPartial[]>({
       method: 'GET',
-      url: url.toString()
+      url: this.ROUTE.Fetch(),
+      fetchOptions: {
+        params: { skip, take }
+      }
     });
   }
 
