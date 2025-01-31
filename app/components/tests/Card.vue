@@ -59,11 +59,11 @@ const tempCategories = ['Education', 'Science'];
       </p>
 
       <div class="flex justify-between">
-        <div class="flex gap-x-2">
-          <Badge v-for="(category, index) in tempCategories" :key="index">
-            {{ category }}
-          </Badge>
-        </div>
+        <ul class="flex gap-x-2">
+          <li v-for="(category, index) in tempCategories" :key="index">
+            <Badge>{{ category }}</Badge>
+          </li>
+        </ul>
 
         <div class="flex items-center gap-x-1.5">
           {{ test.views }}
