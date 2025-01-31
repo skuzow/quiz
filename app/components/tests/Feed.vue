@@ -28,18 +28,20 @@ const { status, data } = useAsyncData('tests', () => testStore.getTests(0, 14));
       </Button>
     </div>
 
-    <section class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-      <template v-if="status === 'pending'">
-        <TestsCardSkeleton v-for="index in 14" :key="index" />
-      </template>
+    <section>
+      <ul class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <template v-if="status === 'pending'">
+          <li v-for="index in 14" :key="index">
+            <TestsCardSkeleton />
+          </li>
+        </template>
 
-      <template v-else>
-        <TestsCard
-          v-for="(test, index) in data?.body?.tests"
-          :key="index"
-          :test="test"
-        />
-      </template>
+        <template v-else>
+          <li v-for="(test, index) in data?.body?.tests" :key="index">
+            <TestsCard :test="test" />
+          </li>
+        </template>
+      </ul>
     </section>
   </div>
 </template>
