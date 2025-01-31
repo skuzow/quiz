@@ -62,12 +62,10 @@ export const useAuth = () => {
 
   const localePath = useLocalePath();
 
-  const nameAbbreviation = computed(() => {
+  const userInfo = computed(() => {
     if (!user.value) return '';
 
-    const name: string = user.value.username || user.value.name;
-
-    return abbreviate(name);
+    return user.value.username ? `@${user.value.username}` : user.value.email;
   });
 
   const userURL = computed(() => {
@@ -94,7 +92,7 @@ export const useAuth = () => {
     user,
     isAuthenticated,
     fetchSession,
-    nameAbbreviation,
+    userInfo,
     userURL,
     signUp: authClient.signUp,
     signIn: authClient.signIn,

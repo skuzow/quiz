@@ -114,6 +114,17 @@
       "ai": "Try AI"
     }
   },
+  "tests": {
+    "title": "Tests Feed",
+    "description": "Search and filter in our large and varied collection of tests.",
+    "search": {
+      "placeholder": "Search Tests...",
+      "buttons": {
+        "sort": "Sort",
+        "filter": "Filter"
+      }
+    }
+  },
   "login": {
     "description": "Log in to manage your tests."
   },

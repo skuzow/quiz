@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { MenuIcon, UserRoundIcon, Settings2Icon } from 'lucide-vue-next';
 
-const { user, isAuthenticated, userURL, signOut } = useAuth();
+const { user, isAuthenticated, userInfo, userURL, signOut } = useAuth();
 
 const localePath = useLocalePath();
 
@@ -23,13 +23,13 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
           <SheetClose as-child>
             <NuxtLink :to="localePath('/')" :title="$t('nav.home')">
               <div v-if="isAuthenticated" class="flex justify-start gap-x-2">
-                <CommonAvatar loading="lazy" />
+                <CommonAvatar loading="lazy" :user="user as IUserPartial" />
 
                 <div class="flex flex-col items-start">
                   <h3 class="text-sm">{{ user?.name }}</h3>
 
                   <p class="text-xs font-medium">
-                    {{ user?.username ? `@${user?.username}` : user?.email }}
+                    {{ userInfo }}
                   </p>
                 </div>
               </div>

@@ -204,7 +204,7 @@ export const useSignupForm = () => {
     if (error) {
       errorMessageWithEmail.value = error.message;
       clearPasswordInput();
-    } else await navigateTo(localePath('/'));
+    } else await navigateTo(localePath('/tests'));
   };
 
   return {

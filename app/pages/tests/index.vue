@@ -1,21 +1,12 @@
 <script lang="ts" setup>
-seoMeta();
+const { t: $t } = useI18n();
+
+seoMeta({
+  title: $t('tests.title'),
+  description: $t('tests.description')
+});
 </script>
 
 <template>
-  <div>
-    <h1 class="text-8xl">tests</h1>
-    <h1 class="text-8xl">tests</h1>
-    <h1 class="text-8xl">tests</h1>
-    <h1 class="text-8xl">tests</h1>
-    <h1 class="text-8xl">tests</h1>
-    <h1 class="text-8xl">tests</h1>
-    <h1 class="text-8xl">tests</h1>
-    <h1 class="text-8xl">tests</h1>
-    <h1 class="text-8xl">tests</h1>
-    <h1 class="text-8xl">tests</h1>
-    <h1 class="text-8xl">tests</h1>
-    <h1 class="text-8xl">tests</h1>
-    <h1 class="text-8xl">tests</h1>
-  </div>
+  <TestsFeed />
 </template>

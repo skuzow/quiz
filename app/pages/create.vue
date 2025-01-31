@@ -10,7 +10,7 @@ seoMeta({
   description: $t('create.description')
 });
 
-const { userURL } = useAuth();
+const { user, userURL } = useAuth();
 </script>
 
 <template>
@@ -21,7 +21,13 @@ const { userURL } = useAuth();
         :title="$t('nav.header.user.profile')"
         class="absolute left-2 top-2"
       >
-        <CommonAvatar size="sm" :width="40" :height="40" loading="lazy" />
+        <CommonAvatar
+          size="sm"
+          :height="40"
+          :width="40"
+          loading="lazy"
+          :user="user as IUserPartial"
+        />
       </NuxtLink>
 
       <Button size="icon" variant="secondary" class="absolute right-2 top-2">

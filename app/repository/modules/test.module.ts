@@ -4,10 +4,13 @@ import Routes from '@/repository/routes.client';
 class TestModule extends FetchFactory {
   private readonly ROUTE = Routes.Test;
 
-  async getAll(): Promise<IUserTestPartial[]> {
+  async getAll(skip: number, take: number): Promise<IUserTestPartial[]> {
     return this.call<IUserTestPartial[]>({
       method: 'GET',
-      url: this.ROUTE.Fetch()
+      url: this.ROUTE.Fetch(),
+      fetchOptions: {
+        params: { skip, take }
+      }
     });
   }
 
