@@ -131,7 +131,7 @@ export const useCreate = () => {
     `${FormInput.QUESTIONS}.${indexQuestion}`;
 
   const optionPath = (indexQuestion: number, indexOption: number) =>
-    `${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}.${indexOption}`;
+    `${questionPath(indexQuestion)}.${FormInput.OPTIONS}.${indexOption}`;
 
   const createTest = handleSubmit(async (create: ICreate) => {
     if (isLoadingCreate.value) return;
