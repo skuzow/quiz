@@ -91,10 +91,12 @@ class TestRepository {
       categories: test.categories.map(
         (category: any) => category.category.name
       ),
-      questions: test.questions.map((question: any) => ({
-        ...question,
-        type: question.type.name
-      })),
+      questions: test.questions
+        .map((question: any) => ({
+          ...question,
+          type: question.type.name
+        }))
+        .toReversed(),
       views: test._count.views,
       _count: undefined
     };
