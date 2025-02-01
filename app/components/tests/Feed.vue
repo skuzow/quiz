@@ -29,7 +29,7 @@ const { status, data } = useAsyncData('tests', () => testStore.getTests(0, 14));
     </div>
 
     <section>
-      <ul class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+      <ol class="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <template v-if="status === 'pending'">
           <li v-for="index in 14" :key="index">
             <TestsCardSkeleton />
@@ -41,7 +41,7 @@ const { status, data } = useAsyncData('tests', () => testStore.getTests(0, 14));
             <TestsCard :test="test" />
           </li>
         </template>
-      </ul>
+      </ol>
     </section>
   </div>
 </template>
