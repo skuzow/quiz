@@ -47,11 +47,9 @@ const tempCategories = ['Education', 'Science'];
 
     <div class="p-6 md:w-2/3">
       <h2 class="mb-1.5 truncate text-lg font-bold">
-        <span
-          class="bg-gradient-to-b from-gradient-start to-gradient-end bg-clip-text text-transparent"
-        >
+        <CommonGradientText class="bg-gradient-to-b">
           {{ test.title }}
-        </span>
+        </CommonGradientText>
       </h2>
 
       <p class="mb-3 truncate text-sm">

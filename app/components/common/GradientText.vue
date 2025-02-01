@@ -1,6 +1,19 @@
+<script lang="ts" setup>
+interface Props {
+  class?: string;
+}
+
+const { class: className = 'bg-gradient-to-r' } = defineProps<Props>();
+</script>
+
 <template>
   <span
-    class="bg-gradient-to-r from-gradient-start to-gradient-end bg-clip-text text-transparent"
+    :class="
+      cn(
+        'from-gradient-start to-gradient-end bg-clip-text text-transparent',
+        className
+      )
+    "
   >
     <slot />
   </span>
