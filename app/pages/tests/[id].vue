@@ -12,7 +12,8 @@ const { status, data } = useAsyncData(`test-${id}`, () =>
 
 <template>
   <div>
-    <h1>{{ status }}</h1>
-    <p>{{ data }}</p>
+    <TestsMakeSkeleton v-if="status === 'pending'" />
+
+    <TestsMake v-else :test="data?.body?.test as IUserTest" />
   </div>
 </template>
