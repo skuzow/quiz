@@ -123,6 +123,10 @@
         "sort": "Sort",
         "filter": "Filter"
       }
+    },
+    "make": {
+      "edit": "Edit",
+      "correct": "Correct"
     }
   },
   "login": {
