@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TestQuestionType } from '~~/shared/constants/test';
+import { TestQuestionType } from '#shared/constants/test';
 
 interface Props {
   question: IUserTestQuestion;
@@ -9,12 +9,16 @@ const { question } = defineProps<Props>();
 
 const { FormInput } = useFormMessage();
 
-const optionPath = (indexQuestion: number, indexOption: number) =>
-  `${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}.${indexOption}`;
+const optionsPath = (indexQuestion: number) =>
+  `${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}`;
 </script>
 
 <template>
-  <FormField v-slot="{ componentField }" type="radio" name="type">
+  <FormField
+    v-slot="{ componentField }"
+    :type="question.type === TestQuestionType.SINGLE ? 'radio' : ''"
+    :name="optionsPath(question.number)"
+  >
     <FormItem class="flex flex-col gap-y-2">
       <FormLabel class="text-base">
         <CommonGradientText>{{ question.number + 1 }}.</CommonGradientText>
@@ -24,7 +28,7 @@ const optionPath = (indexQuestion: number, indexOption: number) =>
       <FormControl>
         <RadioGroup
           v-if="question.type === TestQuestionType.SINGLE"
-          class="mt-0 flex flex-col gap-y-2"
+          class="flex flex-col gap-y-2"
           v-bind="componentField"
         >
           <FormItem
@@ -40,18 +44,21 @@ const optionPath = (indexQuestion: number, indexOption: number) =>
           </FormItem>
         </RadioGroup>
 
-        <!-- <ul v-if="question.type === TestQuestionType.MULTIPLE">
+        <ul
+          v-else-if="question.type === TestQuestionType.MULTIPLE"
+          class="flex flex-col gap-y-2"
+        >
           <li
             v-for="(option, indexOption) in question.options"
             :key="indexOption"
-            class="flex flex-col gap-y-1.5"
           >
             <FormField
               v-slot="{ value, handleChange }"
               type="checkbox"
-              :name="optionPath(question.number, indexOption)"
+              :value="option.text"
+              :name="optionsPath(question.number)"
             >
-              <FormItem class="flex flex-row items-start space-x-3 space-y-0">
+              <FormItem class="flex flex-row items-center space-x-3 space-y-0">
                 <FormControl>
                   <Checkbox
                     :checked="value.includes(option.text)"
@@ -65,7 +72,7 @@ const optionPath = (indexQuestion: number, indexOption: number) =>
               </FormItem>
             </FormField>
           </li>
-        </ul> -->
+        </ul>
       </FormControl>
       <FormMessage />
     </FormItem>

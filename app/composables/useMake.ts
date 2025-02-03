@@ -5,8 +5,7 @@ import { useForm } from 'vee-validate';
 import { TestQuestionType } from '#shared/constants/test';
 
 export const useMake = (questions: IUserTestQuestion[]) => {
-  const { FormInput, requiredMessage, minMessage, maxMessage } =
-    useFormMessage();
+  const { FormInput, requiredMessage } = useFormMessage();
 
   const isLoadingMake: Ref<boolean> = ref(false);
 
