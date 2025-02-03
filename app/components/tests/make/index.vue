@@ -7,6 +7,11 @@ interface Props {
 
 const { test } = defineProps<Props>();
 
+seoMeta({
+  title: test.title,
+  description: test.description
+});
+
 const localePath = useLocalePath();
 
 const { isAuthenticated, user: authUser } = useAuth();
