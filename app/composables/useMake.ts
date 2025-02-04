@@ -5,32 +5,35 @@ import { useForm } from 'vee-validate';
 import { TestQuestionType } from '#shared/constants/test';
 
 export const useMake = (questions: IUserTestQuestion[]) => {
-  const { FormInput, requiredMessage } = useFormMessage();
-
   const isLoadingMake: Ref<boolean> = ref(false);
 
-  const zodQuestionFormSchema = z.object({
-    options: z.array(z.string(), {
-      required_error: requiredMessage(FormInput.OPTIONS)
-    })
+  const zodSingleQuestionFormSchema = z.object({
+    options: z
+      .enum(['0', ...Array.from({ length: 9 }, (_, i) => String(i + 1))])
+      .optional()
+  });
+
+  const zodMultipleQuestionFormSchema = z.object({
+    options: z.array(z.string()).optional()
   });
 
   const zodFormSchema = z.object({
-    questions: z.array(zodQuestionFormSchema, {
-      required_error: requiredMessage(FormInput.QUESTIONS)
-    })
+    singleQuestions: z.array(zodSingleQuestionFormSchema),
+    multipleQuestions: z.array(zodMultipleQuestionFormSchema)
   });
 
   type IMake = z.TypeOf<typeof zodFormSchema>;
 
   const validationSchema = toTypedSchema(zodFormSchema);
 
-  const { handleSubmit, errorBag, isFieldDirty } = useForm({
+  const { handleSubmit } = useForm({
     validationSchema,
     initialValues: {
-      questions: questions.map((_question) => ({
-        options: []
-      }))
+      multipleQuestions: questions
+        .filter((question) => question.type === TestQuestionType.MULTIPLE)
+        .map((_question) => ({
+          options: []
+        }))
     }
   });
 
@@ -46,10 +49,6 @@ export const useMake = (questions: IUserTestQuestion[]) => {
 
   return {
     isLoadingMake,
-    errorBag,
-    isFieldDirty,
-    // question,
-    // options,
     makeTest
   };
 };

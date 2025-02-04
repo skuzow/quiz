@@ -10,7 +10,7 @@ const { question } = defineProps<Props>();
 const { FormInput } = useFormMessage();
 
 const optionsPath = (indexQuestion: number) =>
-  `${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}`;
+  `${question.type === TestQuestionType.SINGLE ? 'singleQuestions' : 'multipleQuestions'}.${indexQuestion}.${FormInput.OPTIONS}`;
 </script>
 
 <template>
@@ -37,7 +37,7 @@ const optionsPath = (indexQuestion: number) =>
             class="flex items-center gap-x-3 space-y-0"
           >
             <FormControl>
-              <RadioGroupItem :value="`${question.number}-${indexOption}`" />
+              <RadioGroupItem :value="indexOption.toString()" />
             </FormControl>
 
             <FormLabel class="font-normal">{{ option.text }}</FormLabel>
