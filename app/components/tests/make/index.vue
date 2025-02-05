@@ -25,7 +25,7 @@ const tempCategories = ['Education', 'Science'];
       <CommonTopImage src="/images/test-image.avif" alt="Test image">
         <NuxtLink
           :to="localePath(`/users/${test.author.username || test.author.id}`)"
-          :title="`${$t('nav.header.user.profile')} ${data?.body?.test?.author.name}`"
+          :title="`${$t('nav.header.user.profile')} ${test.author.name}`"
           class="absolute left-2 top-2"
         >
           <CommonAvatar
