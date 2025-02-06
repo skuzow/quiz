@@ -7,16 +7,19 @@ import { TestQuestionType } from '#shared/constants/test';
 export const useMake = (questions: IUserTestQuestion[]) => {
   const isLoadingMake: Ref<boolean> = ref(false);
 
+  const responseEnum = z.enum([
+    '0',
+    ...Array.from({ length: 9 }, (_, i) => String(i + 1))
+  ]);
+
   const zodSingleQuestionFormSchema = z.object({
     type: z.literal(TestQuestionType.SINGLE),
-    options: z
-      .enum(['0', ...Array.from({ length: 9 }, (_, i) => String(i + 1))])
-      .optional()
+    options: responseEnum.optional()
   });
 
   const zodMultipleQuestionFormSchema = z.object({
     type: z.literal(TestQuestionType.MULTIPLE),
-    options: z.array(z.string()).optional()
+    options: z.array(responseEnum).optional()
   });
 
   const zodFormSchema = z.object({
@@ -35,13 +38,12 @@ export const useMake = (questions: IUserTestQuestion[]) => {
   const { handleSubmit } = useForm({
     validationSchema,
     initialValues: {
-      questions: questions.map((question) => {
-        if (question.type === TestQuestionType.SINGLE) {
+      questions: questions.map(({ type }) => {
+        if (type === TestQuestionType.SINGLE)
           return {
             type: TestQuestionType.SINGLE as const,
             options: undefined
           };
-        }
 
         return {
           type: TestQuestionType.MULTIPLE as const,

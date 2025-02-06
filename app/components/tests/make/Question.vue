@@ -54,13 +54,13 @@ const optionsPath: string = `${FormInput.QUESTIONS}.${question.number}.${FormInp
             <FormField
               v-slot="{ value, handleChange }"
               type="checkbox"
-              :value="option.text"
+              :value="indexOption.toString()"
               :name="optionsPath"
             >
               <FormItem class="flex flex-row items-center space-x-3 space-y-0">
                 <FormControl>
                   <Checkbox
-                    :checked="value.includes(option.text)"
+                    :checked="value.includes(indexOption.toString())"
                     @update:checked="handleChange"
                   />
                 </FormControl>
