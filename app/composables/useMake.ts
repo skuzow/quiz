@@ -2,14 +2,14 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
-import { TestQuestionType } from '#shared/constants/test';
+import { TestQuestionType, MAX_TEST_OPTIONS } from '#shared/constants/test';
 
 export const useMake = (questions: IUserTestQuestion[]) => {
   const isLoadingMake: Ref<boolean> = ref(false);
 
   const responseEnum = z.enum([
     '0',
-    ...Array.from({ length: 9 }, (_, i) => String(i + 1))
+    ...Array.from({ length: MAX_TEST_OPTIONS - 1 }, (_, i) => String(i + 1))
   ]);
 
   const zodSingleQuestionFormSchema = z.object({

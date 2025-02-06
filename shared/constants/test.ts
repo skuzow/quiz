@@ -10,3 +10,5 @@ export enum TestQuestionType {
   SINGLE = 'SINGLE',
   MULTIPLE = 'MULTIPLE'
 }
+
+export const MAX_TEST_OPTIONS: number = 10;
