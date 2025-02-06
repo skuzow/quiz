@@ -8,18 +8,24 @@ export const useMake = (questions: IUserTestQuestion[]) => {
   const isLoadingMake: Ref<boolean> = ref(false);
 
   const zodSingleQuestionFormSchema = z.object({
+    type: z.literal(TestQuestionType.SINGLE),
     options: z
       .enum(['0', ...Array.from({ length: 9 }, (_, i) => String(i + 1))])
       .optional()
   });
 
   const zodMultipleQuestionFormSchema = z.object({
+    type: z.literal(TestQuestionType.MULTIPLE),
     options: z.array(z.string()).optional()
   });
 
   const zodFormSchema = z.object({
-    singleQuestions: z.array(zodSingleQuestionFormSchema),
-    multipleQuestions: z.array(zodMultipleQuestionFormSchema)
+    questions: z.array(
+      z.discriminatedUnion('type', [
+        zodSingleQuestionFormSchema,
+        zodMultipleQuestionFormSchema
+      ])
+    )
   });
 
   type IMake = z.TypeOf<typeof zodFormSchema>;
@@ -29,11 +35,19 @@ export const useMake = (questions: IUserTestQuestion[]) => {
   const { handleSubmit } = useForm({
     validationSchema,
     initialValues: {
-      multipleQuestions: questions
-        .filter((question) => question.type === TestQuestionType.MULTIPLE)
-        .map((_question) => ({
+      questions: questions.map((question) => {
+        if (question.type === TestQuestionType.SINGLE) {
+          return {
+            type: TestQuestionType.SINGLE as const,
+            options: undefined
+          };
+        }
+
+        return {
+          type: TestQuestionType.MULTIPLE as const,
           options: []
-        }))
+        };
+      })
     }
   });
 

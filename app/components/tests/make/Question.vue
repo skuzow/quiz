@@ -9,15 +9,14 @@ const { question } = defineProps<Props>();
 
 const { FormInput } = useFormMessage();
 
-const optionsPath = (indexQuestion: number) =>
-  `${question.type === TestQuestionType.SINGLE ? 'singleQuestions' : 'multipleQuestions'}.${indexQuestion}.${FormInput.OPTIONS}`;
+const optionsPath: string = `${FormInput.QUESTIONS}.${question.number}.${FormInput.OPTIONS}`;
 </script>
 
 <template>
   <FormField
     v-slot="{ componentField }"
     :type="question.type === TestQuestionType.SINGLE ? 'radio' : ''"
-    :name="optionsPath(question.number)"
+    :name="optionsPath"
   >
     <FormItem class="flex flex-col gap-y-2">
       <FormLabel class="text-base">
@@ -56,7 +55,7 @@ const optionsPath = (indexQuestion: number) =>
               v-slot="{ value, handleChange }"
               type="checkbox"
               :value="option.text"
-              :name="optionsPath(question.number)"
+              :name="optionsPath"
             >
               <FormItem class="flex flex-row items-center space-x-3 space-y-0">
                 <FormControl>
