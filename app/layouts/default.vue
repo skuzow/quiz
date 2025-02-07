@@ -75,7 +75,10 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="relative grid min-h-dvh grid-rows-[auto_1fr_auto] gap-2">
+  <div
+    vaul-drawer-wrapper
+    class="relative grid min-h-dvh grid-rows-[auto_1fr_auto] gap-2"
+  >
     <NavHeader />
     <main class="container mb-4 max-w-6xl py-4 md:my-11 md:px-8">
       <slot />
