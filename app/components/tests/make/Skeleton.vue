@@ -1,9 +1,40 @@
-<script lang="ts" setup></script>
-
 <template>
-  <div class="flex flex-col gap-y-6">
-    <Skeleton class="h-[172px] w-full rounded-xl" />
+  <div class="flex flex-col gap-y-8">
+    <div class="flex flex-col gap-y-6">
+      <Skeleton class="h-[172px] rounded-md" />
 
-    <Skeleton class="h-[27.5px] w-full rounded-xl" />
+      <div class="flex flex-col gap-y-2">
+        <Skeleton class="h-[27.5px] rounded-md md:w-5/6" />
+
+        <Skeleton class="h-[24px] w-5/6 rounded-md md:w-4/6" />
+      </div>
+    </div>
+
+    <ol class="flex flex-col gap-y-8">
+      <li
+        v-for="indexQuestion in 10"
+        :key="indexQuestion"
+        class="flex flex-col gap-y-4"
+      >
+        <Skeleton class="h-[24px] rounded-md md:w-4/6" />
+
+        <ol class="flex flex-col gap-y-2">
+          <li
+            v-for="indexOption in 4"
+            :key="indexOption"
+            class="flex items-center gap-x-3"
+          >
+            <Skeleton
+              class="h-[16px] w-[16px] rounded-full"
+              :class="indexQuestion % 2 == 0 ? 'rounded-sm' : 'rounded-full'"
+            />
+
+            <Skeleton class="h-[14px] w-5/6 rounded-md md:w-3/6" />
+          </li>
+        </ol>
+      </li>
+    </ol>
+
+    <Skeleton class="h-[36px] rounded-md md:w-[82px]" />
   </div>
 </template>
