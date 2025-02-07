@@ -170,6 +170,10 @@
     "overrideTest": {
       "title": "Ya tienes un test en curso",
       "description": "Si continúas, se perderá el test actual. ¿Estás seguro de que quieres continuar?"
+    },
+    "emptyQuestions": {
+      "title": "Tienes preguntas sin responder",
+      "description": "¿Estás seguro de que quieres corregir el test?"
     }
   },
   "error": {

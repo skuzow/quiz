@@ -5,6 +5,10 @@ import { useForm } from 'vee-validate';
 import { TestQuestionType, MAX_TEST_OPTIONS } from '#shared/constants/test';
 
 export const useMake = (questions: IUserTestQuestion[]) => {
+  const { t: $t } = useI18n();
+
+  const { alert } = useAlert();
+
   const isLoadingMake: Ref<boolean> = ref(false);
 
   const responseEnum = z.enum([
@@ -33,6 +37,8 @@ export const useMake = (questions: IUserTestQuestion[]) => {
 
   type IMake = z.TypeOf<typeof zodFormSchema>;
 
+  type IMakeQuestion = IMake['questions'][0];
+
   const validationSchema = toTypedSchema(zodFormSchema);
 
   const { handleSubmit } = useForm({
@@ -53,15 +59,31 @@ export const useMake = (questions: IUserTestQuestion[]) => {
     }
   });
 
-  const makeTest = handleSubmit(async (make: IMake) => {
+  const makeTest = handleSubmit(async ({ questions }: IMake) => {
     if (isLoadingMake.value) return;
+
+    if (isSomeQuestionEmpty(questions)) {
+      const response: boolean = await alert({
+        title: $t('alert.emptyQuestions.title'),
+        description: $t('alert.emptyQuestions.description')
+      });
+
+      if (!response) return;
+    }
 
     isLoadingMake.value = true;
 
-    console.log(make);
+    // Make correction here
 
     isLoadingMake.value = false;
   });
+
+  const isSomeQuestionEmpty = (questions: IMakeQuestion[]): boolean => {
+    return questions.some(({ type, options }) => {
+      if (type === TestQuestionType.SINGLE) return !options;
+      else if (type === TestQuestionType.MULTIPLE) return !options?.length;
+    });
+  };
 
   return {
     isLoadingMake,
