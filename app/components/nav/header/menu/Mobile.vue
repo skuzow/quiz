@@ -21,7 +21,10 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
       <SheetHeader>
         <SheetTitle>
           <SheetClose as-child>
-            <NuxtLink :to="localePath('/')" :title="$t('nav.home')">
+            <NuxtLink
+              :to="localePath(isAuthenticated ? '/tests' : '/')"
+              :title="isAuthenticated ? $t('tests.title') : $t('nav.home')"
+            >
               <div v-if="isAuthenticated" class="flex justify-start gap-x-2">
                 <CommonAvatar loading="lazy" :user="user as IUserPartial" />
 
