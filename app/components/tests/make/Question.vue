@@ -43,7 +43,7 @@ const optionsPath: string = `${FormInput.QUESTIONS}.${question.number}.${FormInp
           </FormItem>
         </RadioGroup>
 
-        <ul
+        <ol
           v-else-if="question.type === TestQuestionType.MULTIPLE"
           class="flex flex-col gap-y-2"
         >
@@ -71,7 +71,7 @@ const optionsPath: string = `${FormInput.QUESTIONS}.${question.number}.${FormInp
               </FormItem>
             </FormField>
           </li>
-        </ul>
+        </ol>
       </FormControl>
       <FormMessage />
     </FormItem>
