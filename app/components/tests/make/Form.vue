@@ -16,7 +16,7 @@ const { isLoadingMake, makeTest } = useMake(questions);
       </li>
     </ol>
 
-    <Button type="submit" class="w-fit">
+    <Button type="submit" class="md:w-fit">
       <IconLoader v-if="isLoadingMake" class="mr-2 fill-primary-foreground" />
       {{ $t('tests.make.correct') }}
     </Button>
