@@ -31,12 +31,12 @@ const optionsPath: string = `${FormInput.QUESTIONS}.${question.number}.${FormInp
           v-bind="componentField"
         >
           <FormItem
-            v-for="(option, indexOption) in question.options"
-            :key="indexOption"
+            v-for="option in question.options"
+            :key="option.number"
             class="flex items-center gap-x-3 space-y-0"
           >
             <FormControl>
-              <RadioGroupItem :value="indexOption.toString()" />
+              <RadioGroupItem :value="option.number.toString()" />
             </FormControl>
 
             <FormLabel class="font-normal">{{ option.text }}</FormLabel>
@@ -47,20 +47,17 @@ const optionsPath: string = `${FormInput.QUESTIONS}.${question.number}.${FormInp
           v-else-if="question.type === TestQuestionType.MULTIPLE"
           class="flex flex-col gap-y-2"
         >
-          <li
-            v-for="(option, indexOption) in question.options"
-            :key="indexOption"
-          >
+          <li v-for="option in question.options" :key="option.number">
             <FormField
               v-slot="{ value, handleChange }"
               type="checkbox"
-              :value="indexOption.toString()"
+              :value="option.number.toString()"
               :name="optionsPath"
             >
               <FormItem class="flex flex-row items-center space-x-3 space-y-0">
                 <FormControl>
                   <Checkbox
-                    :checked="value.includes(indexOption.toString())"
+                    :checked="value.includes(option.number.toString())"
                     @update:checked="handleChange"
                   />
                 </FormControl>
