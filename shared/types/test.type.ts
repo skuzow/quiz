@@ -34,6 +34,7 @@ export interface IUserTestQuestion {
 }
 
 export interface IUserTestQuestionOption {
+  number: number;
   text: string;
   isCorrect: boolean;
 }

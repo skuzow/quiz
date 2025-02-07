@@ -173,6 +173,7 @@ model UserTestQuestion {
 
 model UserTestQuestionOption {
   id        String  @id @default(cuid())
+  number    Int
   text      String
   isCorrect Boolean
 

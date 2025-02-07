@@ -52,7 +52,8 @@ class TestRepository {
             text: question.text,
             type: { connect: { name: question.type } },
             options: {
-              create: question.options.map((option) => ({
+              create: question.options.map((option, indexOption) => ({
+                number: indexOption,
                 text: option.text,
                 isCorrect: option.isCorrect
               }))

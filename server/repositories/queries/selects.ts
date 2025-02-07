@@ -51,6 +51,7 @@ export const USER_TEST_SELECT: Prisma.UserTestSelect = {
       type: { select: { name: true } },
       options: {
         select: {
+          number: true,
           text: true,
           isCorrect: true
         }
