@@ -1,11 +1,14 @@
 <script lang="ts" setup>
+import { CommonErrorBagMessages } from '#components';
+
 interface Props {
   questions: IUserTestQuestion[];
 }
 
 const { questions } = defineProps<Props>();
 
-const { isLoadingMake, makeTest } = useMake(questions);
+const { isLoadingMake, errorBag, isFieldTouched, makeTest } =
+  useMake(questions);
 </script>
 
 <template>
@@ -15,6 +18,12 @@ const { isLoadingMake, makeTest } = useMake(questions);
         <TestsMakeQuestion :question="question" />
       </li>
     </ol>
+
+    <CommonErrorBagMessages
+      v-if="isFieldTouched('questions')"
+      :error-bag="errorBag"
+      error-key="questions"
+    />
 
     <Button type="submit" class="md:w-fit">
       <IconLoader v-if="isLoadingMake" class="mr-2 fill-primary-foreground" />

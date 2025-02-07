@@ -84,6 +84,7 @@
     "option": "Opción",
     "options": "Opciones",
     "correctOptions": "Opciones Correctas",
+    "answeredQuestions": "Preguntas Contestadas",
     "emailFormat": "Formato de correo electrónico no válido.",
     "required": "es obligatorio",
     "least": "debe ser como mínimo",

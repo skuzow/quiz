@@ -7,6 +7,8 @@ import { TestQuestionType, MAX_TEST_OPTIONS } from '#shared/constants/test';
 export const useMake = (questions: IUserTestQuestion[]) => {
   const { t: $t } = useI18n();
 
+  const { FormInput, minMessage } = useFormMessage();
+
   const { alert } = useAlert();
 
   const isLoadingMake: Ref<boolean> = ref(false);
@@ -27,21 +29,30 @@ export const useMake = (questions: IUserTestQuestion[]) => {
   });
 
   const zodFormSchema = z.object({
-    questions: z.array(
-      z.discriminatedUnion('type', [
-        zodSingleQuestionFormSchema,
-        zodMultipleQuestionFormSchema
-      ])
-    )
+    questions: z
+      .array(
+        z.discriminatedUnion('type', [
+          zodSingleQuestionFormSchema,
+          zodMultipleQuestionFormSchema
+        ])
+      )
+      .refine(
+        (questions) => isSomeQuestionAnswered(questions),
+        minMessage(FormInput.ANSWERED_QUESTIONS, 1, false)
+      )
   });
 
-  type IMake = z.TypeOf<typeof zodFormSchema>;
+  type IMakeQuestion =
+    | z.infer<typeof zodSingleQuestionFormSchema>
+    | z.infer<typeof zodMultipleQuestionFormSchema>;
 
-  type IMakeQuestion = IMake['questions'][0];
+  type IMake = {
+    questions: IMakeQuestion[];
+  };
 
   const validationSchema = toTypedSchema(zodFormSchema);
 
-  const { handleSubmit } = useForm({
+  const { handleSubmit, errorBag, isFieldTouched } = useForm({
     validationSchema,
     initialValues: {
       questions: questions.map(({ type }) => {
@@ -78,6 +89,13 @@ export const useMake = (questions: IUserTestQuestion[]) => {
     isLoadingMake.value = false;
   });
 
+  const isSomeQuestionAnswered = (questions: IMakeQuestion[]): boolean => {
+    return questions.some(({ type, options }) => {
+      if (type === TestQuestionType.SINGLE) return options;
+      else if (type === TestQuestionType.MULTIPLE) return options?.length;
+    });
+  };
+
   const isSomeQuestionEmpty = (questions: IMakeQuestion[]): boolean => {
     return questions.some(({ type, options }) => {
       if (type === TestQuestionType.SINGLE) return !options;
@@ -87,6 +105,8 @@ export const useMake = (questions: IUserTestQuestion[]) => {
 
   return {
     isLoadingMake,
+    errorBag,
+    isFieldTouched,
     makeTest
   };
 };
