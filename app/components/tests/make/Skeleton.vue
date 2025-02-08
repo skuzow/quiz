@@ -25,7 +25,7 @@
             class="flex items-center gap-x-3"
           >
             <Skeleton
-              class="h-[16px] w-[16px] rounded-full"
+              class="h-[16px] w-[16px]"
               :class="indexQuestion % 2 == 0 ? 'rounded-sm' : 'rounded-full'"
             />
 
