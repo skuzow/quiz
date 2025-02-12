@@ -133,6 +133,8 @@ export const useMake = (questions: IUserTestQuestion[]) => {
   const retryTest = () => {
     resetForm();
     makeCorrection.value = undefined;
+
+    scrollTop();
   };
 
   const isSomeQuestionAnswered = (questions: IMakeQuestion[]): boolean => {
