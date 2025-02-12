@@ -2,7 +2,7 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm, useFieldArray, type FieldArrayContext } from 'vee-validate';
 
-import { TestQuestionType } from '#shared/constants/test';
+import { TestQuestionType, MAX_TEST_OPTIONS } from '#shared/constants/test';
 
 export const useCreate = () => {
   const { $api } = useNuxtApp();
@@ -38,7 +38,10 @@ export const useCreate = () => {
           required_error: requiredMessage(FormInput.OPTIONS)
         })
         .min(2, minMessage(FormInput.OPTIONS, 2, false))
-        .max(10, maxMessage(FormInput.OPTIONS, 10, false))
+        .max(
+          MAX_TEST_OPTIONS,
+          maxMessage(FormInput.OPTIONS, MAX_TEST_OPTIONS, false)
+        )
         .refine(
           (options) => options.some((option) => option.isCorrect),
           minMessage(FormInput.CORRECT_OPTIONS, 1, false)
@@ -131,7 +134,7 @@ export const useCreate = () => {
     `${FormInput.QUESTIONS}.${indexQuestion}`;
 
   const optionPath = (indexQuestion: number, indexOption: number) =>
-    `${FormInput.QUESTIONS}.${indexQuestion}.${FormInput.OPTIONS}.${indexOption}`;
+    `${questionPath(indexQuestion)}.${FormInput.OPTIONS}.${indexOption}`;
 
   const createTest = handleSubmit(async (create: ICreate) => {
     if (isLoadingCreate.value) return;

@@ -52,7 +52,8 @@ class TestRepository {
             text: question.text,
             type: { connect: { name: question.type } },
             options: {
-              create: question.options.map((option) => ({
+              create: question.options.map((option, indexOption) => ({
+                number: indexOption,
                 text: option.text,
                 isCorrect: option.isCorrect
               }))
@@ -91,10 +92,12 @@ class TestRepository {
       categories: test.categories.map(
         (category: any) => category.category.name
       ),
-      questions: test.questions.map((question: any) => ({
-        ...question,
-        type: question.type.name
-      })),
+      questions: test.questions
+        .map((question: any) => ({
+          ...question,
+          type: question.type.name
+        }))
+        .toReversed(),
       views: test._count.views,
       _count: undefined
     };

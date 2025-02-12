@@ -56,56 +56,61 @@ const { FormInput, exampleMessage } = useFormMessage();
       </FormField>
     </div>
 
-    <div
-      v-for="(questionField, indexQuestion) in question.fields.value"
-      :key="indexQuestion"
-      class="flex flex-col gap-y-6"
-    >
-      <CreateQuestionForm
-        :field="questionField"
-        :index="indexQuestion"
-        :path="questionPath(indexQuestion)"
-        :is-field-dirty="isFieldDirty"
-        :question="question"
-      />
-
-      <div
-        v-if="options[indexQuestion]!.fields.value.length !== 0"
-        class="flex flex-col gap-y-4"
+    <ol class="flex flex-col gap-y-8">
+      <li
+        v-for="(questionField, indexQuestion) in question.fields.value"
+        :key="indexQuestion"
+        class="flex flex-col gap-y-6"
       >
-        <CreateOptionForm
-          v-for="(_optionField, indexOption) in options[indexQuestion]!.fields
-            .value"
-          :key="indexOption"
-          :index="indexOption"
-          :path="optionPath(indexQuestion, indexOption)"
+        <CreateQuestionForm
+          :field="questionField"
+          :index="indexQuestion"
+          :path="questionPath(indexQuestion)"
           :is-field-dirty="isFieldDirty"
-          :option="options[indexQuestion]!"
+          :question="question"
         />
-      </div>
 
-      <CommonErrorBagMessages
-        :error-bag="errorBag"
-        :error-key="`questions[${indexQuestion}].options`"
-      />
-
-      <CommonErrorBagMessages
-        :error-bag="errorBag"
-        :error-key="`questions[${indexQuestion}]`"
-      />
-
-      <div class="flex gap-x-2">
-        <Button
-          class="w-fit"
-          variant="secondary"
-          @click.prevent="options[indexQuestion]!.push(initialOptionValue)"
+        <ol
+          v-if="options[indexQuestion]!.fields.value.length !== 0"
+          class="flex flex-col gap-y-4"
         >
-          {{ $t('create.form.addOption') }}
-        </Button>
+          <li
+            v-for="(_optionField, indexOption) in options[indexQuestion]!.fields
+              .value"
+            :key="indexOption"
+          >
+            <CreateOptionForm
+              :index="indexOption"
+              :path="optionPath(indexQuestion, indexOption)"
+              :is-field-dirty="isFieldDirty"
+              :option="options[indexQuestion]!"
+            />
+          </li>
+        </ol>
 
-        <CreateTypeForm :path="questionPath(indexQuestion)" />
-      </div>
-    </div>
+        <CommonErrorBagMessages
+          :error-bag="errorBag"
+          :error-key="`questions[${indexQuestion}].options`"
+        />
+
+        <CommonErrorBagMessages
+          :error-bag="errorBag"
+          :error-key="`questions[${indexQuestion}]`"
+        />
+
+        <div class="flex gap-x-2">
+          <Button
+            class="w-fit"
+            variant="secondary"
+            @click.prevent="options[indexQuestion]!.push(initialOptionValue)"
+          >
+            {{ $t('create.form.addOption') }}
+          </Button>
+
+          <CreateTypeForm :path="questionPath(indexQuestion)" />
+        </div>
+      </li>
+    </ol>
 
     <CommonErrorBagMessages :error-bag="errorBag" error-key="questions" />
 

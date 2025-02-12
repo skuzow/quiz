@@ -1,8 +1,15 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { useWindowScroll } from '@vueuse/core';
 
 export const cn = (...inputs: ClassValue[]) => {
   return twMerge(clsx(inputs));
+};
+
+export const scrollTop = () => {
+  const { y } = useWindowScroll({ behavior: 'smooth' });
+
+  y.value = 0;
 };
 
 export const isValidEmail = (email: string): boolean => {

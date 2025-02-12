@@ -34,6 +34,7 @@ export interface IUserTestQuestion {
 }
 
 export interface IUserTestQuestionOption {
+  number: number;
   text: string;
   isCorrect: boolean;
 }
@@ -42,4 +43,19 @@ export interface IUserTestAI {
   lang: string;
   questions: number;
   info: string;
+}
+
+export interface IUserTestCorrectionQuestion {
+  number: number;
+  text: string;
+  image: string | null;
+  type: TestQuestionType;
+  options: IUserTestCorrectionQuestionOption[];
+}
+
+export interface IUserTestCorrectionQuestionOption {
+  number: number;
+  text: string;
+  isCorrect: boolean;
+  isUserSelected: boolean;
 }

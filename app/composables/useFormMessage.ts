@@ -19,7 +19,8 @@ export const useFormMessage = () => {
     QUESTION = 'question',
     OPTIONS = 'options',
     OPTION = 'option',
-    CORRECT_OPTIONS = 'correctOptions'
+    CORRECT_OPTIONS = 'correctOptions',
+    ANSWERED_QUESTIONS = 'answeredQuestions'
   }
 
   const requiredMessage = (input: FormInput) =>

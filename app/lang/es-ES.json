@@ -84,6 +84,7 @@
     "option": "Opción",
     "options": "Opciones",
     "correctOptions": "Opciones Correctas",
+    "answeredQuestions": "Preguntas Contestadas",
     "emailFormat": "Formato de correo electrónico no válido.",
     "required": "es obligatorio",
     "least": "debe ser como mínimo",
@@ -123,6 +124,11 @@
         "sort": "Ordenar",
         "filter": "Filtrar"
       }
+    },
+    "make": {
+      "edit": "Editar",
+      "correct": "Corregir",
+      "retry": "Reintentar"
     }
   },
   "login": {
@@ -166,6 +172,10 @@
     "overrideTest": {
       "title": "Ya tienes un test en curso",
       "description": "Si continúas, se perderá el test actual. ¿Estás seguro de que quieres continuar?"
+    },
+    "emptyQuestions": {
+      "title": "Tienes preguntas sin responder",
+      "description": "¿Estás seguro de que quieres corregir el test?"
     }
   },
   "error": {

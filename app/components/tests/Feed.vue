@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ChevronDownIcon, SlidersHorizontalIcon } from 'lucide-vue-next';
+import { ChevronDownIcon, FilterIcon } from 'lucide-vue-next';
 
 // interface Props {
 //   userId?: string;
@@ -23,14 +23,14 @@ const { status, data } = useAsyncData('tests', () => testStore.getTests(0, 14));
       </Button>
 
       <Button class="gap-x-2" variant="secondary">
-        <SlidersHorizontalIcon :size="16" />
+        <FilterIcon :size="16" />
         {{ $t('tests.search.buttons.filter') }}
       </Button>
     </div>
 
     <section>
-      <ul class="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <template v-if="status === 'pending'">
+      <ol class="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <template v-if="!data && status === 'pending'">
           <li v-for="index in 14" :key="index">
             <TestsCardSkeleton />
           </li>
@@ -41,7 +41,7 @@ const { status, data } = useAsyncData('tests', () => testStore.getTests(0, 14));
             <TestsCard :test="test" />
           </li>
         </template>
-      </ul>
+      </ol>
     </section>
   </div>
 </template>

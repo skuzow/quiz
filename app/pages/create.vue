@@ -14,7 +14,7 @@ const { user, userURL } = useAuth();
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-y-6">
+  <div class="flex flex-col gap-y-6">
     <CommonTopImage src="/images/test-image.avif" alt="Test image">
       <NuxtLink
         :to="userURL"
@@ -41,6 +41,8 @@ const { user, userURL } = useAuth();
       </Button>
     </CommonTopImage>
 
-    <CreateForm />
+    <section>
+      <CreateForm />
+    </section>
   </div>
 </template>
