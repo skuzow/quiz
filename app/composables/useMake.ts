@@ -12,6 +12,7 @@ export const useMake = (questions: IUserTestQuestion[]) => {
   const { alert } = useAlert();
 
   const isLoadingMake: Ref<boolean> = ref(false);
+  const makeCorrection: Ref<IUserTestCorrectionQuestion[] | undefined> = ref();
 
   const responseEnum = z.enum([
     '0',
@@ -84,10 +85,50 @@ export const useMake = (questions: IUserTestQuestion[]) => {
 
     isLoadingMake.value = true;
 
-    // Make correction here
+    correctTest(questions);
 
     isLoadingMake.value = false;
   });
+
+  const correctTest = (makeQuestions: IMakeQuestion[]) => {
+    makeCorrection.value = makeQuestions.map(
+      ({ type, options: makeOptions }, indexMakeQuestion) => {
+        const question: IUserTestQuestion = questions[indexMakeQuestion]!;
+
+        if (type === TestQuestionType.SINGLE)
+          return correctSingleQuestion(makeOptions, question);
+
+        return correctMultipleQuestion(makeOptions, question);
+      }
+    );
+  };
+
+  const correctSingleQuestion = (
+    makeQuestionOption: string | undefined,
+    question: IUserTestQuestion
+  ): IUserTestCorrectionQuestion => {
+    return {
+      ...question,
+      options: question.options.map((option) => ({
+        ...option,
+        isUserSelected: String(option.number) === makeQuestionOption
+      }))
+    };
+  };
+
+  const correctMultipleQuestion = (
+    makeQuestionOption: string[] | undefined,
+    question: IUserTestQuestion
+  ) => {
+    return {
+      ...question,
+      options: question.options.map((option) => ({
+        ...option,
+        isUserSelected:
+          makeQuestionOption?.includes(String(option.number)) || false
+      }))
+    };
+  };
 
   const isSomeQuestionAnswered = (questions: IMakeQuestion[]): boolean => {
     return questions.some(({ type, options }) => {
@@ -105,6 +146,7 @@ export const useMake = (questions: IUserTestQuestion[]) => {
 
   return {
     isLoadingMake,
+    makeCorrection,
     errorBag,
     isFieldTouched,
     makeTest

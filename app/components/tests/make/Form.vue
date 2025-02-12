@@ -1,18 +1,16 @@
 <script lang="ts" setup>
-import { CommonErrorBagMessages } from '#components';
-
 interface Props {
   questions: IUserTestQuestion[];
 }
 
 const { questions } = defineProps<Props>();
 
-const { isLoadingMake, errorBag, isFieldTouched, makeTest } =
+const { isLoadingMake, makeCorrection, errorBag, isFieldTouched, makeTest } =
   useMake(questions);
 </script>
 
 <template>
-  <form class="flex flex-col gap-y-8" @submit="makeTest">
+  <form v-if="!makeCorrection" class="flex flex-col gap-y-8" @submit="makeTest">
     <ol class="flex flex-col gap-y-8">
       <li v-for="(question, index) in questions" :key="index">
         <TestsMakeQuestion :question="question" />
@@ -30,4 +28,6 @@ const { isLoadingMake, errorBag, isFieldTouched, makeTest } =
       {{ $t('tests.make.correct') }}
     </Button>
   </form>
+
+  <TestsMakeCorrection v-else :correction="makeCorrection" />
 </template>

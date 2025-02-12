@@ -44,3 +44,18 @@ export interface IUserTestAI {
   questions: number;
   info: string;
 }
+
+export interface IUserTestCorrectionQuestion {
+  number: number;
+  text: string;
+  image: string | null;
+  type: TestQuestionType;
+  options: IUserTestCorrectionQuestionOption[];
+}
+
+export interface IUserTestCorrectionQuestionOption {
+  number: number;
+  text: string;
+  isCorrect: boolean;
+  isUserSelected: boolean;
+}
