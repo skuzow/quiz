@@ -1,7 +1,15 @@
 export const useUserStore = defineStore('user', () => {
   const { $api } = useNuxtApp();
 
-  const getUser = async (id: string) => {
+  const getUserByUsername = async (username: string) => {
+    try {
+      return $api.user.getByUsername(username);
+    } catch (error) {
+      console.error('fetchPostList error:' + error);
+    }
+  };
+
+  const getUserById = async (id: string) => {
     try {
       return $api.user.get(id);
     } catch (error) {
@@ -9,5 +17,5 @@ export const useUserStore = defineStore('user', () => {
     }
   };
 
-  return { getUser };
+  return { getUserByUsername, getUserById };
 });
