@@ -33,7 +33,7 @@ const { correction } = defineProps<Props>();
           >
             <div
               v-if="questionCorrection.type === TestQuestionType.MULTIPLE"
-              class="h-[16px] w-[16px] rounded-sm border border-primary"
+              class="h-4 w-4 shrink-0 rounded-sm border border-primary"
             >
               <CheckIcon
                 v-if="optionCorrection.isUserSelected"
@@ -43,7 +43,7 @@ const { correction } = defineProps<Props>();
             </div>
             <div
               v-else-if="questionCorrection.type === TestQuestionType.SINGLE"
-              class="flex h-[16px] w-[16px] items-center justify-center rounded-full border border-primary"
+              class="flex aspect-square h-4 w-4 items-center justify-center rounded-full border border-primary"
             >
               <CircleIcon
                 v-if="optionCorrection.isUserSelected"
@@ -66,12 +66,12 @@ const { correction } = defineProps<Props>();
             <CheckIcon
               v-if="optionCorrection.isCorrect"
               :size="14"
-              class="stroke-green-700"
+              class="shrink-0 stroke-green-700"
             />
             <XIcon
               v-else-if="optionCorrection.isUserSelected"
               :size="14"
-              class="stroke-destructive"
+              class="shrink-0 stroke-destructive"
             />
           </li>
         </ol>
