@@ -53,7 +53,7 @@ export const useMake = (questions: IUserTestQuestion[]) => {
 
   const validationSchema = toTypedSchema(zodFormSchema);
 
-  const { handleSubmit, errorBag, isFieldTouched } = useForm({
+  const { handleSubmit, errorBag, isFieldTouched, resetForm } = useForm({
     validationSchema,
     initialValues: {
       questions: questions.map(({ type }) => {
@@ -130,6 +130,11 @@ export const useMake = (questions: IUserTestQuestion[]) => {
     };
   };
 
+  const retryTest = () => {
+    resetForm();
+    makeCorrection.value = undefined;
+  };
+
   const isSomeQuestionAnswered = (questions: IMakeQuestion[]): boolean => {
     return questions.some(({ type, options }) => {
       if (type === TestQuestionType.SINGLE) return options;
@@ -149,6 +154,7 @@ export const useMake = (questions: IUserTestQuestion[]) => {
     makeCorrection,
     errorBag,
     isFieldTouched,
-    makeTest
+    makeTest,
+    retryTest
   };
 };

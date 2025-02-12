@@ -8,6 +8,8 @@ interface Props {
 }
 
 const { correction } = defineProps<Props>();
+
+const emit = defineEmits(['retry']);
 </script>
 
 <template>
@@ -78,6 +80,8 @@ const { correction } = defineProps<Props>();
       </li>
     </ol>
 
-    <Button class="md:w-fit">Retry</Button>
+    <Button class="md:w-fit" @click="emit('retry')">
+      {{ $t('tests.make.retry') }}
+    </Button>
   </div>
 </template>

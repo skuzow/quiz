@@ -5,8 +5,14 @@ interface Props {
 
 const { questions } = defineProps<Props>();
 
-const { isLoadingMake, makeCorrection, errorBag, isFieldTouched, makeTest } =
-  useMake(questions);
+const {
+  isLoadingMake,
+  makeCorrection,
+  errorBag,
+  isFieldTouched,
+  makeTest,
+  retryTest
+} = useMake(questions);
 </script>
 
 <template>
@@ -29,5 +35,5 @@ const { isLoadingMake, makeCorrection, errorBag, isFieldTouched, makeTest } =
     </Button>
   </form>
 
-  <TestsMakeCorrection v-else :correction="makeCorrection" />
+  <TestsMakeCorrection v-else :correction="makeCorrection" @retry="retryTest" />
 </template>

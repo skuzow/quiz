@@ -127,7 +127,8 @@
     },
     "make": {
       "edit": "Editar",
-      "correct": "Corregir"
+      "correct": "Corregir",
+      "retry": "Reintentar"
     }
   },
   "login": {
