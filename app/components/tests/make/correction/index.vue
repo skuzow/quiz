@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { CheckIcon, XIcon, CircleIcon } from 'lucide-vue-next';
+import { CheckIcon, XIcon } from 'lucide-vue-next';
 
 import { TestQuestionType } from '#shared/constants/test';
 
@@ -33,26 +33,14 @@ const emit = defineEmits(['retry']);
             :key="optionCorrection.number"
             class="flex items-center gap-x-3"
           >
-            <div
-              v-if="questionCorrection.type === TestQuestionType.MULTIPLE"
-              class="h-4 w-4 shrink-0 rounded-sm border border-primary"
-            >
-              <CheckIcon
-                v-if="optionCorrection.isUserSelected"
-                :size="14"
-                class="bg-primary stroke-background"
-              />
-            </div>
-            <div
-              v-else-if="questionCorrection.type === TestQuestionType.SINGLE"
-              class="flex aspect-square h-4 w-4 items-center justify-center rounded-full border border-primary"
-            >
-              <CircleIcon
-                v-if="optionCorrection.isUserSelected"
-                :size="12"
-                class="fill-primary"
-              />
-            </div>
+            <TestsMakeCorrectionSingle
+              v-if="questionCorrection.type === TestQuestionType.SINGLE"
+              :selected="optionCorrection.isUserSelected"
+            />
+            <TestsMakeCorrectionMultiple
+              v-else-if="questionCorrection.type === TestQuestionType.MULTIPLE"
+              :selected="optionCorrection.isUserSelected"
+            />
 
             <span
               class="text-sm leading-none"
