@@ -31,7 +31,9 @@ const tempCategories = ['Education', 'Science'];
       />
 
       <NuxtLink
-        :to="localePath(`/users/${test.author.username || test.author.id}`)"
+        :to="
+          localePath(`/users/${test.author.username || `id/${test.author.id}`}`)
+        "
         :title="`${$t('nav.header.user.profile')} ${test.author.name}`"
         class="absolute bottom-2 left-2 h-10"
       >
