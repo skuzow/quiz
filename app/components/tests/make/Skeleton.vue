@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-y-8">
     <div class="flex flex-col gap-y-6">
-      <Skeleton class="h-[172px] rounded-md" />
+      <CommonTopSkeleton />
 
       <div class="flex flex-col gap-y-2">
         <Skeleton class="h-[27.5px] rounded-md md:w-5/6" />

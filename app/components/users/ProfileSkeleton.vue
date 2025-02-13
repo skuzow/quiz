@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-y-6">
-    <Skeleton class="h-[172px] rounded-md" />
+    <CommonTopSkeleton />
 
     <div class="flex flex-col gap-y-2">
       <Skeleton class="h-[29.5px] w-5/6 rounded-md md:w-2/6" />
