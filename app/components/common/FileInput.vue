@@ -13,7 +13,7 @@ const { accept, types } = defineProps<Props>();
 const id: string = useId();
 
 const active: Ref<boolean> = ref(false);
-const filePreview: Ref<PreviewFile | null> = ref(null);
+const filePreview: Ref<IPreviewFile | null> = ref(null);
 const invalidFileType: Ref<boolean> = ref(false);
 
 const emit = defineEmits(['change']);

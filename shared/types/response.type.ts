@@ -1,4 +1,4 @@
-export interface CheckResponse {
+export interface ICheckResponse {
   statusCode: number;
   statusMessage: string;
   body: {

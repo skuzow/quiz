@@ -134,7 +134,7 @@ export const useSignupForm = () => {
 
   const isEmailAvailable = async (email: string): Promise<boolean> => {
     try {
-      const response: CheckResponse = await $api.auth.checkEmail(email);
+      const response: ICheckResponse = await $api.auth.checkEmail(email);
 
       return response.body.isAvailable;
     } catch (e) {
@@ -172,7 +172,7 @@ export const useSignupForm = () => {
 
   const isUsernameAvailable = async (username: string): Promise<boolean> => {
     try {
-      const response: CheckResponse = await $api.auth.checkUsername(username);
+      const response: ICheckResponse = await $api.auth.checkUsername(username);
 
       return response.body.isAvailable;
     } catch (e) {

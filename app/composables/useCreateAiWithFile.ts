@@ -19,7 +19,7 @@ export const useCreateAiWithFile = () => {
   const file: Ref<File | undefined> = ref(undefined);
   const requiredFileError: Ref<boolean> = ref(false);
 
-  const onFileChange = (inputFile: PreviewFile | null) => {
+  const onFileChange = (inputFile: IPreviewFile | null) => {
     file.value = inputFile?.file;
   };
 

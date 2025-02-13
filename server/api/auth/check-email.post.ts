@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
       body: {
         isAvailable: false
       }
-    } as CheckResponse;
+    } as ICheckResponse;
   }
 
   return {
@@ -30,5 +30,5 @@ export default defineEventHandler(async (event) => {
     body: {
       isAvailable: true
     }
-  } as CheckResponse;
+  } as ICheckResponse;
 });
