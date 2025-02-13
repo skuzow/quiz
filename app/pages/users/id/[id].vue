@@ -5,15 +5,16 @@ const userStore = useUserStore();
 
 const id = route.params.id as string;
 
-const { status: userStatus, data: userData } = useAsyncData(`user-${id}`, () =>
+const { status, data } = useAsyncData(`user-${id}`, () =>
   userStore.getUserById(id)
 );
 </script>
 
 <template>
-  <div>
-    <h1>{{ userStatus }}</h1>
-    <p>{{ userData }}</p>
+  <div class="flex flex-col gap-y-8">
+    <UsersProfileSkeleton v-if="!data && status === 'pending'" />
+
+    <UsersProfile v-else :user="data?.body?.user as IUser" />
 
     <TestsFeed :id="id" />
   </div>
