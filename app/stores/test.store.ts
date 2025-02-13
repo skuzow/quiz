@@ -3,14 +3,6 @@ export const useTestStore = defineStore('test', () => {
 
   const createTest: Ref<IUserTest | undefined> = ref();
 
-  const getTests = async (skip: number, take: number) => {
-    try {
-      return $api.test.getAll(skip, take);
-    } catch (error) {
-      console.error('fetchPostList error:' + error);
-    }
-  };
-
   const getTest = async (id: string) => {
     try {
       return $api.test.get(id);
@@ -19,9 +11,39 @@ export const useTestStore = defineStore('test', () => {
     }
   };
 
+  const getTests = async (skip: number, take: number) => {
+    try {
+      return $api.test.getAll(skip, take);
+    } catch (error) {
+      console.error('fetchPostList error:' + error);
+    }
+  };
+
+  const getTestsById = async (id: string, skip: number, take: number) => {
+    try {
+      return $api.test.getAllById(id, skip, take);
+    } catch (error) {
+      console.error('fetchPostList error:' + error);
+    }
+  };
+
+  const getTestsByUsername = async (
+    username: string,
+    skip: number,
+    take: number
+  ) => {
+    try {
+      return $api.test.getAllByUsername(username, skip, take);
+    } catch (error) {
+      console.error('fetchPostList error:' + error);
+    }
+  };
+
   return {
     createTest,
+    getTest,
     getTests,
-    getTest
+    getTestsById,
+    getTestsByUsername
   };
 });
