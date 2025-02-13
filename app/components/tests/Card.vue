@@ -31,6 +31,7 @@ const tempCategories = ['Education', 'Science'];
       />
 
       <NuxtLink
+        v-if="test.author"
         :to="
           localePath(`/users/${test.author.username || `id/${test.author.id}`}`)
         "
