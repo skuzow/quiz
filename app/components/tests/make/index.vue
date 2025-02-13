@@ -49,7 +49,7 @@ const tempCategories = ['Education', 'Science'];
 
         <Button
           v-if="isAuthenticated && authUser?.id === test.author.id"
-          class="absolute bottom-2 right-2 gap-x-1"
+          class="absolute bottom-2 right-2 gap-x-2"
         >
           <FilePenIcon :size="16" />
           {{ $t('tests.make.edit') }}
