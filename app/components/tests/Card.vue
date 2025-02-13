@@ -20,12 +20,11 @@ const tempCategories = ['Education', 'Science'];
     @click="navigateTo(localePath(`/tests/${test.id}`))"
   >
     <div class="relative border-b md:w-1/3 md:border-b-0 md:border-r">
-      <img
+      <CommonPicture
         src="/images/test.avif"
         height="140"
-        width="100%"
+        width="341"
         loading="lazy"
-        :title="imageAlt"
         :alt="imageAlt"
         class="h-[110px] object-cover md:h-[140px]"
       />
