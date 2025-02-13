@@ -12,7 +12,8 @@ export const avatarVariant = cva(
         xs: 'h-9 w-9 text-base',
         sm: 'h-10 w-10 text-lg',
         base: 'h-16 w-16 text-2xl',
-        lg: 'h-32 w-32 text-5xl'
+        lg: 'h-24 w-24 text-5xl',
+        xl: 'h-32 w-32 text-6xl'
       },
       shape: {
         circle: 'rounded-full',
