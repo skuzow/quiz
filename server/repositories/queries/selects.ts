@@ -35,9 +35,6 @@ export const USER_SELECT: Prisma.UserSelect = {
   roles: {
     select: ROLE_SELECT
   },
-  tests: {
-    select: USER_TEST_PARTIAL_SELECT
-  },
   createdAt: true
 };
 
