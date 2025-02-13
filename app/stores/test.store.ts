@@ -3,9 +3,9 @@ export const useTestStore = defineStore('test', () => {
 
   const createTest: Ref<IUserTest | undefined> = ref();
 
-  const getTest = async (id: string) => {
+  const getTestById = async (id: string) => {
     try {
-      return $api.test.get(id);
+      return $api.test.getById(id);
     } catch (error) {
       console.error('fetchPostList error:' + error);
     }
@@ -41,7 +41,7 @@ export const useTestStore = defineStore('test', () => {
 
   return {
     createTest,
-    getTest,
+    getTestById,
     getTests,
     getTestsById,
     getTestsByUsername

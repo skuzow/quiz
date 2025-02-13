@@ -4,7 +4,7 @@ import Routes from '@/repository/routes.client';
 class TestModule extends FetchFactory {
   private readonly ROUTE = Routes.Test;
 
-  async get(id: string): Promise<IUserTest> {
+  async getById(id: string): Promise<IUserTest> {
     return this.call<IUserTest>({
       method: 'GET',
       url: this.ROUTE.FetchId(id)
