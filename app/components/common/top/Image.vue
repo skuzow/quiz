@@ -12,7 +12,7 @@ const { src, alt } = defineProps<Props>();
     <CommonPicture
       :src="src"
       height="172"
-      width="100%"
+      width="1088"
       loading="lazy"
       :alt="alt"
       class="h-[172px] w-full rounded-md object-cover"
