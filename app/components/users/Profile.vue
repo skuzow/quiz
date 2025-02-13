@@ -7,6 +7,17 @@ interface Props {
 
 const { user } = defineProps<Props>();
 
+const { t: $t } = useI18n();
+
+const title: string = user.username
+  ? `${user.username} (${user.name})`
+  : user.name;
+
+seoMeta({
+  title,
+  description: `${title} ${$t('nav.header.user.profile')}`
+});
+
 const { isAuthenticated, user: authUser } = useAuth();
 
 const tempRoles = ['User'];
@@ -14,7 +25,7 @@ const tempRoles = ['User'];
 
 <template>
   <div class="flex flex-col gap-y-6">
-    <CommonTopImage src="/images/profile.avif" alt="User background image">
+    <CommonTopImage src="/images/profile.avif" alt="User profile image">
       <CommonAvatar
         size="lg"
         :height="96"
@@ -38,6 +49,8 @@ const tempRoles = ['User'];
         <CommonGradientText class="bg-gradient-to-b text-2xl font-bold">
           {{ user.name }}
         </CommonGradientText>
+
+        <span class="sr-only"> - </span>
 
         <span v-if="user.username">{{ user.username }}</span>
       </h1>
