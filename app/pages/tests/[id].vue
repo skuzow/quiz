@@ -6,7 +6,7 @@ const testStore = useTestStore();
 const id = route.params.id as string;
 
 const { status, data } = useAsyncData(`test-${id}`, () =>
-  testStore.getTest(id)
+  testStore.getTestById(id)
 );
 </script>
 

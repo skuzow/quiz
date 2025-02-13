@@ -22,9 +22,13 @@ const tempCategories = ['Education', 'Science'];
 <template>
   <div class="flex flex-col gap-y-8">
     <div class="flex flex-col gap-y-6">
-      <CommonTopImage src="/images/test-image.avif" alt="Test image">
+      <CommonTopImage src="/images/test.avif" alt="Test image">
         <NuxtLink
-          :to="localePath(`/users/${test.author.username || test.author.id}`)"
+          :to="
+            localePath(
+              `/users/${test.author.username || `id/${test.author.id}`}`
+            )
+          "
           :title="`${$t('nav.header.user.profile')} ${test.author.name}`"
           class="absolute left-2 top-2"
         >
@@ -45,7 +49,7 @@ const tempCategories = ['Education', 'Science'];
 
         <Button
           v-if="isAuthenticated && authUser?.id === test.author.id"
-          class="absolute bottom-2 right-2 gap-x-1"
+          class="absolute bottom-2 right-2 gap-x-2"
         >
           <FilePenIcon :size="16" />
           {{ $t('tests.make.edit') }}

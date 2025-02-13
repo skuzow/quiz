@@ -29,15 +29,7 @@ class UserRepository {
   private transformUser(user: any): IUser {
     return {
       ...user,
-      roles: user.roles.map((role: any) => role.role.name),
-      tests: user.tests.map((test: any) => ({
-        ...test,
-        categories: test.categories.map(
-          (category: any) => category.category.name
-        ),
-        views: test._count.views,
-        _count: undefined
-      }))
+      roles: user.roles.map((role: any) => role.role.name)
     };
   }
 }

@@ -18,6 +18,9 @@ const Routes = {
   Test: {
     Fetch: () => PREFIX.TEST,
     FetchId: (id: string) => `${PREFIX.TEST}/${id}`,
+    FetchUserId: (id: string) => `${PREFIX.TEST}/users/${id}`,
+    FetchUserUsername: (username: string) =>
+      `${PREFIX.TEST}/users/username/${username}`,
     FetchAI: () => `${PREFIX.TEST}/ai`,
     View: (id: string) => `${PREFIX.TEST}/${id}/view`
   }

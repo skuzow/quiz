@@ -4,7 +4,7 @@ import Routes from '@/repository/routes.client';
 class UserModule extends FetchFactory {
   private readonly ROUTE = Routes.User;
 
-  async get(id: string) {
+  async getById(id: string) {
     return this.call<IUser>({
       method: 'GET',
       url: this.ROUTE.FetchId(id)

@@ -16,9 +16,6 @@ export const USER_TEST_PARTIAL_SELECT: Prisma.UserTestSelect = {
   title: true,
   description: true,
   image: true,
-  author: {
-    select: USER_PARTIAL_SELECT
-  },
   categories: {
     select: {
       category: { select: { name: true } }
@@ -30,19 +27,23 @@ export const USER_TEST_PARTIAL_SELECT: Prisma.UserTestSelect = {
   createdAt: true
 };
 
+export const USER_TEST_PARTIAL_AUTHOR_SELECT: Prisma.UserTestSelect = {
+  ...USER_TEST_PARTIAL_SELECT,
+  author: {
+    select: USER_PARTIAL_SELECT
+  }
+};
+
 export const USER_SELECT: Prisma.UserSelect = {
   ...USER_PARTIAL_SELECT,
   roles: {
     select: ROLE_SELECT
   },
-  tests: {
-    select: USER_TEST_PARTIAL_SELECT
-  },
   createdAt: true
 };
 
 export const USER_TEST_SELECT: Prisma.UserTestSelect = {
-  ...USER_TEST_PARTIAL_SELECT,
+  ...USER_TEST_PARTIAL_AUTHOR_SELECT,
   questions: {
     select: {
       number: true,

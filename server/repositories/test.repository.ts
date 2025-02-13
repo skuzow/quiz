@@ -1,5 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { USER_TEST_SELECT, USER_TEST_PARTIAL_SELECT } from './queries/selects';
+import {
+  USER_TEST_SELECT,
+  USER_TEST_PARTIAL_AUTHOR_SELECT,
+  USER_TEST_PARTIAL_SELECT
+} from './queries/selects';
 
 class TestRepository {
   private userTestModel = prisma.userTest;
@@ -20,6 +24,40 @@ class TestRepository {
     take: number
   ): Promise<IUserTestPartial[] | null> {
     const tests = await this.userTestModel.findMany({
+      skip: skip,
+      take: take,
+      select: USER_TEST_PARTIAL_AUTHOR_SELECT
+    });
+
+    if (!tests || tests.length === 0) return null;
+
+    return this.transformUserTestsPartial(tests);
+  }
+
+  async findAllById(
+    id: string,
+    skip: number,
+    take: number
+  ): Promise<IUserTestPartial[] | null> {
+    const tests = await this.userTestModel.findMany({
+      where: { authorId: id },
+      skip: skip,
+      take: take,
+      select: USER_TEST_PARTIAL_SELECT
+    });
+
+    if (!tests || tests.length === 0) return null;
+
+    return this.transformUserTestsPartial(tests);
+  }
+
+  async findAllByUsername(
+    username: string,
+    skip: number,
+    take: number
+  ): Promise<IUserTestPartial[] | null> {
+    const tests = await this.userTestModel.findMany({
+      where: { author: { username: username } },
       skip: skip,
       take: take,
       select: USER_TEST_PARTIAL_SELECT

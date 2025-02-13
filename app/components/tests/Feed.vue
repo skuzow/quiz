@@ -1,15 +1,28 @@
 <script lang="ts" setup>
 import { ChevronDownIcon, FilterIcon } from 'lucide-vue-next';
 
-// interface Props {
-//   userId?: string;
-// }
+interface Props {
+  id?: string;
+  username?: string;
+}
 
-// const { userId } = defineProps<Props>();
+const { id, username } = defineProps<Props>();
 
 const testStore = useTestStore();
 
-const { status, data } = useAsyncData('tests', () => testStore.getTests(0, 14));
+const asyncDataKey = () => {
+  if (id) return `user-tests-${id}`;
+  if (username) return `user-tests-${username}`;
+  return 'tests';
+};
+
+const asyncDataFn = () => {
+  if (id) return testStore.getTestsById(id, 0, 14);
+  if (username) return testStore.getTestsByUsername(username, 0, 14);
+  return testStore.getTests(0, 14);
+};
+
+const { status, data } = useAsyncData(asyncDataKey(), asyncDataFn);
 </script>
 
 <template>

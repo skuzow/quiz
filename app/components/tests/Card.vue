@@ -20,18 +20,20 @@ const tempCategories = ['Education', 'Science'];
     @click="navigateTo(localePath(`/tests/${test.id}`))"
   >
     <div class="relative border-b md:w-1/3 md:border-b-0 md:border-r">
-      <img
-        src="/images/test-image.avif"
+      <CommonPicture
+        src="/images/test.avif"
         height="140"
-        width="100%"
+        width="341"
         loading="lazy"
-        :title="imageAlt"
         :alt="imageAlt"
         class="h-[110px] object-cover md:h-[140px]"
       />
 
       <NuxtLink
-        :to="localePath(`/users/${test.author.username || test.author.id}`)"
+        v-if="test.author"
+        :to="
+          localePath(`/users/${test.author.username || `id/${test.author.id}`}`)
+        "
         :title="`${$t('nav.header.user.profile')} ${test.author.name}`"
         class="absolute bottom-2 left-2 h-10"
       >

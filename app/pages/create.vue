@@ -15,7 +15,7 @@ const { user, userURL } = useAuth();
 
 <template>
   <div class="flex flex-col gap-y-6">
-    <CommonTopImage src="/images/test-image.avif" alt="Test image">
+    <CommonTopImage src="/images/test.avif" alt="Test image">
       <NuxtLink
         :to="userURL"
         :title="$t('nav.header.user.profile')"

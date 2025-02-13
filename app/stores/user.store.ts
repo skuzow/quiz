@@ -1,13 +1,21 @@
 export const useUserStore = defineStore('user', () => {
   const { $api } = useNuxtApp();
 
-  const getUser = async (id: string) => {
+  const getUserById = async (id: string) => {
     try {
-      return $api.user.get(id);
+      return $api.user.getById(id);
     } catch (error) {
       console.error('fetchPostList error:' + error);
     }
   };
 
-  return { getUser };
+  const getUserByUsername = async (username: string) => {
+    try {
+      return $api.user.getByUsername(username);
+    } catch (error) {
+      console.error('fetchPostList error:' + error);
+    }
+  };
+
+  return { getUserById, getUserByUsername };
 });

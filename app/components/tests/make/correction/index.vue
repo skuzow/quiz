@@ -55,12 +55,12 @@ const emit = defineEmits(['retry']);
 
             <CheckIcon
               v-if="optionCorrection.isCorrect"
-              :size="14"
+              :size="16"
               class="shrink-0 stroke-green-700"
             />
             <XIcon
               v-else-if="optionCorrection.isUserSelected"
-              :size="14"
+              :size="16"
               class="shrink-0 stroke-destructive"
             />
           </li>
