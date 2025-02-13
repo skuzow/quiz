@@ -14,7 +14,7 @@ const tempRoles = ['User'];
 
 <template>
   <div class="flex flex-col gap-y-6">
-    <CommonTopImage src="/images/test-image.avif" alt="User background image">
+    <CommonTopImage src="/images/test.avif" alt="User background image">
       <CommonAvatar
         size="lg"
         :height="96"

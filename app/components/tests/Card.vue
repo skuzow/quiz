@@ -21,7 +21,7 @@ const tempCategories = ['Education', 'Science'];
   >
     <div class="relative border-b md:w-1/3 md:border-b-0 md:border-r">
       <img
-        src="/images/test-image.avif"
+        src="/images/test.avif"
         height="140"
         width="100%"
         loading="lazy"

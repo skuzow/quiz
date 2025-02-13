@@ -22,7 +22,7 @@ const tempCategories = ['Education', 'Science'];
 <template>
   <div class="flex flex-col gap-y-8">
     <div class="flex flex-col gap-y-6">
-      <CommonTopImage src="/images/test-image.avif" alt="Test image">
+      <CommonTopImage src="/images/test.avif" alt="Test image">
         <NuxtLink
           :to="
             localePath(
