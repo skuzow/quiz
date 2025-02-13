@@ -30,6 +30,40 @@ class TestRepository {
     return this.transformUserTestsPartial(tests);
   }
 
+  async findAllById(
+    id: string,
+    skip: number,
+    take: number
+  ): Promise<IUserTestPartial[] | null> {
+    const tests = await this.userTestModel.findMany({
+      where: { authorId: id },
+      skip: skip,
+      take: take,
+      select: USER_TEST_PARTIAL_SELECT
+    });
+
+    if (!tests || tests.length === 0) return null;
+
+    return this.transformUserTestsPartial(tests);
+  }
+
+  async findAllByUsername(
+    username: string,
+    skip: number,
+    take: number
+  ): Promise<IUserTestPartial[] | null> {
+    const tests = await this.userTestModel.findMany({
+      where: { author: { username: username } },
+      skip: skip,
+      take: take,
+      select: USER_TEST_PARTIAL_SELECT
+    });
+
+    if (!tests || tests.length === 0) return null;
+
+    return this.transformUserTestsPartial(tests);
+  }
+
   async create(
     userId: string,
     { title, description, categories, questions }: IUserTest
