@@ -16,17 +16,17 @@ const tempCategories = ['Education', 'Science'];
 
 <template>
   <div
-    class="flex cursor-pointer flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow md:flex-row"
+    class="flex cursor-pointer flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow sm:flex-row"
     @click="navigateTo(localePath(`/tests/${test.id}`))"
   >
-    <div class="relative border-b md:w-1/3 md:border-b-0 md:border-r">
+    <div class="relative border-b sm:w-1/4 sm:border-b-0 sm:border-r lg:w-1/3">
       <CommonPicture
         src="/images/test.avif"
         height="140"
-        width="341"
+        width="605"
         loading="lazy"
         :alt="imageAlt"
-        class="h-[110px] object-cover md:h-[140px]"
+        class="h-[110px] object-cover sm:h-[140px]"
       />
 
       <NuxtLink
@@ -47,7 +47,7 @@ const tempCategories = ['Education', 'Science'];
       </NuxtLink>
     </div>
 
-    <div class="p-6 md:w-2/3">
+    <div class="p-6 sm:w-3/4 lg:w-2/3">
       <h2 class="mb-1.5 truncate text-lg font-bold">
         <CommonGradientText class="bg-gradient-to-b">
           {{ test.title }}
