@@ -5,6 +5,8 @@ import {
   USER_TEST_PARTIAL_SELECT
 } from './queries/selects';
 
+import { TESTS_PAGE_SIZE } from '#shared/constants/test';
+
 class TestRepository {
   private userTestModel = prisma.userTest;
 
@@ -19,13 +21,12 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
-  async findAll(
-    skip: number,
-    take: number
-  ): Promise<IUserTestPartial[] | null> {
+  async findAll(page: number): Promise<IUserTestPartial[] | null> {
+    const skip: number = this.skipTests(page);
+
     const tests = await this.userTestModel.findMany({
-      skip: skip,
-      take: take,
+      skip,
+      take: this.takeTests(skip),
       select: USER_TEST_PARTIAL_AUTHOR_SELECT
     });
 
@@ -36,13 +37,14 @@ class TestRepository {
 
   async findAllById(
     id: string,
-    skip: number,
-    take: number
+    page: number
   ): Promise<IUserTestPartial[] | null> {
+    const skip: number = this.skipTests(page);
+
     const tests = await this.userTestModel.findMany({
       where: { authorId: id },
-      skip: skip,
-      take: take,
+      skip,
+      take: this.takeTests(skip),
       select: USER_TEST_PARTIAL_SELECT
     });
 
@@ -53,13 +55,14 @@ class TestRepository {
 
   async findAllByUsername(
     username: string,
-    skip: number,
-    take: number
+    page: number
   ): Promise<IUserTestPartial[] | null> {
+    const skip: number = this.skipTests(page);
+
     const tests = await this.userTestModel.findMany({
       where: { author: { username: username } },
-      skip: skip,
-      take: take,
+      skip,
+      take: this.takeTests(skip),
       select: USER_TEST_PARTIAL_SELECT
     });
 
@@ -122,6 +125,14 @@ class TestRepository {
     });
 
     return test as IUserTest;
+  }
+
+  private skipTests(page: number): number {
+    return page * TESTS_PAGE_SIZE;
+  }
+
+  private takeTests(skip: number): number {
+    return skip + TESTS_PAGE_SIZE;
   }
 
   private transformUserTest(test: any): IUserTest {

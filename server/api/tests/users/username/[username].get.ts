@@ -1,14 +1,14 @@
 export default defineEventHandler(async (event) => {
-  const { skip, take } = getQuery(event);
+  const { page } = getQuery(event);
 
-  if (!skip || !take) {
+  if (!page) {
     return sendError(
       event,
       createError({
         statusCode: 400,
         statusMessage: 'Missing required fields',
         data: {
-          message: 'Skip & Take required'
+          message: 'Page required'
         }
       })
     );
@@ -17,11 +17,7 @@ export default defineEventHandler(async (event) => {
   const { username } = getRouterParams(event);
 
   const tests: IUserTestPartial[] | null =
-    await repository.test.findAllByUsername(
-      username,
-      Number(skip),
-      Number(take)
-    );
+    await repository.test.findAllByUsername(username, Number(page));
 
   if (!tests) {
     return sendError(
