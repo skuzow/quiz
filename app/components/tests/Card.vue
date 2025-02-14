@@ -19,7 +19,7 @@ const tempCategories = ['Education', 'Science'];
     class="flex cursor-pointer flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow sm:flex-row"
     @click="navigateTo(localePath(`/tests/${test.id}`))"
   >
-    <div class="relative border-b sm:w-1/4 sm:border-b-0 sm:border-r lg:w-1/3">
+    <div class="relative border-b sm:w-1/4 sm:border-b-0 sm:border-r">
       <CommonPicture
         src="/images/test.avif"
         height="140"
@@ -47,7 +47,7 @@ const tempCategories = ['Education', 'Science'];
       </NuxtLink>
     </div>
 
-    <div class="p-6 sm:w-3/4 lg:w-2/3">
+    <div class="p-6 sm:w-3/4">
       <h2 class="mb-1.5 truncate text-lg font-bold">
         <CommonGradientText class="bg-gradient-to-b">
           {{ test.title }}
