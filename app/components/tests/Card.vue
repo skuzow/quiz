@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { EyeIcon } from 'lucide-vue-next';
+import { EyeIcon, FileQuestionIcon } from 'lucide-vue-next';
 
 interface Props {
   test: IUserTestPartial;
@@ -65,10 +65,17 @@ const tempCategories = ['Education', 'Science'];
           </li>
         </ul>
 
-        <div class="flex items-center gap-x-1.5">
-          {{ test.views }}
-          <EyeIcon :size="16" />
-        </div>
+        <ul class="flex gap-x-2">
+          <li class="flex items-center gap-x-1">
+            {{ test.views }}
+            <EyeIcon :size="16" />
+          </li>
+
+          <li class="flex items-center gap-x-1">
+            {{ test.questions }}
+            <FileQuestionIcon :size="16" />
+          </li>
+        </ul>
       </div>
     </div>
   </div>

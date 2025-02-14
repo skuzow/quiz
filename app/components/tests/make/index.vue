@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { FilePenIcon } from 'lucide-vue-next';
+import { FilePenIcon, FileQuestionIcon, EyeIcon } from 'lucide-vue-next';
 
 interface Props {
   test: IUserTest;
@@ -56,14 +56,30 @@ const tempCategories = ['Education', 'Science'];
         </Button>
       </CommonTopImage>
 
-      <div class="flex flex-col gap-y-2">
-        <h1 class="overflow-hidden text-ellipsis text-2xl font-bold">
-          <CommonGradientText class="bg-gradient-to-b">
-            {{ test.title }}
-          </CommonGradientText>
-        </h1>
+      <div
+        class="flex flex-col gap-y-2 lg:flex-row lg:justify-between lg:gap-y-0"
+      >
+        <div class="flex flex-col gap-y-2">
+          <h1 class="overflow-hidden text-ellipsis text-2xl font-bold">
+            <CommonGradientText class="bg-gradient-to-b">
+              {{ test.title }}
+            </CommonGradientText>
+          </h1>
 
-        <p class="overflow-hidden text-ellipsis">{{ test.description }}</p>
+          <p class="overflow-hidden text-ellipsis">{{ test.description }}</p>
+        </div>
+
+        <ul class="flex gap-x-2 lg:items-start">
+          <li class="flex items-center gap-x-1">
+            <FileQuestionIcon :size="16" />
+            {{ test.questions.length }}
+          </li>
+
+          <li class="flex items-center gap-x-1">
+            <EyeIcon :size="16" />
+            {{ test.views }}
+          </li>
+        </ul>
       </div>
     </div>
 

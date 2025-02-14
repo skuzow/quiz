@@ -147,6 +147,7 @@ class TestRepository {
       categories: test.categories.map(
         (category: any) => category.category.name
       ),
+      questions: test._count.questions,
       views: test._count.views,
       _count: undefined
     }));
