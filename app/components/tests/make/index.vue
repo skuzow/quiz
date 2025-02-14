@@ -69,17 +69,17 @@ const tempCategories = ['Education', 'Science'];
           <p class="overflow-hidden text-ellipsis">{{ test.description }}</p>
         </div>
 
-        <div class="flex gap-x-2 lg:items-start">
-          <div class="flex items-center gap-x-1">
+        <ul class="flex gap-x-2 lg:items-start">
+          <li class="flex items-center gap-x-1">
             <FileQuestionIcon :size="16" />
             {{ test.questions.length }}
-          </div>
+          </li>
 
-          <div class="flex items-center gap-x-1">
+          <li class="flex items-center gap-x-1">
             <EyeIcon :size="16" />
             {{ test.views }}
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
 

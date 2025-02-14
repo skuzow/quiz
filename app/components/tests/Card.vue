@@ -65,17 +65,17 @@ const tempCategories = ['Education', 'Science'];
           </li>
         </ul>
 
-        <div class="flex gap-x-2">
-          <div class="flex items-center gap-x-1">
+        <ul class="flex gap-x-2">
+          <li class="flex items-center gap-x-1">
             {{ test.views }}
             <EyeIcon :size="16" />
-          </div>
+          </li>
 
-          <div class="flex items-center gap-x-1">
+          <li class="flex items-center gap-x-1">
             {{ test.questions }}
             <FileQuestionIcon :size="16" />
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
