@@ -17,9 +17,9 @@ const asyncDataKey = () => {
 };
 
 const asyncDataFn = () => {
-  if (id) return testStore.getTestsById(id, 0, 14);
-  if (username) return testStore.getTestsByUsername(username, 0, 14);
-  return testStore.getTests(0, 14);
+  if (id) return testStore.getTestsById(id, 0);
+  if (username) return testStore.getTestsByUsername(username, 0);
+  return testStore.getTests(0);
 };
 
 const { status, data } = useAsyncData(asyncDataKey(), asyncDataFn);
