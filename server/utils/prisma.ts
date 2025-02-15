@@ -1,7 +1,7 @@
 import type { PrismaClient } from '@prisma/client';
 
-import { setupTursoDatabase } from '../../prisma/setup';
+import { setupDatabase } from '../../prisma/setup';
 
-const prisma: PrismaClient = setupTursoDatabase();
+const prisma: PrismaClient = setupDatabase();
 
 export default prisma;
