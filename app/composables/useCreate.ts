@@ -116,17 +116,19 @@ export const useCreate = () => {
   //   { deep: true }
   // );
 
-  const question: FieldArrayContext<ICreateQuestion> = useFieldArray(
+  const questions: FieldArrayContext<ICreateQuestion> = useFieldArray(
     FormInput.QUESTIONS
   );
 
   const options: ComputedRef<FieldArrayContext<ICreateOption>[]> = computed(
     () => {
-      return question.fields.value.map((_questionField, indexQuestionField) => {
-        return useFieldArray(
-          `${questionPath(indexQuestionField)}.${FormInput.OPTIONS}`
-        );
-      });
+      return questions.fields.value.map(
+        (_questionField, indexQuestionField) => {
+          return useFieldArray(
+            `${questionPath(indexQuestionField)}.${FormInput.OPTIONS}`
+          );
+        }
+      );
     }
   );
 
@@ -161,7 +163,7 @@ export const useCreate = () => {
     initialQuestionValue,
     errorBag,
     isFieldDirty,
-    question,
+    questions,
     options,
     questionPath,
     optionPath,
