@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap',
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
+    '@formkit/auto-animate/nuxt',
     'shadcn-nuxt',
 
     (_options, nuxt) => {

@@ -6,7 +6,7 @@ const {
   initialQuestionValue,
   errorBag,
   isFieldDirty,
-  question,
+  questions,
   options,
   questionPath,
   optionPath,
@@ -24,7 +24,7 @@ const { FormInput, exampleMessage } = useFormMessage();
         :name="FormInput.TITLE"
         :validate-on-blur="!isFieldDirty"
       >
-        <FormItem>
+        <FormItem v-auto-animate>
           <FormLabel>{{ $t('form.title') }}</FormLabel>
           <FormControl>
             <Input
@@ -42,7 +42,7 @@ const { FormInput, exampleMessage } = useFormMessage();
         :name="FormInput.DESCRIPTION"
         :validate-on-blur="!isFieldDirty"
       >
-        <FormItem>
+        <FormItem v-auto-animate>
           <FormLabel>{{ $t('form.description') }}</FormLabel>
           <FormControl>
             <Textarea
@@ -56,9 +56,9 @@ const { FormInput, exampleMessage } = useFormMessage();
       </FormField>
     </div>
 
-    <ol class="flex flex-col gap-y-8">
+    <ol v-auto-animate class="flex flex-col gap-y-8">
       <li
-        v-for="(questionField, indexQuestion) in question.fields.value"
+        v-for="(questionField, indexQuestion) in questions.fields.value"
         :key="indexQuestion"
         class="flex flex-col gap-y-6"
       >
@@ -67,11 +67,12 @@ const { FormInput, exampleMessage } = useFormMessage();
           :index="indexQuestion"
           :path="questionPath(indexQuestion)"
           :is-field-dirty="isFieldDirty"
-          :question="question"
+          :question="questions"
         />
 
         <ol
           v-if="options[indexQuestion]!.fields.value.length !== 0"
+          v-auto-animate
           class="flex flex-col gap-y-4"
         >
           <li
@@ -121,7 +122,7 @@ const { FormInput, exampleMessage } = useFormMessage();
     <div class="flex gap-x-2">
       <Button
         variant="secondary"
-        @click.prevent="question.push(initialQuestionValue)"
+        @click.prevent="questions.push(initialQuestionValue)"
       >
         {{ $t('create.form.addQuestion') }}
       </Button>

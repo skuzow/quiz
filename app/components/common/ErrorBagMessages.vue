@@ -11,7 +11,7 @@ const { errorBag, errorKey } = defineProps<Props>();
   <CommonErrorMessage
     v-if="errorBag.hasOwnProperty(errorKey) && errorBag[errorKey]?.length !== 0"
   >
-    <ul>
+    <ul v-auto-animate>
       <li v-for="(error, indexError) in errorBag[errorKey]" :key="indexError">
         {{ error }}
       </li>
