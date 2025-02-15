@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ChevronDownIcon, FilterIcon } from 'lucide-vue-next';
+import { ArrowDownUpIcon, FilterIcon } from 'lucide-vue-next';
 
 interface Props {
   id?: string;
@@ -32,7 +32,7 @@ const { status, data } = useAsyncData(asyncDataKey(), asyncDataFn);
 
       <Button class="gap-x-2" variant="outline">
         {{ $t('tests.search.buttons.sort') }}
-        <ChevronDownIcon :size="16" />
+        <ArrowDownUpIcon :size="16" />
       </Button>
 
       <Button class="gap-x-2" variant="secondary">
