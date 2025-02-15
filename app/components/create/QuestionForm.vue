@@ -22,7 +22,7 @@ const { FormInput, exampleMessage } = useFormMessage();
     :name="`${path}.text`"
     :validate-on-blur="!isFieldDirty"
   >
-    <FormItem>
+    <FormItem v-auto-animate>
       <FormLabel>
         <CommonGradientText>{{ index + 1 }}.</CommonGradientText>
         {{ $t('form.question') }}

@@ -24,7 +24,7 @@ const { FormInput, exampleMessage } = useFormMessage();
         :name="FormInput.TITLE"
         :validate-on-blur="!isFieldDirty"
       >
-        <FormItem>
+        <FormItem v-auto-animate>
           <FormLabel>{{ $t('form.title') }}</FormLabel>
           <FormControl>
             <Input
@@ -42,7 +42,7 @@ const { FormInput, exampleMessage } = useFormMessage();
         :name="FormInput.DESCRIPTION"
         :validate-on-blur="!isFieldDirty"
       >
-        <FormItem>
+        <FormItem v-auto-animate>
           <FormLabel>{{ $t('form.description') }}</FormLabel>
           <FormControl>
             <Textarea
@@ -56,7 +56,7 @@ const { FormInput, exampleMessage } = useFormMessage();
       </FormField>
     </div>
 
-    <ol class="flex flex-col gap-y-8">
+    <ol v-auto-animate class="flex flex-col gap-y-8">
       <li
         v-for="(questionField, indexQuestion) in question.fields.value"
         :key="indexQuestion"
@@ -72,6 +72,7 @@ const { FormInput, exampleMessage } = useFormMessage();
 
         <ol
           v-if="options[indexQuestion]!.fields.value.length !== 0"
+          v-auto-animate
           class="flex flex-col gap-y-4"
         >
           <li
