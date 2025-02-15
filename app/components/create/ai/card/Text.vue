@@ -22,7 +22,7 @@ const {
       <CardContent class="flex flex-col gap-y-6">
         <div class="flex flex-col gap-y-2">
           <Textarea
-            v-model="textAreaValue as string"
+            v-model="textAreaValue"
             :placeholder="$t('createai.text.input')"
             class="h-40 w-full"
           />
@@ -35,7 +35,7 @@ const {
         <div class="flex flex-col gap-y-2">
           <NumberField
             id="text-questions"
-            v-model="questionsValue as number"
+            v-model="questionsValue"
             :default-value="5"
             :min="1"
             :max="10"

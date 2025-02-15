@@ -52,7 +52,7 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
         <div class="flex flex-col gap-y-2">
           <NumberField
             id="text-questions"
-            v-model="questionsValue as number"
+            v-model="questionsValue"
             :default-value="5"
             :min="1"
             :max="10"
