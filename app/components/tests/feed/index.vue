@@ -66,23 +66,23 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
       <ol ref="infinite-scroll" class="grid grid-cols-1 gap-4">
         <template v-if="tests.length">
           <li v-for="(test, index) in tests" :key="index">
-            <TestsCard :test="test" />
+            <TestsFeedCard :test="test" />
           </li>
         </template>
 
         <template v-if="(!tests.length || isLoading) && !errorMessage">
           <li v-for="index in TESTS_PAGE_SIZE" :key="index">
-            <TestsCardSkeleton />
+            <TestsFeedCardSkeleton />
           </li>
         </template>
 
-        <TestsFeedError v-if="!hasMore">
+        <TestsFeedErrorMessage v-if="!hasMore">
           {{ $t('error.testsMoreNotFound') }}
-        </TestsFeedError>
+        </TestsFeedErrorMessage>
 
-        <TestsFeedError v-if="errorMessage">
+        <TestsFeedErrorMessage v-if="errorMessage">
           {{ errorMessage }}
-        </TestsFeedError>
+        </TestsFeedErrorMessage>
       </ol>
     </section>
   </div>
