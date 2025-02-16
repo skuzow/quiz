@@ -21,10 +21,14 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
-  async findAll(page: number): Promise<IUserTestPartial[] | null> {
+  async findAll(
+    page: number,
+    search?: string
+  ): Promise<IUserTestPartial[] | null> {
     const skip: number = this.skipTests(page);
 
     const tests = await this.userTestModel.findMany({
+      where: { ...this.searchTests(search) },
       skip,
       take: this.takeTests(skip),
       select: USER_TEST_PARTIAL_AUTHOR_SELECT
@@ -37,12 +41,16 @@ class TestRepository {
 
   async findAllById(
     id: string,
-    page: number
+    page: number,
+    search?: string
   ): Promise<IUserTestPartial[] | null> {
     const skip: number = this.skipTests(page);
 
     const tests = await this.userTestModel.findMany({
-      where: { authorId: id },
+      where: {
+        authorId: id,
+        ...this.searchTests(search)
+      },
       skip,
       take: this.takeTests(skip),
       select: USER_TEST_PARTIAL_SELECT
@@ -55,12 +63,16 @@ class TestRepository {
 
   async findAllByUsername(
     username: string,
-    page: number
+    page: number,
+    search?: string
   ): Promise<IUserTestPartial[] | null> {
     const skip: number = this.skipTests(page);
 
     const tests = await this.userTestModel.findMany({
-      where: { author: { username: username } },
+      where: {
+        author: { username: username },
+        ...this.searchTests(search)
+      },
       skip,
       take: this.takeTests(skip),
       select: USER_TEST_PARTIAL_SELECT
@@ -133,6 +145,17 @@ class TestRepository {
 
   private takeTests(skip: number): number {
     return skip + TESTS_PAGE_SIZE;
+  }
+
+  private searchTests(search?: string) {
+    if (!search) return {};
+
+    return {
+      OR: [
+        { title: { contains: search } },
+        { description: { contains: search } }
+      ]
+    };
   }
 
   private transformUserTest(test: any): IUserTest {

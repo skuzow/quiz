@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const { page } = getQuery(event);
+  const { page, search } = getQuery(event);
 
   if (!page) {
     return sendError(
@@ -17,7 +17,11 @@ export default defineEventHandler(async (event) => {
   const { username } = getRouterParams(event);
 
   const tests: IUserTestPartial[] | null =
-    await repository.test.findAllByUsername(username, Number(page));
+    await repository.test.findAllByUsername(
+      username,
+      Number(page),
+      search ? String(search) : undefined
+    );
 
   if (!tests) {
     return sendError(
