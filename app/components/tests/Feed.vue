@@ -52,9 +52,13 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
           </li>
         </template>
 
-        <span v-if="!hasMore">{{ $t('error.testsMoreNotFound') }}</span>
+        <TestsFeedError v-if="!hasMore">
+          {{ $t('error.testsMoreNotFound') }}
+        </TestsFeedError>
 
-        <span v-if="errorMessage">{{ errorMessage }}</span>
+        <TestsFeedError v-if="errorMessage">
+          {{ errorMessage }}
+        </TestsFeedError>
       </ol>
     </section>
   </div>
