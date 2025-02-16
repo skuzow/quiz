@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useMediaQuery } from '@vueuse/core';
 import { ArrowDownUpIcon, FilterIcon } from 'lucide-vue-next';
 
 import { TESTS_PAGE_SIZE } from '#shared/constants/test';
@@ -21,6 +22,8 @@ const {
 } = useTestsFeed(id, username);
 
 const { FormInput } = useFormMessage();
+
+const isDesktop: Ref<boolean> = useMediaQuery('(min-width: 768px)');
 
 onMounted(() => {
   searchTests();
@@ -51,14 +54,26 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
         </FormItem>
       </FormField>
 
-      <Button class="gap-x-2" variant="outline">
-        {{ $t('tests.search.buttons.sort') }}
+      <Button
+        class="shrink-0 gap-x-2"
+        variant="outline"
+        :size="isDesktop ? 'default' : 'icon'"
+      >
+        <span :class="{ 'sr-only': !isDesktop }">
+          {{ $t('tests.search.buttons.sort') }}
+        </span>
         <ArrowDownUpIcon :size="16" />
       </Button>
 
-      <Button class="gap-x-2" variant="secondary">
+      <Button
+        class="shrink-0 gap-x-2"
+        variant="secondary"
+        :size="isDesktop ? 'default' : 'icon'"
+      >
         <FilterIcon :size="16" />
-        {{ $t('tests.search.buttons.filter') }}
+        <span :class="{ 'sr-only': !isDesktop }">
+          {{ $t('tests.search.buttons.filter') }}
+        </span>
       </Button>
     </div>
 
