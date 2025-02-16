@@ -1,12 +1,24 @@
+import * as z from 'zod';
+import { toTypedSchema } from '@vee-validate/zod';
+import { useForm } from 'vee-validate';
+
 import { TESTS_PAGE_SIZE } from '#shared/constants/test';
 
-export const useTestsFeed = (id?: string, username?: string) => {
-  const testStore = useTestStore();
+const SEARCH_TIMEOUT: number = 1000;
 
+const MAX_SEARCH_LENGTH: number = 150;
+
+export const useTestsFeed = (id?: string, username?: string) => {
   const { t: $t } = useI18n();
 
+  const testStore = useTestStore();
+
+  const { FormInput, maxMessage } = useFormMessage();
+
   const tests: Ref<IUserTestPartial[]> = ref([]);
+
   const page: Ref<number> = ref(0);
+  const search: Ref<string | undefined> = ref();
 
   const isLoading: Ref<boolean> = ref(false);
   const hasMore: Ref<boolean> = ref(true);
@@ -14,14 +26,33 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
   const infiniteScroll = useTemplateRef<HTMLElement>('infinite-scroll');
 
+  const searchSchema = z.object({
+    search: z
+      .string()
+      .max(MAX_SEARCH_LENGTH, {
+        message: maxMessage(FormInput.SEARCH, MAX_SEARCH_LENGTH)
+      })
+      .refine(async (value) => await searchTimeout(value))
+      .optional()
+  });
+
+  const searchValidationSchema = toTypedSchema(searchSchema);
+
+  const { isFieldDirty } = useForm({
+    validationSchema: searchValidationSchema
+  });
+
   const testsRequest = async (): Promise<IUserTestPartial[] | undefined> => {
-    if (id) return testStore.getTestsById(id, page.value);
-    if (username) return testStore.getTestsByUsername(username, page.value);
-    return testStore.getTests(page.value);
+    if (id) return testStore.getTestsById(id, page.value, search.value);
+    if (username)
+      return testStore.getTestsByUsername(username, page.value, search.value);
+    return testStore.getTests(page.value, search.value);
   };
 
-  const loadTests = async () => {
+  const searchTests = async (reset?: boolean) => {
     isLoading.value = true;
+
+    if (reset) resetTests();
 
     try {
       const response = await testsRequest();
@@ -40,6 +71,13 @@ export const useTestsFeed = (id?: string, username?: string) => {
     }
   };
 
+  const resetTests = () => {
+    tests.value = [];
+    page.value = 0;
+    hasMore.value = true;
+    errorMessage.value = undefined;
+  };
+
   const handleScroll = () => {
     if (isLoading.value || !hasMore.value || errorMessage.value) return;
 
@@ -48,7 +86,29 @@ export const useTestsFeed = (id?: string, username?: string) => {
     if (
       infiniteScrollElement.getBoundingClientRect().bottom < window.innerHeight
     )
-      loadTests();
+      searchTests();
+  };
+
+  let searchNodeTimeout: NodeJS.Timeout;
+
+  const searchTimeout = async (value: string): Promise<boolean> => {
+    if (isInvalidSearch(value)) return false;
+
+    if (searchNodeTimeout) clearTimeout(searchNodeTimeout);
+
+    return new Promise((resolve) => {
+      searchNodeTimeout = setTimeout(async () => {
+        search.value = value;
+
+        await searchTests(true);
+
+        resolve(true);
+      }, SEARCH_TIMEOUT);
+    });
+  };
+
+  const isInvalidSearch = (value: string): boolean => {
+    return value.length > MAX_SEARCH_LENGTH;
   };
 
   return {
@@ -56,7 +116,8 @@ export const useTestsFeed = (id?: string, username?: string) => {
     isLoading,
     hasMore,
     errorMessage,
-    loadTests,
+    isFieldDirty,
+    searchTests,
     handleScroll
   };
 };

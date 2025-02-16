@@ -20,7 +20,8 @@ export const useFormMessage = () => {
     OPTIONS = 'options',
     OPTION = 'option',
     CORRECT_OPTIONS = 'correctOptions',
-    ANSWERED_QUESTIONS = 'answeredQuestions'
+    ANSWERED_QUESTIONS = 'answeredQuestions',
+    SEARCH = 'search'
   }
 
   const requiredMessage = (input: FormInput) =>

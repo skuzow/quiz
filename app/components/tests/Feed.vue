@@ -10,11 +10,20 @@ interface Props {
 
 const { id, username } = defineProps<Props>();
 
-const { tests, isLoading, hasMore, errorMessage, loadTests, handleScroll } =
-  useTestsFeed(id, username);
+const {
+  tests,
+  isLoading,
+  hasMore,
+  errorMessage,
+  isFieldDirty,
+  searchTests,
+  handleScroll
+} = useTestsFeed(id, username);
+
+const { FormInput } = useFormMessage();
 
 onMounted(() => {
-  loadTests();
+  searchTests();
 
   window.addEventListener('scroll', handleScroll);
 });
@@ -25,7 +34,22 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 <template>
   <div class="flex flex-col gap-y-4">
     <div class="flex gap-x-2">
-      <Input :placeholder="$t('tests.search.placeholder')" />
+      <FormField
+        v-slot="{ componentField }"
+        :name="FormInput.SEARCH"
+        :validate-on-blur="!isFieldDirty"
+      >
+        <FormItem v-auto-animate class="w-full">
+          <FormControl>
+            <Input
+              type="text"
+              :placeholder="$t('tests.search.placeholder')"
+              v-bind="componentField"
+            />
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      </FormField>
 
       <Button class="gap-x-2" variant="outline">
         {{ $t('tests.search.buttons.sort') }}
