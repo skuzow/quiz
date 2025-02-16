@@ -11,25 +11,29 @@ export const useTestStore = defineStore('test', () => {
     }
   };
 
-  const getTests = async (page: number) => {
+  const getTests = async (page: number, search?: string) => {
     try {
-      return $api.test.getAll(page);
+      return $api.test.getAll(page, search);
     } catch (error) {
       console.error('fetchPostList error:' + error);
     }
   };
 
-  const getTestsById = async (id: string, page: number) => {
+  const getTestsById = async (id: string, page: number, search?: string) => {
     try {
-      return $api.test.getAllById(id, page);
+      return $api.test.getAllById(id, page, search);
     } catch (error) {
       console.error('fetchPostList error:' + error);
     }
   };
 
-  const getTestsByUsername = async (username: string, page: number) => {
+  const getTestsByUsername = async (
+    username: string,
+    page: number,
+    search?: string
+  ) => {
     try {
-      return $api.test.getAllByUsername(username, page);
+      return $api.test.getAllByUsername(username, page, search);
     } catch (error) {
       console.error('fetchPostList error:' + error);
     }

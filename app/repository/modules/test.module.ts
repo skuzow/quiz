@@ -11,35 +11,40 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async getAll(page: number): Promise<IUserTestPartial[]> {
+  async getAll(page: number, search?: string): Promise<IUserTestPartial[]> {
     return this.call<IUserTestPartial[]>({
       method: 'GET',
       url: this.ROUTE.Fetch(),
       fetchOptions: {
-        params: { page }
+        params: { page, search }
       }
     });
   }
 
-  async getAllById(id: string, page: number): Promise<IUserTestPartial[]> {
+  async getAllById(
+    id: string,
+    page: number,
+    search?: string
+  ): Promise<IUserTestPartial[]> {
     return this.call<IUserTestPartial[]>({
       method: 'GET',
       url: this.ROUTE.FetchUserId(id),
       fetchOptions: {
-        params: { page }
+        params: { page, search }
       }
     });
   }
 
   async getAllByUsername(
     username: string,
-    page: number
+    page: number,
+    search?: string
   ): Promise<IUserTestPartial[]> {
     return this.call<IUserTestPartial[]>({
       method: 'GET',
       url: this.ROUTE.FetchUserUsername(username),
       fetchOptions: {
-        params: { page }
+        params: { page, search }
       }
     });
   }
