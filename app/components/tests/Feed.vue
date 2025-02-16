@@ -12,11 +12,14 @@ const { id, username } = defineProps<Props>();
 
 const testStore = useTestStore();
 
+const { t: $t } = useI18n();
+
 const tests: Ref<IUserTestPartial[]> = ref([]);
 
 const page: Ref<number> = ref(0);
 const isLoading: Ref<boolean> = ref(false);
 const hasMore: Ref<boolean> = ref(true);
+const errorMessage: Ref<string | undefined> = ref();
 
 const testsRequest = async (): Promise<IUserTestPartial[] | undefined> => {
   if (id) return testStore.getTestsById(id, page.value);
@@ -36,11 +39,9 @@ const loadTests = async () => {
 
     if (responseTests.length < TESTS_PAGE_SIZE) hasMore.value = false;
     else page.value++;
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e) {
-    // 404
-    // TODO: handle 404 error with message (e.statusCode)
-    hasMore.value = false;
+    if (e.statusCode === 404) errorMessage.value = $t('error.testsNotFound');
+    else errorMessage.value = $t('error.internalServer');
   } finally {
     isLoading.value = false;
   }
@@ -49,7 +50,7 @@ const loadTests = async () => {
 const infiniteScroll = useTemplateRef<HTMLElement>('infinite-scroll');
 
 const handleScroll = () => {
-  if (isLoading.value || !hasMore.value) return;
+  if (isLoading.value || !hasMore.value || errorMessage.value) return;
 
   const infiniteScrollElement = infiniteScroll.value as HTMLElement;
 
@@ -90,13 +91,15 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
           </li>
         </template>
 
-        <template v-if="!tests.length || isLoading">
+        <template v-if="(!tests.length || isLoading) && !errorMessage">
           <li v-for="index in TESTS_PAGE_SIZE" :key="index">
             <TestsCardSkeleton />
           </li>
         </template>
 
-        <span v-if="!hasMore">No more tests :(</span>
+        <span v-if="!hasMore">{{ $t('error.testsMoreNotFound') }}</span>
+
+        <span v-if="errorMessage">{{ errorMessage }}</span>
       </ol>
     </section>
   </div>
