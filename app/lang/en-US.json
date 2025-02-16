@@ -180,6 +180,8 @@
   },
   "error": {
     "internalServer": "Internal server error",
-    "alreadyLoggedIn": "Already logged in"
+    "alreadyLoggedIn": "Already logged in",
+    "testsNotFound": "Tests not found",
+    "testsMoreNotFound": "No more tests found"
   }
 }

@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ArrowDownUpIcon, FilterIcon } from 'lucide-vue-next';
 
+import { TESTS_PAGE_SIZE } from '#shared/constants/test';
+
 interface Props {
   id?: string;
   username?: string;
@@ -8,21 +10,16 @@ interface Props {
 
 const { id, username } = defineProps<Props>();
 
-const testStore = useTestStore();
+const { tests, isLoading, hasMore, errorMessage, loadTests, handleScroll } =
+  useTestsFeed(id, username);
 
-const asyncDataKey = () => {
-  if (id) return `user-tests-${id}`;
-  if (username) return `user-tests-${username}`;
-  return 'tests';
-};
+onMounted(() => {
+  loadTests();
 
-const asyncDataFn = () => {
-  if (id) return testStore.getTestsById(id, 0);
-  if (username) return testStore.getTestsByUsername(username, 0);
-  return testStore.getTests(0);
-};
+  window.addEventListener('scroll', handleScroll);
+});
 
-const { status, data } = useAsyncData(asyncDataKey(), asyncDataFn);
+onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 </script>
 
 <template>
@@ -42,18 +39,26 @@ const { status, data } = useAsyncData(asyncDataKey(), asyncDataFn);
     </div>
 
     <section>
-      <ol class="grid grid-cols-1 gap-4">
-        <template v-if="!data && status === 'pending'">
-          <li v-for="index in 14" :key="index">
+      <ol ref="infinite-scroll" class="grid grid-cols-1 gap-4">
+        <template v-if="tests.length">
+          <li v-for="(test, index) in tests" :key="index">
+            <TestsCard :test="test" />
+          </li>
+        </template>
+
+        <template v-if="(!tests.length || isLoading) && !errorMessage">
+          <li v-for="index in TESTS_PAGE_SIZE" :key="index">
             <TestsCardSkeleton />
           </li>
         </template>
 
-        <template v-else>
-          <li v-for="(test, index) in data?.body?.tests" :key="index">
-            <TestsCard :test="test" />
-          </li>
-        </template>
+        <TestsFeedError v-if="!hasMore">
+          {{ $t('error.testsMoreNotFound') }}
+        </TestsFeedError>
+
+        <TestsFeedError v-if="errorMessage">
+          {{ errorMessage }}
+        </TestsFeedError>
       </ol>
     </section>
   </div>
