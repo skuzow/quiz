@@ -155,7 +155,7 @@
     "generate": "Generate"
   },
   "create": {
-    "title": "Create test with Blocks",
+    "title": "Create Test with Blocks",
     "description": "Fill out the form to create your own test.",
     "form": {
       "uploadImage": "Upload Image",
@@ -163,6 +163,10 @@
       "addQuestion": "Add Question",
       "create": "Create Test"
     }
+  },
+  "edit": {
+    "title": "Edit Test",
+    "description": "Edit the test you created."
   },
   "file": {
     "upload": "Click or Drag & Drop to Upload",
