@@ -90,8 +90,8 @@ class TestRepository {
     const test = await this.userTestModel.create({
       data: {
         author: { connect: { id: userId } },
-        title: title,
-        description: description,
+        title,
+        description,
         categories: categories
           ? {
               create: categories.map((category) => ({
@@ -137,6 +137,45 @@ class TestRepository {
     });
 
     return test as IUserTest;
+  }
+
+  async update(
+    id: string,
+    { title, description, categories, questions }: IUserTest
+  ): Promise<IUserTest> {
+    const test = await this.userTestModel.update({
+      where: { id },
+      data: {
+        title,
+        description,
+        categories: categories
+          ? {
+              deleteMany: {},
+              create: categories.map((category) => ({
+                category: { connect: { name: category } }
+              }))
+            }
+          : undefined,
+        questions: {
+          deleteMany: {},
+          create: questions.map((question, indexQuestion) => ({
+            number: indexQuestion,
+            text: question.text,
+            type: { connect: { name: question.type } },
+            options: {
+              create: question.options.map((option, indexOption) => ({
+                number: indexOption,
+                text: option.text,
+                isCorrect: option.isCorrect
+              }))
+            }
+          }))
+        }
+      },
+      select: USER_TEST_SELECT
+    });
+
+    return this.transformUserTest(test);
   }
 
   private skipTests(page: number): number {
