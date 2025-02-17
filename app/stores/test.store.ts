@@ -40,12 +40,21 @@ export const useTestStore = defineStore('test', () => {
     }
   };
 
+  const deleteTest = async (id: string) => {
+    try {
+      return $api.test.delete(id);
+    } catch (error) {
+      console.error('fetchPostList error:' + error);
+    }
+  };
+
   return {
     createTest,
     editTest,
     getTestById,
     getTests,
     getTestsById,
-    getTestsByUsername
+    getTestsByUsername,
+    deleteTest
   };
 });
