@@ -16,7 +16,15 @@ const localePath = useLocalePath();
 
 const { isAuthenticated, user: authUser } = useAuth();
 
-const editTest = () => navigateTo(localePath(`/tests/${test.id}/edit`));
+const isLoadingEdit: Ref<boolean> = ref(false);
+
+const editTest = async () => {
+  isLoadingEdit.value = true;
+
+  await navigateTo(localePath(`/tests/${test.id}/edit`));
+
+  isLoadingEdit.value = false;
+};
 
 const tempCategories = ['Education', 'Science'];
 </script>
@@ -54,7 +62,8 @@ const tempCategories = ['Education', 'Science'];
           class="absolute bottom-2 right-2 gap-x-2"
           @click="editTest"
         >
-          <FilePenIcon :size="16" />
+          <IconLoader v-if="isLoadingEdit" class="fill-primary-foreground" />
+          <FilePenIcon v-else :size="16" />
           {{ $t('tests.make.edit') }}
         </Button>
       </CommonTopImage>
