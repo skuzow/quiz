@@ -11,8 +11,20 @@ seoMeta({
 const route = useRoute();
 
 const id = route.params.id as string;
+
+const testStore = useTestStore();
+
+const result = await testStore.getTestById(id);
+
+const { user } = useAuth();
+
+if (user.value?.id !== result.body.test.author.id) {
+  const localePath = useLocalePath();
+
+  await navigateTo(localePath(`/tests/${id}`));
+}
 </script>
 
 <template>
-  <div>{{ id }}</div>
+  <div>{{ result }}</div>
 </template>

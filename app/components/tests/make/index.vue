@@ -16,6 +16,8 @@ const localePath = useLocalePath();
 
 const { isAuthenticated, user: authUser } = useAuth();
 
+const editTest = () => navigateTo(localePath(`/tests/${test.id}/edit`));
+
 const tempCategories = ['Education', 'Science'];
 </script>
 
@@ -50,6 +52,7 @@ const tempCategories = ['Education', 'Science'];
         <Button
           v-if="isAuthenticated && authUser?.id === test.author.id"
           class="absolute bottom-2 right-2 gap-x-2"
+          @click="editTest"
         >
           <FilePenIcon :size="16" />
           {{ $t('tests.make.edit') }}
