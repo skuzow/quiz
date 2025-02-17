@@ -4,7 +4,7 @@ import { useForm, useFieldArray, type FieldArrayContext } from 'vee-validate';
 
 import { TestQuestionType, MAX_TEST_OPTIONS } from '#shared/constants/test';
 
-export const useCreate = () => {
+export const useCreate = (edit?: boolean) => {
   const { $api } = useNuxtApp();
   const localePath = useLocalePath();
 
@@ -103,7 +103,8 @@ export const useCreate = () => {
 
   const { handleSubmit, errorBag, isFieldDirty } = useForm({
     validationSchema,
-    initialValues: testStore.createTest || initialFormValue
+    initialValues:
+      (edit ? testStore.editTest : testStore.createTest) || initialFormValue
   });
 
   // watch(
@@ -138,6 +139,13 @@ export const useCreate = () => {
   const optionPath = (indexQuestion: number, indexOption: number) =>
     `${questionPath(indexQuestion)}.${FormInput.OPTIONS}.${indexOption}`;
 
+  const testCreateEditRequest = async (create: ICreate): Promise<IUserTest> => {
+    if (edit)
+      return $api.test.update(testStore.editTest!.id, create as IUserTest);
+
+    return $api.test.create(create as IUserTest);
+  };
+
   const createTest = handleSubmit(async (create: ICreate) => {
     if (isLoadingCreate.value) return;
 
@@ -145,7 +153,7 @@ export const useCreate = () => {
     internalServerErrorCreate.value = false;
 
     try {
-      const result = await $api.test.create(create as IUserTest);
+      const result = await testCreateEditRequest(create);
 
       await navigateTo(localePath(`/tests/${result?.body?.test?.id}`));
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+interface Props {
+  edit?: boolean;
+}
+
+const { edit } = defineProps<Props>();
+
 const {
   isLoadingCreate,
   internalServerErrorCreate,
@@ -11,7 +17,7 @@ const {
   questionPath,
   optionPath,
   createTest
-} = useCreate();
+} = useCreate(edit);
 
 const { FormInput, exampleMessage } = useFormMessage();
 </script>
@@ -132,7 +138,7 @@ const { FormInput, exampleMessage } = useFormMessage();
           v-if="isLoadingCreate"
           class="mr-2 fill-primary-foreground"
         />
-        {{ $t('create.form.create') }}
+        {{ edit ? $t('edit.title') : $t('create.form.create') }}
       </Button>
     </div>
   </form>
