@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Trash2Icon, ImageUpIcon } from 'lucide-vue-next';
 
-definePageMeta({ middleware: ['auth'] });
+definePageMeta({ middleware: 'auth' });
 
 const { t: $t } = useI18n();
 

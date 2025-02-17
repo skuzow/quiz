@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-definePageMeta({ middleware: ['auth'] });
+definePageMeta({ middleware: 'auth' });
 
 const { t: $t } = useI18n();
 
