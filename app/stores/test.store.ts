@@ -2,6 +2,7 @@ export const useTestStore = defineStore('test', () => {
   const { $api } = useNuxtApp();
 
   const createTest: Ref<IUserTest | undefined> = ref();
+  const editTest: Ref<IUserTest | undefined> = ref();
 
   const getTestById = async (id: string) => {
     try {
@@ -41,6 +42,7 @@ export const useTestStore = defineStore('test', () => {
 
   return {
     createTest,
+    editTest,
     getTestById,
     getTests,
     getTestsById,
