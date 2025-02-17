@@ -2,16 +2,21 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm, useFieldArray, type FieldArrayContext } from 'vee-validate';
 
+import { useToast } from '@/components/ui/toast/use-toast';
+
 import { TestQuestionType, MAX_TEST_OPTIONS } from '#shared/constants/test';
 
 export const useCreate = (edit?: boolean) => {
   const { $api } = useNuxtApp();
   const localePath = useLocalePath();
+  const { t: $t } = useI18n();
 
   const testStore = useTestStore();
 
   const { FormInput, requiredMessage, minMessage, maxMessage } =
     useFormMessage();
+
+  const { toast } = useToast();
 
   const isLoadingCreate: Ref<boolean> = ref(false);
   const internalServerErrorCreate: Ref<boolean> = ref(false);
@@ -155,7 +160,14 @@ export const useCreate = (edit?: boolean) => {
     try {
       const result = await testCreateEditRequest(create);
 
-      await navigateTo(localePath(`/tests/${result?.body?.test?.id}`));
+      const test: IUserTest = result?.body?.test;
+
+      await navigateTo(localePath(`/tests/${test.id}`));
+
+      toast({
+        title: edit ? $t('toast.test.edit') : $t('toast.test.create'),
+        description: test.title
+      });
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       internalServerErrorCreate.value = true;
