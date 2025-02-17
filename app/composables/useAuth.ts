@@ -79,10 +79,10 @@ export const useAuth = () => {
   const signOut = async () => {
     const res = await authClient.signOut();
 
+    await navigateTo(localePath('/'));
+
     session.value = null;
     user.value = null;
-
-    await navigateTo(localePath('/'));
 
     return res;
   };
