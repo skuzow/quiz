@@ -165,8 +165,7 @@
     }
   },
   "edit": {
-    "title": "Editar Test",
-    "description": "Edita el test que creaste."
+    "title": "Editar Test"
   },
   "file": {
     "upload": "Haz Click o Arrastra y Suelta para Cargar",

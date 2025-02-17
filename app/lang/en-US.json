@@ -165,8 +165,7 @@
     }
   },
   "edit": {
-    "title": "Edit Test",
-    "description": "Edit the test you created."
+    "title": "Edit Test"
   },
   "file": {
     "upload": "Click or Drag & Drop to Upload",
