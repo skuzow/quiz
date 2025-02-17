@@ -178,6 +178,10 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
+  async delete(id: string) {
+    await this.userTestModel.delete({ where: { id } });
+  }
+
   private skipTests(page: number): number {
     return page * TESTS_PAGE_SIZE;
   }
