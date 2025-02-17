@@ -56,11 +56,11 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async create(dto: IUserTest): Promise<IUserTest> {
+  async create(test: IUserTest): Promise<IUserTest> {
     return this.call<IUserTest>({
       method: 'POST',
       url: this.ROUTE.Fetch(),
-      body: { test: dto }
+      body: { test }
     });
   }
 
@@ -72,11 +72,11 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async update(id: string, dto: IUserTest): Promise<IUserTest> {
+  async update(id: string, test: IUserTest): Promise<IUserTest> {
     return this.call<IUserTest>({
       method: 'PUT',
       url: this.ROUTE.FetchId(id),
-      body: dto
+      body: { test }
     });
   }
 
