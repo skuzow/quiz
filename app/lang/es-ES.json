@@ -180,6 +180,10 @@
     "emptyQuestions": {
       "title": "Tienes preguntas sin responder",
       "description": "¿Estás seguro de que quieres corregir el test?"
+    },
+    "deleteTest": {
+      "title": "¿Estás seguro de que quieres eliminar este test?",
+      "description": "Esta acción no se puede deshacer."
     }
   },
   "error": {

@@ -7,13 +7,26 @@ interface Props {
 
 const { edit } = defineProps<Props>();
 
+const { t: $t } = useI18n();
+
 const testStore = useTestStore();
 
 const { user, userURL } = useAuth();
 
+const { alert } = useAlert();
+
 const isLoadingDelete: Ref<boolean> = ref(false);
 
 const deleteTest = async () => {
+  if (edit) {
+    const response: boolean = await alert({
+      title: $t('alert.deleteTest.title'),
+      description: $t('alert.deleteTest.description')
+    });
+
+    if (!response) return;
+  }
+
   isLoadingDelete.value = true;
 
   if (edit) await testStore.deleteTest(testStore.editTest!.id);
