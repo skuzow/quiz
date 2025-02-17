@@ -24,7 +24,7 @@ export const useCreate = (edit?: boolean) => {
   const zodOptionFormSchema = z.object({
     text: z
       .string({ required_error: requiredMessage(FormInput.OPTION) })
-      .min(3, minMessage(FormInput.OPTION, 3))
+      .min(2, minMessage(FormInput.OPTION, 2))
       .max(150, maxMessage(FormInput.OPTION, 150)),
     isCorrect: z.boolean()
   });
