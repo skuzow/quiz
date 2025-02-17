@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
     );
 
     return {
-      statusCode: 200,
+      statusCode: 201,
       statusMessage: 'Test created successfully',
       body: {
         test
