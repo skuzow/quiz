@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { Trash2Icon, ImageUpIcon } from 'lucide-vue-next';
 
+import { useToast } from '@/components/ui/toast/use-toast';
+
 interface Props {
   edit?: boolean;
 }
@@ -14,6 +16,7 @@ const testStore = useTestStore();
 const { user, userURL } = useAuth();
 
 const { alert } = useAlert();
+const { toast } = useToast();
 
 const isLoadingDelete: Ref<boolean> = ref(false);
 
@@ -36,6 +39,11 @@ const deleteTest = async () => {
 
   if (edit) {
     await navigateTo(userURL.value);
+
+    toast({
+      title: $t('toast.test.delete'),
+      description: testStore.editTest?.title
+    });
 
     testStore.editTest = undefined;
   }

@@ -186,6 +186,13 @@
       "description": "This action cannot be undone."
     }
   },
+  "toast": {
+    "test": {
+      "create": "✅ Test created successfully",
+      "edit": "✅ Test edited successfully",
+      "delete": "✅ Test deleted successfully"
+    }
+  },
   "error": {
     "internalServer": "Internal server error",
     "alreadyLoggedIn": "Already logged in",

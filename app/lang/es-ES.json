@@ -186,6 +186,13 @@
       "description": "Esta acción no se puede deshacer."
     }
   },
+  "toast": {
+    "test": {
+      "create": "✅ Test creado con éxito",
+      "edit": "✅ Test editado con éxito",
+      "delete": "✅ Test eliminado con éxito"
+    }
+  },
   "error": {
     "internalServer": "Error interno del servidor",
     "alreadyLoggedIn": "Ya iniciaste sesión",
