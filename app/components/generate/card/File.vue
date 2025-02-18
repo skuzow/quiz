@@ -27,9 +27,9 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
 <template>
   <Card>
     <CardHeader>
-      <CardTitle>{{ $t('createai.file.title') }}</CardTitle>
+      <CardTitle>{{ $t('generate.file.title') }}</CardTitle>
       <CardDescription>
-        {{ $t('createai.file.description') }} {{ accept.join(', ') }}
+        {{ $t('generate.file.description') }} {{ accept.join(', ') }}
       </CardDescription>
     </CardHeader>
 
@@ -81,7 +81,7 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
             v-if="isLoadingWithFile"
             class="fill-primary-foreground"
           />
-          <template v-else>{{ $t('createai.generate') }}</template>
+          <template v-else>{{ $t('generate.button') }}</template>
         </Button>
       </CardFooter>
     </form>

@@ -36,16 +36,16 @@
       },
       "create": {
         "aside": {
-          "title": "AI Creation",
-          "description": "Take the advantage of AI to create your own tests."
+          "title": "AI Generation",
+          "description": "Take the advantage of AI to generate your own tests."
         },
         "create": {
           "title": "Create with Blocks",
           "description": "Start creating your own test with our easy to use interface."
         },
-        "createai": {
-          "title": "Create with AI",
-          "description": "Use AI to create your own test fast and easy."
+        "generate": {
+          "title": "Generate with AI",
+          "description": "Use AI to generate your own test fast and easy."
         }
       },
       "about": {
@@ -138,9 +138,9 @@
   "signup": {
     "description": "Sign up to create your own tests."
   },
-  "createai": {
+  "generate": {
     "title": "Generate Test with AI",
-    "description": "Upload a readable file, or describe with text what you want to create.",
+    "description": "Upload a readable file, or describe with text what you want to generate.",
     "file": {
       "tab": "Upload File",
       "title": "Fastest way",
@@ -152,7 +152,7 @@
       "description": "Explain down what you want to generate",
       "input": "Write here..."
     },
-    "generate": "Generate"
+    "button": "Generate"
   },
   "create": {
     "title": "Create Test with Blocks",

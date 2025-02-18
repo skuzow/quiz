@@ -45,8 +45,8 @@ export const useNavMenu = () => {
     },
     {
       link: '/generate',
-      title: $t('nav.header.create.createai.title'),
-      description: $t('nav.header.create.createai.description')
+      title: $t('nav.header.create.generate.title'),
+      description: $t('nav.header.create.generate.description')
     }
   ]);
 

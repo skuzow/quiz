@@ -12,9 +12,9 @@ const {
 <template>
   <Card>
     <CardHeader>
-      <CardTitle>{{ $t('createai.text.title') }}</CardTitle>
+      <CardTitle>{{ $t('generate.text.title') }}</CardTitle>
       <CardDescription>
-        {{ $t('createai.text.description') }}
+        {{ $t('generate.text.description') }}
       </CardDescription>
     </CardHeader>
 
@@ -23,7 +23,7 @@ const {
         <div class="flex flex-col gap-y-2">
           <Textarea
             v-model="textAreaValue"
-            :placeholder="$t('createai.text.input')"
+            :placeholder="$t('generate.text.input')"
             class="h-40 w-full"
           />
 
@@ -64,7 +64,7 @@ const {
             v-if="isLoadingWithText"
             class="fill-primary-foreground"
           />
-          <template v-else>{{ $t('createai.generate') }}</template>
+          <template v-else>{{ $t('generate.button') }}</template>
         </Button>
       </CardFooter>
     </form>
