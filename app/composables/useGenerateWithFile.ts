@@ -42,58 +42,53 @@ export const useGenerateWithFile = () => {
 
   type IFile = z.TypeOf<typeof zodFileFormSchema>;
 
-  const fileFormSchema = toTypedSchema(zodFileFormSchema);
+  const validationSchema = toTypedSchema(zodFileFormSchema);
 
-  const { handleSubmit: handleSubmitWithFile, errors: errorMessageWithFile } =
-    useForm({
-      validationSchema: fileFormSchema
-    });
+  const { handleSubmit, isFieldDirty, setFieldValue } = useForm({
+    validationSchema
+  });
 
-  const { value: questionsValue } = useField(FormInput.QUESTIONS);
+  const generateWithFile = handleSubmit(async ({ questions }: IFile) => {
+    if (isLoadingWithFile.value) return;
 
-  const generateWithFile = handleSubmitWithFile(
-    async ({ questions }: IFile) => {
-      if (isLoadingWithFile.value) return;
+    requiredFileError.value = false;
 
-      requiredFileError.value = false;
+    if (!file.value) return (requiredFileError.value = true);
 
-      if (!file.value) return (requiredFileError.value = true);
+    if (testStore.createTest) {
+      const response: boolean = await alert({
+        title: $t('alert.overrideTest.title'),
+        description: $t('alert.overrideTest.description'),
+        confirm: $t('continue')
+      });
 
-      if (testStore.createTest) {
-        const response: boolean = await alert({
-          title: $t('alert.overrideTest.title'),
-          description: $t('alert.overrideTest.description'),
-          confirm: $t('continue')
-        });
-
-        if (!response) return;
-      }
-
-      isLoadingWithFile.value = true;
-      internalServerErrorWithFile.value = false;
-
-      try {
-        const text: string | null = await parseFile(file.value);
-
-        if (!text) throw new Error('Failed to parse file');
-
-        const result = await $api.test.createWithAI({
-          lang: locale.value,
-          questions: questions,
-          info: formatTextContent(text)
-        });
-
-        testStore.createTest = result?.body?.test as IUserTest;
-
-        await navigateTo(localePath('/create'));
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (error) {
-        internalServerErrorWithFile.value = true;
-      } finally {
-        isLoadingWithFile.value = false;
-      }
+      if (!response) return;
     }
-  );
+
+    isLoadingWithFile.value = true;
+    internalServerErrorWithFile.value = false;
+
+    try {
+      const text: string | null = await parseFile(file.value);
+
+      if (!text) throw new Error('Failed to parse file');
+
+      const result = await $api.test.createWithAI({
+        lang: locale.value,
+        questions: questions,
+        info: formatTextContent(text)
+      });
+
+      testStore.createTest = result?.body?.test as IUserTest;
+
+      await navigateTo(localePath('/create'));
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      internalServerErrorWithFile.value = true;
+    } finally {
+      isLoadingWithFile.value = false;
+    }
+  });
 
   const parseFile = async (file: File) => {
     const fileParsers = {
@@ -115,9 +110,9 @@ export const useGenerateWithFile = () => {
     requiredFileError,
     onFileChange,
     isLoadingWithFile,
-    questionsValue,
-    errorMessageWithFile,
     internalServerErrorWithFile,
+    isFieldDirty,
+    setFieldValue,
     generateWithFile
   };
 };

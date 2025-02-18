@@ -7,9 +7,9 @@ const {
   isLoadingWithFile,
   requiredFileError,
   onFileChange,
-  questionsValue,
-  errorMessageWithFile,
   internalServerErrorWithFile,
+  isFieldDirty,
+  setFieldValue,
   generateWithFile
 } = useGenerateWithFile();
 
@@ -50,24 +50,36 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
         </div>
 
         <div class="flex flex-col gap-y-2">
-          <NumberField
-            id="text-questions"
-            v-model="questionsValue"
-            :default-value="5"
-            :min="1"
-            :max="10"
+          <FormField
+            v-slot="{ value }"
+            :name="FormInput.QUESTIONS"
+            :validate-on-blur="!isFieldDirty"
           >
-            <Label for="text-questions">{{ $t('form.questions') }}</Label>
-            <NumberFieldContent>
-              <NumberFieldDecrement />
-              <NumberFieldInput />
-              <NumberFieldIncrement />
-            </NumberFieldContent>
-          </NumberField>
-
-          <CommonErrorMessage v-if="errorMessageWithFile.questions">
-            {{ errorMessageWithFile.questions }}
-          </CommonErrorMessage>
+            <FormItem v-auto-animate>
+              <FormLabel>{{ $t('form.questions') }}</FormLabel>
+              <NumberField
+                :default-value="5"
+                :min="1"
+                :max="10"
+                :model-value="value"
+                @update:model-value="
+                  (value: number) => {
+                    if (value) setFieldValue(FormInput.QUESTIONS, value);
+                    else setFieldValue(FormInput.QUESTIONS, undefined);
+                  }
+                "
+              >
+                <NumberFieldContent>
+                  <NumberFieldDecrement />
+                  <FormControl>
+                    <NumberFieldInput />
+                  </FormControl>
+                  <NumberFieldIncrement />
+                </NumberFieldContent>
+              </NumberField>
+              <FormMessage />
+            </FormItem>
+          </FormField>
 
           <CommonErrorMessage v-if="internalServerErrorWithFile">
             {{ $t('error.internalServer') }}
