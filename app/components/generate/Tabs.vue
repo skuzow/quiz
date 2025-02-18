@@ -6,11 +6,11 @@
     </TabsList>
 
     <TabsContent value="file">
-      <CreateAiCardFile />
+      <GenerateCardFile />
     </TabsContent>
 
     <TabsContent value="text">
-      <CreateAiCardText />
+      <GenerateCardText />
     </TabsContent>
   </Tabs>
 </template>

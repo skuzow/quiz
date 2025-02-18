@@ -2,7 +2,7 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useField, useForm } from 'vee-validate';
 
-export const useCreateAiWithText = () => {
+export const useGenerateWithText = () => {
   const { $api } = useNuxtApp();
   const localePath = useLocalePath();
   const { t: $t, locale } = useI18n();

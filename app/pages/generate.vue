@@ -17,7 +17,7 @@ seoMeta({
     />
 
     <section class="flex w-full flex-col gap-y-6 sm:max-w-md">
-      <CreateAiTabs />
+      <GenerateTabs />
     </section>
   </div>
 </template>

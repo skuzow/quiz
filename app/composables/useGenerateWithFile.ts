@@ -4,7 +4,7 @@ import { useField, useForm } from 'vee-validate';
 
 import { FileTypes } from '@/constants/file';
 
-export const useCreateAiWithFile = () => {
+export const useGenerateWithFile = () => {
   const { $api } = useNuxtApp();
   const localePath = useLocalePath();
   const { t: $t, locale } = useI18n();

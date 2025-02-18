@@ -1,51 +1,34 @@
 <script lang="ts" setup>
-import { FileSearchIcon } from 'lucide-vue-next';
-
-import { FileExtensions, FileTypes } from '@/constants/file';
-
 const {
-  isLoadingWithFile,
-  requiredFileError,
-  onFileChange,
+  isLoadingWithText,
+  textAreaValue,
   questionsValue,
-  errorMessageWithFile,
-  internalServerErrorWithFile,
-  generateWithFile
-} = useCreateAiWithFile();
-
-const { FormInput, requiredMessage } = useFormMessage();
-
-const accept: FileExtensions[] = [
-  FileExtensions.PDF,
-  FileExtensions.DOCX,
-  FileExtensions.TXT
-];
-
-const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
+  errorMessageWithText,
+  internalServerErrorWithText,
+  generateWithText
+} = useGenerateWithText();
 </script>
 
 <template>
   <Card>
     <CardHeader>
-      <CardTitle>{{ $t('createai.file.title') }}</CardTitle>
+      <CardTitle>{{ $t('createai.text.title') }}</CardTitle>
       <CardDescription>
-        {{ $t('createai.file.description') }} {{ accept.join(', ') }}
+        {{ $t('createai.text.description') }}
       </CardDescription>
     </CardHeader>
 
-    <form @submit="generateWithFile">
+    <form @submit="generateWithText">
       <CardContent class="flex flex-col gap-y-6">
         <div class="flex flex-col gap-y-2">
-          <CommonFileInput
-            :accept="accept"
-            :types="types"
-            @change="onFileChange"
-          >
-            <FileSearchIcon :size="50" />
-          </CommonFileInput>
+          <Textarea
+            v-model="textAreaValue"
+            :placeholder="$t('createai.text.input')"
+            class="h-40 w-full"
+          />
 
-          <CommonErrorMessage v-if="requiredFileError">
-            {{ requiredMessage(FormInput.FILE) }}
+          <CommonErrorMessage v-if="errorMessageWithText.text">
+            {{ errorMessageWithText.text }}
           </CommonErrorMessage>
         </div>
 
@@ -65,11 +48,11 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
             </NumberFieldContent>
           </NumberField>
 
-          <CommonErrorMessage v-if="errorMessageWithFile.questions">
-            {{ errorMessageWithFile.questions }}
+          <CommonErrorMessage v-if="errorMessageWithText.questions">
+            {{ errorMessageWithText.questions }}
           </CommonErrorMessage>
 
-          <CommonErrorMessage v-if="internalServerErrorWithFile">
+          <CommonErrorMessage v-if="internalServerErrorWithText">
             {{ $t('error.internalServer') }}
           </CommonErrorMessage>
         </div>
@@ -78,7 +61,7 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
       <CardFooter>
         <Button type="submit" class="w-full">
           <IconLoader
-            v-if="isLoadingWithFile"
+            v-if="isLoadingWithText"
             class="fill-primary-foreground"
           />
           <template v-else>{{ $t('createai.generate') }}</template>
