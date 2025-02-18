@@ -1,6 +1,6 @@
 import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
-import { useField, useForm } from 'vee-validate';
+import { useForm } from 'vee-validate';
 
 import { FileTypes } from '@/constants/file';
 
@@ -44,7 +44,7 @@ export const useGenerateWithFile = () => {
 
   const validationSchema = toTypedSchema(zodFileFormSchema);
 
-  const { handleSubmit, isFieldDirty, setFieldValue } = useForm({
+  const { handleSubmit, isFieldDirty } = useForm({
     validationSchema
   });
 
@@ -112,7 +112,6 @@ export const useGenerateWithFile = () => {
     isLoadingWithFile,
     internalServerErrorWithFile,
     isFieldDirty,
-    setFieldValue,
     generateWithFile
   };
 };

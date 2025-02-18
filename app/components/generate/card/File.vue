@@ -9,7 +9,6 @@ const {
   onFileChange,
   internalServerErrorWithFile,
   isFieldDirty,
-  setFieldValue,
   generateWithFile
 } = useGenerateWithFile();
 
@@ -51,7 +50,7 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
 
         <div class="flex flex-col gap-y-2">
           <FormField
-            v-slot="{ value }"
+            v-slot="{ value, handleChange }"
             :name="FormInput.QUESTIONS"
             :validate-on-blur="!isFieldDirty"
           >
@@ -62,12 +61,7 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
                 :min="1"
                 :max="10"
                 :model-value="value"
-                @update:model-value="
-                  (value: number) => {
-                    if (value) setFieldValue(FormInput.QUESTIONS, value);
-                    else setFieldValue(FormInput.QUESTIONS, undefined);
-                  }
-                "
+                @update:model-value="handleChange"
               >
                 <NumberFieldContent>
                   <NumberFieldDecrement />

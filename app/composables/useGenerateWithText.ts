@@ -42,7 +42,7 @@ export const useGenerateWithText = () => {
 
   const validationSchema = toTypedSchema(zodTextFormSchema);
 
-  const { handleSubmit, isFieldDirty, setFieldValue } = useForm({
+  const { handleSubmit, isFieldDirty } = useForm({
     validationSchema
   });
 
@@ -84,7 +84,6 @@ export const useGenerateWithText = () => {
     isLoadingWithText,
     internalServerErrorWithText,
     isFieldDirty,
-    setFieldValue,
     generateWithText
   };
 };

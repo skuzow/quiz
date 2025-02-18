@@ -3,7 +3,6 @@ const {
   isLoadingWithText,
   internalServerErrorWithText,
   isFieldDirty,
-  setFieldValue,
   generateWithText
 } = useGenerateWithText();
 
@@ -40,7 +39,7 @@ const { FormInput } = useFormMessage();
 
         <div class="flex flex-col gap-y-2">
           <FormField
-            v-slot="{ value }"
+            v-slot="{ value, handleChange }"
             :name="FormInput.QUESTIONS"
             :validate-on-blur="!isFieldDirty"
           >
@@ -51,12 +50,7 @@ const { FormInput } = useFormMessage();
                 :min="1"
                 :max="10"
                 :model-value="value"
-                @update:model-value="
-                  (value: number) => {
-                    if (value) setFieldValue(FormInput.QUESTIONS, value);
-                    else setFieldValue(FormInput.QUESTIONS, undefined);
-                  }
-                "
+                @update:model-value="handleChange"
               >
                 <NumberFieldContent>
                   <NumberFieldDecrement />
