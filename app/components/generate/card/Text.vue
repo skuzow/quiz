@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 const {
   isLoadingWithText,
-  textAreaValue,
-  questionsValue,
-  errorMessageWithText,
   internalServerErrorWithText,
+  isFieldDirty,
+  setFieldValue,
   generateWithText
 } = useGenerateWithText();
+
+const { FormInput } = useFormMessage();
 </script>
 
 <template>
@@ -20,37 +21,54 @@ const {
 
     <form @submit="generateWithText">
       <CardContent class="flex flex-col gap-y-6">
-        <div class="flex flex-col gap-y-2">
-          <Textarea
-            v-model="textAreaValue"
-            :placeholder="$t('generate.text.input')"
-            class="h-40 w-full"
-          />
+        <FormField
+          v-slot="{ componentField }"
+          :name="FormInput.TEXT"
+          :validate-on-blur="!isFieldDirty"
+        >
+          <FormItem v-auto-animate>
+            <FormControl>
+              <Textarea
+                :placeholder="$t('generate.text.input')"
+                v-bind="componentField"
+                class="h-40"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
 
-          <CommonErrorMessage v-if="errorMessageWithText.text">
-            {{ errorMessageWithText.text }}
-          </CommonErrorMessage>
-        </div>
-
         <div class="flex flex-col gap-y-2">
-          <NumberField
-            id="text-questions"
-            v-model="questionsValue"
-            :default-value="5"
-            :min="1"
-            :max="10"
+          <FormField
+            v-slot="{ value }"
+            :name="FormInput.QUESTIONS"
+            :validate-on-blur="!isFieldDirty"
           >
-            <Label for="text-questions">{{ $t('form.questions') }}</Label>
-            <NumberFieldContent>
-              <NumberFieldDecrement />
-              <NumberFieldInput />
-              <NumberFieldIncrement />
-            </NumberFieldContent>
-          </NumberField>
-
-          <CommonErrorMessage v-if="errorMessageWithText.questions">
-            {{ errorMessageWithText.questions }}
-          </CommonErrorMessage>
+            <FormItem v-auto-animate>
+              <FormLabel>{{ $t('form.questions') }}</FormLabel>
+              <NumberField
+                :default-value="5"
+                :min="1"
+                :max="10"
+                :model-value="value"
+                @update:model-value="
+                  (value: number) => {
+                    if (value) setFieldValue(FormInput.QUESTIONS, value);
+                    else setFieldValue(FormInput.QUESTIONS, undefined);
+                  }
+                "
+              >
+                <NumberFieldContent>
+                  <NumberFieldDecrement />
+                  <FormControl>
+                    <NumberFieldInput />
+                  </FormControl>
+                  <NumberFieldIncrement />
+                </NumberFieldContent>
+              </NumberField>
+              <FormMessage />
+            </FormItem>
+          </FormField>
 
           <CommonErrorMessage v-if="internalServerErrorWithText">
             {{ $t('error.internalServer') }}

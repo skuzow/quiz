@@ -1,6 +1,6 @@
 import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
-import { useField, useForm } from 'vee-validate';
+import { useForm } from 'vee-validate';
 
 export const useGenerateWithText = () => {
   const { $api } = useNuxtApp();
@@ -40,58 +40,51 @@ export const useGenerateWithText = () => {
 
   type IText = z.TypeOf<typeof zodTextFormSchema>;
 
-  const textFormSchema = toTypedSchema(zodTextFormSchema);
+  const validationSchema = toTypedSchema(zodTextFormSchema);
 
-  const { handleSubmit: handleSubmitWithText, errors: errorMessageWithText } =
-    useForm({
-      validationSchema: textFormSchema
-    });
+  const { handleSubmit, isFieldDirty, setFieldValue } = useForm({
+    validationSchema
+  });
 
-  const { value: textAreaValue } = useField(FormInput.TEXT);
-  const { value: questionsValue } = useField(FormInput.QUESTIONS);
+  const generateWithText = handleSubmit(async ({ text, questions }: IText) => {
+    if (isLoadingWithText.value) return;
 
-  const generateWithText = handleSubmitWithText(
-    async ({ text, questions }: IText) => {
-      if (isLoadingWithText.value) return;
+    if (testStore.createTest) {
+      const response: boolean = await alert({
+        title: $t('alert.overrideTest.title'),
+        description: $t('alert.overrideTest.description'),
+        confirm: $t('continue')
+      });
 
-      if (testStore.createTest) {
-        const response: boolean = await alert({
-          title: $t('alert.overrideTest.title'),
-          description: $t('alert.overrideTest.description'),
-          confirm: $t('continue')
-        });
-
-        if (!response) return;
-      }
-
-      isLoadingWithText.value = true;
-      internalServerErrorWithText.value = false;
-
-      try {
-        const result = await $api.test.createWithAI({
-          lang: locale.value,
-          questions: questions,
-          info: text
-        });
-
-        testStore.createTest = result?.body?.test as IUserTest;
-
-        await navigateTo(localePath('/create'));
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      } catch (error) {
-        internalServerErrorWithText.value = true;
-      } finally {
-        isLoadingWithText.value = false;
-      }
+      if (!response) return;
     }
-  );
+
+    isLoadingWithText.value = true;
+    internalServerErrorWithText.value = false;
+
+    try {
+      const result = await $api.test.createWithAI({
+        lang: locale.value,
+        questions: questions,
+        info: text
+      });
+
+      testStore.createTest = result?.body?.test as IUserTest;
+
+      await navigateTo(localePath('/create'));
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      internalServerErrorWithText.value = true;
+    } finally {
+      isLoadingWithText.value = false;
+    }
+  });
 
   return {
     isLoadingWithText,
-    textAreaValue,
-    questionsValue,
-    errorMessageWithText,
     internalServerErrorWithText,
+    isFieldDirty,
+    setFieldValue,
     generateWithText
   };
 };
