@@ -41,6 +41,7 @@ export interface IUserTestQuestionOption {
 }
 
 export interface IUserTestAI {
+  deep: boolean;
   lang: string;
   questions: number;
   info: string;

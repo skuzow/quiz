@@ -3,9 +3,9 @@ export default defineEventHandler(async (event) => {
   try {
     await repository.auth.checkSession(event.headers);
 
-    const { lang, questions, info } = await readBody(event);
+    const { deep, lang, questions, info } = await readBody(event);
 
-    if (!lang || !questions || !info) {
+    if (deep === undefined || !lang || !questions || !info) {
       return sendError(
         event,
         createError({
@@ -17,6 +17,7 @@ export default defineEventHandler(async (event) => {
     }
 
     if (
+      typeof deep !== 'boolean' ||
       typeof lang !== 'string' ||
       typeof questions !== 'number' ||
       typeof info !== 'string'
@@ -32,6 +33,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const test: IUserTest = await repository.test.createWithAI({
+      deep,
       lang,
       questions: Number(questions),
       info

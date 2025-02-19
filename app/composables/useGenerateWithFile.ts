@@ -49,7 +49,7 @@ export const useGenerateWithFile = () => {
     validationSchema
   });
 
-  const generateWithFile = handleSubmit(async ({ questions }: IFile) => {
+  const generateWithFile = handleSubmit(async ({ questions, deep }: IFile) => {
     if (isLoadingWithFile.value) return;
 
     requiredFileError.value = false;
@@ -75,8 +75,9 @@ export const useGenerateWithFile = () => {
       if (!text) throw new Error('Failed to parse file');
 
       const result = await $api.test.createWithAI({
+        deep,
         lang: locale.value,
-        questions: questions,
+        questions,
         info: formatTextContent(text)
       });
 

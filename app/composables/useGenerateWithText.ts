@@ -47,39 +47,42 @@ export const useGenerateWithText = () => {
     validationSchema
   });
 
-  const generateWithText = handleSubmit(async ({ text, questions }: IText) => {
-    if (isLoadingWithText.value) return;
+  const generateWithText = handleSubmit(
+    async ({ text, questions, deep }: IText) => {
+      if (isLoadingWithText.value) return;
 
-    if (testStore.createTest) {
-      const response: boolean = await alert({
-        title: $t('alert.overrideTest.title'),
-        description: $t('alert.overrideTest.description'),
-        confirm: $t('continue')
-      });
+      if (testStore.createTest) {
+        const response: boolean = await alert({
+          title: $t('alert.overrideTest.title'),
+          description: $t('alert.overrideTest.description'),
+          confirm: $t('continue')
+        });
 
-      if (!response) return;
+        if (!response) return;
+      }
+
+      isLoadingWithText.value = true;
+      internalServerErrorWithText.value = false;
+
+      try {
+        const result = await $api.test.createWithAI({
+          deep,
+          lang: locale.value,
+          questions,
+          info: text
+        });
+
+        testStore.createTest = result?.body?.test as IUserTest;
+
+        await navigateTo(localePath('/create'));
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (error) {
+        internalServerErrorWithText.value = true;
+      } finally {
+        isLoadingWithText.value = false;
+      }
     }
-
-    isLoadingWithText.value = true;
-    internalServerErrorWithText.value = false;
-
-    try {
-      const result = await $api.test.createWithAI({
-        lang: locale.value,
-        questions: questions,
-        info: text
-      });
-
-      testStore.createTest = result?.body?.test as IUserTest;
-
-      await navigateTo(localePath('/create'));
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      internalServerErrorWithText.value = true;
-    } finally {
-      isLoadingWithText.value = false;
-    }
-  });
+  );
 
   return {
     isLoadingWithText,
