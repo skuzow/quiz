@@ -49,31 +49,7 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
         </div>
 
         <div class="flex flex-col gap-y-2">
-          <FormField
-            v-slot="{ value, handleChange }"
-            :name="FormInput.QUESTIONS"
-            :validate-on-blur="!isFieldDirty"
-          >
-            <FormItem v-auto-animate>
-              <FormLabel>{{ $t('form.questions') }}</FormLabel>
-              <NumberField
-                :default-value="5"
-                :min="1"
-                :max="10"
-                :model-value="value"
-                @update:model-value="handleChange"
-              >
-                <NumberFieldContent>
-                  <NumberFieldDecrement />
-                  <FormControl>
-                    <NumberFieldInput />
-                  </FormControl>
-                  <NumberFieldIncrement />
-                </NumberFieldContent>
-              </NumberField>
-              <FormMessage />
-            </FormItem>
-          </FormField>
+          <GenerateCardConfigFields :is-field-dirty="isFieldDirty" />
 
           <CommonErrorMessage v-if="internalServerErrorWithFile">
             {{ $t('error.internalServer') }}
