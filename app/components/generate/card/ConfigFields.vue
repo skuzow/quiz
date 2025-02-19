@@ -36,5 +36,21 @@ const { FormInput } = useFormMessage();
         <FormMessage />
       </FormItem>
     </FormField>
+
+    <FormField v-slot="{ value, handleChange }" name="deep">
+      <FormItem
+        class="flex flex-row items-center justify-between rounded-md border p-4"
+      >
+        <div class="flex w-5/6 flex-col gap-y-1.5">
+          <FormLabel>{{ $t('generate.deep.title') }}</FormLabel>
+          <FormDescription>
+            {{ $t('generate.deep.description') }}
+          </FormDescription>
+        </div>
+        <FormControl>
+          <Switch :checked="value" @update:checked="handleChange" />
+        </FormControl>
+      </FormItem>
+    </FormField>
   </div>
 </template>

@@ -149,8 +149,12 @@
     "text": {
       "tab": "Generar con Texto",
       "title": "Forma más precisa",
-      "description": "Explica abajo lo que quieres generar",
+      "description": "Explica abajo lo que quieres generar.",
       "input": "Escribe aquí..."
+    },
+    "deep": {
+      "title": "Test Profundo",
+      "description": "El Test tardará más en generarse, pero será más preciso."
     },
     "button": "Generar"
   },

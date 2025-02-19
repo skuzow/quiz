@@ -35,7 +35,8 @@ export const useGenerateWithText = () => {
       .max(10, {
         message: maxMessage(FormInput.QUESTIONS, 10)
       })
-      .default(5)
+      .default(5),
+    deep: z.boolean().default(true)
   });
 
   type IText = z.TypeOf<typeof zodTextFormSchema>;

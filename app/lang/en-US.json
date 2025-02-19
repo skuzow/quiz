@@ -149,8 +149,12 @@
     "text": {
       "tab": "Generate with Text",
       "title": "Most accurate way",
-      "description": "Explain down what you want to generate",
+      "description": "Explain down what you want to generate.",
       "input": "Write here..."
+    },
+    "deep": {
+      "title": "Deep Test",
+      "description": "Test will take longer to generate, but it will be more accurate."
     },
     "button": "Generate"
   },

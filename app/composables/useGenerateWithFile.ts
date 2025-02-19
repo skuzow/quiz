@@ -37,7 +37,8 @@ export const useGenerateWithFile = () => {
       .max(10, {
         message: maxMessage(FormInput.QUESTIONS, 10)
       })
-      .default(5)
+      .default(5),
+    deep: z.boolean().default(true)
   });
 
   type IFile = z.TypeOf<typeof zodFileFormSchema>;
