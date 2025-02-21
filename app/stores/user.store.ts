@@ -3,17 +3,17 @@ export const useUserStore = defineStore('user', () => {
 
   const getUserById = async (id: string) => {
     try {
-      return $api.user.getById(id);
-    } catch (error) {
-      console.error('fetchPostList error:' + error);
+      return await $api.user.getById(id);
+    } catch (e) {
+      showError(e!);
     }
   };
 
   const getUserByUsername = async (username: string) => {
     try {
-      return $api.user.getByUsername(username);
-    } catch (error) {
-      console.error('fetchPostList error:' + error);
+      return await $api.user.getByUsername(username);
+    } catch (e) {
+      showError(e!);
     }
   };
 
