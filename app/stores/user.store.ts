@@ -1,3 +1,5 @@
+import type { NuxtError } from '#app';
+
 export const useUserStore = defineStore('user', () => {
   const { $api } = useNuxtApp();
 
@@ -5,7 +7,7 @@ export const useUserStore = defineStore('user', () => {
     try {
       return await $api.user.getById(id);
     } catch (e) {
-      showError(e!);
+      showError(e as NuxtError);
     }
   };
 
@@ -13,7 +15,7 @@ export const useUserStore = defineStore('user', () => {
     try {
       return await $api.user.getByUsername(username);
     } catch (e) {
-      showError(e!);
+      showError(e as NuxtError);
     }
   };
 
