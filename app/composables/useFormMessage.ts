@@ -13,6 +13,7 @@ export const useFormMessage = () => {
     PASSWORD = 'password',
     FILE = 'file',
     TEXT = 'text',
+    TYPE = 'type',
     QUESTIONS = 'questions',
     TITLE = 'title',
     DESCRIPTION = 'description',

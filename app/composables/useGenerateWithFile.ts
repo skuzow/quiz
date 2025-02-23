@@ -2,6 +2,7 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
+import { TestQuestionType } from '#shared/constants/test';
 import { FileTypes } from '@/constants/file';
 
 export const useGenerateWithFile = () => {
@@ -27,6 +28,12 @@ export const useGenerateWithFile = () => {
   const internalServerErrorWithFile: Ref<boolean> = ref(false);
 
   const zodFileFormSchema = z.object({
+    type: z
+      .enum([
+        'ALL',
+        ...(Object.values(TestQuestionType) as [keyof typeof TestQuestionType])
+      ])
+      .default('ALL'),
     questions: z
       .number({
         required_error: requiredMessage(FormInput.QUESTIONS)
@@ -38,6 +45,17 @@ export const useGenerateWithFile = () => {
         message: maxMessage(FormInput.QUESTIONS, 10)
       })
       .default(5),
+    options: z
+      .number({
+        required_error: requiredMessage(FormInput.OPTIONS)
+      })
+      .min(2, {
+        message: minMessage(FormInput.OPTIONS, 2)
+      })
+      .max(4, {
+        message: maxMessage(FormInput.OPTIONS, 4)
+      })
+      .optional(),
     deep: z.boolean().default(true)
   });
 
@@ -49,48 +67,54 @@ export const useGenerateWithFile = () => {
     validationSchema
   });
 
-  const generateWithFile = handleSubmit(async ({ questions, deep }: IFile) => {
-    if (isLoadingWithFile.value) return;
+  const generateWithFile = handleSubmit(
+    async ({ type, questions, options, deep }: IFile) => {
+      if (isLoadingWithFile.value) return;
 
-    requiredFileError.value = false;
+      requiredFileError.value = false;
 
-    if (!file.value) return (requiredFileError.value = true);
+      if (!file.value) return (requiredFileError.value = true);
 
-    if (testStore.createTest) {
-      const response: boolean = await alert({
-        title: $t('alert.overrideTest.title'),
-        description: $t('alert.overrideTest.description'),
-        confirm: $t('continue')
-      });
+      if (testStore.createTest) {
+        const response: boolean = await alert({
+          title: $t('alert.overrideTest.title'),
+          description: $t('alert.overrideTest.description'),
+          confirm: $t('continue')
+        });
 
-      if (!response) return;
+        if (!response) return;
+      }
+
+      isLoadingWithFile.value = true;
+      internalServerErrorWithFile.value = false;
+
+      try {
+        const text: string | null = await parseFile(file.value);
+
+        if (!text) throw new Error('Failed to parse file');
+
+        const result = await $api.test.createWithAI({
+          deep,
+          lang: locale.value,
+          questions: {
+            number: questions,
+            type: type === 'ALL' ? undefined : type,
+            options
+          },
+          info: formatTextContent(text)
+        });
+
+        testStore.createTest = result?.body?.test as IUserTest;
+
+        await navigateTo(localePath('/create'));
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      } catch (error) {
+        internalServerErrorWithFile.value = true;
+      } finally {
+        isLoadingWithFile.value = false;
+      }
     }
-
-    isLoadingWithFile.value = true;
-    internalServerErrorWithFile.value = false;
-
-    try {
-      const text: string | null = await parseFile(file.value);
-
-      if (!text) throw new Error('Failed to parse file');
-
-      const result = await $api.test.createWithAI({
-        deep,
-        lang: locale.value,
-        questions,
-        info: formatTextContent(text)
-      });
-
-      testStore.createTest = result?.body?.test as IUserTest;
-
-      await navigateTo(localePath('/create'));
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      internalServerErrorWithFile.value = true;
-    } finally {
-      isLoadingWithFile.value = false;
-    }
-  });
+  );
 
   const parseFile = async (file: File) => {
     const fileParsers = {

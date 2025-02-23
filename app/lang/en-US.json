@@ -77,6 +77,7 @@
     "password": "Password",
     "file": "File",
     "text": "Text",
+    "type": "Type of Questions",
     "questions": "Questions",
     "title": "Title",
     "description": "Description",
@@ -95,6 +96,7 @@
     "example": "Example",
     "invalidEmailOrPassword": "Invalid email or password.",
     "types": {
+      "all": "All Types",
       "single": "Single",
       "multiple": "Multiple"
     }

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { TestQuestionType } from '#shared/constants/test';
+
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   isFieldDirty: any;
@@ -11,6 +13,38 @@ const { FormInput } = useFormMessage();
 
 <template>
   <div class="flex flex-col gap-y-6">
+    <FormField v-slot="{ componentField }" :name="FormInput.TYPE">
+      <FormItem>
+        <FormLabel>{{ $t('form.type') }}</FormLabel>
+        <Select v-bind="componentField">
+          <FormControl>
+            <SelectTrigger>
+              <SelectValue class="mr-2" />
+            </SelectTrigger>
+          </FormControl>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem value="ALL">{{ $t('form.types.all') }}</SelectItem>
+              <SelectItem
+                v-for="typeKey in Object.keys(TestQuestionType)"
+                :key="typeKey"
+                :value="typeKey"
+              >
+                {{
+                  $t(
+                    `form.types.${TestQuestionType[
+                      typeKey as keyof typeof TestQuestionType
+                    ].toLowerCase()}`
+                  )
+                }}
+              </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+
     <FormField
       v-slot="{ value, handleChange }"
       :name="FormInput.QUESTIONS"
@@ -22,6 +56,31 @@ const { FormInput } = useFormMessage();
           :default-value="5"
           :min="1"
           :max="10"
+          :model-value="value"
+          @update:model-value="handleChange"
+        >
+          <NumberFieldContent>
+            <NumberFieldDecrement />
+            <FormControl>
+              <NumberFieldInput />
+            </FormControl>
+            <NumberFieldIncrement />
+          </NumberFieldContent>
+        </NumberField>
+        <FormMessage />
+      </FormItem>
+    </FormField>
+
+    <FormField
+      v-slot="{ value, handleChange }"
+      :name="FormInput.OPTIONS"
+      :validate-on-blur="!isFieldDirty"
+    >
+      <FormItem v-auto-animate>
+        <FormLabel>{{ $t('form.options') }}</FormLabel>
+        <NumberField
+          :min="2"
+          :max="4"
           :model-value="value"
           @update:model-value="handleChange"
         >

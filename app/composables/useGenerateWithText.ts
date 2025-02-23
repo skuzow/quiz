@@ -2,6 +2,8 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
+import { TestQuestionType } from '#shared/constants/test';
+
 export const useGenerateWithText = () => {
   const { $api } = useNuxtApp();
   const localePath = useLocalePath();
@@ -25,6 +27,12 @@ export const useGenerateWithText = () => {
       .min(10, {
         message: minMessage(FormInput.TEXT, 10)
       }),
+    type: z
+      .enum([
+        'ALL',
+        ...(Object.values(TestQuestionType) as [keyof typeof TestQuestionType])
+      ])
+      .default('ALL'),
     questions: z
       .number({
         required_error: requiredMessage(FormInput.QUESTIONS)
@@ -36,6 +44,17 @@ export const useGenerateWithText = () => {
         message: maxMessage(FormInput.QUESTIONS, 10)
       })
       .default(5),
+    options: z
+      .number({
+        required_error: requiredMessage(FormInput.OPTIONS)
+      })
+      .min(2, {
+        message: minMessage(FormInput.OPTIONS, 2)
+      })
+      .max(4, {
+        message: maxMessage(FormInput.OPTIONS, 4)
+      })
+      .optional(),
     deep: z.boolean().default(true)
   });
 
@@ -48,7 +67,7 @@ export const useGenerateWithText = () => {
   });
 
   const generateWithText = handleSubmit(
-    async ({ text, questions, deep }: IText) => {
+    async ({ text, type, questions, options, deep }: IText) => {
       if (isLoadingWithText.value) return;
 
       if (testStore.createTest) {
@@ -68,7 +87,11 @@ export const useGenerateWithText = () => {
         const result = await $api.test.createWithAI({
           deep,
           lang: locale.value,
-          questions,
+          questions: {
+            number: questions,
+            type: type === 'ALL' ? undefined : type,
+            options
+          },
           info: text
         });
 
