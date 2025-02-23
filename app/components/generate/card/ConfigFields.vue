@@ -79,15 +79,17 @@ const { FormInput } = useFormMessage();
       <FormItem v-auto-animate>
         <FormLabel>{{ $t('form.options') }}</FormLabel>
         <NumberField
-          :min="2"
-          :max="4"
+          :min="TEST_QUESTION_OPTIONS_MIN"
+          :max="TEST_QUESTION_OPTIONS_MAX"
           :model-value="value"
           @update:model-value="handleChange"
         >
           <NumberFieldContent>
             <NumberFieldDecrement />
             <FormControl>
-              <NumberFieldInput />
+              <NumberFieldInput
+                :placeholder="`${TEST_QUESTION_OPTIONS_MIN} - ${TEST_QUESTION_OPTIONS_MAX}`"
+              />
             </FormControl>
             <NumberFieldIncrement />
           </NumberFieldContent>

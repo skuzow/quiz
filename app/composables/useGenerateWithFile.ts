@@ -44,11 +44,11 @@ export const useGenerateWithFile = () => {
       .number({
         required_error: requiredMessage(FormInput.OPTIONS)
       })
-      .min(2, {
-        message: minMessage(FormInput.OPTIONS, 2)
+      .min(TEST_QUESTION_OPTIONS_MIN, {
+        message: minMessage(FormInput.OPTIONS, TEST_QUESTION_OPTIONS_MIN)
       })
-      .max(4, {
-        message: maxMessage(FormInput.OPTIONS, 4)
+      .max(TEST_QUESTION_OPTIONS_MAX, {
+        message: maxMessage(FormInput.OPTIONS, TEST_QUESTION_OPTIONS_MAX)
       })
       .optional(),
     deep: z.boolean().default(true)
