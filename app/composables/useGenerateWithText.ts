@@ -79,7 +79,7 @@ export const useGenerateWithText = () => {
       internalServerErrorWithText.value = false;
 
       try {
-        const result = await $api.test.createWithAI({
+        const result = await $api.test.generate({
           deep,
           lang: locale.value,
           questions: {

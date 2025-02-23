@@ -120,7 +120,7 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
-  async createWithAI(dto: IUserTestAI): Promise<IUserTest> {
+  async generate(dto: ITestGeneration): Promise<IUserTest> {
     const { quizAi } = useRuntimeConfig();
 
     const test = await $fetch(`${quizAi.apiUrl}/tests`, {

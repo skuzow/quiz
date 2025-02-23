@@ -1,6 +1,12 @@
+import { z } from 'zod';
+
 import type { IUserPartial } from './user.type';
 
-import type { TestCategory, TestQuestionType } from '../constants/test';
+import {
+  type TestCategory,
+  type TestQuestionType,
+  TestQuestionTypeValues
+} from '../constants/test';
 
 export interface IUserTestPartial {
   id: string;
@@ -40,12 +46,18 @@ export interface IUserTestQuestionOption {
   isCorrect: boolean;
 }
 
-export interface IUserTestAI {
-  deep: boolean;
-  lang: string;
-  questions: number;
-  info: string;
-}
+export const TestGenerationSchema = z.object({
+  deep: z.boolean(),
+  lang: z.string().length(2),
+  questions: z.object({
+    number: z.number().min(1).max(10),
+    type: z.enum(TestQuestionTypeValues).optional(), // empty: all
+    options: z.number().min(2).max(4).optional() // empty: from 2 to 4
+  }),
+  info: z.string().min(10)
+});
+
+export type ITestGeneration = z.infer<typeof TestGenerationSchema>;
 
 export interface IUserTestCorrectionQuestion {
   number: number;

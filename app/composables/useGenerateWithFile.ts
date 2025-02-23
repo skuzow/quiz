@@ -88,7 +88,7 @@ export const useGenerateWithFile = () => {
 
         if (!text) throw new Error('Failed to parse file');
 
-        const result = await $api.test.createWithAI({
+        const result = await $api.test.generate({
           deep,
           lang: locale.value,
           questions: {
