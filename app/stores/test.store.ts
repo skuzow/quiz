@@ -1,3 +1,5 @@
+import type { NuxtError } from '#app';
+
 export const useTestStore = defineStore('test', () => {
   const { $api } = useNuxtApp();
 
@@ -6,9 +8,9 @@ export const useTestStore = defineStore('test', () => {
 
   const getTestById = async (id: string) => {
     try {
-      return $api.test.getById(id);
-    } catch (error) {
-      console.error('fetchPostList error:' + error);
+      return await $api.test.getById(id);
+    } catch (e) {
+      showError(e as NuxtError);
     }
   };
 

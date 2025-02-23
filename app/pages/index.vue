@@ -32,7 +32,7 @@ const localePath = useLocalePath();
         </NuxtLink>
 
         <NuxtLink
-          :to="localePath('/createai')"
+          :to="localePath('/generate')"
           :title="$t('landing.buttons.ai')"
         >
           <Button variant="secondary" class="gap-x-2">

@@ -120,11 +120,7 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
-  async createWithAI({
-    lang,
-    questions,
-    info
-  }: IUserTestAI): Promise<IUserTest> {
+  async generate(dto: ITestGeneration): Promise<IUserTest> {
     const { quizAi } = useRuntimeConfig();
 
     const test = await $fetch(`${quizAi.apiUrl}/tests`, {
@@ -133,7 +129,7 @@ class TestRepository {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${quizAi.apiKey}`
       },
-      body: JSON.stringify({ lang, questions, info })
+      body: dto
     });
 
     return test as IUserTest;

@@ -3,39 +3,21 @@ export default defineEventHandler(async (event) => {
   try {
     await repository.auth.checkSession(event.headers);
 
-    const { lang, questions, info } = await readBody(event);
+    const body = await readBody(event);
 
-    if (!lang || !questions || !info) {
+    const result = TestGenerationSchema.safeParse(body);
+
+    if (!result.success)
       return sendError(
         event,
         createError({
           statusCode: 400,
-          statusMessage: 'Missing required fields',
-          data: 'Lang, Questions & Info required'
+          statusMessage: 'Invalid fields',
+          data: result.error?.issues
         })
       );
-    }
 
-    if (
-      typeof lang !== 'string' ||
-      typeof questions !== 'number' ||
-      typeof info !== 'string'
-    ) {
-      return sendError(
-        event,
-        createError({
-          statusCode: 400,
-          statusMessage: 'Invalid field types',
-          data: 'Lang must be a string, Questions a number & Info a string'
-        })
-      );
-    }
-
-    const test: IUserTest = await repository.test.createWithAI({
-      lang,
-      questions: Number(questions),
-      info
-    });
+    const test: IUserTest = await repository.test.generate(body);
 
     return {
       statusCode: 201,

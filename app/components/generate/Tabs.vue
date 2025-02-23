@@ -1,16 +1,16 @@
 <template>
   <Tabs default-value="file">
     <TabsList class="grid w-full grid-cols-2">
-      <TabsTrigger value="file">{{ $t('createai.file.tab') }}</TabsTrigger>
-      <TabsTrigger value="text">{{ $t('createai.text.tab') }}</TabsTrigger>
+      <TabsTrigger value="file">{{ $t('generate.file.tab') }}</TabsTrigger>
+      <TabsTrigger value="text">{{ $t('generate.text.tab') }}</TabsTrigger>
     </TabsList>
 
     <TabsContent value="file">
-      <CreateAiCardFile />
+      <GenerateCardFile />
     </TabsContent>
 
     <TabsContent value="text">
-      <CreateAiCardText />
+      <GenerateCardText />
     </TabsContent>
   </Tabs>
 </template>

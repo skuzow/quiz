@@ -1,10 +1,11 @@
 import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
-import { useField, useForm } from 'vee-validate';
+import { useForm } from 'vee-validate';
 
+import { TestQuestionTypeValues } from '#shared/constants/test';
 import { FileTypes } from '@/constants/file';
 
-export const useCreateAiWithFile = () => {
+export const useGenerateWithFile = () => {
   const { $api } = useNuxtApp();
   const localePath = useLocalePath();
   const { t: $t, locale } = useI18n();
@@ -27,6 +28,7 @@ export const useCreateAiWithFile = () => {
   const internalServerErrorWithFile: Ref<boolean> = ref(false);
 
   const zodFileFormSchema = z.object({
+    type: z.enum(['ALL', ...TestQuestionTypeValues]).default('ALL'),
     questions: z
       .number({
         required_error: requiredMessage(FormInput.QUESTIONS)
@@ -37,22 +39,31 @@ export const useCreateAiWithFile = () => {
       .max(10, {
         message: maxMessage(FormInput.QUESTIONS, 10)
       })
-      .default(5)
+      .default(5),
+    options: z
+      .number({
+        required_error: requiredMessage(FormInput.OPTIONS)
+      })
+      .min(TEST_QUESTION_OPTIONS_MIN, {
+        message: minMessage(FormInput.OPTIONS, TEST_QUESTION_OPTIONS_MIN)
+      })
+      .max(TEST_QUESTION_OPTIONS_MAX, {
+        message: maxMessage(FormInput.OPTIONS, TEST_QUESTION_OPTIONS_MAX)
+      })
+      .optional(),
+    deep: z.boolean().default(true)
   });
 
   type IFile = z.TypeOf<typeof zodFileFormSchema>;
 
-  const fileFormSchema = toTypedSchema(zodFileFormSchema);
+  const validationSchema = toTypedSchema(zodFileFormSchema);
 
-  const { handleSubmit: handleSubmitWithFile, errors: errorMessageWithFile } =
-    useForm({
-      validationSchema: fileFormSchema
-    });
+  const { handleSubmit, isFieldDirty } = useForm({
+    validationSchema
+  });
 
-  const { value: questionsValue } = useField(FormInput.QUESTIONS);
-
-  const generateWithFile = handleSubmitWithFile(
-    async ({ questions }: IFile) => {
+  const generateWithFile = handleSubmit(
+    async ({ type, questions, options, deep }: IFile) => {
       if (isLoadingWithFile.value) return;
 
       requiredFileError.value = false;
@@ -77,9 +88,14 @@ export const useCreateAiWithFile = () => {
 
         if (!text) throw new Error('Failed to parse file');
 
-        const result = await $api.test.createWithAI({
+        const result = await $api.test.generate({
+          deep,
           lang: locale.value,
-          questions: questions,
+          questions: {
+            number: questions,
+            type: type === 'ALL' ? undefined : type,
+            options
+          },
           info: formatTextContent(text)
         });
 
@@ -115,9 +131,8 @@ export const useCreateAiWithFile = () => {
     requiredFileError,
     onFileChange,
     isLoadingWithFile,
-    questionsValue,
-    errorMessageWithFile,
     internalServerErrorWithFile,
+    isFieldDirty,
     generateWithFile
   };
 };

@@ -4,20 +4,20 @@ definePageMeta({ middleware: 'auth' });
 const { t: $t } = useI18n();
 
 seoMeta({
-  title: $t('createai.title'),
-  description: $t('createai.description')
+  title: $t('generate.title'),
+  description: $t('generate.description')
 });
 </script>
 
 <template>
   <div class="flex flex-col items-center">
     <CommonTitle
-      :title="$t('createai.title')"
-      :description="$t('createai.description')"
+      :title="$t('generate.title')"
+      :description="$t('generate.description')"
     />
 
     <section class="flex w-full flex-col gap-y-6 sm:max-w-md">
-      <CreateAiTabs />
+      <GenerateTabs />
     </section>
   </div>
 </template>

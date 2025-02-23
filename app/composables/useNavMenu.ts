@@ -32,7 +32,7 @@ export const useNavMenu = () => {
   ]);
 
   const createNavMenuAside = computed<NavMenuItem>(() => ({
-    link: '/createai',
+    link: '/generate',
     title: $t('nav.header.create.aside.title'),
     description: $t('nav.header.create.aside.description')
   }));
@@ -44,9 +44,9 @@ export const useNavMenu = () => {
       description: $t('nav.header.create.create.description')
     },
     {
-      link: '/createai',
-      title: $t('nav.header.create.createai.title'),
-      description: $t('nav.header.create.createai.description')
+      link: '/generate',
+      title: $t('nav.header.create.generate.title'),
+      description: $t('nav.header.create.generate.description')
     }
   ]);
 

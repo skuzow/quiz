@@ -7,11 +7,10 @@ const {
   isLoadingWithFile,
   requiredFileError,
   onFileChange,
-  questionsValue,
-  errorMessageWithFile,
   internalServerErrorWithFile,
+  isFieldDirty,
   generateWithFile
-} = useCreateAiWithFile();
+} = useGenerateWithFile();
 
 const { FormInput, requiredMessage } = useFormMessage();
 
@@ -27,9 +26,9 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
 <template>
   <Card>
     <CardHeader>
-      <CardTitle>{{ $t('createai.file.title') }}</CardTitle>
+      <CardTitle>{{ $t('generate.file.title') }}</CardTitle>
       <CardDescription>
-        {{ $t('createai.file.description') }} {{ accept.join(', ') }}
+        {{ $t('generate.file.description') }} {{ accept.join(', ') }}
       </CardDescription>
     </CardHeader>
 
@@ -50,24 +49,7 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
         </div>
 
         <div class="flex flex-col gap-y-2">
-          <NumberField
-            id="text-questions"
-            v-model="questionsValue"
-            :default-value="5"
-            :min="1"
-            :max="10"
-          >
-            <Label for="text-questions">{{ $t('form.questions') }}</Label>
-            <NumberFieldContent>
-              <NumberFieldDecrement />
-              <NumberFieldInput />
-              <NumberFieldIncrement />
-            </NumberFieldContent>
-          </NumberField>
-
-          <CommonErrorMessage v-if="errorMessageWithFile.questions">
-            {{ errorMessageWithFile.questions }}
-          </CommonErrorMessage>
+          <GenerateCardConfigFields :is-field-dirty="isFieldDirty" />
 
           <CommonErrorMessage v-if="internalServerErrorWithFile">
             {{ $t('error.internalServer') }}
@@ -81,7 +63,7 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
             v-if="isLoadingWithFile"
             class="fill-primary-foreground"
           />
-          <template v-else>{{ $t('createai.generate') }}</template>
+          <template v-else>{{ $t('generate.button') }}</template>
         </Button>
       </CardFooter>
     </form>

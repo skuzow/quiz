@@ -64,7 +64,7 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async createWithAI(dto: IUserTestAI) {
+  async generate(dto: ITestGeneration) {
     return this.call({
       method: 'POST',
       url: this.ROUTE.FetchAI(),

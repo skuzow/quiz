@@ -36,16 +36,16 @@
       },
       "create": {
         "aside": {
-          "title": "Creación con IA",
-          "description": "Aprovecha las ventajas de la IA para crear tus propios tests."
+          "title": "Generación IA",
+          "description": "Aprovecha la ventaja de la IA para generar tus propios tests."
         },
         "create": {
           "title": "Crear con Bloques",
           "description": "Empieza a crear tu propio test con nuestra sencilla interfaz."
         },
-        "createai": {
-          "title": "Crear con IA",
-          "description": "Utiliza la IA para crear tu propio test de forma rápida y sencilla."
+        "generate": {
+          "title": "Generar con IA",
+          "description": "Utiliza la IA para generar tu propio test de forma rápida y sencilla."
         }
       },
       "about": {
@@ -77,6 +77,7 @@
     "password": "Contraseña",
     "file": "Archivo",
     "text": "Texto",
+    "type": "Tipo de Preguntas",
     "questions": "Preguntas",
     "title": "Título",
     "description": "Descripción",
@@ -95,6 +96,7 @@
     "example": "Ejemplo de",
     "invalidEmailOrPassword": "Correo electrónico o contraseña no válidos.",
     "types": {
+      "all": "Todos los Tipos",
       "single": "Única",
       "multiple": "Múltiple"
     }
@@ -138,9 +140,9 @@
   "signup": {
     "description": "Regístrate para crear tus propios tests."
   },
-  "createai": {
+  "generate": {
     "title": "Generar Test con IA",
-    "description": "Sube un archivo legible, o describe con texto lo que quieres crear.",
+    "description": "Sube un archivo legible, o describe con texto lo que quieres generar.",
     "file": {
       "tab": "Subir Archivo",
       "title": "Forma más rápida",
@@ -149,10 +151,14 @@
     "text": {
       "tab": "Generar con Texto",
       "title": "Forma más precisa",
-      "description": "Explica abajo lo que quieres generar",
+      "description": "Explica abajo lo que quieres generar.",
       "input": "Escribe aquí..."
     },
-    "generate": "Generar"
+    "deep": {
+      "title": "Test Profundo",
+      "description": "El Test tardará más en generarse, pero será más preciso."
+    },
+    "button": "Generar"
   },
   "create": {
     "title": "Crear Test con Bloques",

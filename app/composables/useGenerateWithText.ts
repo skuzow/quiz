@@ -1,8 +1,10 @@
 import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
-import { useField, useForm } from 'vee-validate';
+import { useForm } from 'vee-validate';
 
-export const useCreateAiWithText = () => {
+import { TestQuestionTypeValues } from '#shared/constants/test';
+
+export const useGenerateWithText = () => {
   const { $api } = useNuxtApp();
   const localePath = useLocalePath();
   const { t: $t, locale } = useI18n();
@@ -25,6 +27,7 @@ export const useCreateAiWithText = () => {
       .min(10, {
         message: minMessage(FormInput.TEXT, 10)
       }),
+    type: z.enum(['ALL', ...TestQuestionTypeValues]).default('ALL'),
     questions: z
       .number({
         required_error: requiredMessage(FormInput.QUESTIONS)
@@ -35,23 +38,31 @@ export const useCreateAiWithText = () => {
       .max(10, {
         message: maxMessage(FormInput.QUESTIONS, 10)
       })
-      .default(5)
+      .default(5),
+    options: z
+      .number({
+        required_error: requiredMessage(FormInput.OPTIONS)
+      })
+      .min(2, {
+        message: minMessage(FormInput.OPTIONS, 2)
+      })
+      .max(4, {
+        message: maxMessage(FormInput.OPTIONS, 4)
+      })
+      .optional(),
+    deep: z.boolean().default(true)
   });
 
   type IText = z.TypeOf<typeof zodTextFormSchema>;
 
-  const textFormSchema = toTypedSchema(zodTextFormSchema);
+  const validationSchema = toTypedSchema(zodTextFormSchema);
 
-  const { handleSubmit: handleSubmitWithText, errors: errorMessageWithText } =
-    useForm({
-      validationSchema: textFormSchema
-    });
+  const { handleSubmit, isFieldDirty } = useForm({
+    validationSchema
+  });
 
-  const { value: textAreaValue } = useField(FormInput.TEXT);
-  const { value: questionsValue } = useField(FormInput.QUESTIONS);
-
-  const generateWithText = handleSubmitWithText(
-    async ({ text, questions }: IText) => {
+  const generateWithText = handleSubmit(
+    async ({ text, type, questions, options, deep }: IText) => {
       if (isLoadingWithText.value) return;
 
       if (testStore.createTest) {
@@ -68,9 +79,14 @@ export const useCreateAiWithText = () => {
       internalServerErrorWithText.value = false;
 
       try {
-        const result = await $api.test.createWithAI({
+        const result = await $api.test.generate({
+          deep,
           lang: locale.value,
-          questions: questions,
+          questions: {
+            number: questions,
+            type: type === 'ALL' ? undefined : type,
+            options
+          },
           info: text
         });
 
@@ -88,10 +104,8 @@ export const useCreateAiWithText = () => {
 
   return {
     isLoadingWithText,
-    textAreaValue,
-    questionsValue,
-    errorMessageWithText,
     internalServerErrorWithText,
+    isFieldDirty,
     generateWithText
   };
 };

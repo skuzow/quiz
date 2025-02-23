@@ -28,7 +28,7 @@ const localePath = useLocalePath();
         </h1>
 
         <p class="mb-10">
-          {{ error.message }}
+          {{ error.statusMessage }}
         </p>
 
         <NuxtLink :to="localePath('/')">
