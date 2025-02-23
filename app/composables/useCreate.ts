@@ -4,7 +4,11 @@ import { useForm, useFieldArray, type FieldArrayContext } from 'vee-validate';
 
 import { useToast } from '@/components/ui/toast/use-toast';
 
-import { TestQuestionType, MAX_TEST_OPTIONS } from '#shared/constants/test';
+import {
+  TestQuestionType,
+  TestQuestionTypeValues,
+  MAX_TEST_OPTIONS
+} from '#shared/constants/test';
 
 export const useCreate = (edit?: boolean) => {
   const { $api } = useNuxtApp();
@@ -35,9 +39,7 @@ export const useCreate = (edit?: boolean) => {
         .string({ required_error: requiredMessage(FormInput.QUESTION) })
         .min(10, minMessage(FormInput.QUESTION, 10))
         .max(150, maxMessage(FormInput.QUESTION, 150)),
-      type: z.enum(
-        Object.values(TestQuestionType) as [keyof typeof TestQuestionType]
-      ),
+      type: z.enum(TestQuestionTypeValues),
       options: z
         .array(zodOptionFormSchema, {
           required_error: requiredMessage(FormInput.OPTIONS)

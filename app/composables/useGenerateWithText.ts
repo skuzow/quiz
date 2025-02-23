@@ -2,7 +2,7 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
-import { TestQuestionType } from '#shared/constants/test';
+import { TestQuestionTypeValues } from '#shared/constants/test';
 
 export const useGenerateWithText = () => {
   const { $api } = useNuxtApp();
@@ -27,12 +27,7 @@ export const useGenerateWithText = () => {
       .min(10, {
         message: minMessage(FormInput.TEXT, 10)
       }),
-    type: z
-      .enum([
-        'ALL',
-        ...(Object.values(TestQuestionType) as [keyof typeof TestQuestionType])
-      ])
-      .default('ALL'),
+    type: z.enum(['ALL', ...TestQuestionTypeValues]).default('ALL'),
     questions: z
       .number({
         required_error: requiredMessage(FormInput.QUESTIONS)

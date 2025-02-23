@@ -2,7 +2,7 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
-import { TestQuestionType } from '#shared/constants/test';
+import { TestQuestionTypeValues } from '#shared/constants/test';
 import { FileTypes } from '@/constants/file';
 
 export const useGenerateWithFile = () => {
@@ -28,12 +28,7 @@ export const useGenerateWithFile = () => {
   const internalServerErrorWithFile: Ref<boolean> = ref(false);
 
   const zodFileFormSchema = z.object({
-    type: z
-      .enum([
-        'ALL',
-        ...(Object.values(TestQuestionType) as [keyof typeof TestQuestionType])
-      ])
-      .default('ALL'),
+    type: z.enum(['ALL', ...TestQuestionTypeValues]).default('ALL'),
     questions: z
       .number({
         required_error: requiredMessage(FormInput.QUESTIONS)
