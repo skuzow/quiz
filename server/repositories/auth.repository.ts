@@ -3,16 +3,16 @@ class AuthRepository {
   private userModel = prisma.user;
 
   async checkSession(headers: any) {
-    const session = await auth.api.getSession({ headers });
+    const authSession = await auth.api.getSession({ headers });
 
-    if (!session) {
+    if (!authSession) {
       throw {
         statusCode: 401,
         statusMessage: 'Unauthorized'
       };
     }
 
-    return session;
+    return authSession;
   }
 
   async checkEmail(email: string): Promise<boolean> {

@@ -9,11 +9,12 @@ interface Props {
 
 const { edit } = defineProps<Props>();
 
+const { $api } = useNuxtApp();
 const { t: $t } = useI18n();
 
 const testStore = useTestStore();
 
-const { user, userURL } = useAuth();
+const { authUser, authUserURL } = useAuth();
 
 const { alert } = useAlert();
 const { toast } = useToast();
@@ -32,13 +33,13 @@ const deleteTest = async () => {
 
   isLoadingDelete.value = true;
 
-  if (edit) await testStore.deleteTest(testStore.editTest!.id);
+  if (edit) await $api.test.delete(testStore.editTest!.id);
   else console.log('Delete test creation'); // TODO: delete test creation
 
   isLoadingDelete.value = false;
 
   if (edit) {
-    await navigateTo(userURL.value);
+    await navigateTo(authUserURL.value);
 
     toast({
       title: $t('toast.test.delete'),
@@ -54,7 +55,7 @@ const deleteTest = async () => {
   <div class="flex flex-col gap-y-6">
     <CommonTopImage src="/images/test.avif" alt="Test image">
       <NuxtLink
-        :to="userURL"
+        :to="authUserURL"
         :title="$t('nav.header.user.profile')"
         class="absolute left-2 top-2"
       >
@@ -63,7 +64,7 @@ const deleteTest = async () => {
           :height="40"
           :width="40"
           loading="lazy"
-          :user="user as IUserPartial"
+          :user="authUser"
         />
       </NuxtLink>
 

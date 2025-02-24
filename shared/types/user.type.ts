@@ -1,13 +1,13 @@
 import type { UserRole } from '../constants/user';
 
-export interface IUserPartial {
+export interface UserPartial {
   id: string;
   name: string;
   username: string | null;
   image: string | null;
 }
 
-export interface IUser {
+export interface User {
   id: string;
   name: string;
   username: string | null;

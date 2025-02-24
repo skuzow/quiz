@@ -1,9 +1,12 @@
 export default defineNuxtRouteMiddleware((_to, _from) => {
   const { isAuthenticated } = useAuth();
 
-  if (isAuthenticated.value) {
-    const nuxtApp = useNuxtApp();
+  if (!isAuthenticated.value) return;
 
-    return abortNavigation(nuxtApp.$i18n.t('error.alreadyLoggedIn'));
-  }
+  const nuxtApp = useNuxtApp();
+
+  abortNavigation({
+    statusCode: 403,
+    statusMessage: nuxtApp.$i18n.t('error.alreadyLoggedIn')
+  });
 });

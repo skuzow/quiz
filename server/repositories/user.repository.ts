@@ -4,7 +4,7 @@ import { USER_SELECT } from './queries/selects';
 class UserRepository {
   private userModel = prisma.user;
 
-  async findById(id: string): Promise<IUser | null> {
+  async findById(id: string): Promise<User | null> {
     const user = await this.userModel.findFirst({
       where: { id: id },
       select: USER_SELECT
@@ -15,7 +15,7 @@ class UserRepository {
     return this.transformUser(user);
   }
 
-  async findByUsername(username: string): Promise<IUser | null> {
+  async findByUsername(username: string): Promise<User | null> {
     const user = await this.userModel.findFirst({
       where: { username: username },
       select: USER_SELECT
@@ -26,7 +26,7 @@ class UserRepository {
     return this.transformUser(user);
   }
 
-  private transformUser(user: any): IUser {
+  private transformUser(user: any): User {
     return {
       ...user,
       roles: user.roles.map((role: any) => role.role.name)

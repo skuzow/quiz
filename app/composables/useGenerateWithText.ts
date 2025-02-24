@@ -53,7 +53,7 @@ export const useGenerateWithText = () => {
     deep: z.boolean().default(true)
   });
 
-  type IText = z.TypeOf<typeof zodTextFormSchema>;
+  type GenerateTextForm = z.TypeOf<typeof zodTextFormSchema>;
 
   const validationSchema = toTypedSchema(zodTextFormSchema);
 
@@ -62,7 +62,7 @@ export const useGenerateWithText = () => {
   });
 
   const generateWithText = handleSubmit(
-    async ({ text, type, questions, options, deep }: IText) => {
+    async ({ text, type, questions, options, deep }: GenerateTextForm) => {
       if (isLoadingWithText.value) return;
 
       if (testStore.createTest) {
@@ -90,7 +90,7 @@ export const useGenerateWithText = () => {
           info: text
         });
 
-        testStore.createTest = result?.body?.test as IUserTest;
+        testStore.createTest = result?.body?.test as UserTest;
 
         await navigateTo(localePath('/create'));
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

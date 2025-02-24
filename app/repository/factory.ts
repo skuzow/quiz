@@ -1,11 +1,6 @@
-import type {
-  $Fetch,
-  NitroFetchOptions,
-  NitroFetchRequest,
-  TypedInternalResponse
-} from 'nitropack';
+import type { $Fetch, NitroFetchOptions } from 'nitropack';
 
-interface IHttpFactory {
+interface HttpRequest {
   url: string;
   method:
     | 'GET'
@@ -21,6 +16,12 @@ interface IHttpFactory {
   fetchOptions?: NitroFetchOptions<'json'>;
 }
 
+interface ApiResponse<T> {
+  statusCode: number;
+  statusMessage: string;
+  body: T;
+}
+
 abstract class HttpFactory {
   private readonly $fetch: $Fetch;
 
@@ -28,15 +29,10 @@ abstract class HttpFactory {
     this.$fetch = fetch;
   }
 
-  async call<T>({
-    method,
-    url,
-    body,
-    fetchOptions
-  }: IHttpFactory): Promise<TypedInternalResponse<NitroFetchRequest, T>> {
+  async call<T>({ method, url, body, fetchOptions }: HttpRequest) {
     const locale = useCookie('i18n_redirected');
 
-    return this.$fetch<T>(url, {
+    return this.$fetch<ApiResponse<T>>(url, {
       method,
       body,
       headers: {

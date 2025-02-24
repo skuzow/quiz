@@ -21,13 +21,15 @@ export const useAuth = () => {
     }
   });
 
-  type Session = typeof authClient.$Infer.Session.session;
-  type User = typeof authClient.$Infer.Session.user;
+  type AuthSession = typeof authClient.$Infer.Session.session;
+  type AuthUser = typeof authClient.$Infer.Session.user;
 
-  const session = useState<Session | null>('auth:session', () => null);
-  const user = useState<User | null>('auth:user', () => null);
+  const authSession = useState<AuthSession | null>('auth:session', () => null);
+  const authUser = useState<AuthUser | null>('auth:user', () => null);
 
-  const isAuthenticated: ComputedRef<boolean> = computed(() => !!session.value);
+  const isAuthenticated: ComputedRef<boolean> = computed(
+    () => !!authSession.value
+  );
 
   const isSessionFetching: Ref<boolean> = import.meta.server
     ? ref(false)
@@ -44,8 +46,8 @@ export const useAuth = () => {
       }
     });
 
-    session.value = data?.session || null;
-    user.value = data?.user || null;
+    authSession.value = data?.session || null;
+    authUser.value = data?.user || null;
 
     isSessionFetching.value = false;
 
@@ -62,16 +64,18 @@ export const useAuth = () => {
 
   const localePath = useLocalePath();
 
-  const userInfo = computed(() => {
-    if (!user.value) return '';
+  const authUserInfo: ComputedRef<string> = computed(() => {
+    if (!authUser.value) return '';
 
-    return user.value.username ? `@${user.value.username}` : user.value.email;
+    return authUser.value.username
+      ? `@${authUser.value.username}`
+      : authUser.value.email;
   });
 
-  const userURL = computed(() => {
-    if (!user.value) return '';
+  const authUserURL: ComputedRef<string> = computed(() => {
+    if (!authUser.value) return '';
 
-    const URL: string = user.value.username || `id/${user.value.id}`;
+    const URL: string = authUser.value.username || `id/${authUser.value.id}`;
 
     return localePath(`/users/${URL}`);
   });
@@ -81,19 +85,19 @@ export const useAuth = () => {
 
     await navigateTo(localePath('/'));
 
-    session.value = null;
-    user.value = null;
+    authSession.value = null;
+    authUser.value = null;
 
     return res;
   };
 
   return {
-    session,
-    user,
+    authSession,
+    authUser,
     isAuthenticated,
     fetchSession,
-    userInfo,
-    userURL,
+    authUserInfo,
+    authUserURL,
     signUp: authClient.signUp,
     signIn: authClient.signIn,
     signOut

@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
         })
       );
 
-    const test: IUserTest = await repository.test.generate(body);
+    const test: UserTest = await repository.test.generate(body);
 
     return {
       statusCode: 201,

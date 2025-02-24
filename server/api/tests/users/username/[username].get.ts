@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
 
   const { username } = getRouterParams(event);
 
-  const tests: IUserTestPartial[] | null =
+  const tests: UserTestPartial[] | null =
     await repository.test.findAllByUsername(
       username,
       Number(page),

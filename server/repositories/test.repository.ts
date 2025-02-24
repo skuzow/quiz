@@ -10,7 +10,7 @@ import { TESTS_PAGE_SIZE } from '#shared/constants/test';
 class TestRepository {
   private userTestModel = prisma.userTest;
 
-  async findById(id: string): Promise<IUserTest | null> {
+  async findById(id: string): Promise<UserTest | null> {
     const test = await this.userTestModel.findFirst({
       where: { id: id },
       select: USER_TEST_SELECT
@@ -24,7 +24,7 @@ class TestRepository {
   async findAll(
     page: number,
     search?: string
-  ): Promise<IUserTestPartial[] | null> {
+  ): Promise<UserTestPartial[] | null> {
     const skip: number = this.skipTests(page);
 
     const tests = await this.userTestModel.findMany({
@@ -43,7 +43,7 @@ class TestRepository {
     id: string,
     page: number,
     search?: string
-  ): Promise<IUserTestPartial[] | null> {
+  ): Promise<UserTestPartial[] | null> {
     const skip: number = this.skipTests(page);
 
     const tests = await this.userTestModel.findMany({
@@ -65,7 +65,7 @@ class TestRepository {
     username: string,
     page: number,
     search?: string
-  ): Promise<IUserTestPartial[] | null> {
+  ): Promise<UserTestPartial[] | null> {
     const skip: number = this.skipTests(page);
 
     const tests = await this.userTestModel.findMany({
@@ -85,8 +85,8 @@ class TestRepository {
 
   async create(
     userId: string,
-    { title, description, categories, questions }: IUserTest
-  ): Promise<IUserTest> {
+    { title, description, categories, questions }: UserTest
+  ): Promise<UserTest> {
     const test = await this.userTestModel.create({
       data: {
         author: { connect: { id: userId } },
@@ -120,7 +120,7 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
-  async generate(dto: ITestGeneration): Promise<IUserTest> {
+  async generate(dto: TestGeneration): Promise<UserTest> {
     const { quizAi } = useRuntimeConfig();
 
     const test = await $fetch(`${quizAi.apiUrl}/tests`, {
@@ -132,13 +132,13 @@ class TestRepository {
       body: dto
     });
 
-    return test as IUserTest;
+    return test as UserTest;
   }
 
   async update(
     id: string,
-    { title, description, categories, questions }: IUserTest
-  ): Promise<IUserTest> {
+    { title, description, categories, questions }: UserTest
+  ): Promise<UserTest> {
     const test = await this.userTestModel.update({
       where: { id },
       data: {
@@ -197,7 +197,7 @@ class TestRepository {
     };
   }
 
-  private transformUserTest(test: any): IUserTest {
+  private transformUserTest(test: any): UserTest {
     return {
       ...test,
       categories: test.categories.map(
@@ -214,7 +214,7 @@ class TestRepository {
     };
   }
 
-  private transformUserTestsPartial(tests: any): IUserTestPartial[] {
+  private transformUserTestsPartial(tests: any): UserTestPartial[] {
     return tests.map((test: any) => ({
       ...test,
       categories: test.categories.map(

@@ -1,27 +1,27 @@
 <script lang="ts" setup>
 import { UserRoundIcon, Settings2Icon, LogOutIcon } from 'lucide-vue-next';
 
-const { user, userInfo, userURL, signOut } = useAuth();
+const { authUser, authUserInfo, authUserURL, signOut } = useAuth();
 </script>
 
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <CommonAvatar :user="user as IUserPartial" />
+      <CommonAvatar :user="authUser" />
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" class="w-56 font-medium">
       <DropdownMenuLabel>
-        <h3>{{ user?.name }}</h3>
+        <h3>{{ authUser?.name }}</h3>
 
         <p class="text-xs font-medium">
-          {{ userInfo }}
+          {{ authUserInfo }}
         </p>
       </DropdownMenuLabel>
 
       <DropdownMenuSeparator />
 
       <DropdownMenuGroup>
-        <NuxtLink :to="userURL" :title="$t('nav.header.user.profile')">
+        <NuxtLink :to="authUserURL" :title="$t('nav.header.user.profile')">
           <DropdownMenuItem class="cursor-pointer gap-2">
             <UserRoundIcon :size="16" />
             <span>{{ $t('nav.header.user.profile') }}</span>

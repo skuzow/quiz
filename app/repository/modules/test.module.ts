@@ -4,15 +4,15 @@ import Routes from '@/repository/routes.client';
 class TestModule extends FetchFactory {
   private readonly ROUTE = Routes.Test;
 
-  async getById(id: string): Promise<IUserTest> {
-    return this.call<IUserTest>({
+  async getById(id: string) {
+    return this.call<{ test: UserTest }>({
       method: 'GET',
       url: this.ROUTE.FetchId(id)
     });
   }
 
-  async getAll(page: number, search?: string): Promise<IUserTestPartial[]> {
-    return this.call<IUserTestPartial[]>({
+  async getAll(page: number, search?: string) {
+    return this.call<{ tests: UserTestPartial[] }>({
       method: 'GET',
       url: this.ROUTE.Fetch(),
       fetchOptions: {
@@ -21,12 +21,8 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async getAllById(
-    id: string,
-    page: number,
-    search?: string
-  ): Promise<IUserTestPartial[]> {
-    return this.call<IUserTestPartial[]>({
+  async getAllById(id: string, page: number, search?: string) {
+    return this.call<{ tests: UserTestPartial[] }>({
       method: 'GET',
       url: this.ROUTE.FetchUserId(id),
       fetchOptions: {
@@ -35,12 +31,8 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async getAllByUsername(
-    username: string,
-    page: number,
-    search?: string
-  ): Promise<IUserTestPartial[]> {
-    return this.call<IUserTestPartial[]>({
+  async getAllByUsername(username: string, page: number, search?: string) {
+    return this.call<{ tests: UserTestPartial[] }>({
       method: 'GET',
       url: this.ROUTE.FetchUserUsername(username),
       fetchOptions: {
@@ -56,15 +48,15 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async create(test: IUserTest): Promise<IUserTest> {
-    return this.call<IUserTest>({
+  async create(test: UserTest) {
+    return this.call<{ test: UserTest }>({
       method: 'POST',
       url: this.ROUTE.Fetch(),
       body: { test }
     });
   }
 
-  async generate(dto: ITestGeneration) {
+  async generate(dto: TestGeneration) {
     return this.call({
       method: 'POST',
       url: this.ROUTE.FetchAI(),
@@ -72,8 +64,8 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async update(id: string, test: IUserTest): Promise<IUserTest> {
-    return this.call<IUserTest>({
+  async update(id: string, test: UserTest) {
+    return this.call<{ test: UserTest }>({
       method: 'PUT',
       url: this.ROUTE.FetchId(id),
       body: { test }

@@ -2,7 +2,7 @@
 import { Settings2Icon } from 'lucide-vue-next';
 
 interface Props {
-  user: IUser;
+  user: User;
 }
 
 const { user } = defineProps<Props>();
@@ -18,7 +18,7 @@ seoMeta({
   description: `${title} ${$t('nav.header.user.profile')}`
 });
 
-const { isAuthenticated, user: authUser } = useAuth();
+const { authUser, isAuthenticated } = useAuth();
 
 const tempRoles = ['User'];
 </script>
@@ -31,7 +31,7 @@ const tempRoles = ['User'];
         :height="96"
         :width="96"
         loading="lazy"
-        :user="user as IUserPartial"
+        :user="user"
         class="absolute bottom-2 left-2"
       />
 

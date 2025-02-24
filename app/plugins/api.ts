@@ -2,7 +2,7 @@ import AuthModule from '@/repository/modules/auth.module';
 import TestModule from '@/repository/modules/test.module';
 import UserModule from '@/repository/modules/user.module';
 
-export interface IApiInstance {
+export interface ApiInstance {
   auth: AuthModule;
   test: TestModule;
   user: UserModule;
@@ -19,7 +19,7 @@ export default defineNuxtPlugin(() => {
   const testModule = new TestModule(apiFetcher);
   const userModule = new UserModule(apiFetcher);
 
-  const modules: IApiInstance = {
+  const modules: ApiInstance = {
     auth: authModule,
     test: testModule,
     user: userModule

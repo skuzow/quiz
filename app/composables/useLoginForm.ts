@@ -21,7 +21,6 @@ export const useLoginForm = () => {
       .max(35, {
         message: maxMessage(FormInput.EMAIL, 35)
       }),
-
     password: z
       .string({
         required_error: requiredMessage(FormInput.PASSWORD)
@@ -34,7 +33,7 @@ export const useLoginForm = () => {
       })
   });
 
-  type ILogin = z.TypeOf<typeof formSchema>;
+  type LoginForm = z.TypeOf<typeof formSchema>;
 
   const fieldConfig = {
     email: {
@@ -54,7 +53,7 @@ export const useLoginForm = () => {
     }
   };
 
-  const loginWithEmail = async ({ email, password }: ILogin) => {
+  const loginWithEmail = async ({ email, password }: LoginForm) => {
     if (isLoadingWithEmail.value) return;
 
     isLoadingWithEmail.value = true;

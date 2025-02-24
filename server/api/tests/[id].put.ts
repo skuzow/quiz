@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { IUserTest } from '#shared/types/test.type';
-
 export default defineEventHandler(async (event) => {
   try {
-    const session = await repository.auth.checkSession(event.headers);
+    const authSession = await repository.auth.checkSession(event.headers);
 
     const { id } = getRouterParams(event);
 
-    const prevTest: IUserTest | null = await repository.test.findById(id);
+    const prevTest: UserTest | null = await repository.test.findById(id);
 
     if (!prevTest) {
       return sendError(
@@ -19,7 +17,7 @@ export default defineEventHandler(async (event) => {
       );
     }
 
-    if (session.user.id !== prevTest.author.id) {
+    if (authSession.user.id !== prevTest.author.id) {
       return sendError(
         event,
         createError({
@@ -42,9 +40,9 @@ export default defineEventHandler(async (event) => {
       );
     }
 
-    const test: IUserTest = await repository.test.update(
+    const test: UserTest = await repository.test.update(
       id,
-      editTest as IUserTest
+      editTest as UserTest
     );
 
     return {

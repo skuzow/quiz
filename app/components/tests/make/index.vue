@@ -2,7 +2,7 @@
 import { FilePenIcon, FileQuestionIcon, EyeIcon } from 'lucide-vue-next';
 
 interface Props {
-  test: IUserTest;
+  test: UserTest;
 }
 
 const { test } = defineProps<Props>();
@@ -14,7 +14,7 @@ seoMeta({
 
 const localePath = useLocalePath();
 
-const { isAuthenticated, user: authUser } = useAuth();
+const { authUser, isAuthenticated } = useAuth();
 
 const isLoadingEdit: Ref<boolean> = ref(false);
 
@@ -47,7 +47,7 @@ const tempCategories = ['Education', 'Science'];
             :height="40"
             :width="40"
             loading="lazy"
-            :user="test.author as IUserPartial"
+            :user="test.author"
           />
         </NuxtLink>
 

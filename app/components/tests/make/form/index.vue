@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 interface Props {
-  questions: IUserTestQuestion[];
+  questions: UserTestQuestion[];
 }
 
 const { questions } = defineProps<Props>();

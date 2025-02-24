@@ -2,7 +2,7 @@
 import { TestQuestionType } from '#shared/constants/test';
 
 interface Props {
-  question: IUserTestQuestion;
+  question: UserTestQuestion;
 }
 
 const { question } = defineProps<Props>();

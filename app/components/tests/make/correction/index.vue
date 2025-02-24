@@ -4,7 +4,7 @@ import { CheckIcon, XIcon } from 'lucide-vue-next';
 import { TestQuestionType } from '#shared/constants/test';
 
 interface Props {
-  correction: IUserTestCorrectionQuestion[];
+  correction: TestCorrectionQuestion[];
 }
 
 const { correction } = defineProps<Props>();

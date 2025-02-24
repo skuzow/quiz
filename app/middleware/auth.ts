@@ -1,9 +1,9 @@
-export default defineNuxtRouteMiddleware((_to, _from) => {
+export default defineNuxtRouteMiddleware(async (_to, _from) => {
   const { isAuthenticated } = useAuth();
 
-  if (!isAuthenticated.value) {
-    const localePath = useLocalePath();
+  if (isAuthenticated.value) return;
 
-    return navigateTo(localePath('/login'));
-  }
+  const localePath = useLocalePath();
+
+  await navigateTo(localePath('/login'));
 });
