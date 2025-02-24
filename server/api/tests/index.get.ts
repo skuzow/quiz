@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     );
   }
 
-  const tests: IUserTestPartial[] | null = await repository.test.findAll(
+  const tests: UserTestPartial[] | null = await repository.test.findAll(
     Number(page),
     search ? String(search) : undefined
   );

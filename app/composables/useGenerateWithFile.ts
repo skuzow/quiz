@@ -3,6 +3,7 @@ import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
 import { TestQuestionTypeValues } from '#shared/constants/test';
+import type { PreviewFile } from '@/types/file.type';
 import { FileTypes } from '@/constants/file';
 
 export const useGenerateWithFile = () => {
@@ -20,7 +21,7 @@ export const useGenerateWithFile = () => {
   const file: Ref<File | undefined> = ref(undefined);
   const requiredFileError: Ref<boolean> = ref(false);
 
-  const onFileChange = (inputFile: IPreviewFile | null) => {
+  const onFileChange = (inputFile: PreviewFile | null) => {
     file.value = inputFile?.file;
   };
 
@@ -54,7 +55,7 @@ export const useGenerateWithFile = () => {
     deep: z.boolean().default(true)
   });
 
-  type IFile = z.TypeOf<typeof zodFileFormSchema>;
+  type GenerateFileForm = z.TypeOf<typeof zodFileFormSchema>;
 
   const validationSchema = toTypedSchema(zodFileFormSchema);
 
@@ -63,7 +64,7 @@ export const useGenerateWithFile = () => {
   });
 
   const generateWithFile = handleSubmit(
-    async ({ type, questions, options, deep }: IFile) => {
+    async ({ type, questions, options, deep }: GenerateFileForm) => {
       if (isLoadingWithFile.value) return;
 
       requiredFileError.value = false;
@@ -99,7 +100,7 @@ export const useGenerateWithFile = () => {
           info: formatTextContent(text)
         });
 
-        testStore.createTest = result?.body?.test as IUserTest;
+        testStore.createTest = result?.body?.test as UserTest;
 
         await navigateTo(localePath('/create'));
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

@@ -5,21 +5,21 @@ class UserModule extends FetchFactory {
   private readonly ROUTE = Routes.User;
 
   async getById(id: string) {
-    return this.call<{ user: IUser }>({
+    return this.call<{ user: User }>({
       method: 'GET',
       url: this.ROUTE.FetchId(id)
     });
   }
 
   async getByUsername(username: string) {
-    return this.call<{ user: IUser }>({
+    return this.call<{ user: User }>({
       method: 'GET',
       url: this.ROUTE.FetchUsername(username)
     });
   }
 
-  async update(id: string, dto: IUser) {
-    return this.call<{ user: IUser }>({
+  async update(id: string, dto: User) {
+    return this.call<{ user: User }>({
       method: 'PUT',
       url: this.ROUTE.FetchId(id),
       body: dto

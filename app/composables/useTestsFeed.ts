@@ -14,7 +14,7 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
   const { FormInput, maxMessage } = useFormMessage();
 
-  const tests: Ref<IUserTestPartial[]> = ref([]);
+  const tests: Ref<UserTestPartial[]> = ref([]);
 
   const page: Ref<number> = ref(0);
   const search: Ref<string | undefined> = ref();
@@ -58,7 +58,7 @@ export const useTestsFeed = (id?: string, username?: string) => {
     try {
       const response = await testsRequest();
 
-      const responseTests: IUserTestPartial[] = response.body.tests;
+      const responseTests: UserTestPartial[] = response.body.tests;
 
       tests.value.push(...responseTests);
 

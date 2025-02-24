@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-import type { IUserPartial } from './user.type';
+import type { UserPartial } from './user.type';
 
 import {
   type TestCategory,
@@ -8,39 +8,39 @@ import {
   TestQuestionTypeValues
 } from '../constants/test';
 
-export interface IUserTestPartial {
+export interface UserTestPartial {
   id: string;
   title: string;
   description: string;
   image: string | null;
-  author: IUserPartial | null;
+  author: UserPartial | null;
   categories: TestCategory[];
   questions: number;
   views: number;
   createdAt: Date;
 }
 
-export interface IUserTest {
+export interface UserTest {
   id: string;
   title: string;
   description: string;
   image: string | null;
-  author: IUserPartial;
+  author: UserPartial;
   categories: TestCategory[];
-  questions: IUserTestQuestion[];
+  questions: UserTestQuestion[];
   views: number;
   createdAt: Date;
 }
 
-export interface IUserTestQuestion {
+export interface UserTestQuestion {
   number: number;
   text: string;
   image: string | null;
   type: TestQuestionType;
-  options: IUserTestQuestionOption[];
+  options: UserTestQuestionOption[];
 }
 
-export interface IUserTestQuestionOption {
+export interface UserTestQuestionOption {
   number: number;
   text: string;
   isCorrect: boolean;
@@ -64,17 +64,17 @@ export const TestGenerationSchema = z.object({
   info: z.string().min(10)
 });
 
-export type ITestGeneration = z.infer<typeof TestGenerationSchema>;
+export type TestGeneration = z.infer<typeof TestGenerationSchema>;
 
-export interface IUserTestCorrectionQuestion {
+export interface TestCorrectionQuestion {
   number: number;
   text: string;
   image: string | null;
   type: TestQuestionType;
-  options: IUserTestCorrectionQuestionOption[];
+  options: TestCorrectionQuestionOption[];
 }
 
-export interface IUserTestCorrectionQuestionOption {
+export interface TestCorrectionQuestionOption {
   number: number;
   text: string;
   isCorrect: boolean;

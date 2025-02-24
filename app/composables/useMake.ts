@@ -4,7 +4,7 @@ import { useForm } from 'vee-validate';
 
 import { TestQuestionType, MAX_TEST_OPTIONS } from '#shared/constants/test';
 
-export const useMake = (questions: IUserTestQuestion[]) => {
+export const useMake = (questions: UserTestQuestion[]) => {
   const { t: $t } = useI18n();
 
   const { FormInput, minMessage } = useFormMessage();
@@ -12,7 +12,7 @@ export const useMake = (questions: IUserTestQuestion[]) => {
   const { alert } = useAlert();
 
   const isLoadingMake: Ref<boolean> = ref(false);
-  const makeCorrection: Ref<IUserTestCorrectionQuestion[] | undefined> = ref();
+  const makeCorrection: Ref<TestCorrectionQuestion[] | undefined> = ref();
 
   const responseEnum = z.enum([
     '0',
@@ -43,12 +43,12 @@ export const useMake = (questions: IUserTestQuestion[]) => {
       )
   });
 
-  type IMakeQuestion =
+  type MakeQuestionForm =
     | z.infer<typeof zodSingleQuestionFormSchema>
     | z.infer<typeof zodMultipleQuestionFormSchema>;
 
-  type IMake = {
-    questions: IMakeQuestion[];
+  type MakeForm = {
+    questions: MakeQuestionForm[];
   };
 
   const validationSchema = toTypedSchema(zodFormSchema);
@@ -71,7 +71,7 @@ export const useMake = (questions: IUserTestQuestion[]) => {
     }
   });
 
-  const makeTest = handleSubmit(async ({ questions }: IMake) => {
+  const makeTest = handleSubmit(async ({ questions }: MakeForm) => {
     if (isLoadingMake.value) return;
 
     if (isSomeQuestionEmpty(questions)) {
@@ -90,10 +90,10 @@ export const useMake = (questions: IUserTestQuestion[]) => {
     isLoadingMake.value = false;
   });
 
-  const correctTest = (makeQuestions: IMakeQuestion[]) => {
+  const correctTest = (makeQuestions: MakeQuestionForm[]) => {
     makeCorrection.value = makeQuestions.map(
       ({ type, options: makeOptions }, indexMakeQuestion) => {
-        const question: IUserTestQuestion = questions[indexMakeQuestion]!;
+        const question: UserTestQuestion = questions[indexMakeQuestion]!;
 
         if (type === TestQuestionType.SINGLE)
           return correctSingleQuestion(makeOptions, question);
@@ -105,8 +105,8 @@ export const useMake = (questions: IUserTestQuestion[]) => {
 
   const correctSingleQuestion = (
     makeQuestionOption: string | undefined,
-    question: IUserTestQuestion
-  ): IUserTestCorrectionQuestion => {
+    question: UserTestQuestion
+  ): TestCorrectionQuestion => {
     return {
       ...question,
       options: question.options.map((option) => ({
@@ -118,7 +118,7 @@ export const useMake = (questions: IUserTestQuestion[]) => {
 
   const correctMultipleQuestion = (
     makeQuestionOption: string[] | undefined,
-    question: IUserTestQuestion
+    question: UserTestQuestion
   ) => {
     return {
       ...question,
@@ -137,14 +137,14 @@ export const useMake = (questions: IUserTestQuestion[]) => {
     scrollTop();
   };
 
-  const isSomeQuestionAnswered = (questions: IMakeQuestion[]): boolean => {
+  const isSomeQuestionAnswered = (questions: MakeQuestionForm[]): boolean => {
     return questions.some(({ type, options }) => {
       if (type === TestQuestionType.SINGLE) return options;
       else if (type === TestQuestionType.MULTIPLE) return options?.length;
     });
   };
 
-  const isSomeQuestionEmpty = (questions: IMakeQuestion[]): boolean => {
+  const isSomeQuestionEmpty = (questions: MakeQuestionForm[]): boolean => {
     return questions.some(({ type, options }) => {
       if (type === TestQuestionType.SINGLE) return !options;
       else if (type === TestQuestionType.MULTIPLE) return !options?.length;

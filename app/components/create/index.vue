@@ -64,7 +64,7 @@ const deleteTest = async () => {
           :height="40"
           :width="40"
           loading="lazy"
-          :user="user as IUserPartial"
+          :user="user as UserPartial"
         />
       </NuxtLink>
 

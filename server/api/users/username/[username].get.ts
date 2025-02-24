@@ -1,7 +1,7 @@
 export default defineEventHandler(async (event) => {
   const { username } = getRouterParams(event);
 
-  const user: IUser | null = await repository.user.findByUsername(username);
+  const user: User | null = await repository.user.findByUsername(username);
 
   if (!user) {
     return sendError(

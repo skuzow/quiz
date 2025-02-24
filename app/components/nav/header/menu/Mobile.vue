@@ -26,7 +26,7 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
               :title="isAuthenticated ? $t('tests.title') : $t('nav.home')"
             >
               <div v-if="isAuthenticated" class="flex justify-start gap-x-2">
-                <CommonAvatar loading="lazy" :user="user as IUserPartial" />
+                <CommonAvatar loading="lazy" :user="user as UserPartial" />
 
                 <div class="flex flex-col items-start">
                   <h3 class="text-sm">{{ user?.name }}</h3>

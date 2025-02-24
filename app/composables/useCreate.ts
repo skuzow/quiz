@@ -79,28 +79,28 @@ export const useCreate = (edit?: boolean) => {
       .max(100, maxMessage(FormInput.QUESTIONS, 100, false))
   });
 
-  type ICreate = z.TypeOf<typeof zodFormSchema>;
+  type CreateForm = z.TypeOf<typeof zodFormSchema>;
 
-  type ICreateQuestion = ICreate['questions'][0];
-  type ICreateOption = ICreate['questions'][0]['options'][0];
+  type CreateQuestionForm = CreateForm['questions'][0];
+  type CreateQuestionOptionForm = CreateForm['questions'][0]['options'][0];
 
-  const initialCorrectOptionValue: ICreateOption = {
+  const initialCorrectOptionValue: CreateQuestionOptionForm = {
     text: '',
     isCorrect: true
   };
 
-  const initialIncorrectOptionValue: ICreateOption = {
+  const initialIncorrectOptionValue: CreateQuestionOptionForm = {
     text: '',
     isCorrect: false
   };
 
-  const initialSingleQuestionValue: ICreateQuestion = {
+  const initialSingleQuestionValue: CreateQuestionForm = {
     text: '',
     type: TestQuestionType.SINGLE,
     options: [initialCorrectOptionValue, initialIncorrectOptionValue]
   };
 
-  const initialMultipleQuestionValue: ICreateQuestion = {
+  const initialMultipleQuestionValue: CreateQuestionForm = {
     text: '',
     type: TestQuestionType.MULTIPLE,
     options: [
@@ -110,7 +110,7 @@ export const useCreate = (edit?: boolean) => {
     ]
   };
 
-  const initialFormValue: ICreate = {
+  const initialFormValue: CreateForm = {
     title: '',
     description: '',
     questions: [initialSingleQuestionValue, initialMultipleQuestionValue]
@@ -134,12 +134,12 @@ export const useCreate = (edit?: boolean) => {
   //   { deep: true }
   // );
 
-  const questions: FieldArrayContext<ICreateQuestion> = useFieldArray(
+  const questions: FieldArrayContext<CreateQuestionForm> = useFieldArray(
     FormInput.QUESTIONS
   );
 
-  const options: ComputedRef<FieldArrayContext<ICreateOption>[]> = computed(
-    () => {
+  const options: ComputedRef<FieldArrayContext<CreateQuestionOptionForm>[]> =
+    computed(() => {
       return questions.fields.value.map(
         (_questionField, indexQuestionField) => {
           return useFieldArray(
@@ -147,8 +147,7 @@ export const useCreate = (edit?: boolean) => {
           );
         }
       );
-    }
-  );
+    });
 
   const questionPath = (indexQuestion: number) =>
     `${FormInput.QUESTIONS}.${indexQuestion}`;
@@ -156,14 +155,14 @@ export const useCreate = (edit?: boolean) => {
   const optionPath = (indexQuestion: number, indexOption: number) =>
     `${questionPath(indexQuestion)}.${FormInput.OPTIONS}.${indexOption}`;
 
-  const testCreateEditRequest = async (create: ICreate) => {
+  const testCreateEditRequest = async (create: CreateForm) => {
     if (edit)
-      return $api.test.update(testStore.editTest!.id, create as IUserTest);
+      return $api.test.update(testStore.editTest!.id, create as UserTest);
 
-    return $api.test.create(create as IUserTest);
+    return $api.test.create(create as UserTest);
   };
 
-  const createTest = handleSubmit(async (create: ICreate) => {
+  const createTest = handleSubmit(async (create: CreateForm) => {
     if (isLoadingCreate.value) return;
 
     isLoadingCreate.value = true;
@@ -172,7 +171,7 @@ export const useCreate = (edit?: boolean) => {
     try {
       const result = await testCreateEditRequest(create);
 
-      const test: IUserTest = result.body.test;
+      const test: UserTest = result.body.test;
 
       await navigateTo(localePath(`/tests/${test.id}`));
 

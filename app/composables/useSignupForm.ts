@@ -37,7 +37,6 @@ export const useSignupForm = () => {
         async (value) => await isEmailAvailableTimeout(value),
         alreadyUseMessage(FormInput.EMAIL)
       ),
-
     name: z
       .string({
         required_error: requiredMessage(FormInput.NAME)
@@ -48,7 +47,6 @@ export const useSignupForm = () => {
       .max(40, {
         message: maxMessage(FormInput.NAME, 40)
       }),
-
     username: z
       .string({
         required_error: requiredMessage(FormInput.USERNAME)
@@ -63,7 +61,6 @@ export const useSignupForm = () => {
         async (value) => await isUsernameAlreadyInUseTimeout(value),
         alreadyUseMessage(FormInput.USERNAME)
       ),
-
     password: z
       .string({
         required_error: requiredMessage(FormInput.PASSWORD)
@@ -76,7 +73,7 @@ export const useSignupForm = () => {
       })
   });
 
-  type ISignup = z.TypeOf<typeof formSchema>;
+  type SignupForm = z.TypeOf<typeof formSchema>;
 
   const fieldConfig = {
     email: {
@@ -187,7 +184,7 @@ export const useSignupForm = () => {
     name,
     username,
     password
-  }: ISignup) => {
+  }: SignupForm) => {
     if (isLoadingWithEmail.value) return;
 
     isLoadingWithEmail.value = true;

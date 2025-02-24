@@ -2,7 +2,7 @@
 import { EyeIcon, FileQuestionIcon } from 'lucide-vue-next';
 
 interface Props {
-  test: IUserTestPartial;
+  test: UserTestPartial;
 }
 
 const { test } = defineProps<Props>();

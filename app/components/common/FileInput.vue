@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { XIcon, CloudUploadIcon } from 'lucide-vue-next';
 
+import type { PreviewFile } from '@/types/file.type';
 import type { FileExtensions, FileTypes } from '@/constants/file';
 
 interface Props {
@@ -13,7 +14,7 @@ const { accept, types } = defineProps<Props>();
 const id: string = useId();
 
 const active: Ref<boolean> = ref(false);
-const filePreview: Ref<IPreviewFile | null> = ref(null);
+const filePreview: Ref<PreviewFile | null> = ref(null);
 const invalidFileType: Ref<boolean> = ref(false);
 
 const emit = defineEmits(['change']);

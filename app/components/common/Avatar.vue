@@ -8,7 +8,7 @@ interface Props {
   width?: number;
   loading?: 'lazy' | 'eager';
   alt?: string;
-  user: IUserPartial;
+  user: UserPartial;
 }
 
 const {

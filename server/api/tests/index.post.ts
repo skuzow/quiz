@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { IUserTest } from '#shared/types/test.type';
-
 export default defineEventHandler(async (event) => {
   try {
     const session = await repository.auth.checkSession(event.headers);
@@ -18,9 +16,9 @@ export default defineEventHandler(async (event) => {
       );
     }
 
-    const test: IUserTest = await repository.test.create(
+    const test: UserTest = await repository.test.create(
       session.user.id,
-      createTest as IUserTest
+      createTest as UserTest
     );
 
     return {
