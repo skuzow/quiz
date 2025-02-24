@@ -34,13 +34,16 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
     <section>
       <ol ref="infinite-scroll" class="grid grid-cols-1 gap-4">
         <template v-if="tests.length">
-          <li v-for="(test, index) in tests" :key="index">
+          <li v-for="test in tests" :key="test.id">
             <TestsFeedCard :test="test" />
           </li>
         </template>
 
         <template v-if="(!tests.length || isLoading) && !errorMessage">
-          <li v-for="index in TESTS_PAGE_SIZE" :key="index">
+          <li
+            v-for="indexCardSkeleton in TESTS_PAGE_SIZE"
+            :key="indexCardSkeleton"
+          >
             <TestsFeedCardSkeleton />
           </li>
         </template>

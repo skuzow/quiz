@@ -52,7 +52,10 @@ const tempCategories = ['Education', 'Science'];
         </NuxtLink>
 
         <ul class="absolute bottom-2 left-2 flex gap-x-2">
-          <li v-for="(category, index) in tempCategories" :key="index">
+          <li
+            v-for="(category, indexCategory) in tempCategories"
+            :key="indexCategory"
+          >
             <Badge>{{ category }}</Badge>
           </li>
         </ul>
