@@ -33,12 +33,8 @@ const tempCategories = ['Education', 'Science'];
   <div class="flex flex-col gap-y-8">
     <div class="flex flex-col gap-y-6">
       <CommonTopImage src="/images/test.avif" alt="Test image">
-        <NuxtLink
-          :to="
-            localePath(
-              `/users/${test.author.username || `id/${test.author.id}`}`
-            )
-          "
+        <NuxtLinkLocale
+          :to="`/users/${test.author.username || `id/${test.author.id}`}`"
           :title="`${$t('nav.header.user.profile')} ${test.author.name}`"
           class="absolute left-2 top-2"
         >
@@ -49,7 +45,7 @@ const tempCategories = ['Education', 'Science'];
             loading="lazy"
             :user="test.author"
           />
-        </NuxtLink>
+        </NuxtLinkLocale>
 
         <ul class="absolute bottom-2 left-2 flex gap-x-2">
           <li

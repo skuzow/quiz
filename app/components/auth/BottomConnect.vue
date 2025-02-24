@@ -5,8 +5,6 @@ interface Props {
 }
 
 const { text, connection } = defineProps<Props>();
-
-const localePath = useLocalePath();
 </script>
 
 <template>
@@ -15,12 +13,12 @@ const localePath = useLocalePath();
       {{ text }}
     </span>
 
-    <NuxtLink
-      :to="localePath(`/${connection}`)"
+    <NuxtLinkLocale
+      :to="`/${connection}`"
       :title="$t(`nav.header.${connection}`)"
       class="cursor-pointer hover:underline"
     >
       {{ $t(`nav.header.${connection}`) }}
-    </NuxtLink>
+    </NuxtLinkLocale>
   </p>
 </template>

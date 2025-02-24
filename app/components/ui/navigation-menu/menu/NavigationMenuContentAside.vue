@@ -6,14 +6,12 @@ interface Props {
 const { navMenuAside } = defineProps<Props>();
 
 const { link, title, description } = navMenuAside;
-
-const localePath = useLocalePath();
 </script>
 
 <template>
   <li class="row-span-3">
     <NavigationMenuLink as-child>
-      <NuxtLink :to="localePath(link)" :title="title">
+      <NuxtLinkLocale :to="link" :title="title">
         <div
           class="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none hover:to-muted/90 focus:shadow-md"
         >
@@ -27,7 +25,7 @@ const localePath = useLocalePath();
             {{ description }}
           </p>
         </div>
-      </NuxtLink>
+      </NuxtLinkLocale>
     </NavigationMenuLink>
   </li>
 </template>

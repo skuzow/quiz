@@ -67,8 +67,8 @@ const {
 
       <NavigationMenuItem>
         <NavigationMenuLink as-child>
-          <NuxtLink
-            :to="localePath(aboutNavMenuItems[0]!.link)"
+          <NuxtLinkLocale
+            :to="aboutNavMenuItems[0]!.link"
             :title="$t('nav.about')"
             :class="
               cn(
@@ -80,7 +80,7 @@ const {
             "
           >
             {{ $t('nav.about') }}
-          </NuxtLink>
+          </NuxtLinkLocale>
         </NavigationMenuLink>
       </NavigationMenuItem>
     </NavigationMenuList>
