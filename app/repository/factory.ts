@@ -34,13 +34,13 @@ abstract class HttpFactory {
     body,
     fetchOptions
   }: IHttpFactory): Promise<TypedInternalResponse<NitroFetchRequest, T>> {
-    const { locale } = useI18n();
+    const locale = useCookie('i18n_redirected');
 
     return this.$fetch<T>(url, {
       method,
       body,
       headers: {
-        'Accept-Language': locale.value,
+        'Accept-Language': locale.value || 'en',
         'Content-Type': 'application/json'
       },
       ...fetchOptions
