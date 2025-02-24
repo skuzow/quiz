@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TestQuestionType } from '#shared/constants/test';
+import { TestQuestionTypeValues } from '#shared/constants/test';
 
 interface Props {
   path: string;
@@ -20,17 +20,11 @@ const { path } = defineProps<Props>();
         <SelectContent>
           <SelectGroup>
             <SelectItem
-              v-for="typeKey in Object.keys(TestQuestionType)"
-              :key="typeKey"
-              :value="typeKey"
+              v-for="type in TestQuestionTypeValues"
+              :key="type"
+              :value="type"
             >
-              {{
-                $t(
-                  `form.types.${TestQuestionType[
-                    typeKey as keyof typeof TestQuestionType
-                  ].toLowerCase()}`
-                )
-              }}
+              {{ $t(`form.types.${type.toLowerCase()}`) }}
             </SelectItem>
           </SelectGroup>
         </SelectContent>
