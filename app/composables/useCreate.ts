@@ -84,26 +84,36 @@ export const useCreate = (edit?: boolean) => {
   type ICreateQuestion = ICreate['questions'][0];
   type ICreateOption = ICreate['questions'][0]['options'][0];
 
-  const correctInitialOptionValue: ICreateOption = {
+  const initialCorrectOptionValue: ICreateOption = {
     text: '',
     isCorrect: true
   };
 
-  const initialOptionValue: ICreateOption = {
+  const initialIncorrectOptionValue: ICreateOption = {
     text: '',
     isCorrect: false
   };
 
-  const initialQuestionValue: ICreateQuestion = {
+  const initialSingleQuestionValue: ICreateQuestion = {
     text: '',
     type: TestQuestionType.SINGLE,
-    options: [correctInitialOptionValue, initialOptionValue]
+    options: [initialCorrectOptionValue, initialIncorrectOptionValue]
+  };
+
+  const initialMultipleQuestionValue: ICreateQuestion = {
+    text: '',
+    type: TestQuestionType.MULTIPLE,
+    options: [
+      initialCorrectOptionValue,
+      initialIncorrectOptionValue,
+      initialCorrectOptionValue
+    ]
   };
 
   const initialFormValue: ICreate = {
     title: '',
     description: '',
-    questions: [initialQuestionValue, initialQuestionValue]
+    questions: [initialSingleQuestionValue, initialMultipleQuestionValue]
   };
 
   const validationSchema = toTypedSchema(zodFormSchema);
@@ -181,8 +191,8 @@ export const useCreate = (edit?: boolean) => {
   return {
     isLoadingCreate,
     internalServerErrorCreate,
-    initialOptionValue,
-    initialQuestionValue,
+    initialIncorrectOptionValue,
+    initialSingleQuestionValue,
     errorBag,
     isFieldDirty,
     questions,

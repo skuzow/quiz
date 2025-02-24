@@ -8,8 +8,8 @@ const { edit } = defineProps<Props>();
 const {
   isLoadingCreate,
   internalServerErrorCreate,
-  initialOptionValue,
-  initialQuestionValue,
+  initialIncorrectOptionValue,
+  initialSingleQuestionValue,
   errorBag,
   isFieldDirty,
   questions,
@@ -109,7 +109,9 @@ const { FormInput, exampleMessage } = useFormMessage();
           <Button
             class="w-fit"
             variant="secondary"
-            @click.prevent="options[indexQuestion]!.push(initialOptionValue)"
+            @click.prevent="
+              options[indexQuestion]!.push(initialIncorrectOptionValue)
+            "
           >
             {{ $t('create.form.addOption') }}
           </Button>
@@ -128,7 +130,7 @@ const { FormInput, exampleMessage } = useFormMessage();
     <div class="flex gap-x-2">
       <Button
         variant="secondary"
-        @click.prevent="questions.push(initialQuestionValue)"
+        @click.prevent="questions.push(initialSingleQuestionValue)"
       >
         {{ $t('create.form.addQuestion') }}
       </Button>
