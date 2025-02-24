@@ -20,7 +20,7 @@ const user = computed(() => data.value?.body.user);
 
 <template>
   <div class="flex flex-col gap-y-8">
-    <UsersProfileSkeleton v-if="status === 'pending'" />
+    <UsersProfileSkeleton v-if="status === 'pending' && !data" />
 
     <UsersProfile v-else-if="status === 'success' && user" :user="user" />
 

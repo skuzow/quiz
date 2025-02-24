@@ -20,7 +20,7 @@ const test = computed(() => data.value?.body.test);
 
 <template>
   <div>
-    <TestsMakeSkeleton v-if="status === 'pending'" />
+    <TestsMakeSkeleton v-if="status === 'pending' && !data" />
 
     <TestsMake v-else-if="status === 'success' && test" :test="test" />
   </div>
