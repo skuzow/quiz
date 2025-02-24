@@ -4,8 +4,6 @@ import { MenuIcon, UserRoundIcon, Settings2Icon } from 'lucide-vue-next';
 const { authUser, isAuthenticated, authUserInfo, authUserURL, signOut } =
   useAuth();
 
-const localePath = useLocalePath();
-
 const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
   useNavMenu();
 </script>
@@ -22,8 +20,8 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
       <SheetHeader>
         <SheetTitle>
           <SheetClose as-child>
-            <NuxtLink
-              :to="localePath(isAuthenticated ? '/tests' : '/')"
+            <NuxtLinkLocale
+              :to="isAuthenticated ? '/tests' : '/'"
               :title="isAuthenticated ? $t('tests.title') : $t('nav.home')"
             >
               <div v-if="isAuthenticated" class="flex justify-start gap-x-2">
@@ -41,7 +39,7 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
               <NavLogo v-else />
 
               <span class="sr-only">{{ $t('nav.header.menu.title') }}</span>
-            </NuxtLink>
+            </NuxtLinkLocale>
           </SheetClose>
         </SheetTitle>
         <SheetDescription class="sr-only">
@@ -120,25 +118,19 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
 
         <template v-else>
           <SheetClose as-child>
-            <NuxtLink
-              :to="localePath('/login')"
-              :title="$t('nav.header.login')"
-            >
+            <NuxtLinkLocale to="/login" :title="$t('nav.header.login')">
               <Button variant="secondary" class="w-full">
                 {{ $t('nav.header.login') }}
               </Button>
-            </NuxtLink>
+            </NuxtLinkLocale>
           </SheetClose>
 
           <SheetClose as-child>
-            <NuxtLink
-              :to="localePath('/signup')"
-              :title="$t('nav.header.signup')"
-            >
+            <NuxtLinkLocale to="/signup" :title="$t('nav.header.signup')">
               <Button class="w-full">
                 {{ $t('nav.header.signup') }}
               </Button>
-            </NuxtLink>
+            </NuxtLinkLocale>
           </SheetClose>
         </template>
       </div>

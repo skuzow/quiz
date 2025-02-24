@@ -2,8 +2,6 @@
 import { ArrowUpRightIcon, SparkleIcon } from 'lucide-vue-next';
 
 seoMeta();
-
-const localePath = useLocalePath();
 </script>
 
 <template>
@@ -21,25 +19,19 @@ const localePath = useLocalePath();
       </p>
 
       <div class="flex gap-x-4">
-        <NuxtLink
-          :to="localePath('/tests')"
-          :title="$t('landing.buttons.start')"
-        >
+        <NuxtLinkLocale to="/tests" :title="$t('landing.buttons.start')">
           <Button class="gap-x-2">
             {{ $t('landing.buttons.start') }}
             <ArrowUpRightIcon :size="16" />
           </Button>
-        </NuxtLink>
+        </NuxtLinkLocale>
 
-        <NuxtLink
-          :to="localePath('/generate')"
-          :title="$t('landing.buttons.ai')"
-        >
+        <NuxtLinkLocale to="/generate" :title="$t('landing.buttons.ai')">
           <Button variant="secondary" class="gap-x-2">
             {{ $t('landing.buttons.ai') }}
             <SparkleIcon :size="16" stroke="url(#gradient-svg)" />
           </Button>
-        </NuxtLink>
+        </NuxtLinkLocale>
       </div>
     </section>
   </div>

@@ -11,8 +11,6 @@ seoMeta({
   title: String(error.statusCode),
   description: error.message
 });
-
-const localePath = useLocalePath();
 </script>
 
 <template>
@@ -31,11 +29,11 @@ const localePath = useLocalePath();
           {{ error.statusMessage }}
         </p>
 
-        <NuxtLink :to="localePath('/')">
+        <NuxtLinkLocale to="/">
           <Button class="w-full">
             {{ $t('nav.home') }}
           </Button>
-        </NuxtLink>
+        </NuxtLinkLocale>
       </div>
     </section>
   </NuxtLayout>

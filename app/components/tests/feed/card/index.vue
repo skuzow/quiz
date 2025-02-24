@@ -7,16 +7,14 @@ interface Props {
 
 const { test } = defineProps<Props>();
 
-const localePath = useLocalePath();
-
 const imageAlt: string = `image-${test.id}`;
 
 const tempCategories = ['Education', 'Science'];
 </script>
 
 <template>
-  <NuxtLink
-    :to="localePath(`/tests/${test.id}`)"
+  <NuxtLinkLocale
+    :to="`/tests/${test.id}`"
     :title="test.title"
     class="flex cursor-pointer flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow sm:flex-row"
   >
@@ -30,11 +28,9 @@ const tempCategories = ['Education', 'Science'];
         class="h-[110px] object-cover sm:h-[140px]"
       />
 
-      <NuxtLink
+      <NuxtLinkLocale
         v-if="test.author"
-        :to="
-          localePath(`/users/${test.author.username || `id/${test.author.id}`}`)
-        "
+        :to="`/users/${test.author.username || `id/${test.author.id}`}`"
         :title="`${$t('nav.header.user.profile')} ${test.author.name}`"
         class="absolute bottom-2 left-2 h-10"
       >
@@ -45,7 +41,7 @@ const tempCategories = ['Education', 'Science'];
           loading="lazy"
           :user="test.author"
         />
-      </NuxtLink>
+      </NuxtLinkLocale>
     </div>
 
     <div class="p-6 sm:w-3/4">
@@ -82,5 +78,5 @@ const tempCategories = ['Education', 'Science'];
         </ul>
       </div>
     </div>
-  </NuxtLink>
+  </NuxtLinkLocale>
 </template>
