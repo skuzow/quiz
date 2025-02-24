@@ -56,7 +56,7 @@ const tempRoles = ['User'];
       </h1>
 
       <ul class="flex gap-x-2">
-        <li v-for="(role, index) in tempRoles" :key="index">
+        <li v-for="(role, indexRole) in tempRoles" :key="indexRole">
           <Badge>{{ role }}</Badge>
         </li>
       </ul>

@@ -32,7 +32,7 @@ const optionsPath: string = `${FormInput.QUESTIONS}.${question.number}.${FormInp
         >
           <FormItem
             v-for="option in question.options"
-            :key="option.number"
+            :key="`question-${question.number}-option-${option.number}`"
             class="flex items-center gap-x-3 space-y-0"
           >
             <FormControl>
@@ -47,7 +47,10 @@ const optionsPath: string = `${FormInput.QUESTIONS}.${question.number}.${FormInp
           v-else-if="question.type === TestQuestionType.MULTIPLE"
           class="flex flex-col gap-y-2"
         >
-          <li v-for="option in question.options" :key="option.number">
+          <li
+            v-for="option in question.options"
+            :key="`question-${question.number}-option-${option.number}`"
+          >
             <FormField
               v-slot="{ value, handleChange }"
               type="checkbox"

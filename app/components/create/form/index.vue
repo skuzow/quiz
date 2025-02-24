@@ -65,7 +65,7 @@ const { FormInput, exampleMessage } = useFormMessage();
     <ol v-auto-animate class="flex flex-col gap-y-8">
       <li
         v-for="(questionField, indexQuestion) in questions.fields.value"
-        :key="indexQuestion"
+        :key="`question-${indexQuestion}`"
         class="flex flex-col gap-y-6"
       >
         <CreateFormQuestion
@@ -84,7 +84,7 @@ const { FormInput, exampleMessage } = useFormMessage();
           <li
             v-for="(_optionField, indexOption) in options[indexQuestion]!.fields
               .value"
-            :key="indexOption"
+            :key="`question-${indexQuestion}-option-${indexOption}`"
           >
             <CreateFormOption
               :question-field="questionField"
