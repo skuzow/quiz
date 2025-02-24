@@ -7,9 +7,9 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
 
   const test = result.body.test;
 
-  const { user } = useAuth();
+  const { authUser } = useAuth();
 
-  if (user.value?.id !== test.author.id) {
+  if (authUser.value?.id !== test.author.id) {
     const localePath = useLocalePath();
 
     return await navigateTo(localePath(`/tests/${id}`));

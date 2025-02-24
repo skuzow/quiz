@@ -14,7 +14,7 @@ seoMeta({
 
 const localePath = useLocalePath();
 
-const { isAuthenticated, user: authUser } = useAuth();
+const { authUser, isAuthenticated } = useAuth();
 
 const isLoadingEdit: Ref<boolean> = ref(false);
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export default defineEventHandler(async (event) => {
   try {
-    const session = await repository.auth.checkSession(event.headers);
+    const authSession = await repository.auth.checkSession(event.headers);
 
     const { id } = getRouterParams(event);
 
@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
       );
     }
 
-    if (session.user.id !== test.author.id) {
+    if (authSession.user.id !== test.author.id) {
       return sendError(
         event,
         createError({

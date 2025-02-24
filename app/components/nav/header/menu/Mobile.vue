@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { MenuIcon, UserRoundIcon, Settings2Icon } from 'lucide-vue-next';
 
-const { user, isAuthenticated, userInfo, userURL, signOut } = useAuth();
+const { authUser, isAuthenticated, authUserInfo, authUserURL, signOut } =
+  useAuth();
 
 const localePath = useLocalePath();
 
@@ -26,13 +27,13 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
               :title="isAuthenticated ? $t('tests.title') : $t('nav.home')"
             >
               <div v-if="isAuthenticated" class="flex justify-start gap-x-2">
-                <CommonAvatar loading="lazy" :user="user as UserPartial" />
+                <CommonAvatar loading="lazy" :user="authUser as UserPartial" />
 
                 <div class="flex flex-col items-start">
-                  <h3 class="text-sm">{{ user?.name }}</h3>
+                  <h3 class="text-sm">{{ authUser?.name }}</h3>
 
                   <p class="text-xs font-medium">
-                    {{ userInfo }}
+                    {{ authUserInfo }}
                   </p>
                 </div>
               </div>
@@ -52,7 +53,10 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
         <ul class="flex items-start py-2">
           <li>
             <SheetClose as-child>
-              <NuxtLink :to="userURL" :title="$t('nav.header.user.profile')">
+              <NuxtLink
+                :to="authUserURL"
+                :title="$t('nav.header.user.profile')"
+              >
                 <Button variant="link" class="gap-2 pl-0">
                   <UserRoundIcon :size="16" />
                   <span>{{ $t('nav.header.user.profile') }}</span>

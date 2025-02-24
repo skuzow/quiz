@@ -18,7 +18,7 @@ seoMeta({
   description: `${title} ${$t('nav.header.user.profile')}`
 });
 
-const { isAuthenticated, user: authUser } = useAuth();
+const { authUser, isAuthenticated } = useAuth();
 
 const tempRoles = ['User'];
 </script>
