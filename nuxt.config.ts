@@ -1,3 +1,5 @@
+import locales from './i18n/locales';
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
@@ -43,22 +45,12 @@ export default defineNuxtConfig({
   },
 
   i18n: {
-    locales: [
-      {
-        code: 'en',
-        name: 'English',
-        file: 'en-US.json'
-      },
-      {
-        code: 'es',
-        name: 'Español',
-        file: 'es-ES.json'
-      }
-    ],
     lazy: true,
-    restructureDir: 'app',
-    langDir: 'lang',
-    defaultLocale: 'en'
+    defaultLocale: 'en',
+    locales,
+    experimental: {
+      localeDetector: 'localeDetector.ts'
+    }
   },
 
   site: {
