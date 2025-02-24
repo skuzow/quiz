@@ -5,5 +5,8 @@ export default defineNuxtRouteMiddleware((_to, _from) => {
 
   const nuxtApp = useNuxtApp();
 
-  abortNavigation(nuxtApp.$i18n.t('error.alreadyLoggedIn'));
+  abortNavigation({
+    statusCode: 403,
+    statusMessage: nuxtApp.$i18n.t('error.alreadyLoggedIn')
+  });
 });
