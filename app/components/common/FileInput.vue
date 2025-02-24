@@ -2,7 +2,7 @@
 import { XIcon, CloudUploadIcon } from 'lucide-vue-next';
 
 import type { PreviewFile } from '@/types/file.type';
-import type { FileExtensions, FileTypes } from '@/constants/file';
+import type { FileExtensions, FileTypes } from '@/constants/file.constant';
 
 interface Props {
   accept: FileExtensions[];

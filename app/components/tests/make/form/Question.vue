@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TestQuestionType } from '#shared/constants/test';
+import { TestQuestionType } from '#shared/constants/test.constant';
 
 interface Props {
   question: UserTestQuestion;

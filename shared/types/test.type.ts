@@ -6,7 +6,7 @@ import {
   type TestCategory,
   type TestQuestionType,
   TestQuestionTypeValues
-} from '../constants/test';
+} from '../constants/test.constant';
 
 export interface UserTestPartial {
   id: string;

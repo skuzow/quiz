@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { SunIcon, MoonIcon, LaptopMinimalIcon } from 'lucide-vue-next';
 
-import { Theme } from '@/constants/theme';
+import { Theme } from '@/constants/theme.constant';
 
 const colorMode = useColorMode();
 </script>

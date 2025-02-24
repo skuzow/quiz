@@ -2,9 +2,9 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
-import { TestQuestionTypeValues } from '#shared/constants/test';
+import { TestQuestionTypeValues } from '#shared/constants/test.constant';
 import type { PreviewFile } from '@/types/file.type';
-import { FileTypes } from '@/constants/file';
+import { FileTypes } from '@/constants/file.constant';
 
 export const useGenerateWithFile = () => {
   const { $api } = useNuxtApp();

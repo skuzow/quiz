@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Theme, ThemeColor } from '@/constants/theme';
+import { Theme, ThemeColor } from '@/constants/theme.constant';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { locale, locales } = useI18n();

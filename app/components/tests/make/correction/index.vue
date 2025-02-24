@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { CheckIcon, XIcon } from 'lucide-vue-next';
 
-import { TestQuestionType } from '#shared/constants/test';
+import { TestQuestionType } from '#shared/constants/test.constant';
 
 interface Props {
   correction: TestCorrectionQuestion[];

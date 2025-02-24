@@ -8,7 +8,7 @@ import {
   TestQuestionType,
   TestQuestionTypeValues,
   MAX_TEST_OPTIONS
-} from '#shared/constants/test';
+} from '#shared/constants/test.constant';
 
 export const useCreate = (edit?: boolean) => {
   const { $api } = useNuxtApp();

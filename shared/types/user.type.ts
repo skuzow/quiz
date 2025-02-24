@@ -1,4 +1,4 @@
-import type { UserRole } from '../constants/user';
+import type { UserRole } from '../constants/user.constant';
 
 export interface UserPartial {
   id: string;

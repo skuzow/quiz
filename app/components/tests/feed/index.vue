@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TESTS_PAGE_SIZE } from '#shared/constants/test';
+import { TESTS_PAGE_SIZE } from '#shared/constants/test.constant';
 
 interface Props {
   id?: string;

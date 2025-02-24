@@ -5,7 +5,7 @@ import {
   USER_TEST_PARTIAL_SELECT
 } from './queries/selects';
 
-import { TESTS_PAGE_SIZE } from '#shared/constants/test';
+import { TESTS_PAGE_SIZE } from '#shared/constants/test.constant';
 
 class TestRepository {
   private userTestModel = prisma.userTest;

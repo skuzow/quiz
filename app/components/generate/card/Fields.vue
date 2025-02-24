@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TestQuestionTypeValues } from '#shared/constants/test';
+import { TestQuestionTypeValues } from '#shared/constants/test.constant';
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

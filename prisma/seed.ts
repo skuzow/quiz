@@ -2,8 +2,11 @@ import * as bcrypt from 'bcrypt';
 
 import prisma from '../server/utils/prisma';
 
-import { UserRole } from '../shared/constants/user';
-import { TestCategory, TestQuestionType } from '../shared/constants/test';
+import { UserRole } from '../shared/constants/user.constant';
+import {
+  TestCategory,
+  TestQuestionType
+} from '../shared/constants/test.constant';
 
 const { ADMIN_EMAIL, ADMIN_USERNAME, ADMIN_PASSWORD } = process.env;
 

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { FileSearchIcon } from 'lucide-vue-next';
 
-import { FileExtensions, FileTypes } from '@/constants/file';
+import { FileExtensions, FileTypes } from '@/constants/file.constant';
 
 const {
   isLoadingWithFile,

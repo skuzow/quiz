@@ -2,7 +2,7 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
-import { TestQuestionTypeValues } from '#shared/constants/test';
+import { TestQuestionTypeValues } from '#shared/constants/test.constant';
 
 export const useGenerateWithText = () => {
   const { $api } = useNuxtApp();

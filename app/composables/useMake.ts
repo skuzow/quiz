@@ -2,7 +2,10 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
-import { TestQuestionType, MAX_TEST_OPTIONS } from '#shared/constants/test';
+import {
+  TestQuestionType,
+  MAX_TEST_OPTIONS
+} from '#shared/constants/test.constant';
 
 export const useMake = (questions: UserTestQuestion[]) => {
   const { t: $t } = useI18n();

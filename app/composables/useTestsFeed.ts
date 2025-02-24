@@ -2,7 +2,7 @@ import * as z from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
-import { TESTS_PAGE_SIZE } from '#shared/constants/test';
+import { TESTS_PAGE_SIZE } from '#shared/constants/test.constant';
 
 const SEARCH_TIMEOUT: number = 1000;
 
