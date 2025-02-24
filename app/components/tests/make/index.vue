@@ -47,7 +47,7 @@ const tempCategories = ['Education', 'Science'];
             :height="40"
             :width="40"
             loading="lazy"
-            :user="test.author as UserPartial"
+            :user="test.author"
           />
         </NuxtLink>
 

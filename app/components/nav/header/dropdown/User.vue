@@ -7,7 +7,7 @@ const { authUser, authUserInfo, authUserURL, signOut } = useAuth();
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <CommonAvatar :user="authUser as UserPartial" />
+      <CommonAvatar :user="authUser" />
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" class="w-56 font-medium">
       <DropdownMenuLabel>

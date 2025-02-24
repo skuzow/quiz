@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import type { AvatarVariants } from '@/components/ui/avatar';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const { authUser } = useAuth();
+
 interface Props {
   size?: AvatarVariants['size'];
   shape?: AvatarVariants['shape'];
@@ -8,7 +11,7 @@ interface Props {
   width?: number;
   loading?: 'lazy' | 'eager';
   alt?: string;
-  user: UserPartial;
+  user: UserPartial | User | typeof authUser.value;
 }
 
 const {
@@ -35,7 +38,7 @@ const {
     />
 
     <AvatarFallback v-else>
-      {{ abbreviate(user?.username || user.name) }}
+      {{ abbreviate(user?.username || user!.name) }}
     </AvatarFallback>
   </Avatar>
 </template>

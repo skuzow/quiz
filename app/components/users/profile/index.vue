@@ -31,7 +31,7 @@ const tempRoles = ['User'];
         :height="96"
         :width="96"
         loading="lazy"
-        :user="user as UserPartial"
+        :user="user"
         class="absolute bottom-2 left-2"
       />
 
