@@ -87,6 +87,7 @@ const { FormInput, exampleMessage } = useFormMessage();
             :key="indexOption"
           >
             <CreateFormOption
+              :question-field="questionField"
               :index="indexOption"
               :path="optionPath(indexQuestion, indexOption)"
               :is-field-dirty="isFieldDirty"

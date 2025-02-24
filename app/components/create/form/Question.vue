@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { FieldArrayContext, FieldEntry } from 'vee-validate';
+import type { FieldEntry, FieldArrayContext } from 'vee-validate';
 import { ChevronUpIcon, ChevronDownIcon, Trash2Icon } from 'lucide-vue-next';
 
 interface Props {

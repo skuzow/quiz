@@ -1,8 +1,11 @@
 <script lang="ts" setup>
-import type { FieldArrayContext } from 'vee-validate';
+import type { FieldEntry, FieldArrayContext } from 'vee-validate';
 import { Trash2Icon } from 'lucide-vue-next';
 
+import { TestQuestionType } from '#shared/constants/test';
+
 interface Props {
+  questionField: FieldEntry;
   index: number;
   path: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -37,6 +40,10 @@ const { FormInput, exampleMessage } = useFormMessage();
               <Checkbox
                 :checked="value"
                 class="h-9 w-9 border-input"
+                :class="{
+                  'rounded-full':
+                    questionField.value?.type === TestQuestionType.SINGLE
+                }"
                 @update:checked="handleChange"
               />
             </FormControl>
