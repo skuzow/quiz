@@ -47,7 +47,10 @@ export default defineNuxtConfig({
   i18n: {
     lazy: true,
     defaultLocale: 'en',
-    locales
+    locales,
+    experimental: {
+      localeDetector: 'localeDetector.ts'
+    }
   },
 
   site: {
