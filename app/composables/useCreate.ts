@@ -156,7 +156,7 @@ export const useCreate = (edit?: boolean) => {
   const optionPath = (indexQuestion: number, indexOption: number) =>
     `${questionPath(indexQuestion)}.${FormInput.OPTIONS}.${indexOption}`;
 
-  const testCreateEditRequest = async (create: ICreate): Promise<IUserTest> => {
+  const testCreateEditRequest = async (create: ICreate) => {
     if (edit)
       return $api.test.update(testStore.editTest!.id, create as IUserTest);
 
@@ -172,7 +172,7 @@ export const useCreate = (edit?: boolean) => {
     try {
       const result = await testCreateEditRequest(create);
 
-      const test: IUserTest = result?.body?.test;
+      const test: IUserTest = result.body.test;
 
       await navigateTo(localePath(`/tests/${test.id}`));
 

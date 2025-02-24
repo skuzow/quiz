@@ -9,6 +9,7 @@ interface Props {
 
 const { edit } = defineProps<Props>();
 
+const { $api } = useNuxtApp();
 const { t: $t } = useI18n();
 
 const testStore = useTestStore();
@@ -32,7 +33,7 @@ const deleteTest = async () => {
 
   isLoadingDelete.value = true;
 
-  if (edit) await testStore.deleteTest(testStore.editTest!.id);
+  if (edit) await $api.test.delete(testStore.editTest!.id);
   else console.log('Delete test creation'); // TODO: delete test creation
 
   isLoadingDelete.value = false;

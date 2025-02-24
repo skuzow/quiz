@@ -9,9 +9,8 @@ const SEARCH_TIMEOUT: number = 1000;
 const MAX_SEARCH_LENGTH: number = 150;
 
 export const useTestsFeed = (id?: string, username?: string) => {
+  const { $api } = useNuxtApp();
   const { t: $t } = useI18n();
-
-  const testStore = useTestStore();
 
   const { FormInput, maxMessage } = useFormMessage();
 
@@ -42,11 +41,13 @@ export const useTestsFeed = (id?: string, username?: string) => {
     validationSchema: searchValidationSchema
   });
 
-  const testsRequest = async (): Promise<IUserTestPartial[] | undefined> => {
-    if (id) return testStore.getTestsById(id, page.value, search.value);
+  const testsRequest = async () => {
+    if (id) return $api.test.getAllById(id, page.value, search.value);
+
     if (username)
-      return testStore.getTestsByUsername(username, page.value, search.value);
-    return testStore.getTests(page.value, search.value);
+      return $api.test.getAllByUsername(username, page.value, search.value);
+
+    return $api.test.getAll(page.value, search.value);
   };
 
   const searchTests = async (reset?: boolean) => {
