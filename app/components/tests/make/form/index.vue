@@ -19,7 +19,7 @@ const {
   <form v-if="!makeCorrection" class="flex flex-col gap-y-8" @submit="makeTest">
     <ol class="flex flex-col gap-y-8">
       <li v-for="(question, index) in questions" :key="index">
-        <TestsMakeQuestionForm :question="question" />
+        <TestsMakeFormQuestion :question="question" />
       </li>
     </ol>
 

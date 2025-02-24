@@ -68,7 +68,7 @@ const { FormInput, exampleMessage } = useFormMessage();
         :key="indexQuestion"
         class="flex flex-col gap-y-6"
       >
-        <CreateQuestionForm
+        <CreateFormQuestion
           :field="questionField"
           :index="indexQuestion"
           :path="questionPath(indexQuestion)"
@@ -86,7 +86,7 @@ const { FormInput, exampleMessage } = useFormMessage();
               .value"
             :key="indexOption"
           >
-            <CreateOptionForm
+            <CreateFormOption
               :index="indexOption"
               :path="optionPath(indexQuestion, indexOption)"
               :is-field-dirty="isFieldDirty"
@@ -114,7 +114,7 @@ const { FormInput, exampleMessage } = useFormMessage();
             {{ $t('create.form.addOption') }}
           </Button>
 
-          <CreateTypeForm :path="questionPath(indexQuestion)" />
+          <CreateFormType :path="questionPath(indexQuestion)" />
         </div>
       </li>
     </ol>

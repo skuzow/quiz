@@ -49,7 +49,7 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
         </div>
 
         <div class="flex flex-col gap-y-2">
-          <GenerateCardConfigFields :is-field-dirty="isFieldDirty" />
+          <GenerateCardFields :is-field-dirty="isFieldDirty" />
 
           <CommonErrorMessage v-if="internalServerErrorWithFile">
             {{ $t('error.internalServer') }}
