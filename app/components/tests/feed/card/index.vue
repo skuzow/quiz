@@ -15,9 +15,10 @@ const tempCategories = ['Education', 'Science'];
 </script>
 
 <template>
-  <div
+  <NuxtLink
+    :to="localePath(`/tests/${test.id}`)"
+    :title="test.title"
     class="flex cursor-pointer flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow sm:flex-row"
-    @click="navigateTo(localePath(`/tests/${test.id}`))"
   >
     <div class="relative border-b sm:w-1/4 sm:border-b-0 sm:border-r">
       <CommonPicture
@@ -78,5 +79,5 @@ const tempCategories = ['Education', 'Science'];
         </ul>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
