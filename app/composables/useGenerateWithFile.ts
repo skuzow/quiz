@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
+import { useToast } from '@/components/ui/toast/use-toast';
+
 import {
   TestQuestionTypeValues,
   TEST_GENERATION_QUESTIONS_MIN,
@@ -24,6 +26,7 @@ export const useGenerateWithFile = () => {
     useFormMessage();
 
   const { alert } = useAlert();
+  const { toast } = useToast();
 
   const file: Ref<File | undefined> = ref(undefined);
   const requiredFileError: Ref<boolean> = ref(false);
@@ -118,6 +121,11 @@ export const useGenerateWithFile = () => {
         testStore.createTest = result?.body?.test;
 
         await navigateTo(localePath('/create'));
+
+        toast({
+          title: $t('toast.test.generate'),
+          description: testStore.createTest.title
+        });
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         internalServerErrorWithFile.value = true;

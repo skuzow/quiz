@@ -194,6 +194,7 @@
   },
   "toast": {
     "test": {
+      "generate": "✅ Test generated successfully",
       "create": "✅ Test created successfully",
       "edit": "✅ Test edited successfully",
       "delete": "✅ Test deleted successfully"

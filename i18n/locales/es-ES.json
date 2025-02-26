@@ -194,6 +194,7 @@
   },
   "toast": {
     "test": {
+      "generate": "✅ Test generado con éxito",
       "create": "✅ Test creado con éxito",
       "edit": "✅ Test editado con éxito",
       "delete": "✅ Test eliminado con éxito"

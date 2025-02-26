@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
+import { useToast } from '@/components/ui/toast/use-toast';
+
 import {
   TestQuestionTypeValues,
   TEST_GENERATION_QUESTIONS_MIN,
@@ -22,6 +24,7 @@ export const useGenerateWithText = () => {
     useFormMessage();
 
   const { alert } = useAlert();
+  const { toast } = useToast();
 
   const isLoadingWithText: Ref<boolean> = ref(false);
   const internalServerErrorWithText: Ref<boolean> = ref(false);
@@ -108,6 +111,11 @@ export const useGenerateWithText = () => {
         testStore.createTest = result?.body?.test;
 
         await navigateTo(localePath('/create'));
+
+        toast({
+          title: $t('toast.test.generate'),
+          description: testStore.createTest.title
+        });
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (error) {
         internalServerErrorWithText.value = true;
