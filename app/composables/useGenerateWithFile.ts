@@ -35,7 +35,7 @@ export const useGenerateWithFile = () => {
   const isLoadingWithFile: Ref<boolean> = ref(false);
   const internalServerErrorWithFile: Ref<boolean> = ref(false);
 
-  const zodFileFormSchema = z.object({
+  const GenerateFileSchema = z.object({
     type: z.enum(['ALL', ...TestQuestionTypeValues]).default('ALL'),
     questions: z
       .number({
@@ -68,9 +68,9 @@ export const useGenerateWithFile = () => {
     deep: z.boolean().default(true)
   });
 
-  type GenerateFileForm = z.TypeOf<typeof zodFileFormSchema>;
+  type GenerateFileForm = z.TypeOf<typeof GenerateFileSchema>;
 
-  const validationSchema = toTypedSchema(zodFileFormSchema);
+  const validationSchema = toTypedSchema(GenerateFileSchema);
 
   const { handleSubmit, isFieldDirty } = useForm({
     validationSchema

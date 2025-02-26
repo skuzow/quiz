@@ -37,7 +37,7 @@ export const useCreate = (edit?: boolean) => {
   const isLoadingCreate: Ref<boolean> = ref(false);
   const internalServerErrorCreate: Ref<boolean> = ref(false);
 
-  const zodOptionFormSchema = z.object({
+  const CreateQuestionOptionSchema = z.object({
     text: z
       .string({ required_error: requiredMessage(FormInput.OPTION) })
       .min(
@@ -51,7 +51,7 @@ export const useCreate = (edit?: boolean) => {
     isCorrect: z.boolean()
   });
 
-  const zodQuestionFormSchema = z
+  const CreateQuestionSchema = z
     .object({
       text: z
         .string({ required_error: requiredMessage(FormInput.QUESTION) })
@@ -65,7 +65,7 @@ export const useCreate = (edit?: boolean) => {
         ),
       type: z.enum(TestQuestionTypeValues),
       options: z
-        .array(zodOptionFormSchema, {
+        .array(CreateQuestionOptionSchema, {
           required_error: requiredMessage(FormInput.OPTIONS)
         })
         .min(
@@ -96,7 +96,7 @@ export const useCreate = (edit?: boolean) => {
       maxMessage(FormInput.CORRECT_OPTIONS, 1, false)
     );
 
-  const zodFormSchema = z.object({
+  const CreateSchema = z.object({
     title: z
       .string({ required_error: requiredMessage(FormInput.TITLE) })
       .min(
@@ -119,7 +119,7 @@ export const useCreate = (edit?: boolean) => {
       ),
     categories: z.array(z.enum(TestCategoryValues)).optional(), // TODO: max, min and delete optional
     questions: z
-      .array(zodQuestionFormSchema, {
+      .array(CreateQuestionSchema, {
         required_error: requiredMessage(FormInput.QUESTIONS)
       })
       .min(
@@ -132,7 +132,7 @@ export const useCreate = (edit?: boolean) => {
       )
   });
 
-  type CreateForm = z.TypeOf<typeof zodFormSchema>;
+  type CreateForm = z.TypeOf<typeof CreateSchema>;
 
   type CreateQuestionForm = CreateForm['questions'][0];
   type CreateQuestionOptionForm = CreateForm['questions'][0]['options'][0];
@@ -169,7 +169,7 @@ export const useCreate = (edit?: boolean) => {
     questions: [initialSingleQuestionValue, initialMultipleQuestionValue]
   };
 
-  const validationSchema = toTypedSchema(zodFormSchema);
+  const validationSchema = toTypedSchema(CreateSchema);
 
   const { handleSubmit, errorBag, isFieldDirty } = useForm({
     validationSchema,

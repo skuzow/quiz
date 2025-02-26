@@ -26,7 +26,7 @@ export const useGenerateWithText = () => {
   const isLoadingWithText: Ref<boolean> = ref(false);
   const internalServerErrorWithText: Ref<boolean> = ref(false);
 
-  const zodTextFormSchema = z.object({
+  const GenerateTextSchema = z.object({
     text: z
       .string({
         required_error: requiredMessage(FormInput.TEXT)
@@ -66,9 +66,9 @@ export const useGenerateWithText = () => {
     deep: z.boolean().default(true)
   });
 
-  type GenerateTextForm = z.TypeOf<typeof zodTextFormSchema>;
+  type GenerateTextForm = z.TypeOf<typeof GenerateTextSchema>;
 
-  const validationSchema = toTypedSchema(zodTextFormSchema);
+  const validationSchema = toTypedSchema(GenerateTextSchema);
 
   const { handleSubmit, isFieldDirty } = useForm({
     validationSchema

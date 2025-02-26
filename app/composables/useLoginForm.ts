@@ -18,7 +18,7 @@ export const useLoginForm = () => {
   const isLoadingWithEmail: Ref<boolean> = ref(false);
   const errorMessageWithEmail: Ref<string | undefined> = ref(undefined);
 
-  const formSchema = z.object({
+  const LoginSchema = z.object({
     email: z
       .string({
         required_error: requiredMessage(FormInput.EMAIL)
@@ -39,7 +39,7 @@ export const useLoginForm = () => {
       })
   });
 
-  type LoginForm = z.TypeOf<typeof formSchema>;
+  type LoginForm = z.TypeOf<typeof LoginSchema>;
 
   const fieldConfig = {
     email: {
@@ -80,7 +80,7 @@ export const useLoginForm = () => {
   return {
     isLoadingWithEmail,
     errorMessageWithEmail,
-    formSchema,
+    LoginSchema,
     fieldConfig,
     loginWithEmail
   };

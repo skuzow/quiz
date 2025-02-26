@@ -11,7 +11,7 @@ seoMeta({
 const {
   isLoadingWithEmail,
   errorMessageWithEmail,
-  formSchema,
+  LoginSchema,
   fieldConfig,
   loginWithEmail
 } = useLoginForm();
@@ -27,7 +27,7 @@ const {
     <section class="flex w-72 flex-col gap-y-6">
       <AutoForm
         class="flex flex-col gap-y-6"
-        :schema="formSchema"
+        :schema="LoginSchema"
         :field-config="fieldConfig"
         @submit="loginWithEmail"
       >

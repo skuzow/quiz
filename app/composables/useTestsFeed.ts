@@ -25,7 +25,7 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
   const infiniteScroll = useTemplateRef<HTMLElement>('infinite-scroll');
 
-  const searchSchema = z.object({
+  const FeedSchema = z.object({
     search: z
       .string()
       .max(MAX_SEARCH_LENGTH, {
@@ -35,10 +35,10 @@ export const useTestsFeed = (id?: string, username?: string) => {
       .optional()
   });
 
-  const searchValidationSchema = toTypedSchema(searchSchema);
+  const validationSchema = toTypedSchema(FeedSchema);
 
   const { isFieldDirty } = useForm({
-    validationSchema: searchValidationSchema
+    validationSchema
   });
 
   const testsRequest = async () => {
