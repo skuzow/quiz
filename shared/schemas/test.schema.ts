@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 import {
+  TestOrderValues,
   TestCategoryValues,
   TestQuestionType,
   TestQuestionTypeValues,
@@ -20,7 +21,8 @@ import {
   TEST_GENERATION_QUESTIONS_MAX,
   TEST_GENERATION_QUESTION_OPTIONS_MIN,
   TEST_GENERATION_QUESTION_OPTIONS_MAX,
-  TEST_GENERATION_TEXT_MIN
+  TEST_GENERATION_TEXT_MIN,
+  TEST_SEARCH_TEXT_MAX
 } from '../constants/test.constant';
 
 const TestCreationQuestionOptionSchema = z.object({
@@ -79,4 +81,11 @@ export const TestGenerationSchema = z.object({
       .optional() // empty: from TEST_GENERATION_QUESTION_OPTIONS_MIN to TEST_GENERATION_QUESTION_OPTIONS_MAX
   }),
   info: z.string().min(TEST_GENERATION_TEXT_MIN)
+});
+
+export const TestSearchSchema = z.object({
+  page: z.number().int().min(0),
+  search: z.string().max(TEST_SEARCH_TEXT_MAX).optional(),
+  sort: z.enum(TestOrderValues).optional(),
+  filter: z.enum(TestCategoryValues).optional()
 });

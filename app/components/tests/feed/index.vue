@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TESTS_PAGE_SIZE } from '#shared/constants/test.constant';
+import { TEST_SEARCH_PAGE_SIZE } from '#shared/constants/test.constant';
 
 interface Props {
   id?: string;
@@ -41,7 +41,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 
         <template v-if="(!tests.length || isLoading) && !errorMessage">
           <li
-            v-for="indexCardSkeleton in TESTS_PAGE_SIZE"
+            v-for="indexCardSkeleton in TEST_SEARCH_PAGE_SIZE"
             :key="indexCardSkeleton"
           >
             <TestsFeedCardSkeleton />

@@ -1,3 +1,12 @@
+export enum TestOrder {
+  ASC = 'ASC',
+  DESC = 'DESC'
+}
+
+export const TestOrderValues = Object.values(TestOrder) as [
+  keyof typeof TestOrder
+];
+
 export enum TestCategory {
   TECHNOLOGY = 'TECHNOLOGY',
   UNIVERSITY = 'UNIVERSITY',
@@ -38,4 +47,5 @@ export const TEST_GENERATION_QUESTION_OPTIONS_MIN: number = 2;
 export const TEST_GENERATION_QUESTION_OPTIONS_MAX: number = 4;
 export const TEST_GENERATION_TEXT_MIN: number = 10;
 
-export const TESTS_PAGE_SIZE: number = 10;
+export const TEST_SEARCH_PAGE_SIZE: number = 10;
+export const TEST_SEARCH_TEXT_MAX: number = 150;

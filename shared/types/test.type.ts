@@ -7,7 +7,8 @@ import type {
 } from '../constants/test.constant';
 import type {
   TestCreationSchema,
-  TestGenerationSchema
+  TestGenerationSchema,
+  TestSearchSchema
 } from '../schemas/test.schema';
 
 export interface UserTestPartial {
@@ -51,6 +52,8 @@ export interface UserTestQuestionOption {
 export type TestCreation = z.infer<typeof TestCreationSchema>;
 
 export type TestGeneration = z.infer<typeof TestGenerationSchema>;
+
+export type TestSearch = z.infer<typeof TestSearchSchema>;
 
 export interface TestCorrectionQuestion {
   number: number;
