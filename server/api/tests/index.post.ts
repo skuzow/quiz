@@ -9,8 +9,6 @@ export default defineEventHandler(async (event) => {
 
     const result = TestCreationSchema.safeParse(createTest);
 
-    console.log(result.error?.issues);
-
     if (!result.success)
       return sendError(
         event,
