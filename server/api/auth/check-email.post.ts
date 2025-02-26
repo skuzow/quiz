@@ -1,9 +1,9 @@
-import { AuthEmailCheck } from '#shared/schemas/auth.schema';
+import { AuthEmailCheckSchema } from '#shared/schemas/auth.schema';
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
+  const body: AuthEmailCheck = await readBody(event);
 
-  const result = AuthEmailCheck.safeParse(body);
+  const result = AuthEmailCheckSchema.safeParse(body);
 
   if (!result.success)
     return sendError(

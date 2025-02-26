@@ -1,9 +1,9 @@
-import { AuthUsernameCheck } from '#shared/schemas/auth.schema';
+import { AuthUsernameCheckSchema } from '#shared/schemas/auth.schema';
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event);
+  const body: AuthUsernameCheck = await readBody(event);
 
-  const result = AuthUsernameCheck.safeParse(body);
+  const result = AuthUsernameCheckSchema.safeParse(body);
 
   if (!result.success)
     return sendError(

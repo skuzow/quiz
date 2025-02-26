@@ -6,10 +6,10 @@ import {
   USER_USERNAME_MAX
 } from '../constants/user.constant';
 
-export const AuthEmailCheck = z.object({
+export const AuthEmailCheckSchema = z.object({
   email: z.string().max(USER_EMAIL_MAX)
 });
 
-export const AuthUsernameCheck = z.object({
+export const AuthUsernameCheckSchema = z.object({
   username: z.string().min(USER_USERNAME_MIN).max(USER_USERNAME_MAX)
 });

@@ -2,14 +2,14 @@ import type { z } from 'zod';
 
 import type { UserPartial } from './user.type';
 import type {
-  TestCategory,
-  TestQuestionType
-} from '../constants/test.constant';
-import type {
   TestCreationSchema,
   TestGenerationSchema,
   TestSearchSchema
 } from '../schemas/test.schema';
+import type {
+  TestCategory,
+  TestQuestionType
+} from '../constants/test.constant';
 
 export interface UserTestPartial {
   id: string;
