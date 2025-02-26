@@ -71,11 +71,13 @@ export const TestGenerationSchema = z.object({
   questions: z.object({
     number: z
       .number()
+      .int()
       .min(TEST_GENERATION_QUESTIONS_MIN)
       .max(TEST_GENERATION_QUESTIONS_MAX),
     type: z.enum(TestQuestionTypeValues).optional(), // empty: all
     options: z
       .number()
+      .int()
       .min(TEST_GENERATION_QUESTION_OPTIONS_MIN)
       .max(TEST_GENERATION_QUESTION_OPTIONS_MAX)
       .optional() // empty: from TEST_GENERATION_QUESTION_OPTIONS_MIN to TEST_GENERATION_QUESTION_OPTIONS_MAX

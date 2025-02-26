@@ -39,6 +39,7 @@ export const useGenerateWithText = () => {
       .number({
         required_error: requiredMessage(FormInput.QUESTIONS)
       })
+      .int()
       .min(TEST_GENERATION_QUESTIONS_MIN, {
         message: minMessage(FormInput.QUESTIONS, TEST_GENERATION_QUESTIONS_MIN)
       })
@@ -50,6 +51,7 @@ export const useGenerateWithText = () => {
       .number({
         required_error: requiredMessage(FormInput.OPTIONS)
       })
+      .int()
       .min(TEST_GENERATION_QUESTION_OPTIONS_MIN, {
         message: minMessage(
           FormInput.OPTIONS,
