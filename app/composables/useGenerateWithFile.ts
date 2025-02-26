@@ -1,8 +1,15 @@
-import * as z from 'zod';
+import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
-import { TestQuestionTypeValues } from '#shared/constants/test.constant';
+import {
+  TestQuestionTypeValues,
+  TEST_GENERATION_QUESTIONS_MIN,
+  TEST_GENERATION_QUESTIONS_MAX,
+  TEST_GENERATION_QUESTION_OPTIONS_MIN,
+  TEST_GENERATION_QUESTION_OPTIONS_MAX
+} from '#shared/constants/test.constant';
+
 import type { PreviewFile } from '@/types/file.type';
 import { FileTypes } from '@/constants/file.constant';
 
@@ -34,22 +41,28 @@ export const useGenerateWithFile = () => {
       .number({
         required_error: requiredMessage(FormInput.QUESTIONS)
       })
-      .min(1, {
-        message: minMessage(FormInput.QUESTIONS, 1)
+      .min(TEST_GENERATION_QUESTIONS_MIN, {
+        message: minMessage(FormInput.QUESTIONS, TEST_GENERATION_QUESTIONS_MIN)
       })
-      .max(10, {
-        message: maxMessage(FormInput.QUESTIONS, 10)
+      .max(TEST_GENERATION_QUESTIONS_MAX, {
+        message: maxMessage(FormInput.QUESTIONS, TEST_GENERATION_QUESTIONS_MAX)
       })
       .default(5),
     options: z
       .number({
         required_error: requiredMessage(FormInput.OPTIONS)
       })
-      .min(TEST_QUESTION_OPTIONS_MIN, {
-        message: minMessage(FormInput.OPTIONS, TEST_QUESTION_OPTIONS_MIN)
+      .min(TEST_GENERATION_QUESTION_OPTIONS_MIN, {
+        message: minMessage(
+          FormInput.OPTIONS,
+          TEST_GENERATION_QUESTION_OPTIONS_MIN
+        )
       })
-      .max(TEST_QUESTION_OPTIONS_MAX, {
-        message: maxMessage(FormInput.OPTIONS, TEST_QUESTION_OPTIONS_MAX)
+      .max(TEST_GENERATION_QUESTION_OPTIONS_MAX, {
+        message: maxMessage(
+          FormInput.OPTIONS,
+          TEST_GENERATION_QUESTION_OPTIONS_MAX
+        )
       })
       .optional(),
     deep: z.boolean().default(true)

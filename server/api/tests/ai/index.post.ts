@@ -1,3 +1,5 @@
+import { TestGenerationSchema } from '#shared/schemas/test.schema';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export default defineEventHandler(async (event) => {
   try {

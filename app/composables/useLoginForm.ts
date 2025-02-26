@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 export const useLoginForm = () => {
   const { t: $t } = useI18n();

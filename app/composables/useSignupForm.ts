@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 
 const CHECK_TIMEOUT: number = 1000;
 

@@ -1,4 +1,4 @@
-import * as z from 'zod';
+import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm, useFieldArray, type FieldArrayContext } from 'vee-validate';
 
@@ -7,7 +7,7 @@ import { useToast } from '@/components/ui/toast/use-toast';
 import {
   TestQuestionType,
   TestQuestionTypeValues,
-  MAX_TEST_OPTIONS
+  TEST_QUESTION_OPTIONS_MAX
 } from '#shared/constants/test.constant';
 
 export const useCreate = (edit?: boolean) => {
@@ -46,8 +46,8 @@ export const useCreate = (edit?: boolean) => {
         })
         .min(2, minMessage(FormInput.OPTIONS, 2, false))
         .max(
-          MAX_TEST_OPTIONS,
-          maxMessage(FormInput.OPTIONS, MAX_TEST_OPTIONS, false)
+          TEST_QUESTION_OPTIONS_MAX,
+          maxMessage(FormInput.OPTIONS, TEST_QUESTION_OPTIONS_MAX, false)
         )
         .refine(
           (options) => options.some((option) => option.isCorrect),
