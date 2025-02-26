@@ -5,9 +5,21 @@ import { useForm, useFieldArray, type FieldArrayContext } from 'vee-validate';
 import { useToast } from '@/components/ui/toast/use-toast';
 
 import {
+  TestCategoryValues,
   TestQuestionType,
   TestQuestionTypeValues,
-  TEST_QUESTION_OPTIONS_MAX
+  TEST_CREATION_TITLE_MIN,
+  TEST_CREATION_TITLE_MAX,
+  TEST_CREATION_DESCRIPTION_MIN,
+  TEST_CREATION_DESCRIPTION_MAX,
+  TEST_CREATION_QUESTIONS_MIN,
+  TEST_CREATION_QUESTIONS_MAX,
+  TEST_CREATION_QUESTION_TEXT_MIN,
+  TEST_CREATION_QUESTION_TEXT_MAX,
+  TEST_CREATION_QUESTION_OPTIONS_MIN,
+  TEST_CREATION_QUESTION_OPTIONS_MAX,
+  TEST_CREATION_QUESTION_OPTION_TEXT_MIN,
+  TEST_CREATION_QUESTION_OPTION_TEXT_MAX
 } from '#shared/constants/test.constant';
 
 export const useCreate = (edit?: boolean) => {
@@ -28,8 +40,14 @@ export const useCreate = (edit?: boolean) => {
   const zodOptionFormSchema = z.object({
     text: z
       .string({ required_error: requiredMessage(FormInput.OPTION) })
-      .min(2, minMessage(FormInput.OPTION, 2))
-      .max(150, maxMessage(FormInput.OPTION, 150)),
+      .min(
+        TEST_CREATION_QUESTION_OPTION_TEXT_MIN,
+        maxMessage(FormInput.OPTION, TEST_CREATION_QUESTION_OPTION_TEXT_MIN)
+      )
+      .max(
+        TEST_CREATION_QUESTION_OPTION_TEXT_MAX,
+        maxMessage(FormInput.OPTION, TEST_CREATION_QUESTION_OPTION_TEXT_MAX)
+      ),
     isCorrect: z.boolean()
   });
 
@@ -37,23 +55,39 @@ export const useCreate = (edit?: boolean) => {
     .object({
       text: z
         .string({ required_error: requiredMessage(FormInput.QUESTION) })
-        .min(10, minMessage(FormInput.QUESTION, 10))
-        .max(150, maxMessage(FormInput.QUESTION, 150)),
+        .min(
+          TEST_CREATION_QUESTION_TEXT_MIN,
+          minMessage(FormInput.QUESTION, TEST_CREATION_QUESTION_TEXT_MIN)
+        )
+        .max(
+          TEST_CREATION_QUESTION_TEXT_MAX,
+          maxMessage(FormInput.QUESTION, TEST_CREATION_QUESTION_TEXT_MAX)
+        ),
       type: z.enum(TestQuestionTypeValues),
       options: z
         .array(zodOptionFormSchema, {
           required_error: requiredMessage(FormInput.OPTIONS)
         })
-        .min(2, minMessage(FormInput.OPTIONS, 2, false))
+        .min(
+          TEST_CREATION_QUESTION_OPTIONS_MIN,
+          minMessage(
+            FormInput.OPTIONS,
+            TEST_CREATION_QUESTION_OPTIONS_MIN,
+            false
+          )
+        )
         .max(
-          TEST_QUESTION_OPTIONS_MAX,
-          maxMessage(FormInput.OPTIONS, TEST_QUESTION_OPTIONS_MAX, false)
+          TEST_CREATION_QUESTION_OPTIONS_MAX,
+          maxMessage(
+            FormInput.OPTIONS,
+            TEST_CREATION_QUESTION_OPTIONS_MAX,
+            false
+          )
         )
         .refine(
           (options) => options.some((option) => option.isCorrect),
           minMessage(FormInput.CORRECT_OPTIONS, 1, false)
         )
-      // image: z.string().optional()
     })
     .refine(
       (question) =>
@@ -65,18 +99,37 @@ export const useCreate = (edit?: boolean) => {
   const zodFormSchema = z.object({
     title: z
       .string({ required_error: requiredMessage(FormInput.TITLE) })
-      .min(10, minMessage(FormInput.TITLE, 10))
-      .max(150, maxMessage(FormInput.TITLE, 150)),
+      .min(
+        TEST_CREATION_TITLE_MIN,
+        minMessage(FormInput.TITLE, TEST_CREATION_TITLE_MIN)
+      )
+      .max(
+        TEST_CREATION_TITLE_MAX,
+        maxMessage(FormInput.TITLE, TEST_CREATION_TITLE_MAX)
+      ),
     description: z
       .string({ required_error: requiredMessage(FormInput.DESCRIPTION) })
-      .min(10, minMessage(FormInput.DESCRIPTION, 10))
-      .max(500, maxMessage(FormInput.DESCRIPTION, 500)),
+      .min(
+        TEST_CREATION_DESCRIPTION_MIN,
+        minMessage(FormInput.DESCRIPTION, TEST_CREATION_DESCRIPTION_MIN)
+      )
+      .max(
+        TEST_CREATION_DESCRIPTION_MAX,
+        maxMessage(FormInput.DESCRIPTION, TEST_CREATION_DESCRIPTION_MAX)
+      ),
+    categories: z.array(z.enum(TestCategoryValues)).optional(), // TODO: max, min and delete optional
     questions: z
       .array(zodQuestionFormSchema, {
         required_error: requiredMessage(FormInput.QUESTIONS)
       })
-      .min(1, minMessage(FormInput.QUESTIONS, 1, false))
-      .max(100, maxMessage(FormInput.QUESTIONS, 100, false))
+      .min(
+        TEST_CREATION_QUESTIONS_MIN,
+        minMessage(FormInput.QUESTIONS, TEST_CREATION_QUESTIONS_MIN, false)
+      )
+      .max(
+        TEST_CREATION_QUESTIONS_MAX,
+        maxMessage(FormInput.QUESTIONS, TEST_CREATION_QUESTIONS_MAX, false)
+      )
   });
 
   type CreateForm = z.TypeOf<typeof zodFormSchema>;
@@ -156,10 +209,9 @@ export const useCreate = (edit?: boolean) => {
     `${questionPath(indexQuestion)}.${FormInput.OPTIONS}.${indexOption}`;
 
   const testCreateEditRequest = async (create: CreateForm) => {
-    if (edit)
-      return $api.test.update(testStore.editTest!.id, create as UserTest);
+    if (edit) return $api.test.update(testStore.editTest!.id, create);
 
-    return $api.test.create(create as UserTest);
+    return $api.test.create(create);
   };
 
   const createTest = handleSubmit(async (create: CreateForm) => {

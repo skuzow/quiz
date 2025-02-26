@@ -5,7 +5,10 @@ import type {
   TestCategory,
   TestQuestionType
 } from '../constants/test.constant';
-import type { TestGenerationSchema } from '../schemas/test.schema';
+import type {
+  TestCreationSchema,
+  TestGenerationSchema
+} from '../schemas/test.schema';
 
 export interface UserTestPartial {
   id: string;
@@ -44,6 +47,8 @@ export interface UserTestQuestionOption {
   text: string;
   isCorrect: boolean;
 }
+
+export type TestCreation = z.infer<typeof TestCreationSchema>;
 
 export type TestGeneration = z.infer<typeof TestGenerationSchema>;
 

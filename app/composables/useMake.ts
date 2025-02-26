@@ -4,7 +4,7 @@ import { useForm } from 'vee-validate';
 
 import {
   TestQuestionType,
-  TEST_QUESTION_OPTIONS_MAX
+  TEST_CREATION_QUESTION_OPTIONS_MAX
 } from '#shared/constants/test.constant';
 
 export const useMake = (questions: UserTestQuestion[]) => {
@@ -19,7 +19,7 @@ export const useMake = (questions: UserTestQuestion[]) => {
 
   const responseEnum = z.enum([
     '0',
-    ...Array.from({ length: TEST_QUESTION_OPTIONS_MAX - 1 }, (_, i) =>
+    ...Array.from({ length: TEST_CREATION_QUESTION_OPTIONS_MAX - 1 }, (_, i) =>
       String(i + 1)
     )
   ]);

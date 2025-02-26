@@ -48,7 +48,7 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async create(test: UserTest) {
+  async create(test: TestCreation) {
     return this.call<{ test: UserTest }>({
       method: 'POST',
       url: this.ROUTE.Fetch(),
@@ -57,14 +57,14 @@ class TestModule extends FetchFactory {
   }
 
   async generate(dto: TestGeneration) {
-    return this.call({
+    return this.call<{ test: TestCreation }>({
       method: 'POST',
       url: this.ROUTE.FetchAI(),
       body: dto
     });
   }
 
-  async update(id: string, test: UserTest) {
+  async update(id: string, test: TestCreation) {
     return this.call<{ test: UserTest }>({
       method: 'PUT',
       url: this.ROUTE.FetchId(id),

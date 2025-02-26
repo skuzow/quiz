@@ -85,7 +85,7 @@ class TestRepository {
 
   async create(
     userId: string,
-    { title, description, categories, questions }: UserTest
+    { title, description, categories, questions }: TestCreation
   ): Promise<UserTest> {
     const test = await this.userTestModel.create({
       data: {
@@ -137,7 +137,7 @@ class TestRepository {
 
   async update(
     id: string,
-    { title, description, categories, questions }: UserTest
+    { title, description, categories, questions }: TestCreation
   ): Promise<UserTest> {
     const test = await this.userTestModel.update({
       where: { id },
