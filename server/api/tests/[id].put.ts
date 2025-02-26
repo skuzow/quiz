@@ -1,3 +1,5 @@
+import { TestCreationSchema } from '#shared/schemas/test.schema';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export default defineEventHandler(async (event) => {
   try {
@@ -29,21 +31,19 @@ export default defineEventHandler(async (event) => {
 
     const { test: editTest } = await readBody(event);
 
-    if (!editTest) {
+    const result = TestCreationSchema.safeParse(editTest);
+
+    if (!result.success)
       return sendError(
         event,
         createError({
           statusCode: 400,
-          statusMessage: 'Missing required fields',
-          data: 'Test required'
+          statusMessage: 'Invalid fields',
+          data: result.error?.issues
         })
       );
-    }
 
-    const test: UserTest = await repository.test.update(
-      id,
-      editTest as UserTest
-    );
+    const test: UserTest = await repository.test.update(id, editTest);
 
     return {
       statusCode: 200,

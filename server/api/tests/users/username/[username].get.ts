@@ -1,27 +1,26 @@
-export default defineEventHandler(async (event) => {
-  const { page, search } = getQuery(event);
+import { TestSearchSchema } from '#shared/schemas/test.schema';
 
-  if (!page) {
+export default defineEventHandler(async (event) => {
+  const params: TestSearch = getQuery(event);
+
+  params.page = Number(params.page);
+
+  const result = TestSearchSchema.safeParse(params);
+
+  if (!result.success)
     return sendError(
       event,
       createError({
         statusCode: 400,
-        statusMessage: 'Missing required fields',
-        data: {
-          message: 'Page required'
-        }
+        statusMessage: 'Invalid fields',
+        data: result.error?.issues
       })
     );
-  }
 
   const { username } = getRouterParams(event);
 
   const tests: UserTestPartial[] | null =
-    await repository.test.findAllByUsername(
-      username,
-      Number(page),
-      search ? String(search) : undefined
-    );
+    await repository.test.findAllByUsername(username, params);
 
   if (!tests) {
     return sendError(

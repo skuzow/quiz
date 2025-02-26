@@ -1,8 +1,15 @@
-import * as z from 'zod';
+import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
-import { TestQuestionTypeValues } from '#shared/constants/test.constant';
+import {
+  TestQuestionTypeValues,
+  TEST_GENERATION_QUESTIONS_MIN,
+  TEST_GENERATION_QUESTIONS_MAX,
+  TEST_GENERATION_QUESTION_OPTIONS_MIN,
+  TEST_GENERATION_QUESTION_OPTIONS_MAX,
+  TEST_GENERATION_TEXT_MIN
+} from '#shared/constants/test.constant';
 
 export const useGenerateWithText = () => {
   const { $api } = useNuxtApp();
@@ -19,43 +26,51 @@ export const useGenerateWithText = () => {
   const isLoadingWithText: Ref<boolean> = ref(false);
   const internalServerErrorWithText: Ref<boolean> = ref(false);
 
-  const zodTextFormSchema = z.object({
+  const GenerateTextSchema = z.object({
     text: z
       .string({
         required_error: requiredMessage(FormInput.TEXT)
       })
-      .min(10, {
-        message: minMessage(FormInput.TEXT, 10)
+      .min(TEST_GENERATION_TEXT_MIN, {
+        message: minMessage(FormInput.TEXT, TEST_GENERATION_TEXT_MIN)
       }),
     type: z.enum(['ALL', ...TestQuestionTypeValues]).default('ALL'),
     questions: z
       .number({
         required_error: requiredMessage(FormInput.QUESTIONS)
       })
-      .min(1, {
-        message: minMessage(FormInput.QUESTIONS, 1)
+      .int()
+      .min(TEST_GENERATION_QUESTIONS_MIN, {
+        message: minMessage(FormInput.QUESTIONS, TEST_GENERATION_QUESTIONS_MIN)
       })
-      .max(10, {
-        message: maxMessage(FormInput.QUESTIONS, 10)
+      .max(TEST_GENERATION_QUESTIONS_MAX, {
+        message: maxMessage(FormInput.QUESTIONS, TEST_GENERATION_QUESTIONS_MAX)
       })
       .default(5),
     options: z
       .number({
         required_error: requiredMessage(FormInput.OPTIONS)
       })
-      .min(2, {
-        message: minMessage(FormInput.OPTIONS, 2)
+      .int()
+      .min(TEST_GENERATION_QUESTION_OPTIONS_MIN, {
+        message: minMessage(
+          FormInput.OPTIONS,
+          TEST_GENERATION_QUESTION_OPTIONS_MIN
+        )
       })
-      .max(4, {
-        message: maxMessage(FormInput.OPTIONS, 4)
+      .max(TEST_GENERATION_QUESTION_OPTIONS_MAX, {
+        message: maxMessage(
+          FormInput.OPTIONS,
+          TEST_GENERATION_QUESTION_OPTIONS_MAX
+        )
       })
       .optional(),
     deep: z.boolean().default(true)
   });
 
-  type GenerateTextForm = z.TypeOf<typeof zodTextFormSchema>;
+  type GenerateTextForm = z.TypeOf<typeof GenerateTextSchema>;
 
-  const validationSchema = toTypedSchema(zodTextFormSchema);
+  const validationSchema = toTypedSchema(GenerateTextSchema);
 
   const { handleSubmit, isFieldDirty } = useForm({
     validationSchema
@@ -90,7 +105,7 @@ export const useGenerateWithText = () => {
           info: text
         });
 
-        testStore.createTest = result?.body?.test as UserTest;
+        testStore.createTest = result?.body?.test;
 
         await navigateTo(localePath('/create'));
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

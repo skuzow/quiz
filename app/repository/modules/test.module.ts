@@ -11,32 +11,32 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async getAll(page: number, search?: string) {
+  async getAll(dto: TestSearch) {
     return this.call<{ tests: UserTestPartial[] }>({
       method: 'GET',
       url: this.ROUTE.Fetch(),
       fetchOptions: {
-        params: { page, search }
+        params: dto
       }
     });
   }
 
-  async getAllById(id: string, page: number, search?: string) {
+  async getAllById(id: string, dto: TestSearch) {
     return this.call<{ tests: UserTestPartial[] }>({
       method: 'GET',
       url: this.ROUTE.FetchUserId(id),
       fetchOptions: {
-        params: { page, search }
+        params: dto
       }
     });
   }
 
-  async getAllByUsername(username: string, page: number, search?: string) {
+  async getAllByUsername(username: string, dto: TestSearch) {
     return this.call<{ tests: UserTestPartial[] }>({
       method: 'GET',
       url: this.ROUTE.FetchUserUsername(username),
       fetchOptions: {
-        params: { page, search }
+        params: dto
       }
     });
   }
@@ -48,7 +48,7 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async create(test: UserTest) {
+  async create(test: TestCreation) {
     return this.call<{ test: UserTest }>({
       method: 'POST',
       url: this.ROUTE.Fetch(),
@@ -57,14 +57,14 @@ class TestModule extends FetchFactory {
   }
 
   async generate(dto: TestGeneration) {
-    return this.call({
+    return this.call<{ test: TestCreation }>({
       method: 'POST',
       url: this.ROUTE.FetchAI(),
       body: dto
     });
   }
 
-  async update(id: string, test: UserTest) {
+  async update(id: string, test: TestCreation) {
     return this.call<{ test: UserTest }>({
       method: 'PUT',
       url: this.ROUTE.FetchId(id),

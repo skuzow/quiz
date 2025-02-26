@@ -1,12 +1,13 @@
-import * as z from 'zod';
+import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
-import { TESTS_PAGE_SIZE } from '#shared/constants/test.constant';
+import {
+  TEST_SEARCH_PAGE_SIZE,
+  TEST_SEARCH_TEXT_MAX
+} from '#shared/constants/test.constant';
 
 const SEARCH_TIMEOUT: number = 1000;
-
-const MAX_SEARCH_LENGTH: number = 150;
 
 export const useTestsFeed = (id?: string, username?: string) => {
   const { $api } = useNuxtApp();
@@ -25,29 +26,28 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
   const infiniteScroll = useTemplateRef<HTMLElement>('infinite-scroll');
 
-  const searchSchema = z.object({
+  const FeedSchema = z.object({
     search: z
       .string()
-      .max(MAX_SEARCH_LENGTH, {
-        message: maxMessage(FormInput.SEARCH, MAX_SEARCH_LENGTH)
+      .max(TEST_SEARCH_TEXT_MAX, {
+        message: maxMessage(FormInput.SEARCH, TEST_SEARCH_TEXT_MAX)
       })
       .refine(async (value) => await searchTimeout(value))
       .optional()
   });
 
-  const searchValidationSchema = toTypedSchema(searchSchema);
+  const validationSchema = toTypedSchema(FeedSchema);
 
   const { isFieldDirty } = useForm({
-    validationSchema: searchValidationSchema
+    validationSchema
   });
 
-  const testsRequest = async () => {
-    if (id) return $api.test.getAllById(id, page.value, search.value);
+  const testsRequest = async (dto: TestSearch) => {
+    if (id) return $api.test.getAllById(id, dto);
 
-    if (username)
-      return $api.test.getAllByUsername(username, page.value, search.value);
+    if (username) return $api.test.getAllByUsername(username, dto);
 
-    return $api.test.getAll(page.value, search.value);
+    return $api.test.getAll(dto);
   };
 
   const searchTests = async (reset?: boolean) => {
@@ -55,14 +55,16 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
     if (reset) resetTests();
 
+    const dto: TestSearch = { page: page.value, search: search.value };
+
     try {
-      const response = await testsRequest();
+      const response = await testsRequest(dto);
 
       const responseTests: UserTestPartial[] = response.body.tests;
 
       tests.value.push(...responseTests);
 
-      if (responseTests.length < TESTS_PAGE_SIZE) hasMore.value = false;
+      if (responseTests.length < TEST_SEARCH_PAGE_SIZE) hasMore.value = false;
       else page.value++;
     } catch (e) {
       if (e.statusCode === 404) errorMessage.value = $t('error.testsNotFound');
@@ -109,7 +111,7 @@ export const useTestsFeed = (id?: string, username?: string) => {
   };
 
   const isInvalidSearch = (value: string): boolean => {
-    return value.length > MAX_SEARCH_LENGTH;
+    return value.length > TEST_SEARCH_TEXT_MAX;
   };
 
   return {

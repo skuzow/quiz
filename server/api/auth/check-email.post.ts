@@ -1,20 +1,25 @@
-export default defineEventHandler(async (event) => {
-  const { email } = await readBody(event);
+import { AuthEmailCheckSchema } from '#shared/schemas/auth.schema';
 
-  if (!email) {
+export default defineEventHandler(async (event) => {
+  const body: AuthEmailCheck = await readBody(event);
+
+  const result = AuthEmailCheckSchema.safeParse(body);
+
+  if (!result.success)
     return sendError(
       event,
       createError({
         statusCode: 400,
-        statusMessage: 'Missing required fields',
-        data: 'Email required'
+        statusMessage: 'Invalid fields',
+        data: result.error?.issues
       })
     );
-  }
+
+  const { email } = body;
 
   const emailTaken: boolean = await repository.auth.checkEmail(email);
 
-  if (emailTaken) {
+  if (emailTaken)
     return {
       statusCode: 409,
       statusMessage: 'Email already in use',
@@ -22,7 +27,6 @@ export default defineEventHandler(async (event) => {
         isAvailable: false
       }
     };
-  }
 
   return {
     statusCode: 200,

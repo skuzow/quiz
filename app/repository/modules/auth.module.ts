@@ -8,7 +8,7 @@ class AuthModule extends FetchFactory {
     return this.call<{ isAvailable: boolean }>({
       method: 'POST',
       url: this.ROUTE.CheckEmail(),
-      body: { email }
+      body: { email } as AuthEmailCheck
     });
   }
 
@@ -16,7 +16,7 @@ class AuthModule extends FetchFactory {
     return this.call<{ isAvailable: boolean }>({
       method: 'POST',
       url: this.ROUTE.CheckUsername(),
-      body: { username }
+      body: { username } as AuthUsernameCheck
     });
   }
 }

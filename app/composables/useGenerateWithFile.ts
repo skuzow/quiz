@@ -1,8 +1,15 @@
-import * as z from 'zod';
+import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
-import { TestQuestionTypeValues } from '#shared/constants/test.constant';
+import {
+  TestQuestionTypeValues,
+  TEST_GENERATION_QUESTIONS_MIN,
+  TEST_GENERATION_QUESTIONS_MAX,
+  TEST_GENERATION_QUESTION_OPTIONS_MIN,
+  TEST_GENERATION_QUESTION_OPTIONS_MAX
+} from '#shared/constants/test.constant';
+
 import type { PreviewFile } from '@/types/file.type';
 import { FileTypes } from '@/constants/file.constant';
 
@@ -28,36 +35,44 @@ export const useGenerateWithFile = () => {
   const isLoadingWithFile: Ref<boolean> = ref(false);
   const internalServerErrorWithFile: Ref<boolean> = ref(false);
 
-  const zodFileFormSchema = z.object({
+  const GenerateFileSchema = z.object({
     type: z.enum(['ALL', ...TestQuestionTypeValues]).default('ALL'),
     questions: z
       .number({
         required_error: requiredMessage(FormInput.QUESTIONS)
       })
-      .min(1, {
-        message: minMessage(FormInput.QUESTIONS, 1)
+      .int()
+      .min(TEST_GENERATION_QUESTIONS_MIN, {
+        message: minMessage(FormInput.QUESTIONS, TEST_GENERATION_QUESTIONS_MIN)
       })
-      .max(10, {
-        message: maxMessage(FormInput.QUESTIONS, 10)
+      .max(TEST_GENERATION_QUESTIONS_MAX, {
+        message: maxMessage(FormInput.QUESTIONS, TEST_GENERATION_QUESTIONS_MAX)
       })
       .default(5),
     options: z
       .number({
         required_error: requiredMessage(FormInput.OPTIONS)
       })
-      .min(TEST_QUESTION_OPTIONS_MIN, {
-        message: minMessage(FormInput.OPTIONS, TEST_QUESTION_OPTIONS_MIN)
+      .int()
+      .min(TEST_GENERATION_QUESTION_OPTIONS_MIN, {
+        message: minMessage(
+          FormInput.OPTIONS,
+          TEST_GENERATION_QUESTION_OPTIONS_MIN
+        )
       })
-      .max(TEST_QUESTION_OPTIONS_MAX, {
-        message: maxMessage(FormInput.OPTIONS, TEST_QUESTION_OPTIONS_MAX)
+      .max(TEST_GENERATION_QUESTION_OPTIONS_MAX, {
+        message: maxMessage(
+          FormInput.OPTIONS,
+          TEST_GENERATION_QUESTION_OPTIONS_MAX
+        )
       })
       .optional(),
     deep: z.boolean().default(true)
   });
 
-  type GenerateFileForm = z.TypeOf<typeof zodFileFormSchema>;
+  type GenerateFileForm = z.TypeOf<typeof GenerateFileSchema>;
 
-  const validationSchema = toTypedSchema(zodFileFormSchema);
+  const validationSchema = toTypedSchema(GenerateFileSchema);
 
   const { handleSubmit, isFieldDirty } = useForm({
     validationSchema
@@ -100,7 +115,7 @@ export const useGenerateWithFile = () => {
           info: formatTextContent(text)
         });
 
-        testStore.createTest = result?.body?.test as UserTest;
+        testStore.createTest = result?.body?.test;
 
         await navigateTo(localePath('/create'));
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

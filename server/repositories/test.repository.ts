@@ -5,7 +5,7 @@ import {
   USER_TEST_PARTIAL_SELECT
 } from './queries/selects';
 
-import { TESTS_PAGE_SIZE } from '#shared/constants/test.constant';
+import { TEST_SEARCH_PAGE_SIZE } from '#shared/constants/test.constant';
 
 class TestRepository {
   private userTestModel = prisma.userTest;
@@ -21,10 +21,10 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
-  async findAll(
-    page: number,
-    search?: string
-  ): Promise<UserTestPartial[] | null> {
+  async findAll({
+    page,
+    search
+  }: TestSearch): Promise<UserTestPartial[] | null> {
     const skip: number = this.skipTests(page);
 
     const tests = await this.userTestModel.findMany({
@@ -41,8 +41,7 @@ class TestRepository {
 
   async findAllById(
     id: string,
-    page: number,
-    search?: string
+    { page, search }: TestSearch
   ): Promise<UserTestPartial[] | null> {
     const skip: number = this.skipTests(page);
 
@@ -63,8 +62,7 @@ class TestRepository {
 
   async findAllByUsername(
     username: string,
-    page: number,
-    search?: string
+    { page, search }: TestSearch
   ): Promise<UserTestPartial[] | null> {
     const skip: number = this.skipTests(page);
 
@@ -85,7 +83,7 @@ class TestRepository {
 
   async create(
     userId: string,
-    { title, description, categories, questions }: UserTest
+    { title, description, categories, questions }: TestCreation
   ): Promise<UserTest> {
     const test = await this.userTestModel.create({
       data: {
@@ -120,10 +118,10 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
-  async generate(dto: TestGeneration): Promise<UserTest> {
+  async generate(dto: TestGeneration): Promise<TestCreation> {
     const { quizAi } = useRuntimeConfig();
 
-    const test = await $fetch(`${quizAi.apiUrl}/tests`, {
+    const test = await $fetch<TestCreation>(`${quizAi.apiUrl}/tests`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -132,12 +130,12 @@ class TestRepository {
       body: dto
     });
 
-    return test as UserTest;
+    return test;
   }
 
   async update(
     id: string,
-    { title, description, categories, questions }: UserTest
+    { title, description, categories, questions }: TestCreation
   ): Promise<UserTest> {
     const test = await this.userTestModel.update({
       where: { id },
@@ -179,11 +177,11 @@ class TestRepository {
   }
 
   private skipTests(page: number): number {
-    return page * TESTS_PAGE_SIZE;
+    return page * TEST_SEARCH_PAGE_SIZE;
   }
 
   private takeTests(skip: number): number {
-    return skip + TESTS_PAGE_SIZE;
+    return skip + TEST_SEARCH_PAGE_SIZE;
   }
 
   private searchTests(search?: string) {

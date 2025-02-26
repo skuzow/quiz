@@ -1,9 +1,11 @@
+import { TestGenerationSchema } from '#shared/schemas/test.schema';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export default defineEventHandler(async (event) => {
   try {
     await repository.auth.checkSession(event.headers);
 
-    const body = await readBody(event);
+    const body: TestGeneration = await readBody(event);
 
     const result = TestGenerationSchema.safeParse(body);
 
@@ -17,7 +19,7 @@ export default defineEventHandler(async (event) => {
         })
       );
 
-    const test: UserTest = await repository.test.generate(body);
+    const test: TestCreation = await repository.test.generate(body);
 
     return {
       statusCode: 201,

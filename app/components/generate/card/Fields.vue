@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-import { TestQuestionTypeValues } from '#shared/constants/test.constant';
+import {
+  TestQuestionTypeValues,
+  TEST_GENERATION_QUESTION_OPTIONS_MIN,
+  TEST_GENERATION_QUESTION_OPTIONS_MAX
+} from '#shared/constants/test.constant';
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -73,8 +77,8 @@ const { FormInput } = useFormMessage();
       <FormItem v-auto-animate>
         <FormLabel>{{ $t('form.options') }}</FormLabel>
         <NumberField
-          :min="TEST_QUESTION_OPTIONS_MIN"
-          :max="TEST_QUESTION_OPTIONS_MAX"
+          :min="TEST_GENERATION_QUESTION_OPTIONS_MIN"
+          :max="TEST_GENERATION_QUESTION_OPTIONS_MAX"
           :model-value="value"
           @update:model-value="handleChange"
         >
@@ -82,7 +86,7 @@ const { FormInput } = useFormMessage();
             <NumberFieldDecrement />
             <FormControl>
               <NumberFieldInput
-                :placeholder="`${TEST_QUESTION_OPTIONS_MIN} - ${TEST_QUESTION_OPTIONS_MAX}`"
+                :placeholder="`${TEST_GENERATION_QUESTION_OPTIONS_MIN} - ${TEST_GENERATION_QUESTION_OPTIONS_MAX}`"
               />
             </FormControl>
             <NumberFieldIncrement />

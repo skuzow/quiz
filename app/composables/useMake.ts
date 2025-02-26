@@ -1,10 +1,10 @@
-import * as z from 'zod';
+import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
 import {
   TestQuestionType,
-  MAX_TEST_OPTIONS
+  TEST_CREATION_QUESTION_OPTIONS_MAX
 } from '#shared/constants/test.constant';
 
 export const useMake = (questions: UserTestQuestion[]) => {
@@ -17,27 +17,29 @@ export const useMake = (questions: UserTestQuestion[]) => {
   const isLoadingMake: Ref<boolean> = ref(false);
   const makeCorrection: Ref<TestCorrectionQuestion[] | undefined> = ref();
 
-  const responseEnum = z.enum([
+  const MakeQuestionResponseSchema = z.enum([
     '0',
-    ...Array.from({ length: MAX_TEST_OPTIONS - 1 }, (_, i) => String(i + 1))
+    ...Array.from({ length: TEST_CREATION_QUESTION_OPTIONS_MAX - 1 }, (_, i) =>
+      String(i + 1)
+    )
   ]);
 
-  const zodSingleQuestionFormSchema = z.object({
+  const MakeSingleQuestionSchema = z.object({
     type: z.literal(TestQuestionType.SINGLE),
-    options: responseEnum.optional()
+    options: MakeQuestionResponseSchema.optional()
   });
 
-  const zodMultipleQuestionFormSchema = z.object({
+  const MakeMultipleQuestionSchema = z.object({
     type: z.literal(TestQuestionType.MULTIPLE),
-    options: z.array(responseEnum).optional()
+    options: z.array(MakeQuestionResponseSchema).optional()
   });
 
-  const zodFormSchema = z.object({
+  const MakeSchema = z.object({
     questions: z
       .array(
         z.discriminatedUnion('type', [
-          zodSingleQuestionFormSchema,
-          zodMultipleQuestionFormSchema
+          MakeSingleQuestionSchema,
+          MakeMultipleQuestionSchema
         ])
       )
       .refine(
@@ -47,14 +49,14 @@ export const useMake = (questions: UserTestQuestion[]) => {
   });
 
   type MakeQuestionForm =
-    | z.infer<typeof zodSingleQuestionFormSchema>
-    | z.infer<typeof zodMultipleQuestionFormSchema>;
+    | z.infer<typeof MakeSingleQuestionSchema>
+    | z.infer<typeof MakeMultipleQuestionSchema>;
 
   type MakeForm = {
     questions: MakeQuestionForm[];
   };
 
-  const validationSchema = toTypedSchema(zodFormSchema);
+  const validationSchema = toTypedSchema(MakeSchema);
 
   const { handleSubmit, errorBag, isFieldTouched, resetForm } = useForm({
     validationSchema,
