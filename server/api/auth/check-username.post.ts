@@ -1,20 +1,25 @@
-export default defineEventHandler(async (event) => {
-  const { username } = await readBody(event);
+import { AuthUsernameCheck } from '#shared/schemas/auth.schema';
 
-  if (!username) {
+export default defineEventHandler(async (event) => {
+  const body = await readBody(event);
+
+  const result = AuthUsernameCheck.safeParse(body);
+
+  if (!result.success)
     return sendError(
       event,
       createError({
         statusCode: 400,
-        statusMessage: 'Missing required fields',
-        data: 'Username required'
+        statusMessage: 'Invalid fields',
+        data: result.error?.issues
       })
     );
-  }
+
+  const { username } = body;
 
   const usernameTaken: boolean = await repository.auth.checkUsername(username);
 
-  if (usernameTaken) {
+  if (usernameTaken)
     return {
       statusCode: 409,
       statusMessage: 'Username already in use',
@@ -22,7 +27,6 @@ export default defineEventHandler(async (event) => {
         isAvailable: false
       }
     };
-  }
 
   return {
     statusCode: 200,
