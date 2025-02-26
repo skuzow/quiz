@@ -5,7 +5,7 @@ export default defineEventHandler(async (event) => {
   try {
     await repository.auth.checkSession(event.headers);
 
-    const body = await readBody(event);
+    const body: TestGeneration = await readBody(event);
 
     const result = TestGenerationSchema.safeParse(body);
 
