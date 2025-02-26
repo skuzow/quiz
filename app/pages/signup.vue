@@ -14,7 +14,7 @@ const {
   SignupSchema,
   fieldConfig,
   signupWithEmail
-} = useSignupForm();
+} = useSignup();
 </script>
 
 <template>

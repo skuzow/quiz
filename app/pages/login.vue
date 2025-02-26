@@ -14,7 +14,7 @@ const {
   LoginSchema,
   fieldConfig,
   loginWithEmail
-} = useLoginForm();
+} = useLogin();
 </script>
 
 <template>

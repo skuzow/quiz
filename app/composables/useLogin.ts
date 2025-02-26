@@ -6,7 +6,7 @@ import {
   USER_PASSWORD_MAX
 } from '#shared/constants/user.constant';
 
-export const useLoginForm = () => {
+export const useLogin = () => {
   const { t: $t } = useI18n();
   const localePath = useLocalePath();
 

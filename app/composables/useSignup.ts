@@ -12,7 +12,7 @@ import {
 
 const CHECK_TIMEOUT: number = 1000;
 
-export const useSignupForm = () => {
+export const useSignup = () => {
   const { $api } = useNuxtApp();
   const { t: $t } = useI18n();
   const localePath = useLocalePath();
