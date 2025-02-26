@@ -1,5 +1,11 @@
 import { z } from 'zod';
 
+import {
+  USER_EMAIL_MAX,
+  USER_PASSWORD_MIN,
+  USER_PASSWORD_MAX
+} from '#shared/constants/user.constant';
+
 export const useLoginForm = () => {
   const { t: $t } = useI18n();
   const localePath = useLocalePath();
@@ -18,18 +24,18 @@ export const useLoginForm = () => {
         required_error: requiredMessage(FormInput.EMAIL)
       })
       .email($t('form.emailFormat'))
-      .max(35, {
-        message: maxMessage(FormInput.EMAIL, 35)
+      .max(USER_EMAIL_MAX, {
+        message: maxMessage(FormInput.EMAIL, USER_EMAIL_MAX)
       }),
     password: z
       .string({
         required_error: requiredMessage(FormInput.PASSWORD)
       })
-      .min(8, {
-        message: minMessage(FormInput.PASSWORD, 8)
+      .min(USER_PASSWORD_MIN, {
+        message: minMessage(FormInput.PASSWORD, USER_PASSWORD_MIN)
       })
-      .max(32, {
-        message: maxMessage(FormInput.PASSWORD, 32)
+      .max(USER_PASSWORD_MAX, {
+        message: maxMessage(FormInput.PASSWORD, USER_PASSWORD_MAX)
       })
   });
 

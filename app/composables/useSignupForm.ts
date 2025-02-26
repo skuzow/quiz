@@ -1,10 +1,16 @@
 import { z } from 'zod';
 
-const CHECK_TIMEOUT: number = 1000;
+import {
+  USER_EMAIL_MAX,
+  USER_NAME_MIN,
+  USER_NAME_MAX,
+  USER_USERNAME_MIN,
+  USER_USERNAME_MAX,
+  USER_PASSWORD_MIN,
+  USER_PASSWORD_MAX
+} from '#shared/constants/user.constant';
 
-const MAX_EMAIL_LENGTH: number = 35;
-const MIN_USERNAME_LENGTH: number = 3;
-const MAX_USERNAME_LENGTH: number = 20;
+const CHECK_TIMEOUT: number = 1000;
 
 export const useSignupForm = () => {
   const { $api } = useNuxtApp();
@@ -30,8 +36,8 @@ export const useSignupForm = () => {
         required_error: requiredMessage(FormInput.EMAIL)
       })
       .email($t('form.emailFormat'))
-      .max(MAX_EMAIL_LENGTH, {
-        message: maxMessage(FormInput.EMAIL, MAX_EMAIL_LENGTH)
+      .max(USER_EMAIL_MAX, {
+        message: maxMessage(FormInput.EMAIL, USER_EMAIL_MAX)
       })
       .refine(
         async (value) => await isEmailAvailableTimeout(value),
@@ -41,21 +47,21 @@ export const useSignupForm = () => {
       .string({
         required_error: requiredMessage(FormInput.NAME)
       })
-      .min(3, {
-        message: minMessage(FormInput.NAME, 3)
+      .min(USER_NAME_MIN, {
+        message: minMessage(FormInput.NAME, USER_NAME_MIN)
       })
-      .max(40, {
-        message: maxMessage(FormInput.NAME, 40)
+      .max(USER_NAME_MAX, {
+        message: maxMessage(FormInput.NAME, USER_NAME_MAX)
       }),
     username: z
       .string({
         required_error: requiredMessage(FormInput.USERNAME)
       })
-      .min(MIN_USERNAME_LENGTH, {
-        message: minMessage(FormInput.USERNAME, MIN_USERNAME_LENGTH)
+      .min(USER_USERNAME_MIN, {
+        message: minMessage(FormInput.USERNAME, USER_USERNAME_MIN)
       })
-      .max(MAX_USERNAME_LENGTH, {
-        message: maxMessage(FormInput.USERNAME, MAX_USERNAME_LENGTH)
+      .max(USER_USERNAME_MAX, {
+        message: maxMessage(FormInput.USERNAME, USER_USERNAME_MAX)
       })
       .refine(
         async (value) => await isUsernameAlreadyInUseTimeout(value),
@@ -65,11 +71,11 @@ export const useSignupForm = () => {
       .string({
         required_error: requiredMessage(FormInput.PASSWORD)
       })
-      .min(8, {
-        message: minMessage(FormInput.PASSWORD, 8)
+      .min(USER_PASSWORD_MIN, {
+        message: minMessage(FormInput.PASSWORD, USER_PASSWORD_MIN)
       })
-      .max(32, {
-        message: maxMessage(FormInput.PASSWORD, 32)
+      .max(USER_PASSWORD_MAX, {
+        message: maxMessage(FormInput.PASSWORD, USER_PASSWORD_MAX)
       })
   });
 
@@ -126,7 +132,7 @@ export const useSignupForm = () => {
   };
 
   const isInvalidEmail = (email: string): boolean => {
-    return !email || email.length > MAX_EMAIL_LENGTH || !isValidEmail(email);
+    return !email || email.length > USER_EMAIL_MAX || !isValidEmail(email);
   };
 
   const isEmailAvailable = async (email: string): Promise<boolean> => {
@@ -162,8 +168,8 @@ export const useSignupForm = () => {
   const isInvalidUsername = (username: string): boolean => {
     return (
       !username ||
-      username.length < MIN_USERNAME_LENGTH ||
-      username.length > MAX_USERNAME_LENGTH
+      username.length < USER_USERNAME_MIN ||
+      username.length > USER_USERNAME_MAX
     );
   };
 
