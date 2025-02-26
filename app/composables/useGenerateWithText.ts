@@ -103,7 +103,7 @@ export const useGenerateWithText = () => {
           info: text
         });
 
-        testStore.createTest = result?.body?.test as UserTest;
+        testStore.createTest = result?.body?.test;
 
         await navigateTo(localePath('/create'));
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

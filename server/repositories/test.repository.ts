@@ -120,10 +120,10 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
-  async generate(dto: TestGeneration): Promise<UserTest> {
+  async generate(dto: TestGeneration): Promise<TestCreation> {
     const { quizAi } = useRuntimeConfig();
 
-    const test = await $fetch(`${quizAi.apiUrl}/tests`, {
+    const test = await $fetch<TestCreation>(`${quizAi.apiUrl}/tests`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -132,7 +132,7 @@ class TestRepository {
       body: dto
     });
 
-    return test as UserTest;
+    return test;
   }
 
   async update(
