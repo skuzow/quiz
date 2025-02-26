@@ -11,32 +11,32 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async getAll(page: number, search?: string) {
+  async getAll(dto: TestSearch) {
     return this.call<{ tests: UserTestPartial[] }>({
       method: 'GET',
       url: this.ROUTE.Fetch(),
       fetchOptions: {
-        params: { page, search }
+        params: dto
       }
     });
   }
 
-  async getAllById(id: string, page: number, search?: string) {
+  async getAllById(id: string, dto: TestSearch) {
     return this.call<{ tests: UserTestPartial[] }>({
       method: 'GET',
       url: this.ROUTE.FetchUserId(id),
       fetchOptions: {
-        params: { page, search }
+        params: dto
       }
     });
   }
 
-  async getAllByUsername(username: string, page: number, search?: string) {
+  async getAllByUsername(username: string, dto: TestSearch) {
     return this.call<{ tests: UserTestPartial[] }>({
       method: 'GET',
       url: this.ROUTE.FetchUserUsername(username),
       fetchOptions: {
-        params: { page, search }
+        params: dto
       }
     });
   }

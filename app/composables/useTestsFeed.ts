@@ -42,13 +42,12 @@ export const useTestsFeed = (id?: string, username?: string) => {
     validationSchema
   });
 
-  const testsRequest = async () => {
-    if (id) return $api.test.getAllById(id, page.value, search.value);
+  const testsRequest = async (dto: TestSearch) => {
+    if (id) return $api.test.getAllById(id, dto);
 
-    if (username)
-      return $api.test.getAllByUsername(username, page.value, search.value);
+    if (username) return $api.test.getAllByUsername(username, dto);
 
-    return $api.test.getAll(page.value, search.value);
+    return $api.test.getAll(dto);
   };
 
   const searchTests = async (reset?: boolean) => {
@@ -56,8 +55,10 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
     if (reset) resetTests();
 
+    const dto: TestSearch = { page: page.value, search: search.value };
+
     try {
-      const response = await testsRequest();
+      const response = await testsRequest(dto);
 
       const responseTests: UserTestPartial[] = response.body.tests;
 
@@ -110,7 +111,7 @@ export const useTestsFeed = (id?: string, username?: string) => {
   };
 
   const isInvalidSearch = (value: string): boolean => {
-    return value.length > MAX_SEARCH_LENGTH;
+    return value.length > TEST_SEARCH_TEXT_MAX;
   };
 
   return {
