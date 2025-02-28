@@ -9,10 +9,20 @@ export const TestOrderValues = Object.values(TestOrder) as [
 
 export enum TestCategory {
   TECHNOLOGY = 'TECHNOLOGY',
-  UNIVERSITY = 'UNIVERSITY',
+  PROGRAMMING = 'PROGRAMMING',
   SCIENCE = 'SCIENCE',
+  MATH = 'MATH',
   HISTORY = 'HISTORY',
-  LITERATURE = 'LITERATURE'
+  GEOGRAPHY = 'GEOGRAPHY',
+  LITERATURE = 'LITERATURE',
+  ART = 'ART',
+  SPORTS = 'SPORTS',
+  MUSIC = 'MUSIC',
+  MOVIES = 'MOVIES',
+  GAMES = 'GAMES',
+  FOOD = 'FOOD',
+  ANIMALS = 'ANIMALS',
+  LANGUAGES = 'LANGUAGES'
 }
 
 export const TestCategoryValues = Object.values(TestCategory) as [
