@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
+import type { NuxtError } from '#app';
+
 import {
   TEST_SEARCH_PAGE_SIZE,
   TEST_SEARCH_TEXT_MAX
@@ -66,9 +68,8 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
       if (responseTests.length < TEST_SEARCH_PAGE_SIZE) hasMore.value = false;
       else page.value++;
-    } catch (e) {
-      if (e.statusCode === 404) errorMessage.value = $t('error.testsNotFound');
-      else errorMessage.value = $t('error.internalServer');
+    } catch (error) {
+      handleError(error as NuxtError);
     } finally {
       isLoading.value = false;
     }
@@ -79,6 +80,13 @@ export const useTestsFeed = (id?: string, username?: string) => {
     page.value = 0;
     hasMore.value = true;
     errorMessage.value = undefined;
+  };
+
+  const handleError = (error: NuxtError) => {
+    if (error.statusCode === 404) {
+      if (page.value === 0) errorMessage.value = $t('error.testsNotFound');
+      else hasMore.value = false;
+    } else errorMessage.value = $t('error.internalServer');
   };
 
   const handleScroll = () => {

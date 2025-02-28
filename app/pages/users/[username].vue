@@ -12,8 +12,8 @@ const { status, data } = await useLazyAsyncData(
   async () => {
     try {
       return await $api.user.getByUsername(username);
-    } catch (e) {
-      showError(e as NuxtError);
+    } catch (error) {
+      showError(error as NuxtError);
     }
   }
 );

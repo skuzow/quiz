@@ -30,7 +30,7 @@ class TestRepository {
     const tests = await this.userTestModel.findMany({
       where: { ...this.searchTests(search) },
       skip,
-      take: this.takeTests(skip),
+      take: TEST_SEARCH_PAGE_SIZE,
       select: USER_TEST_PARTIAL_AUTHOR_SELECT
     });
 
@@ -51,7 +51,7 @@ class TestRepository {
         ...this.searchTests(search)
       },
       skip,
-      take: this.takeTests(skip),
+      take: TEST_SEARCH_PAGE_SIZE,
       select: USER_TEST_PARTIAL_SELECT
     });
 
@@ -72,7 +72,7 @@ class TestRepository {
         ...this.searchTests(search)
       },
       skip,
-      take: this.takeTests(skip),
+      take: TEST_SEARCH_PAGE_SIZE,
       select: USER_TEST_PARTIAL_SELECT
     });
 
@@ -90,7 +90,7 @@ class TestRepository {
         author: { connect: { id: userId } },
         title,
         description,
-        categories: categories
+        categories: categories?.length
           ? {
               create: categories.map((category) => ({
                 category: { connect: { name: category } }
@@ -142,14 +142,14 @@ class TestRepository {
       data: {
         title,
         description,
-        categories: categories
+        categories: categories?.length
           ? {
               deleteMany: {},
               create: categories.map((category) => ({
                 category: { connect: { name: category } }
               }))
             }
-          : undefined,
+          : { deleteMany: {} },
         questions: {
           deleteMany: {},
           create: questions.map((question, indexQuestion) => ({
@@ -178,10 +178,6 @@ class TestRepository {
 
   private skipTests(page: number): number {
     return page * TEST_SEARCH_PAGE_SIZE;
-  }
-
-  private takeTests(skip: number): number {
-    return skip + TEST_SEARCH_PAGE_SIZE;
   }
 
   private searchTests(search?: string) {

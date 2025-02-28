@@ -140,9 +140,8 @@ export const useSignup = () => {
       const response = await $api.auth.checkEmail(email);
 
       return response.body.isAvailable;
-    } catch (e) {
-      console.error('Error checking email:', e);
-
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
       return false;
     }
   };
@@ -178,9 +177,8 @@ export const useSignup = () => {
       const response = await $api.auth.checkUsername(username);
 
       return response.body.isAvailable;
-    } catch (e) {
-      console.error('Error checking username:', e);
-
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
       return false;
     }
   };

@@ -81,6 +81,7 @@
     "questions": "Questions",
     "title": "Title",
     "description": "Description",
+    "categories": "Categories",
     "question": "Question",
     "option": "Option",
     "options": "Options",
@@ -94,6 +95,7 @@
     "characters": "characters",
     "use": "is already in use",
     "example": "Example",
+    "select": "Select",
     "invalidEmailOrPassword": "Invalid email or password.",
     "types": {
       "all": "All Types",
@@ -177,6 +179,23 @@
     "upload": "Click or Drag & Drop to Upload",
     "drag": "Drop it to Upload",
     "invalidType": "Invalid file type"
+  },
+  "categories": {
+    "technology": "Technology",
+    "programming": "Programming",
+    "science": "Science",
+    "math": "Math",
+    "history": "History",
+    "geography": "Geography",
+    "literature": "Literature",
+    "art": "Art",
+    "sports": "Sports",
+    "music": "Music",
+    "movies": "Movies",
+    "games": "Games",
+    "food": "Food",
+    "animals": "Animals",
+    "languages": "Languages"
   },
   "alert": {
     "overrideTest": {

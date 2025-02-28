@@ -16,7 +16,7 @@ export interface UserTestPartial {
   title: string;
   description: string;
   image: string | null;
-  author: UserPartial | null;
+  author: UserPartial;
   categories: TestCategory[];
   questions: number;
   views: number;

@@ -9,6 +9,7 @@ import {
   TEST_CREATION_TITLE_MAX,
   TEST_CREATION_DESCRIPTION_MIN,
   TEST_CREATION_DESCRIPTION_MAX,
+  TEST_CREATION_CATEGORIES_MAX,
   TEST_CREATION_QUESTIONS_MIN,
   TEST_CREATION_QUESTIONS_MAX,
   TEST_CREATION_QUESTION_TEXT_MIN,
@@ -58,7 +59,10 @@ export const TestCreationSchema = z.object({
     .string()
     .min(TEST_CREATION_DESCRIPTION_MIN)
     .max(TEST_CREATION_DESCRIPTION_MAX),
-  categories: z.array(z.enum(TestCategoryValues)).optional(), // TODO: max, min and delete optional
+  categories: z
+    .array(z.enum(TestCategoryValues))
+    .max(TEST_CREATION_CATEGORIES_MAX)
+    .optional(),
   questions: z
     .array(TestCreationQuestionSchema)
     .min(TEST_CREATION_QUESTIONS_MIN)

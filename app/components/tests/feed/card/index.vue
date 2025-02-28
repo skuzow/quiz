@@ -8,8 +8,6 @@ interface Props {
 const { test } = defineProps<Props>();
 
 const imageAlt: string = `image-${test.id}`;
-
-const tempCategories = ['Education', 'Science'];
 </script>
 
 <template>
@@ -55,15 +53,15 @@ const tempCategories = ['Education', 'Science'];
         {{ test.description }}
       </p>
 
-      <div class="flex justify-between">
-        <ul class="flex gap-x-2">
-          <li
-            v-for="(category, indexCategory) in tempCategories"
-            :key="indexCategory"
-          >
-            <Badge>{{ category }}</Badge>
-          </li>
-        </ul>
+      <div
+        :class="
+          cn('flex', test.categories.length ? 'justify-between' : 'justify-end')
+        "
+      >
+        <TestsCategories
+          v-if="test.categories.length"
+          :categories="test.categories"
+        />
 
         <ul class="flex gap-x-2">
           <li class="flex items-center gap-x-1">

@@ -9,10 +9,20 @@ export const TestOrderValues = Object.values(TestOrder) as [
 
 export enum TestCategory {
   TECHNOLOGY = 'TECHNOLOGY',
-  UNIVERSITY = 'UNIVERSITY',
+  PROGRAMMING = 'PROGRAMMING',
   SCIENCE = 'SCIENCE',
+  MATH = 'MATH',
   HISTORY = 'HISTORY',
-  LITERATURE = 'LITERATURE'
+  GEOGRAPHY = 'GEOGRAPHY',
+  LITERATURE = 'LITERATURE',
+  ART = 'ART',
+  SPORTS = 'SPORTS',
+  MUSIC = 'MUSIC',
+  MOVIES = 'MOVIES',
+  GAMES = 'GAMES',
+  FOOD = 'FOOD',
+  ANIMALS = 'ANIMALS',
+  LANGUAGES = 'LANGUAGES'
 }
 
 export const TestCategoryValues = Object.values(TestCategory) as [
@@ -32,6 +42,7 @@ export const TEST_CREATION_TITLE_MIN: number = 10;
 export const TEST_CREATION_TITLE_MAX: number = 150;
 export const TEST_CREATION_DESCRIPTION_MIN: number = 10;
 export const TEST_CREATION_DESCRIPTION_MAX: number = 500;
+export const TEST_CREATION_CATEGORIES_MAX: number = 2;
 export const TEST_CREATION_QUESTIONS_MIN: number = 1;
 export const TEST_CREATION_QUESTIONS_MAX: number = 100;
 export const TEST_CREATION_QUESTION_TEXT_MIN: number = 10;
