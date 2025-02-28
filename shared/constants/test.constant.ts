@@ -42,6 +42,7 @@ export const TEST_CREATION_TITLE_MIN: number = 10;
 export const TEST_CREATION_TITLE_MAX: number = 150;
 export const TEST_CREATION_DESCRIPTION_MIN: number = 10;
 export const TEST_CREATION_DESCRIPTION_MAX: number = 500;
+export const TEST_CREATION_CATEGORIES_MAX: number = 2;
 export const TEST_CREATION_QUESTIONS_MIN: number = 1;
 export const TEST_CREATION_QUESTIONS_MAX: number = 100;
 export const TEST_CREATION_QUESTION_TEXT_MIN: number = 10;

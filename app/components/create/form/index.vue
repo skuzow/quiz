@@ -60,6 +60,8 @@ const { FormInput, exampleMessage } = useFormMessage();
           <FormMessage />
         </FormItem>
       </FormField>
+
+      <CreateFormCategories />
     </div>
 
     <ol v-auto-animate class="flex flex-col gap-y-8">

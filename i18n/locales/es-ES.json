@@ -81,6 +81,7 @@
     "questions": "Preguntas",
     "title": "Título",
     "description": "Descripción",
+    "categories": "Categorías",
     "question": "Pregunta",
     "option": "Opción",
     "options": "Opciones",
@@ -94,6 +95,7 @@
     "characters": "caracteres",
     "use": "está en uso",
     "example": "Ejemplo de",
+    "select": "Selecciona",
     "invalidEmailOrPassword": "Correo electrónico o contraseña no válidos.",
     "types": {
       "all": "Todos los Tipos",
