@@ -31,12 +31,12 @@ export default defineEventHandler(async (event) => {
         test
       }
     };
-  } catch (e: any) {
+  } catch (error: any) {
     return sendError(
       event,
       createError({
-        statusCode: e.statusCode,
-        statusMessage: e.stack
+        statusCode: error.statusCode,
+        statusMessage: error.stack
       })
     );
   }

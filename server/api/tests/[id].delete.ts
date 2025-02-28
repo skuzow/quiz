@@ -33,12 +33,12 @@ export default defineEventHandler(async (event) => {
       statusCode: 200,
       statusMessage: 'Test deleted successfully'
     };
-  } catch (e: any) {
+  } catch (error: any) {
     return sendError(
       event,
       createError({
-        statusCode: e.statusCode,
-        statusMessage: e.stack
+        statusCode: error.statusCode,
+        statusMessage: error.stack
       })
     );
   }

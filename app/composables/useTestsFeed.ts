@@ -68,8 +68,8 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
       if (responseTests.length < TEST_SEARCH_PAGE_SIZE) hasMore.value = false;
       else page.value++;
-    } catch (e) {
-      handleError(e as NuxtError);
+    } catch (error) {
+      handleError(error as NuxtError);
     } finally {
       isLoading.value = false;
     }

@@ -10,8 +10,8 @@ const { $api } = useNuxtApp();
 const { status, data } = await useLazyAsyncData(`user-${id}`, async () => {
   try {
     return await $api.user.getById(id);
-  } catch (e) {
-    showError(e as NuxtError);
+  } catch (error) {
+    showError(error as NuxtError);
   }
 });
 
