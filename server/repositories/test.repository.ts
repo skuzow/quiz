@@ -90,7 +90,7 @@ class TestRepository {
         author: { connect: { id: userId } },
         title,
         description,
-        categories: categories
+        categories: categories?.length
           ? {
               create: categories.map((category) => ({
                 category: { connect: { name: category } }
@@ -142,14 +142,14 @@ class TestRepository {
       data: {
         title,
         description,
-        categories: categories
+        categories: categories?.length
           ? {
               deleteMany: {},
               create: categories.map((category) => ({
                 category: { connect: { name: category } }
               }))
             }
-          : undefined,
+          : { deleteMany: {} },
         questions: {
           deleteMany: {},
           create: questions.map((question, indexQuestion) => ({
