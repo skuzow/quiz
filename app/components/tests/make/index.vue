@@ -46,7 +46,7 @@ const editTest = async () => {
         </NuxtLinkLocale>
 
         <TestsCategories
-          v-if="test.categories"
+          v-if="test.categories.length"
           :categories="test.categories"
           class="absolute bottom-2 left-2"
         />

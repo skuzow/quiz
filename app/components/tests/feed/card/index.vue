@@ -53,8 +53,15 @@ const imageAlt: string = `image-${test.id}`;
         {{ test.description }}
       </p>
 
-      <div class="flex justify-between">
-        <TestsCategories v-if="test.categories" :categories="test.categories" />
+      <div
+        :class="
+          cn('flex', test.categories.length ? 'justify-between' : 'justify-end')
+        "
+      >
+        <TestsCategories
+          v-if="test.categories.length"
+          :categories="test.categories"
+        />
 
         <ul class="flex gap-x-2">
           <li class="flex items-center gap-x-1">
