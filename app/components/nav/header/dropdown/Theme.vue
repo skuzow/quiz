@@ -17,7 +17,7 @@ const colorMode = useColorMode();
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" class="font-medium">
       <DropdownMenuItem
-        class="cursor-pointer gap-2"
+        class="gap-2"
         @click="colorMode.preference = Theme.LIGHT"
       >
         <SunIcon :size="16" />
@@ -25,7 +25,7 @@ const colorMode = useColorMode();
       </DropdownMenuItem>
 
       <DropdownMenuItem
-        class="cursor-pointer gap-2"
+        class="gap-2"
         @click="colorMode.preference = Theme.DARK"
       >
         <MoonIcon :size="16" />
@@ -33,7 +33,7 @@ const colorMode = useColorMode();
       </DropdownMenuItem>
 
       <DropdownMenuItem
-        class="cursor-pointer gap-2"
+        class="gap-2"
         @click="colorMode.preference = Theme.SYSTEM"
       >
         <LaptopMinimalIcon :size="16" />
