@@ -178,6 +178,23 @@
     "drag": "Suéltalo para Cargar",
     "invalidType": "Tipo de archivo no válido"
   },
+  "categories": {
+    "technology": "Tecnología",
+    "programming": "Programación",
+    "science": "Ciencia",
+    "math": "Matemáticas",
+    "history": "Historia",
+    "geography": "Geografía",
+    "literature": "Literatura",
+    "art": "Arte",
+    "sports": "Deportes",
+    "music": "Música",
+    "movies": "Películas",
+    "games": "Juegos",
+    "food": "Comida",
+    "animals": "Animales",
+    "languages": "Idiomas"
+  },
   "alert": {
     "overrideTest": {
       "title": "Ya tienes un test en curso",
