@@ -25,8 +25,6 @@ const editTest = async () => {
 
   isLoadingEdit.value = false;
 };
-
-const tempCategories = ['Education', 'Science'];
 </script>
 
 <template>
@@ -47,14 +45,11 @@ const tempCategories = ['Education', 'Science'];
           />
         </NuxtLinkLocale>
 
-        <ul class="absolute bottom-2 left-2 flex gap-x-2">
-          <li
-            v-for="(category, indexCategory) in tempCategories"
-            :key="indexCategory"
-          >
-            <Badge>{{ category }}</Badge>
-          </li>
-        </ul>
+        <TestsCategories
+          v-if="test.categories"
+          :categories="test.categories"
+          class="absolute bottom-2 left-2"
+        />
 
         <Button
           v-if="isAuthenticated && authUser?.id === test.author.id"
