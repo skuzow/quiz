@@ -16,8 +16,8 @@ export interface UserTestPartial {
   title: string;
   description: string;
   image: string | null;
-  author: UserPartial | null;
-  categories: TestCategory[] | null;
+  author: UserPartial;
+  categories: TestCategory[];
   questions: number;
   views: number;
   createdAt: Date;
@@ -29,7 +29,7 @@ export interface UserTest {
   description: string;
   image: string | null;
   author: UserPartial;
-  categories: TestCategory[] | null;
+  categories: TestCategory[];
   questions: UserTestQuestion[];
   views: number;
   createdAt: Date;
