@@ -17,7 +17,7 @@ const { FormInput } = useFormMessage();
 
 <template>
   <FormField v-slot="{ value, componentField }" :name="FormInput.CATEGORIES">
-    <FormItem>
+    <FormItem v-auto-animate>
       <FormLabel>{{ $t('form.categories') }}</FormLabel>
       <FormControl>
         <ComboboxRoot v-bind="componentField" multiple>
