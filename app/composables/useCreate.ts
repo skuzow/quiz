@@ -103,6 +103,7 @@ export const useCreate = (edit?: boolean) => {
     );
 
   const CreateSchema = z.object({
+    published: z.boolean().default(false),
     title: z
       .string({ required_error: requiredMessage(FormInput.TITLE) })
       .min(
@@ -176,6 +177,7 @@ export const useCreate = (edit?: boolean) => {
   };
 
   const initialFormValue: CreateForm = {
+    published: false,
     title: '',
     description: '',
     categories: [],
