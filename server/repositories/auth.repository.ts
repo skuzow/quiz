@@ -15,6 +15,10 @@ class AuthRepository {
     return authSession;
   }
 
+  async getSession(headers: any) {
+    return auth.api.getSession({ headers });
+  }
+
   async checkEmail(email: string): Promise<boolean> {
     return !!(await this.userModel.findFirst({
       where: { email: email }

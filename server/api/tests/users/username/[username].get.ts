@@ -19,8 +19,14 @@ export default defineEventHandler(async (event) => {
 
   const { username } = getRouterParams(event);
 
+  const authSession = await repository.auth.getSession(event.headers);
+
   const tests: UserTestPartial[] | null =
-    await repository.test.findAllByUsername(username, params);
+    await repository.test.findAllByUsername(
+      username,
+      authSession?.user.id,
+      params
+    );
 
   if (!tests)
     return sendError(

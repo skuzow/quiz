@@ -17,7 +17,12 @@ export default defineEventHandler(async (event) => {
       })
     );
 
-  const tests: UserTestPartial[] | null = await repository.test.findAll(params);
+  const authSession = await repository.auth.getSession(event.headers);
+
+  const tests: UserTestPartial[] | null = await repository.test.findAll(
+    authSession?.user.id,
+    params
+  );
 
   if (!tests)
     return sendError(
