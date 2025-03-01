@@ -130,7 +130,7 @@ export const useCreate = (edit?: boolean) => {
         TEST_CREATION_CATEGORIES_MAX,
         maxMessage(FormInput.CATEGORIES, TEST_CREATION_CATEGORIES_MAX, false)
       )
-      .optional(),
+      .default([]),
     questions: z
       .array(CreateQuestionSchema, {
         required_error: requiredMessage(FormInput.QUESTIONS)
