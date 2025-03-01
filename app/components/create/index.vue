@@ -1,58 +1,35 @@
 <script lang="ts" setup>
 import { Trash2Icon, ImageUpIcon } from 'lucide-vue-next';
 
-import { useToast } from '@/components/ui/toast/use-toast';
-
 interface Props {
   edit?: boolean;
 }
 
 const { edit } = defineProps<Props>();
 
-const { $api } = useNuxtApp();
-const { t: $t } = useI18n();
-
-const testStore = useTestStore();
-
 const { authUser, authUserURL } = useAuth();
 
-const { alert } = useAlert();
-const { toast } = useToast();
+const {
+  isLoadingCreate,
+  internalServerErrorCreate,
+  isLoadingDelete,
+  initialIncorrectOptionValue,
+  initialSingleQuestionValue,
+  errorBag,
+  isFieldDirty,
+  questions,
+  options,
+  questionPath,
+  optionPath,
+  createTest,
+  deleteTest
+} = useCreate(edit);
 
-const isLoadingDelete: Ref<boolean> = ref(false);
-
-const deleteTest = async () => {
-  if (edit) {
-    const response: boolean = await alert({
-      title: $t('alert.deleteTest.title'),
-      description: $t('alert.deleteTest.description')
-    });
-
-    if (!response) return;
-  }
-
-  isLoadingDelete.value = true;
-
-  if (edit) await $api.test.delete(testStore.editTest!.id);
-  else console.log('Delete test creation'); // TODO: delete test creation
-
-  isLoadingDelete.value = false;
-
-  if (edit) {
-    await navigateTo(authUserURL.value);
-
-    toast({
-      title: $t('toast.test.delete'),
-      description: testStore.editTest?.title
-    });
-
-    testStore.editTest = undefined;
-  }
-};
+const { FormInput, exampleMessage } = useFormMessage();
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-6">
+  <form class="flex flex-col gap-y-6" @submit="createTest">
     <CommonTopImage src="/images/test.avif" alt="Test image">
       <NuxtLink
         :to="authUserURL"
@@ -72,7 +49,7 @@ const deleteTest = async () => {
         size="icon"
         variant="secondary"
         class="absolute right-2 top-2"
-        @click="deleteTest"
+        @click.prevent="deleteTest"
       >
         <IconLoader v-if="isLoadingDelete" />
         <Trash2Icon v-else :size="16" />
@@ -81,14 +58,146 @@ const deleteTest = async () => {
         </span>
       </Button>
 
-      <Button class="absolute bottom-2 right-2 gap-x-1">
+      <Button class="absolute bottom-2 right-2 gap-x-1" @click.prevent="">
         <ImageUpIcon :size="16" />
         {{ $t('create.form.uploadImage') }}
       </Button>
     </CommonTopImage>
 
-    <section>
-      <CreateForm :edit="edit" />
+    <section class="flex w-full flex-col gap-y-8">
+      <div class="flex flex-col gap-y-6">
+        <FormField v-slot="{ value, handleChange }" :name="FormInput.PUBLISHED">
+          <FormItem>
+            <div class="flex items-center gap-x-3 space-y-0">
+              <FormControl>
+                <Switch :checked="value" @update:checked="handleChange" />
+              </FormControl>
+              <FormLabel>{{ $t('form.published') }}</FormLabel>
+            </div>
+          </FormItem>
+        </FormField>
+
+        <FormField
+          v-slot="{ componentField }"
+          :name="FormInput.TITLE"
+          :validate-on-blur="!isFieldDirty"
+        >
+          <FormItem v-auto-animate>
+            <FormLabel>{{ $t('form.title') }}</FormLabel>
+            <FormControl>
+              <Input
+                type="text"
+                :placeholder="exampleMessage(FormInput.TITLE)"
+                v-bind="componentField"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
+
+        <FormField
+          v-slot="{ componentField }"
+          :name="FormInput.DESCRIPTION"
+          :validate-on-blur="!isFieldDirty"
+        >
+          <FormItem v-auto-animate>
+            <FormLabel>{{ $t('form.description') }}</FormLabel>
+            <FormControl>
+              <Textarea
+                type="text"
+                :placeholder="exampleMessage(FormInput.DESCRIPTION)"
+                v-bind="componentField"
+              />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
+
+        <CreateFormCategories />
+      </div>
+
+      <ol v-auto-animate class="flex flex-col gap-y-8">
+        <li
+          v-for="(questionField, indexQuestion) in questions.fields.value"
+          :key="`question-${indexQuestion}`"
+          class="flex flex-col gap-y-6"
+        >
+          <CreateFormQuestion
+            :field="questionField"
+            :index="indexQuestion"
+            :path="questionPath(indexQuestion)"
+            :is-field-dirty="isFieldDirty"
+            :question="questions"
+          />
+
+          <ol
+            v-if="options[indexQuestion]!.fields.value.length !== 0"
+            v-auto-animate
+            class="flex flex-col gap-y-4"
+          >
+            <li
+              v-for="(_optionField, indexOption) in options[indexQuestion]!
+                .fields.value"
+              :key="`question-${indexQuestion}-option-${indexOption}`"
+            >
+              <CreateFormOption
+                :question-field="questionField"
+                :index="indexOption"
+                :path="optionPath(indexQuestion, indexOption)"
+                :is-field-dirty="isFieldDirty"
+                :option="options[indexQuestion]!"
+              />
+            </li>
+          </ol>
+
+          <CommonErrorBagMessages
+            :error-bag="errorBag"
+            :error-key="`questions[${indexQuestion}].options`"
+          />
+
+          <CommonErrorBagMessages
+            :error-bag="errorBag"
+            :error-key="`questions[${indexQuestion}]`"
+          />
+
+          <div class="flex gap-x-2">
+            <Button
+              class="w-fit"
+              variant="secondary"
+              @click.prevent="
+                options[indexQuestion]!.push(initialIncorrectOptionValue)
+              "
+            >
+              {{ $t('create.form.addOption') }}
+            </Button>
+
+            <CreateFormType :path="questionPath(indexQuestion)" />
+          </div>
+        </li>
+      </ol>
+
+      <CommonErrorBagMessages :error-bag="errorBag" error-key="questions" />
+
+      <CommonErrorMessage v-if="internalServerErrorCreate">
+        {{ $t('error.internalServer') }}
+      </CommonErrorMessage>
+
+      <div class="flex gap-x-2">
+        <Button
+          variant="secondary"
+          @click.prevent="questions.push(initialSingleQuestionValue)"
+        >
+          {{ $t('create.form.addQuestion') }}
+        </Button>
+
+        <Button type="submit">
+          <IconLoader
+            v-if="isLoadingCreate"
+            class="mr-2 fill-primary-foreground"
+          />
+          {{ edit ? $t('edit.title') : $t('create.form.create') }}
+        </Button>
+      </div>
     </section>
-  </div>
+  </form>
 </template>

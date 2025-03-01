@@ -33,10 +33,15 @@ export const useCreate = (edit?: boolean) => {
   const { FormInput, requiredMessage, minMessage, maxMessage } =
     useFormMessage();
 
+  const { authUserURL } = useAuth();
+
+  const { alert } = useAlert();
   const { toast } = useToast();
 
   const isLoadingCreate: Ref<boolean> = ref(false);
   const internalServerErrorCreate: Ref<boolean> = ref(false);
+
+  const isLoadingDelete: Ref<boolean> = ref(false);
 
   const CreateQuestionOptionSchema = z.object({
     text: z
@@ -98,6 +103,7 @@ export const useCreate = (edit?: boolean) => {
     );
 
   const CreateSchema = z.object({
+    published: z.boolean().default(false),
     title: z
       .string({ required_error: requiredMessage(FormInput.TITLE) })
       .min(
@@ -124,7 +130,7 @@ export const useCreate = (edit?: boolean) => {
         TEST_CREATION_CATEGORIES_MAX,
         maxMessage(FormInput.CATEGORIES, TEST_CREATION_CATEGORIES_MAX, false)
       )
-      .optional(),
+      .default([]),
     questions: z
       .array(CreateQuestionSchema, {
         required_error: requiredMessage(FormInput.QUESTIONS)
@@ -171,6 +177,7 @@ export const useCreate = (edit?: boolean) => {
   };
 
   const initialFormValue: CreateForm = {
+    published: false,
     title: '',
     description: '',
     categories: [],
@@ -247,9 +254,39 @@ export const useCreate = (edit?: boolean) => {
     }
   });
 
+  const deleteTest = async () => {
+    if (edit) {
+      const response: boolean = await alert({
+        title: $t('alert.deleteTest.title'),
+        description: $t('alert.deleteTest.description')
+      });
+
+      if (!response) return;
+    }
+
+    isLoadingDelete.value = true;
+
+    if (edit) await $api.test.delete(testStore.editTest!.id);
+    else console.log('Delete test creation'); // TODO: delete test creation
+
+    isLoadingDelete.value = false;
+
+    if (edit) {
+      await navigateTo(authUserURL.value);
+
+      toast({
+        title: $t('toast.test.delete'),
+        description: testStore.editTest?.title
+      });
+
+      testStore.editTest = undefined;
+    }
+  };
+
   return {
     isLoadingCreate,
     internalServerErrorCreate,
+    isLoadingDelete,
     initialIncorrectOptionValue,
     initialSingleQuestionValue,
     errorBag,
@@ -258,6 +295,7 @@ export const useCreate = (edit?: boolean) => {
     options,
     questionPath,
     optionPath,
-    createTest
+    createTest,
+    deleteTest
   };
 };

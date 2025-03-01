@@ -17,9 +17,14 @@ export default defineEventHandler(async (event) => {
       })
     );
 
-  const tests: UserTestPartial[] | null = await repository.test.findAll(params);
+  const authSession = await repository.auth.getSession(event.headers);
 
-  if (!tests) {
+  const tests: UserTestPartial[] | null = await repository.test.findAll(
+    authSession?.user.id,
+    params
+  );
+
+  if (!tests)
     return sendError(
       event,
       createError({
@@ -27,7 +32,6 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Tests not found'
       })
     );
-  }
 
   return {
     statusCode: 200,

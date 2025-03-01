@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
 
   const test: UserTest | null = await repository.test.findById(id);
 
-  if (!test) {
+  if (!test)
     return sendError(
       event,
       createError({
@@ -11,7 +11,6 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'Test not found'
       })
     );
-  }
 
   return {
     statusCode: 200,

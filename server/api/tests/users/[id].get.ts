@@ -19,12 +19,15 @@ export default defineEventHandler(async (event) => {
 
   const { id } = getRouterParams(event);
 
+  const authSession = await repository.auth.getSession(event.headers);
+
   const tests: UserTestPartial[] | null = await repository.test.findAllById(
     id,
+    authSession?.user.id,
     params
   );
 
-  if (!tests) {
+  if (!tests)
     return sendError(
       event,
       createError({
@@ -32,7 +35,6 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'User Tests not found'
       })
     );
-  }
 
   return {
     statusCode: 200,

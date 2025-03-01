@@ -38,7 +38,7 @@ const { FormInput } = useFormMessage();
         </FormField>
 
         <div class="flex flex-col gap-y-2">
-          <GenerateCardFields :is-field-dirty="isFieldDirty" />
+          <GenerateCardFormFields :is-field-dirty="isFieldDirty" />
 
           <CommonErrorMessage v-if="internalServerErrorWithText">
             {{ $t('error.internalServer') }}

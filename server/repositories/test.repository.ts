@@ -21,14 +21,20 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
-  async findAll({
-    page,
-    search
-  }: TestSearch): Promise<UserTestPartial[] | null> {
+  async findAll(
+    authUserId: string | undefined,
+    { page, search }: TestSearch
+  ): Promise<UserTestPartial[] | null> {
     const skip: number = this.skipTests(page);
 
     const tests = await this.userTestModel.findMany({
-      where: { ...this.searchTests(search) },
+      where: {
+        OR: [
+          { published: { equals: true as const } },
+          { authorId: authUserId }
+        ],
+        ...this.searchTests(search)
+      },
       skip,
       take: TEST_SEARCH_PAGE_SIZE,
       select: USER_TEST_PARTIAL_AUTHOR_SELECT
@@ -41,6 +47,7 @@ class TestRepository {
 
   async findAllById(
     id: string,
+    authUserId: string | undefined,
     { page, search }: TestSearch
   ): Promise<UserTestPartial[] | null> {
     const skip: number = this.skipTests(page);
@@ -48,6 +55,10 @@ class TestRepository {
     const tests = await this.userTestModel.findMany({
       where: {
         authorId: id,
+        OR: [
+          { published: { equals: true as const } },
+          { authorId: authUserId }
+        ],
         ...this.searchTests(search)
       },
       skip,
@@ -62,6 +73,7 @@ class TestRepository {
 
   async findAllByUsername(
     username: string,
+    authUserId: string | undefined,
     { page, search }: TestSearch
   ): Promise<UserTestPartial[] | null> {
     const skip: number = this.skipTests(page);
@@ -69,6 +81,10 @@ class TestRepository {
     const tests = await this.userTestModel.findMany({
       where: {
         author: { username: username },
+        OR: [
+          { published: { equals: true as const } },
+          { authorId: authUserId }
+        ],
         ...this.searchTests(search)
       },
       skip,
@@ -82,12 +98,13 @@ class TestRepository {
   }
 
   async create(
-    userId: string,
-    { title, description, categories, questions }: TestCreation
+    authUserId: string,
+    { published, title, description, categories, questions }: TestCreation
   ): Promise<UserTest> {
     const test = await this.userTestModel.create({
       data: {
-        author: { connect: { id: userId } },
+        author: { connect: { id: authUserId } },
+        published,
         title,
         description,
         categories: categories?.length
@@ -135,11 +152,12 @@ class TestRepository {
 
   async update(
     id: string,
-    { title, description, categories, questions }: TestCreation
+    { published, title, description, categories, questions }: TestCreation
   ): Promise<UserTest> {
     const test = await this.userTestModel.update({
       where: { id },
       data: {
+        published,
         title,
         description,
         categories: categories?.length

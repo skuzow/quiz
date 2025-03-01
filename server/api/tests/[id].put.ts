@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
 
     const prevTest: UserTest | null = await repository.test.findById(id);
 
-    if (!prevTest) {
+    if (!prevTest)
       return sendError(
         event,
         createError({
@@ -17,9 +17,8 @@ export default defineEventHandler(async (event) => {
           statusMessage: 'Test not found'
         })
       );
-    }
 
-    if (authSession.user.id !== prevTest.author.id) {
+    if (authSession.user.id !== prevTest.author.id)
       return sendError(
         event,
         createError({
@@ -27,7 +26,6 @@ export default defineEventHandler(async (event) => {
           statusMessage: 'Unauthorized'
         })
       );
-    }
 
     const { test: editTest } = await readBody(event);
 

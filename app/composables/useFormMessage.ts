@@ -15,6 +15,7 @@ export const useFormMessage = () => {
     TEXT = 'text',
     TYPE = 'type',
     QUESTIONS = 'questions',
+    PUBLISHED = 'published',
     TITLE = 'title',
     DESCRIPTION = 'description',
     CATEGORIES = 'categories',

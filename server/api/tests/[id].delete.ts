@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
 
     const test: UserTest | null = await repository.test.findById(id);
 
-    if (!test) {
+    if (!test)
       return sendError(
         event,
         createError({
@@ -15,9 +15,8 @@ export default defineEventHandler(async (event) => {
           statusMessage: 'Test not found'
         })
       );
-    }
 
-    if (authSession.user.id !== test.author.id) {
+    if (authSession.user.id !== test.author.id)
       return sendError(
         event,
         createError({
@@ -25,7 +24,6 @@ export default defineEventHandler(async (event) => {
           statusMessage: 'Unauthorized'
         })
       );
-    }
 
     await repository.test.delete(id);
 

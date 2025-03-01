@@ -19,7 +19,7 @@ const switchLocalePath = useSwitchLocalePath();
         :to="switchLocalePath(code)"
         :title="code.toUpperCase()"
       >
-        <DropdownMenuItem class="cursor-pointer">
+        <DropdownMenuItem>
           <span>{{ name }}</span>
         </DropdownMenuItem>
       </NuxtLink>

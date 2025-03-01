@@ -54,6 +54,7 @@ const TestCreationQuestionSchema = z
   );
 
 export const TestCreationSchema = z.object({
+  published: z.boolean().optional(),
   title: z.string().min(TEST_CREATION_TITLE_MIN).max(TEST_CREATION_TITLE_MAX),
   description: z
     .string()

@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
 
   const user: User | null = await repository.user.findById(id);
 
-  if (!user) {
+  if (!user)
     return sendError(
       event,
       createError({
@@ -11,7 +11,6 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'User not found'
       })
     );
-  }
 
   return {
     statusCode: 200,
