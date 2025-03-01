@@ -16,6 +16,7 @@ export const USER_TEST_PARTIAL_SELECT: Prisma.UserTestSelect = {
   title: true,
   description: true,
   image: true,
+  published: true,
   categories: {
     select: {
       category: { select: { name: true } }

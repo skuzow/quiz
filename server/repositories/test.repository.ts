@@ -83,11 +83,12 @@ class TestRepository {
 
   async create(
     userId: string,
-    { title, description, categories, questions }: TestCreation
+    { published, title, description, categories, questions }: TestCreation
   ): Promise<UserTest> {
     const test = await this.userTestModel.create({
       data: {
         author: { connect: { id: userId } },
+        published,
         title,
         description,
         categories: categories?.length
@@ -135,11 +136,12 @@ class TestRepository {
 
   async update(
     id: string,
-    { title, description, categories, questions }: TestCreation
+    { published, title, description, categories, questions }: TestCreation
   ): Promise<UserTest> {
     const test = await this.userTestModel.update({
       where: { id },
       data: {
+        published,
         title,
         description,
         categories: categories?.length
