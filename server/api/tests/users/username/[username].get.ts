@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
   const tests: UserTestPartial[] | null =
     await repository.test.findAllByUsername(username, params);
 
-  if (!tests) {
+  if (!tests)
     return sendError(
       event,
       createError({
@@ -30,7 +30,6 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'User Tests not found'
       })
     );
-  }
 
   return {
     statusCode: 200,

@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
     params
   );
 
-  if (!tests) {
+  if (!tests)
     return sendError(
       event,
       createError({
@@ -32,7 +32,6 @@ export default defineEventHandler(async (event) => {
         statusMessage: 'User Tests not found'
       })
     );
-  }
 
   return {
     statusCode: 200,
