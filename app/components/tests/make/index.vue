@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-import { FilePenIcon, FileQuestionIcon, EyeIcon } from 'lucide-vue-next';
+import {
+  FilePenIcon,
+  LockIcon,
+  FileQuestionIcon,
+  EyeIcon
+} from 'lucide-vue-next';
 
 interface Props {
   test: UserTest;
@@ -76,6 +81,10 @@ const editTest = async () => {
         </div>
 
         <ul class="flex gap-x-2 lg:items-start">
+          <li v-if="!test.published" class="flex items-center py-1">
+            <LockIcon :size="16" />
+          </li>
+
           <li class="flex items-center gap-x-1">
             <FileQuestionIcon :size="16" />
             {{ test.questions.length }}

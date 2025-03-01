@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { EyeIcon, FileQuestionIcon } from 'lucide-vue-next';
+import { EyeIcon, FileQuestionIcon, LockIcon } from 'lucide-vue-next';
 
 interface Props {
   test: UserTestPartial;
@@ -72,6 +72,10 @@ const imageAlt: string = `image-${test.id}`;
           <li class="flex items-center gap-x-1">
             {{ test.questions }}
             <FileQuestionIcon :size="16" />
+          </li>
+
+          <li v-if="!test.published" class="flex items-center py-1">
+            <LockIcon :size="16" />
           </li>
         </ul>
       </div>
