@@ -23,11 +23,15 @@ class TestRepository {
 
   async findAll(
     authUserId: string | undefined,
-    { page, search }: TestSearch
+    { page, search, filter }: TestSearch
   ): Promise<UserTestPartial[] | null> {
     const tests = await this.userTestModel.findMany({
       where: {
-        AND: [this.visibleTests(authUserId), this.searchTests(search)]
+        AND: [
+          this.visibleTests(authUserId),
+          this.searchTests(search),
+          this.filterTests(filter)
+        ]
       },
       skip: this.skipTests(page),
       take: TEST_SEARCH_PAGE_SIZE,
@@ -42,14 +46,15 @@ class TestRepository {
   async findAllById(
     id: string,
     authUserId: string | undefined,
-    { page, search }: TestSearch
+    { page, search, filter }: TestSearch
   ): Promise<UserTestPartial[] | null> {
     const tests = await this.userTestModel.findMany({
       where: {
         AND: [
           { authorId: id },
           this.visibleTests(authUserId),
-          this.searchTests(search)
+          this.searchTests(search),
+          this.filterTests(filter)
         ]
       },
       skip: this.skipTests(page),
@@ -65,14 +70,15 @@ class TestRepository {
   async findAllByUsername(
     username: string,
     authUserId: string | undefined,
-    { page, search }: TestSearch
+    { page, search, filter }: TestSearch
   ): Promise<UserTestPartial[] | null> {
     const tests = await this.userTestModel.findMany({
       where: {
         AND: [
           { author: { username: username } },
           this.visibleTests(authUserId),
-          this.searchTests(search)
+          this.searchTests(search),
+          this.filterTests(filter)
         ]
       },
       skip: this.skipTests(page),
@@ -182,13 +188,13 @@ class TestRepository {
     await this.userTestModel.delete({ where: { id } });
   }
 
-  private visibleTests(authUserId: string | undefined) {
+  private visibleTests(authUserId?: string) {
     return {
       OR: [{ published: { equals: true as const } }, { authorId: authUserId }]
     };
   }
 
-  private searchTests(search?: string) {
+  private searchTests(search: TestSearch['search']) {
     if (!search) return {};
 
     return {
@@ -199,7 +205,15 @@ class TestRepository {
     };
   }
 
-  private skipTests(page: number): number {
+  private filterTests(filter: TestSearch['filter']) {
+    if (!filter) return {};
+
+    return {
+      categories: { some: { category: { name: filter } } }
+    };
+  }
+
+  private skipTests(page: TestSearch['page']): number {
     return page * TEST_SEARCH_PAGE_SIZE;
   }
 
