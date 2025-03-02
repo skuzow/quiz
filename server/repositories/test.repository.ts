@@ -25,8 +25,6 @@ class TestRepository {
     authUserId: string | undefined,
     { page, search }: TestSearch
   ): Promise<UserTestPartial[] | null> {
-    const skip: number = this.skipTests(page);
-
     const tests = await this.userTestModel.findMany({
       where: {
         AND: [
@@ -39,7 +37,7 @@ class TestRepository {
           this.searchTests(search)
         ]
       },
-      skip,
+      skip: this.skipTests(page),
       take: TEST_SEARCH_PAGE_SIZE,
       select: USER_TEST_PARTIAL_AUTHOR_SELECT
     });
@@ -54,8 +52,6 @@ class TestRepository {
     authUserId: string | undefined,
     { page, search }: TestSearch
   ): Promise<UserTestPartial[] | null> {
-    const skip: number = this.skipTests(page);
-
     const tests = await this.userTestModel.findMany({
       where: {
         AND: [
@@ -69,7 +65,7 @@ class TestRepository {
           this.searchTests(search)
         ]
       },
-      skip,
+      skip: this.skipTests(page),
       take: TEST_SEARCH_PAGE_SIZE,
       select: USER_TEST_PARTIAL_SELECT
     });
@@ -84,8 +80,6 @@ class TestRepository {
     authUserId: string | undefined,
     { page, search }: TestSearch
   ): Promise<UserTestPartial[] | null> {
-    const skip: number = this.skipTests(page);
-
     const tests = await this.userTestModel.findMany({
       where: {
         AND: [
@@ -99,7 +93,7 @@ class TestRepository {
           this.searchTests(search)
         ]
       },
-      skip,
+      skip: this.skipTests(page),
       take: TEST_SEARCH_PAGE_SIZE,
       select: USER_TEST_PARTIAL_SELECT
     });
