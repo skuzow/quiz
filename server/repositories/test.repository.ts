@@ -27,15 +27,7 @@ class TestRepository {
   ): Promise<UserTestPartial[] | null> {
     const tests = await this.userTestModel.findMany({
       where: {
-        AND: [
-          {
-            OR: [
-              { published: { equals: true as const } },
-              { authorId: authUserId }
-            ]
-          },
-          this.searchTests(search)
-        ]
+        AND: [this.visibleTests(authUserId), this.searchTests(search)]
       },
       skip: this.skipTests(page),
       take: TEST_SEARCH_PAGE_SIZE,
@@ -56,12 +48,7 @@ class TestRepository {
       where: {
         AND: [
           { authorId: id },
-          {
-            OR: [
-              { published: { equals: true as const } },
-              { authorId: authUserId }
-            ]
-          },
+          this.visibleTests(authUserId),
           this.searchTests(search)
         ]
       },
@@ -84,12 +71,7 @@ class TestRepository {
       where: {
         AND: [
           { author: { username: username } },
-          {
-            OR: [
-              { published: { equals: true as const } },
-              { authorId: authUserId }
-            ]
-          },
+          this.visibleTests(authUserId),
           this.searchTests(search)
         ]
       },
@@ -200,8 +182,10 @@ class TestRepository {
     await this.userTestModel.delete({ where: { id } });
   }
 
-  private skipTests(page: number): number {
-    return page * TEST_SEARCH_PAGE_SIZE;
+  private visibleTests(authUserId: string | undefined) {
+    return {
+      OR: [{ published: { equals: true as const } }, { authorId: authUserId }]
+    };
   }
 
   private searchTests(search?: string) {
@@ -213,6 +197,10 @@ class TestRepository {
         { description: { contains: search } }
       ]
     };
+  }
+
+  private skipTests(page: number): number {
+    return page * TEST_SEARCH_PAGE_SIZE;
   }
 
   private transformUserTest(test: any): UserTest {
