@@ -12,6 +12,9 @@ import {
 const SEARCH_TIMEOUT: number = 1000;
 
 export const useTestsFeed = (id?: string, username?: string) => {
+  const route = useRoute();
+  const router = useRouter();
+
   const { $api } = useNuxtApp();
   const { t: $t } = useI18n();
 
@@ -20,7 +23,6 @@ export const useTestsFeed = (id?: string, username?: string) => {
   const tests: Ref<UserTestPartial[]> = ref([]);
 
   const page: Ref<number> = ref(0);
-  const prevSearch: Ref<string | undefined> = ref();
 
   const isLoading: Ref<boolean> = ref(false);
   const hasMore: Ref<boolean> = ref(true);
@@ -34,20 +36,16 @@ export const useTestsFeed = (id?: string, username?: string) => {
       .max(TEST_SEARCH_TEXT_MAX, {
         message: maxMessage(FormInput.SEARCH, TEST_SEARCH_TEXT_MAX)
       })
-      .refine(async (value) => {
-        if (value === prevSearch.value) return true;
-
-        prevSearch.value = value;
-
-        return await searchTimeout();
-      })
       .optional()
   });
 
   const validationSchema = toTypedSchema(FeedSchema);
 
   const { values, isFieldDirty } = useForm({
-    validationSchema
+    validationSchema,
+    initialValues: {
+      search: (route.query.search as string) || undefined
+    }
   });
 
   const testsRequest = async (dto: TestSearch) => {
@@ -134,14 +132,26 @@ export const useTestsFeed = (id?: string, username?: string) => {
     return !!values.search && values.search.length > TEST_SEARCH_TEXT_MAX;
   };
 
+  watch(values, async () => {
+    router.push({ query: { search: values.search } });
+
+    await searchTimeout();
+  });
+
+  onMounted(async () => {
+    await searchTests();
+
+    window.addEventListener('scroll', handleScroll);
+  });
+
+  onUnmounted(() => window.removeEventListener('scroll', handleScroll));
+
   return {
     tests,
     isLoading,
     hasMore,
     errorMessage,
     isFieldDirty,
-    searchTests,
-    handleScroll,
     searchEnter
   };
 };

@@ -8,24 +8,8 @@ interface Props {
 
 const { id, username } = defineProps<Props>();
 
-const {
-  tests,
-  isLoading,
-  hasMore,
-  errorMessage,
-  isFieldDirty,
-  searchTests,
-  handleScroll,
-  searchEnter
-} = useTestsFeed(id, username);
-
-onMounted(async () => {
-  await searchTests();
-
-  window.addEventListener('scroll', handleScroll);
-});
-
-onUnmounted(() => window.removeEventListener('scroll', handleScroll));
+const { tests, isLoading, hasMore, errorMessage, isFieldDirty, searchEnter } =
+  useTestsFeed(id, username);
 </script>
 
 <template>
