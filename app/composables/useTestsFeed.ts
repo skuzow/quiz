@@ -20,6 +20,7 @@ export const useTestsFeed = (id?: string, username?: string) => {
   const tests: Ref<UserTestPartial[]> = ref([]);
 
   const page: Ref<number> = ref(0);
+  const prevSearch: Ref<string | undefined> = ref();
 
   const isLoading: Ref<boolean> = ref(false);
   const hasMore: Ref<boolean> = ref(true);
@@ -33,7 +34,13 @@ export const useTestsFeed = (id?: string, username?: string) => {
       .max(TEST_SEARCH_TEXT_MAX, {
         message: maxMessage(FormInput.SEARCH, TEST_SEARCH_TEXT_MAX)
       })
-      .refine(async (_value) => await searchTimeout())
+      .refine(async (value) => {
+        if (value === prevSearch.value) return true;
+
+        prevSearch.value = value;
+
+        return await searchTimeout();
+      })
       .optional()
   });
 
