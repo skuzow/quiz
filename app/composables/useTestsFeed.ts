@@ -20,7 +20,6 @@ export const useTestsFeed = (id?: string, username?: string) => {
   const tests: Ref<UserTestPartial[]> = ref([]);
 
   const page: Ref<number> = ref(0);
-  const search: Ref<string | undefined> = ref();
 
   const isLoading: Ref<boolean> = ref(false);
   const hasMore: Ref<boolean> = ref(true);
@@ -34,13 +33,13 @@ export const useTestsFeed = (id?: string, username?: string) => {
       .max(TEST_SEARCH_TEXT_MAX, {
         message: maxMessage(FormInput.SEARCH, TEST_SEARCH_TEXT_MAX)
       })
-      .refine(async (value) => await searchTimeout(value))
+      .refine(async (_value) => await searchTimeout())
       .optional()
   });
 
   const validationSchema = toTypedSchema(FeedSchema);
 
-  const { isFieldDirty } = useForm({
+  const { values, isFieldDirty } = useForm({
     validationSchema
   });
 
@@ -57,7 +56,7 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
     if (reset) resetTests();
 
-    const dto: TestSearch = { page: page.value, search: search.value };
+    const dto: TestSearch = { page: page.value, search: values.search };
 
     try {
       const response = await testsRequest(dto);
@@ -102,15 +101,13 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
   let searchNodeTimeout: NodeJS.Timeout;
 
-  const searchTimeout = async (value: string): Promise<boolean> => {
-    if (isInvalidSearch(value)) return false;
+  const searchTimeout = async (): Promise<boolean> => {
+    if (isInvalidSearch()) return false;
 
     if (searchNodeTimeout) clearTimeout(searchNodeTimeout);
 
     return new Promise((resolve) => {
       searchNodeTimeout = setTimeout(async () => {
-        search.value = value;
-
         await searchTests(true);
 
         resolve(true);
@@ -118,8 +115,16 @@ export const useTestsFeed = (id?: string, username?: string) => {
     });
   };
 
-  const isInvalidSearch = (value: string): boolean => {
-    return value.length > TEST_SEARCH_TEXT_MAX;
+  const searchEnter = async () => {
+    if (isInvalidSearch()) return;
+
+    if (searchNodeTimeout) clearTimeout(searchNodeTimeout);
+
+    await searchTests(true);
+  };
+
+  const isInvalidSearch = (): boolean => {
+    return !!values.search && values.search.length > TEST_SEARCH_TEXT_MAX;
   };
 
   return {
@@ -129,6 +134,7 @@ export const useTestsFeed = (id?: string, username?: string) => {
     errorMessage,
     isFieldDirty,
     searchTests,
-    handleScroll
+    handleScroll,
+    searchEnter
   };
 };

@@ -8,6 +8,8 @@ interface Props {
 
 const { isFieldDirty } = defineProps<Props>();
 
+const emit = defineEmits(['search-enter']);
+
 const { FormInput } = useFormMessage();
 </script>
 
@@ -24,6 +26,7 @@ const { FormInput } = useFormMessage();
             type="text"
             :placeholder="$t('tests.search.placeholder')"
             v-bind="componentField"
+            @keydown.enter.prevent="emit('search-enter')"
           />
         </FormControl>
         <FormMessage />

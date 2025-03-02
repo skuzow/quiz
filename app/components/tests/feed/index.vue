@@ -15,7 +15,8 @@ const {
   errorMessage,
   isFieldDirty,
   searchTests,
-  handleScroll
+  handleScroll,
+  searchEnter
 } = useTestsFeed(id, username);
 
 onMounted(async () => {
@@ -29,7 +30,7 @@ onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 
 <template>
   <div class="flex flex-col gap-y-4">
-    <TestsFeedForm :is-field-dirty="isFieldDirty" />
+    <TestsFeedForm :is-field-dirty="isFieldDirty" @search-enter="searchEnter" />
 
     <section>
       <ol ref="infinite-scroll" class="grid grid-cols-1 gap-4">
