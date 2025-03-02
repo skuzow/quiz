@@ -29,11 +29,15 @@ class TestRepository {
 
     const tests = await this.userTestModel.findMany({
       where: {
-        OR: [
-          { published: { equals: true as const } },
-          { authorId: authUserId }
-        ],
-        ...this.searchTests(search)
+        AND: [
+          {
+            OR: [
+              { published: { equals: true as const } },
+              { authorId: authUserId }
+            ]
+          },
+          this.searchTests(search)
+        ]
       },
       skip,
       take: TEST_SEARCH_PAGE_SIZE,
@@ -54,12 +58,16 @@ class TestRepository {
 
     const tests = await this.userTestModel.findMany({
       where: {
-        authorId: id,
-        OR: [
-          { published: { equals: true as const } },
-          { authorId: authUserId }
-        ],
-        ...this.searchTests(search)
+        AND: [
+          { authorId: id },
+          {
+            OR: [
+              { published: { equals: true as const } },
+              { authorId: authUserId }
+            ]
+          },
+          this.searchTests(search)
+        ]
       },
       skip,
       take: TEST_SEARCH_PAGE_SIZE,
@@ -80,12 +88,16 @@ class TestRepository {
 
     const tests = await this.userTestModel.findMany({
       where: {
-        author: { username: username },
-        OR: [
-          { published: { equals: true as const } },
-          { authorId: authUserId }
-        ],
-        ...this.searchTests(search)
+        AND: [
+          { author: { username: username } },
+          {
+            OR: [
+              { published: { equals: true as const } },
+              { authorId: authUserId }
+            ]
+          },
+          this.searchTests(search)
+        ]
       },
       skip,
       take: TEST_SEARCH_PAGE_SIZE,
