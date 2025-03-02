@@ -18,8 +18,8 @@ const {
   handleScroll
 } = useTestsFeed(id, username);
 
-onMounted(() => {
-  searchTests();
+onMounted(async () => {
+  await searchTests();
 
   window.addEventListener('scroll', handleScroll);
 });
