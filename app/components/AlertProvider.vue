@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { useMediaQuery } from '@vueuse/core';
 
-const { t: $t } = useI18n();
-
 const { isOpen, options, dismiss } = useAlert();
 
 const isDesktop: Ref<boolean> = useMediaQuery('(min-width: 768px)');
