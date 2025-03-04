@@ -6,7 +6,9 @@ import type { NuxtError } from '#app';
 
 import {
   TEST_SEARCH_PAGE_SIZE,
-  TEST_SEARCH_TEXT_MAX
+  TEST_SEARCH_TEXT_MAX,
+  TestCategoryValues,
+  type TestCategory
 } from '#shared/constants/test.constant';
 
 const SEARCH_TIMEOUT: number = 1000;
@@ -36,7 +38,8 @@ export const useTestsFeed = (id?: string, username?: string) => {
       .max(TEST_SEARCH_TEXT_MAX, {
         message: maxMessage(FormInput.SEARCH, TEST_SEARCH_TEXT_MAX)
       })
-      .optional()
+      .optional(),
+    filter: z.enum(TestCategoryValues).optional()
   });
 
   const validationSchema = toTypedSchema(FeedSchema);
@@ -44,7 +47,10 @@ export const useTestsFeed = (id?: string, username?: string) => {
   const { values, isFieldDirty } = useForm({
     validationSchema,
     initialValues: {
-      search: (route.query.search as string) || undefined
+      search: (route.query.search as string) || undefined,
+      filter:
+        ((route.query.filter as string)?.toUpperCase() as TestCategory) ||
+        undefined
     }
   });
 
@@ -61,7 +67,11 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
     if (reset) resetTests();
 
-    const dto: TestSearch = { page: page.value, search: values.search };
+    const dto: TestSearch = {
+      page: page.value,
+      search: values.search,
+      filter: values.filter
+    };
 
     try {
       const response = await testsRequest(dto);
@@ -133,7 +143,9 @@ export const useTestsFeed = (id?: string, username?: string) => {
   };
 
   watch(values, async () => {
-    router.push({ query: { search: values.search } });
+    router.push({
+      query: { search: values.search, filter: values.filter?.toLowerCase() }
+    });
 
     await searchTimeout();
   });

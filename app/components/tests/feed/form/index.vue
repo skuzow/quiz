@@ -1,5 +1,8 @@
 <script lang="ts" setup>
+import { SelectTrigger } from 'radix-vue';
 import { ArrowDownUpIcon, FilterIcon } from 'lucide-vue-next';
+
+import { TestCategoryValues } from '#shared/constants/test.constant';
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -40,11 +43,32 @@ const { FormInput } = useFormMessage();
       <ArrowDownUpIcon :size="16" />
     </TestsFeedFormButton>
 
-    <TestsFeedFormButton
-      variant="secondary"
-      :text="$t('tests.search.buttons.filter')"
-    >
-      <FilterIcon :size="16" />
-    </TestsFeedFormButton>
+    <FormField v-slot="{ componentField }" name="filter">
+      <FormItem>
+        <Select v-bind="componentField">
+          <FormControl>
+            <SelectTrigger>
+              <TestsFeedFormButton
+                variant="secondary"
+                :text="$t('tests.search.buttons.filter')"
+              >
+                <FilterIcon :size="16" />
+              </TestsFeedFormButton>
+            </SelectTrigger>
+          </FormControl>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem
+                v-for="category in TestCategoryValues"
+                :key="category"
+                :value="category"
+              >
+                {{ $t(`categories.${category.toLowerCase()}`) }}
+              </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </FormItem>
+    </FormField>
   </form>
 </template>
