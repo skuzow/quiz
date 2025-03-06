@@ -47,7 +47,7 @@ const { FormInput } = useFormMessage();
       <FormItem>
         <Select v-bind="componentField">
           <FormControl>
-            <SelectTrigger>
+            <SelectTrigger as-child>
               <TestsFeedFormButton
                 variant="secondary"
                 :text="$t('tests.search.buttons.filter')"
