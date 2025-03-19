@@ -1,8 +1,16 @@
 <script lang="ts" setup>
 import { SelectTrigger } from 'radix-vue';
-import { ArrowDownUpIcon, FilterIcon } from 'lucide-vue-next';
+import {
+  ArrowDownUpIcon,
+  FilterIcon,
+  ArrowUp,
+  ArrowDown
+} from 'lucide-vue-next';
 
-import { TestCategoryValues } from '#shared/constants/test.constant';
+import {
+  TestOrderValues,
+  TestCategoryValues
+} from '#shared/constants/test.constant';
 
 interface Props {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -36,12 +44,38 @@ const { FormInput } = useFormMessage();
       </FormItem>
     </FormField>
 
-    <TestsFeedFormButton
-      variant="outline"
-      :text="$t('tests.search.buttons.sort')"
-    >
-      <ArrowDownUpIcon :size="16" />
-    </TestsFeedFormButton>
+    <FormField v-slot="{ componentField }" name="sort">
+      <FormItem>
+        <Select v-bind="componentField">
+          <FormControl>
+            <SelectTrigger as-child>
+              <TestsFeedFormButton
+                variant="outline"
+                :text="$t('tests.search.buttons.sort')"
+              >
+                <ArrowDownUpIcon :size="16" />
+              </TestsFeedFormButton>
+            </SelectTrigger>
+          </FormControl>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem
+                v-for="(order, indexOrder) in TestOrderValues"
+                :key="order"
+                :value="order"
+              >
+                <div class="flex items-center gap-x-2">
+                  <ArrowUp v-if="indexOrder % 2 === 0" :size="16" />
+                  <ArrowDown v-else :size="16" />
+
+                  {{ $t(`order.${order.toLowerCase()}`) }}
+                </div>
+              </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </FormItem>
+    </FormField>
 
     <FormField v-slot="{ componentField }" name="filter">
       <FormItem>

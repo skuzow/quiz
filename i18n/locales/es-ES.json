@@ -181,6 +181,14 @@
     "drag": "Suéltalo para Cargar",
     "invalidType": "Tipo de archivo no válido"
   },
+  "order": {
+    "newest": "Más Reciente",
+    "oldest": "Menos Reciente",
+    "mostpopular": "Más Popular",
+    "leastpopular": "Menos Popular",
+    "longest": "Más Largo",
+    "shortest": "Más Corto"
+  },
   "categories": {
     "technology": "Tecnología",
     "programming": "Programación",
