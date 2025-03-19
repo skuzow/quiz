@@ -3,11 +3,16 @@ import { SelectTrigger } from 'radix-vue';
 import {
   ArrowDownUpIcon,
   FilterIcon,
-  ArrowUp,
-  ArrowDown
+  ArrowUpIcon,
+  ArrowDownIcon,
+  ArrowUp10Icon,
+  ArrowDown01Icon,
+  ArrowUpWideNarrowIcon,
+  ArrowDownNarrowWideIcon
 } from 'lucide-vue-next';
 
 import {
+  TestOrder,
   TestOrderValues,
   TestCategoryValues
 } from '#shared/constants/test.constant';
@@ -60,13 +65,32 @@ const { FormInput } = useFormMessage();
           <SelectContent>
             <SelectGroup>
               <SelectItem
-                v-for="(order, indexOrder) in TestOrderValues"
+                v-for="order in TestOrderValues"
                 :key="order"
                 :value="order"
               >
                 <div class="flex items-center gap-x-2">
-                  <ArrowUp v-if="indexOrder % 2 === 0" :size="16" />
-                  <ArrowDown v-else :size="16" />
+                  <ArrowUpIcon v-if="order === TestOrder.NEWEST" :size="16" />
+                  <ArrowDownIcon
+                    v-else-if="order === TestOrder.OLDEST"
+                    :size="16"
+                  />
+                  <ArrowUp10Icon
+                    v-else-if="order === TestOrder.MOSTPOPULAR"
+                    :size="16"
+                  />
+                  <ArrowDown01Icon
+                    v-else-if="order === TestOrder.LEASTPOPULAR"
+                    :size="16"
+                  />
+                  <ArrowUpWideNarrowIcon
+                    v-else-if="order === TestOrder.LONGEST"
+                    :size="16"
+                  />
+                  <ArrowDownNarrowWideIcon
+                    v-else-if="order === TestOrder.SHORTEST"
+                    :size="16"
+                  />
 
                   {{ $t(`order.${order.toLowerCase()}`) }}
                 </div>
