@@ -153,7 +153,7 @@ export const useTestsFeed = (id?: string, username?: string) => {
     async (newValues, oldValues) => {
       router.push({
         query: {
-          search: values.search,
+          search: values.search || undefined,
           sort: values.sort?.toLowerCase(),
           filter: values.filter?.toLowerCase()
         }
