@@ -11,7 +11,7 @@ const { variant, text } = defineProps<Props>();
 
 <template>
   <Button :variant="variant" :text="text" class="shrink-0 gap-x-2">
-    <span class="sr-only md:not-sr-only">
+    <span class="sr-only md:not-sr-only md:whitespace-nowrap">
       {{ text }}
     </span>
 

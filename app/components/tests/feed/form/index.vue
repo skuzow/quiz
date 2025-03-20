@@ -49,14 +49,18 @@ const { FormInput } = useFormMessage();
       </FormItem>
     </FormField>
 
-    <FormField v-slot="{ componentField }" name="sort">
+    <FormField v-slot="{ componentField, value }" name="sort">
       <FormItem>
         <Select v-bind="componentField">
           <FormControl>
             <SelectTrigger as-child>
               <TestsFeedFormButton
                 variant="outline"
-                :text="$t('tests.search.buttons.sort')"
+                :text="
+                  value
+                    ? $t(`order.${value.toLowerCase()}`)
+                    : $t('tests.search.buttons.sort')
+                "
               >
                 <ArrowDownUpIcon :size="16" />
               </TestsFeedFormButton>
@@ -101,14 +105,18 @@ const { FormInput } = useFormMessage();
       </FormItem>
     </FormField>
 
-    <FormField v-slot="{ componentField }" name="filter">
+    <FormField v-slot="{ componentField, value }" name="filter">
       <FormItem>
         <Select v-bind="componentField">
           <FormControl>
             <SelectTrigger as-child>
               <TestsFeedFormButton
                 variant="secondary"
-                :text="$t('tests.search.buttons.filter')"
+                :text="
+                  value
+                    ? $t(`categories.${value.toLowerCase()}`)
+                    : $t('tests.search.buttons.filter')
+                "
               >
                 <FilterIcon :size="16" />
               </TestsFeedFormButton>
