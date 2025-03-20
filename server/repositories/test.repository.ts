@@ -1,14 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { Prisma } from '@prisma/client';
+
 import {
   USER_TEST_SELECT,
   USER_TEST_PARTIAL_AUTHOR_SELECT,
   USER_TEST_PARTIAL_SELECT
 } from './queries/selects';
 
-import { TEST_SEARCH_PAGE_SIZE } from '#shared/constants/test.constant';
+import {
+  TEST_SEARCH_PAGE_SIZE,
+  TestOrder
+} from '#shared/constants/test.constant';
+
+const enum SortOrder {
+  DESC = 'desc',
+  ASC = 'asc'
+}
 
 class TestRepository {
   private userTestModel = prisma.userTest;
+
+  private testSortMap: Record<
+    TestOrder,
+    Prisma.UserTestOrderByWithRelationInput
+  > = {
+    [TestOrder.NEWEST]: { createdAt: SortOrder.DESC },
+    [TestOrder.OLDEST]: { createdAt: SortOrder.ASC },
+    [TestOrder.MOSTPOPULAR]: { views: { _count: SortOrder.DESC } },
+    [TestOrder.LEASTPOPULAR]: { views: { _count: SortOrder.ASC } },
+    [TestOrder.LONGEST]: { questions: { _count: SortOrder.DESC } },
+    [TestOrder.SHORTEST]: { questions: { _count: SortOrder.ASC } }
+  };
 
   async findById(id: string): Promise<UserTest | null> {
     const test = await this.userTestModel.findFirst({
@@ -23,7 +45,7 @@ class TestRepository {
 
   async findAll(
     authUserId: string | undefined,
-    { page, search, filter }: TestSearch
+    { page, search, sort, filter }: TestSearch
   ): Promise<UserTestPartial[] | null> {
     const tests = await this.userTestModel.findMany({
       where: {
@@ -35,6 +57,7 @@ class TestRepository {
       },
       skip: this.skipTests(page),
       take: TEST_SEARCH_PAGE_SIZE,
+      orderBy: this.sortTests(sort),
       select: USER_TEST_PARTIAL_AUTHOR_SELECT
     });
 
@@ -46,7 +69,7 @@ class TestRepository {
   async findAllById(
     id: string,
     authUserId: string | undefined,
-    { page, search, filter }: TestSearch
+    { page, search, sort, filter }: TestSearch
   ): Promise<UserTestPartial[] | null> {
     const tests = await this.userTestModel.findMany({
       where: {
@@ -59,6 +82,7 @@ class TestRepository {
       },
       skip: this.skipTests(page),
       take: TEST_SEARCH_PAGE_SIZE,
+      orderBy: this.sortTests(sort),
       select: USER_TEST_PARTIAL_SELECT
     });
 
@@ -70,7 +94,7 @@ class TestRepository {
   async findAllByUsername(
     username: string,
     authUserId: string | undefined,
-    { page, search, filter }: TestSearch
+    { page, search, sort, filter }: TestSearch
   ): Promise<UserTestPartial[] | null> {
     const tests = await this.userTestModel.findMany({
       where: {
@@ -83,6 +107,7 @@ class TestRepository {
       },
       skip: this.skipTests(page),
       take: TEST_SEARCH_PAGE_SIZE,
+      orderBy: this.sortTests(sort),
       select: USER_TEST_PARTIAL_SELECT
     });
 
@@ -215,6 +240,12 @@ class TestRepository {
 
   private skipTests(page: TestSearch['page']): number {
     return page * TEST_SEARCH_PAGE_SIZE;
+  }
+
+  private sortTests(sort: TestSearch['sort']) {
+    if (!sort) return {};
+
+    return this.testSortMap[sort];
   }
 
   private transformUserTest(test: any): UserTest {
