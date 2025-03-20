@@ -148,17 +148,21 @@ export const useTestsFeed = (id?: string, username?: string) => {
     return !!values.search && values.search.length > TEST_SEARCH_TEXT_MAX;
   };
 
-  watch(values, async () => {
-    router.push({
-      query: {
-        search: values.search,
-        sort: values.sort?.toLowerCase(),
-        filter: values.filter?.toLowerCase()
-      }
-    });
+  watch(
+    () => [values.search, values.sort, values.filter],
+    async (newValues, oldValues) => {
+      router.push({
+        query: {
+          search: values.search,
+          sort: values.sort?.toLowerCase(),
+          filter: values.filter?.toLowerCase()
+        }
+      });
 
-    await searchTimeout();
-  });
+      if (newValues[0] !== oldValues[0]) await searchTimeout();
+      else await searchTests(true);
+    }
+  );
 
   onMounted(async () => {
     await searchTests();
