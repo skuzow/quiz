@@ -160,7 +160,11 @@ export const useTestsFeed = (id?: string, username?: string) => {
       });
 
       if (newValues[0] !== oldValues[0]) await searchTimeout();
-      else await searchTests(true);
+      else {
+        if (searchNodeTimeout) clearTimeout(searchNodeTimeout);
+
+        await searchTests(true);
+      }
     }
   );
 
