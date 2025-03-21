@@ -48,7 +48,7 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
   const validationSchema = toTypedSchema(FeedSchema);
 
-  const { values, setFieldValue, isFieldDirty } = useForm({
+  const { values, isFieldDirty } = useForm({
     validationSchema,
     initialValues: {
       search: (route.query.search as string) || undefined,
@@ -59,14 +59,6 @@ export const useTestsFeed = (id?: string, username?: string) => {
         undefined
     }
   });
-
-  const unselectSort = () => {
-    setFieldValue('sort', undefined);
-  };
-
-  const unselectFilter = () => {
-    setFieldValue('filter', undefined);
-  };
 
   const testsRequest = async (dto: TestSearch) => {
     if (id) return $api.test.getAllById(id, dto);
@@ -191,8 +183,6 @@ export const useTestsFeed = (id?: string, username?: string) => {
     hasMore,
     errorMessage,
     isFieldDirty,
-    unselectSort,
-    unselectFilter,
     searchEnter
   };
 };

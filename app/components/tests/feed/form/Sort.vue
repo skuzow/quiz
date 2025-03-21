@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useField } from 'vee-validate';
 import { SelectTrigger } from 'radix-vue';
 import {
   ArrowDownUpIcon,
@@ -13,9 +14,9 @@ import {
 
 import { TestOrder, TestOrderValues } from '#shared/constants/test.constant';
 
-const emit = defineEmits(['unselect']);
-
 const route = useRoute();
+
+const { setValue } = useField<TestOrder | undefined>('sort');
 
 const prevValue: Ref<TestOrder | undefined> = ref(
   ((route.query.sort as string)?.toUpperCase() as TestOrder) || undefined
@@ -30,9 +31,9 @@ const sortIconMap: Record<TestOrder, LucideIcon> = {
   [TestOrder.SHORTEST]: ArrowDownNarrowWideIcon
 };
 
-const handleUnselectValue = (currentValue: TestOrder | undefined) => {
+const handleUnselectValue = (currentValue: TestOrder) => {
   if (currentValue === prevValue.value) {
-    emit('unselect');
+    setValue(undefined);
 
     prevValue.value = undefined;
   } else prevValue.value = currentValue;

@@ -8,7 +8,7 @@ interface Props {
 
 const { isFieldDirty } = defineProps<Props>();
 
-const emit = defineEmits(['search-enter', 'unselect-sort', 'unselect-filter']);
+const emit = defineEmits(['search-enter']);
 </script>
 
 <template>
@@ -31,8 +31,8 @@ const emit = defineEmits(['search-enter', 'unselect-sort', 'unselect-filter']);
       </FormItem>
     </FormField>
 
-    <TestsFeedFormSort @unselect="emit('unselect-sort')" />
+    <TestsFeedFormSort />
 
-    <TestsFeedFormFilter @unselect="emit('unselect-filter')" />
+    <TestsFeedFormFilter />
   </form>
 </template>

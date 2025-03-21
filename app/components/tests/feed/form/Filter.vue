@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useField } from 'vee-validate';
 import { SelectTrigger } from 'radix-vue';
 import { FilterIcon } from 'lucide-vue-next';
 
@@ -7,17 +8,17 @@ import {
   type TestCategory
 } from '#shared/constants/test.constant';
 
-const emit = defineEmits(['unselect']);
-
 const route = useRoute();
+
+const { setValue } = useField<TestCategory | undefined>('filter');
 
 const prevValue: Ref<TestCategory | undefined> = ref(
   ((route.query.filter as string)?.toUpperCase() as TestCategory) || undefined
 );
 
-const handleUnselectValue = (currentValue: TestCategory | undefined) => {
+const handleUnselectValue = (currentValue: TestCategory) => {
   if (currentValue === prevValue.value) {
-    emit('unselect');
+    setValue(undefined);
 
     prevValue.value = undefined;
   } else prevValue.value = currentValue;

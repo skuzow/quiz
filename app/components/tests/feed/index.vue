@@ -8,26 +8,13 @@ interface Props {
 
 const { id, username } = defineProps<Props>();
 
-const {
-  tests,
-  isLoading,
-  hasMore,
-  errorMessage,
-  isFieldDirty,
-  unselectSort,
-  unselectFilter,
-  searchEnter
-} = useTestsFeed(id, username);
+const { tests, isLoading, hasMore, errorMessage, isFieldDirty, searchEnter } =
+  useTestsFeed(id, username);
 </script>
 
 <template>
   <div class="flex flex-col gap-y-4">
-    <TestsFeedForm
-      :is-field-dirty="isFieldDirty"
-      @search-enter="searchEnter"
-      @unselect-sort="unselectSort"
-      @unselect-filter="unselectFilter"
-    />
+    <TestsFeedForm :is-field-dirty="isFieldDirty" @search-enter="searchEnter" />
 
     <section>
       <ol ref="infinite-scroll" class="grid grid-cols-1 gap-4">
