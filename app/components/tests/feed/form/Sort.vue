@@ -13,6 +13,14 @@ import {
 
 import { TestOrder, TestOrderValues } from '#shared/constants/test.constant';
 
+const emit = defineEmits(['unselect']);
+
+const route = useRoute();
+
+const prevValue: Ref<TestOrder | undefined> = ref(
+  ((route.query.sort as string)?.toUpperCase() as TestOrder) || undefined
+);
+
 const sortIconMap: Record<TestOrder, LucideIcon> = {
   [TestOrder.NEWEST]: ArrowUpIcon,
   [TestOrder.OLDEST]: ArrowDownIcon,
@@ -21,12 +29,26 @@ const sortIconMap: Record<TestOrder, LucideIcon> = {
   [TestOrder.LONGEST]: ArrowUpWideNarrowIcon,
   [TestOrder.SHORTEST]: ArrowDownNarrowWideIcon
 };
+
+const handleUnselectValue = (currentValue: TestOrder | undefined) => {
+  if (currentValue === prevValue.value) {
+    emit('unselect');
+
+    prevValue.value = undefined;
+  } else prevValue.value = currentValue;
+};
 </script>
 
 <template>
   <FormField v-slot="{ componentField, value }" name="sort">
     <FormItem>
-      <Select v-bind="componentField">
+      <Select
+        v-bind="componentField"
+        @update:model-value="
+          // TODO: fix bug when not route value and unselect value doesn't trigger this update
+          (currentValue) => handleUnselectValue(currentValue as TestOrder)
+        "
+      >
         <FormControl>
           <SelectTrigger as-child>
             <TestsFeedFormButton
