@@ -11,6 +11,7 @@ import {
   ArrowDownNarrowWideIcon
 } from 'lucide-vue-next';
 
+import { FormInput } from '@/constants/form.constant';
 import {
   TestOrder,
   TestOrderValues,
@@ -25,8 +26,6 @@ interface Props {
 const { isFieldDirty } = defineProps<Props>();
 
 const emit = defineEmits(['search-enter']);
-
-const { FormInput } = useFormMessage();
 </script>
 
 <template>

@@ -2,6 +2,7 @@
 import { FileSearchIcon } from 'lucide-vue-next';
 
 import { FileExtensions, FileTypes } from '@/constants/file.constant';
+import { FormInput } from '@/constants/form.constant';
 
 const {
   isLoadingWithFile,
@@ -12,7 +13,7 @@ const {
   generateWithFile
 } = useGenerateWithFile();
 
-const { FormInput, requiredMessage } = useFormMessage();
+const { requiredMessage } = useFormMessage();
 
 const accept: FileExtensions[] = [
   FileExtensions.PDF,

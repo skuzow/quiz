@@ -1,3 +1,5 @@
+import type { FormInput } from '@/constants/form.constant';
+
 enum MinMax {
   MIN = 'least',
   MAX = 'most'
@@ -5,27 +7,6 @@ enum MinMax {
 
 export const useFormMessage = () => {
   const { t: $t } = useI18n();
-
-  enum FormInput {
-    EMAIL = 'email',
-    NAME = 'name',
-    USERNAME = 'username',
-    PASSWORD = 'password',
-    FILE = 'file',
-    TEXT = 'text',
-    TYPE = 'type',
-    QUESTIONS = 'questions',
-    PUBLISHED = 'published',
-    TITLE = 'title',
-    DESCRIPTION = 'description',
-    CATEGORIES = 'categories',
-    QUESTION = 'question',
-    OPTIONS = 'options',
-    OPTION = 'option',
-    CORRECT_OPTIONS = 'correctOptions',
-    ANSWERED_QUESTIONS = 'answeredQuestions',
-    SEARCH = 'search'
-  }
 
   const requiredMessage = (input: FormInput) =>
     `${$t(`form.${input}`)} ${$t('form.required')}.`;
@@ -51,7 +32,6 @@ export const useFormMessage = () => {
     `${number || ''} ${$t('form.example')} ${$t(`form.${input}`)}`;
 
   return {
-    FormInput,
     requiredMessage,
     minMessage,
     maxMessage,

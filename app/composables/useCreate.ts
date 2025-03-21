@@ -4,6 +4,7 @@ import { useForm, useFieldArray, type FieldArrayContext } from 'vee-validate';
 
 import { useToast } from '@/components/ui/toast/use-toast';
 
+import { FormInput } from '@/constants/form.constant';
 import {
   TestCategoryValues,
   TestQuestionType,
@@ -30,8 +31,7 @@ export const useCreate = (edit?: boolean) => {
 
   const testStore = useTestStore();
 
-  const { FormInput, requiredMessage, minMessage, maxMessage } =
-    useFormMessage();
+  const { requiredMessage, minMessage, maxMessage } = useFormMessage();
 
   const { authUserURL } = useAuth();
 

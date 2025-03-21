@@ -4,6 +4,7 @@ import { useForm } from 'vee-validate';
 
 import type { NuxtError } from '#app';
 
+import { FormInput } from '@/constants/form.constant';
 import {
   TEST_SEARCH_PAGE_SIZE,
   TEST_SEARCH_TEXT_MAX,
@@ -22,7 +23,7 @@ export const useTestsFeed = (id?: string, username?: string) => {
   const { $api } = useNuxtApp();
   const { t: $t } = useI18n();
 
-  const { FormInput, maxMessage } = useFormMessage();
+  const { maxMessage } = useFormMessage();
 
   const tests: Ref<UserTestPartial[]> = ref([]);
 
