@@ -7,10 +7,20 @@ import {
   ArrowUp10Icon,
   ArrowDown01Icon,
   ArrowUpWideNarrowIcon,
-  ArrowDownNarrowWideIcon
+  ArrowDownNarrowWideIcon,
+  type LucideIcon
 } from 'lucide-vue-next';
 
 import { TestOrder, TestOrderValues } from '#shared/constants/test.constant';
+
+const sortIconMap: Record<TestOrder, LucideIcon> = {
+  [TestOrder.NEWEST]: ArrowUpIcon,
+  [TestOrder.OLDEST]: ArrowDownIcon,
+  [TestOrder.MOSTPOPULAR]: ArrowUp10Icon,
+  [TestOrder.LEASTPOPULAR]: ArrowDown01Icon,
+  [TestOrder.LONGEST]: ArrowUpWideNarrowIcon,
+  [TestOrder.SHORTEST]: ArrowDownNarrowWideIcon
+};
 </script>
 
 <template>
@@ -39,27 +49,7 @@ import { TestOrder, TestOrderValues } from '#shared/constants/test.constant';
               :value="order"
             >
               <div class="flex items-center gap-x-2">
-                <ArrowUpIcon v-if="order === TestOrder.NEWEST" :size="16" />
-                <ArrowDownIcon
-                  v-else-if="order === TestOrder.OLDEST"
-                  :size="16"
-                />
-                <ArrowUp10Icon
-                  v-else-if="order === TestOrder.MOSTPOPULAR"
-                  :size="16"
-                />
-                <ArrowDown01Icon
-                  v-else-if="order === TestOrder.LEASTPOPULAR"
-                  :size="16"
-                />
-                <ArrowUpWideNarrowIcon
-                  v-else-if="order === TestOrder.LONGEST"
-                  :size="16"
-                />
-                <ArrowDownNarrowWideIcon
-                  v-else-if="order === TestOrder.SHORTEST"
-                  :size="16"
-                />
+                <component :is="sortIconMap[order]" :size="16" />
 
                 {{ $t(`order.${order.toLowerCase()}`) }}
               </div>
