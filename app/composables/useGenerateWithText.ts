@@ -4,6 +4,7 @@ import { useForm } from 'vee-validate';
 
 import { useToast } from '@/components/ui/toast/use-toast';
 
+import { FormInput } from '@/constants/form.constant';
 import {
   TestQuestionTypeValues,
   TEST_GENERATION_QUESTIONS_MIN,
@@ -20,8 +21,7 @@ export const useGenerateWithText = () => {
 
   const testStore = useTestStore();
 
-  const { FormInput, requiredMessage, minMessage, maxMessage } =
-    useFormMessage();
+  const { requiredMessage, minMessage, maxMessage } = useFormMessage();
 
   const { alert } = useAlert();
   const { toast } = useToast();

@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
+import { FormInput } from '@/constants/form.constant';
 import {
   TestQuestionType,
   TEST_CREATION_QUESTION_OPTIONS_MAX
@@ -10,7 +11,7 @@ import {
 export const useMake = (questions: UserTestQuestion[]) => {
   const { t: $t } = useI18n();
 
-  const { FormInput, minMessage } = useFormMessage();
+  const { minMessage } = useFormMessage();
 
   const { alert } = useAlert();
 

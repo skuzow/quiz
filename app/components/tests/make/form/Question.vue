@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { FormInput } from '@/constants/form.constant';
 import { TestQuestionType } from '#shared/constants/test.constant';
 
 interface Props {
@@ -6,8 +7,6 @@ interface Props {
 }
 
 const { question } = defineProps<Props>();
-
-const { FormInput } = useFormMessage();
 
 const optionsPath: string = `${FormInput.QUESTIONS}.${question.number}.${FormInput.OPTIONS}`;
 </script>

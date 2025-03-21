@@ -2,6 +2,7 @@
 import type { FieldEntry, FieldArrayContext } from 'vee-validate';
 import { Trash2Icon } from 'lucide-vue-next';
 
+import { FormInput } from '@/constants/form.constant';
 import { TestQuestionType } from '#shared/constants/test.constant';
 
 interface Props {
@@ -15,7 +16,7 @@ interface Props {
 
 const { index, path, isFieldDirty, option } = defineProps<Props>();
 
-const { FormInput, exampleMessage } = useFormMessage();
+const { exampleMessage } = useFormMessage();
 </script>
 
 <template>
