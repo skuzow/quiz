@@ -43,7 +43,8 @@ const { exampleMessage } = useFormMessage();
                 class="h-9 w-9 border-input"
                 :class="{
                   'rounded-full':
-                    questionField.value?.type === TestQuestionType.SINGLE
+                    (questionField.value as UserTestQuestion)?.type ===
+                    TestQuestionType.SINGLE
                 }"
                 @update:checked="handleChange"
               />
