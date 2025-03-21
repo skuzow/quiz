@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { FieldEntry, FieldArrayContext } from 'vee-validate';
-import { Trash2Icon } from 'lucide-vue-next';
+import { XIcon } from 'lucide-vue-next';
 
 import { FormInput } from '@/constants/form.constant';
 import { TestQuestionType } from '#shared/constants/test.constant';
@@ -66,7 +66,7 @@ const { exampleMessage } = useFormMessage();
           class="shrink-0"
           @click.prevent="option.remove(index)"
         >
-          <Trash2Icon :size="16" />
+          <XIcon :size="16" />
           <span class="sr-only">Delete test option {{ index + 1 }}</span>
         </Button>
       </div>
