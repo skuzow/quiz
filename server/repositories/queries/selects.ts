@@ -35,6 +35,11 @@ export const USER_TEST_PARTIAL_AUTHOR_SELECT: Prisma.UserTestSelect = {
   }
 };
 
+export const USER_TEST_COMPLETED_SELECT: Prisma.UserTestCompletedSelect = {
+  id: true,
+  completedAt: true
+};
+
 export const USER_SELECT: Prisma.UserSelect = {
   ...USER_PARTIAL_SELECT,
   roles: {

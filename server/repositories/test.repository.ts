@@ -209,6 +209,17 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
+  async complete(id: string) {
+    await this.userTestModel.update({
+      where: { id },
+      data: {
+        completed: {
+          create: {}
+        }
+      }
+    });
+  }
+
   async delete(id: string) {
     await this.userTestModel.delete({ where: { id } });
   }
