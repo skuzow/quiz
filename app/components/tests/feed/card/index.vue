@@ -14,7 +14,7 @@ const imageAlt: string = `image-${test.id}`;
   <NuxtLinkLocale
     :to="`/tests/${test.id}`"
     :title="test.title"
-    class="flex cursor-pointer flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow sm:flex-row"
+    class="flex flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow transition-all duration-200 hover:-translate-y-0.5 hover:bg-secondary/50 hover:shadow-md sm:flex-row"
   >
     <div class="relative border-b sm:w-1/4 sm:border-b-0 sm:border-r">
       <CommonPicture

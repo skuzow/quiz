@@ -26,7 +26,18 @@ const {
 </script>
 
 <template>
-  <Avatar :size="size" :shape="shape" :user="user" class="cursor-pointer">
+  <Avatar
+    :size="size"
+    :shape="shape"
+    :user="user"
+    :class="
+      cn(
+        'cursor-pointer',
+        !user?.image &&
+          'transition-all duration-200 hover:brightness-95 dark:hover:brightness-110'
+      )
+    "
+  >
     <AvatarImage
       v-if="user?.image"
       :src="user?.image"
