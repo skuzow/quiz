@@ -33,6 +33,12 @@ export const useTestsFeed = (id?: string, username?: string) => {
   const hasMore: Ref<boolean> = ref(true);
   const errorMessage: Ref<string | undefined> = ref();
 
+  const queryValues = computed(() => ({
+    search: route.query.search as string,
+    sort: (route.query.sort as string)?.toUpperCase() as TestOrder,
+    filter: (route.query.filter as string)?.toUpperCase() as TestCategory
+  }));
+
   const infiniteScroll = useTemplateRef<HTMLElement>('infinite-scroll');
 
   const FeedSchema = z.object({
@@ -46,19 +52,20 @@ export const useTestsFeed = (id?: string, username?: string) => {
     filter: z.enum(TestCategoryValues).optional()
   });
 
+  type FeedForm = z.TypeOf<typeof FeedSchema>;
+
   const validationSchema = toTypedSchema(FeedSchema);
 
-  const { values, isFieldDirty } = useForm({
+  const { values, setFieldValue, isFieldDirty } = useForm({
     validationSchema,
-    initialValues: {
-      search: (route.query.search as string) || undefined,
-      sort:
-        ((route.query.sort as string)?.toUpperCase() as TestOrder) || undefined,
-      filter:
-        ((route.query.filter as string)?.toUpperCase() as TestCategory) ||
-        undefined
-    }
+    initialValues: queryValues.value
   });
+
+  const setFormValues = ({ search, sort, filter }: FeedForm) => {
+    setFieldValue(FormInput.SEARCH, search);
+    setFieldValue('sort', sort);
+    setFieldValue('filter', filter);
+  };
 
   const testsRequest = async (dto: TestSearch) => {
     if (id) return $api.test.getAllById(id, dto);
@@ -149,18 +156,26 @@ export const useTestsFeed = (id?: string, username?: string) => {
     return !!values.search && values.search.length > TEST_SEARCH_TEXT_MAX;
   };
 
-  watch(
-    () => [values.search, values.sort, values.filter],
-    async (newValues, oldValues) => {
-      router.push({
-        query: {
-          search: values.search || undefined,
-          sort: values.sort?.toLowerCase(),
-          filter: values.filter?.toLowerCase()
-        }
-      });
+  watch(values, async () => {
+    await router.push({
+      query: {
+        search: values.search || undefined,
+        sort: values.sort?.toLowerCase(),
+        filter: values.filter?.toLowerCase()
+      }
+    });
+  });
 
-      if (newValues[0] !== oldValues[0]) await searchTimeout();
+  watch(
+    () => [route.query.search, route.query.sort, route.query.filter],
+    async (_newQuery, oldQuery) => {
+      const result = FeedSchema.safeParse(queryValues.value);
+
+      if (!result.success) return;
+
+      setFormValues(queryValues.value);
+
+      if (queryValues.value.search !== oldQuery[0]) await searchTimeout();
       else {
         if (searchNodeTimeout) clearTimeout(searchNodeTimeout);
 
