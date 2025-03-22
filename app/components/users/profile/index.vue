@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Settings2Icon } from 'lucide-vue-next';
+import { Settings2Icon, CalendarIcon } from 'lucide-vue-next';
 
 interface Props {
   user: User;
@@ -44,22 +44,35 @@ const tempRoles = ['User'];
       </Button>
     </CommonTopImage>
 
-    <div class="flex flex-col gap-y-2">
-      <h1 class="flex flex-col overflow-hidden text-ellipsis">
-        <CommonGradientText class="bg-gradient-to-b text-2xl font-bold">
-          {{ user.name }}
-        </CommonGradientText>
+    <div
+      class="flex flex-col gap-y-3 lg:flex-row lg:items-start lg:justify-between lg:gap-y-0"
+    >
+      <div class="flex flex-col gap-y-3">
+        <h1 class="flex flex-col overflow-hidden text-ellipsis">
+          <CommonGradientText class="bg-gradient-to-b text-2xl font-bold">
+            {{ user.name }}
+          </CommonGradientText>
 
-        <span class="sr-only"> - </span>
+          <span class="sr-only"> - </span>
 
-        <span v-if="user.username">{{ user.username }}</span>
-      </h1>
+          <span v-if="user.username">{{ user.username }}</span>
+        </h1>
 
-      <ul class="flex gap-x-2">
-        <li v-for="(role, indexRole) in tempRoles" :key="indexRole">
-          <Badge>{{ role }}</Badge>
-        </li>
-      </ul>
+        <ul class="flex gap-x-2">
+          <li
+            v-for="(role, indexRole) in tempRoles"
+            :key="indexRole"
+            class="flex items-center"
+          >
+            <Badge>{{ role }}</Badge>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex items-center gap-x-1 text-sm">
+        <CalendarIcon :size="16" />
+        <CommonDate :date="user.createdAt" />
+      </div>
     </div>
   </div>
 </template>
