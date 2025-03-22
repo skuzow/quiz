@@ -22,7 +22,7 @@ const {
       <NavigationMenuItem>
         <NavigationMenuTrigger
           :class="
-            $route.path.startsWith(localePath(exploreNavMenuItems[0]!.link))
+            $route.path.startsWith(localePath(exploreNavMenuAside.link))
               ? 'bg-accent'
               : 'bg-transparent'
           "

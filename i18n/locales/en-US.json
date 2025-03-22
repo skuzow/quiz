@@ -25,13 +25,13 @@
           "title": "Most Popular",
           "description": "Best selection of most popular tests."
         },
-        "rated": {
-          "title": "Top Rated",
-          "description": "Most rated tests by our users."
-        },
         "difficult": {
           "title": "Most Difficult",
           "description": "Difficultest tests that will challenge you."
+        },
+        "new": {
+          "title": "Recently Created",
+          "description": "More recently created tests."
         }
       },
       "create": {

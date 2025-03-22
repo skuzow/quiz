@@ -1,5 +1,7 @@
+import type { RouteLocationNamedI18n } from 'vue-router';
+
 export interface NavMenuItem {
-  link: string;
+  link: string | RouteLocationNamedI18n;
   title: string;
   description: string;
 }
@@ -15,19 +17,19 @@ export const useNavMenu = () => {
 
   const exploreNavMenuItems = computed<NavMenuItem[]>(() => [
     {
-      link: '/tests',
+      link: { path: 'tests', query: { sort: 'mostpopular' } },
       title: $t('nav.header.explore.popular.title'),
       description: $t('nav.header.explore.popular.description')
     },
     {
-      link: '/tests',
-      title: $t('nav.header.explore.rated.title'),
-      description: $t('nav.header.explore.rated.description')
-    },
-    {
-      link: '/tests',
+      link: { path: 'tests', query: { sort: 'longest' } },
       title: $t('nav.header.explore.difficult.title'),
       description: $t('nav.header.explore.difficult.description')
+    },
+    {
+      link: { path: 'tests', query: { sort: 'newest' } },
+      title: $t('nav.header.explore.new.title'),
+      description: $t('nav.header.explore.new.description')
     }
   ]);
 
