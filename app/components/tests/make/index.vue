@@ -2,8 +2,9 @@
 import {
   FilePenIcon,
   LockIcon,
+  CalendarIcon,
   FileQuestionIcon,
-  EyeIcon
+  CircleCheck
 } from 'lucide-vue-next';
 
 interface Props {
@@ -80,9 +81,14 @@ const editTest = async () => {
           <p class="overflow-hidden text-ellipsis">{{ test.description }}</p>
         </div>
 
-        <ul class="flex gap-x-2 lg:items-start">
-          <li v-if="!test.published" class="flex items-center py-1">
+        <ul class="flex gap-x-2 text-sm lg:items-start">
+          <li v-if="!test.published" class="flex items-center py-0.5">
             <LockIcon :size="16" />
+          </li>
+
+          <li class="flex items-center gap-x-1">
+            <CalendarIcon :size="16" />
+            <CommonDate :date="test.createdAt" />
           </li>
 
           <li class="flex items-center gap-x-1">
@@ -91,15 +97,15 @@ const editTest = async () => {
           </li>
 
           <li class="flex items-center gap-x-1">
-            <EyeIcon :size="16" />
-            {{ test.views }}
+            <CircleCheck :size="16" />
+            {{ test.completed }}
           </li>
         </ul>
       </div>
     </div>
 
     <section>
-      <TestsMakeForm :questions="test.questions" />
+      <TestsMakeForm :test="test" />
     </section>
   </div>
 </template>

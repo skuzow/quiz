@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 interface Props {
-  questions: UserTestQuestion[];
+  test: UserTest;
 }
 
-const { questions } = defineProps<Props>();
+const { test } = defineProps<Props>();
 
 const {
   isLoadingMake,
@@ -12,13 +12,16 @@ const {
   isFieldTouched,
   makeTest,
   retryTest
-} = useMake(questions);
+} = useMake(test);
 </script>
 
 <template>
   <form v-if="!makeCorrection" class="flex flex-col gap-y-8" @submit="makeTest">
     <ol class="flex flex-col gap-y-8">
-      <li v-for="question in questions" :key="`question-${question.number}`">
+      <li
+        v-for="question in test.questions"
+        :key="`question-${question.number}`"
+      >
         <TestsMakeFormQuestion :question="question" />
       </li>
     </ol>

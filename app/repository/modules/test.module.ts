@@ -41,10 +41,10 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async view(id: string) {
+  async complete(id: string) {
     return this.call({
       method: 'POST',
-      url: this.ROUTE.View(id)
+      url: this.ROUTE.Complete(id)
     });
   }
 

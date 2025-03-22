@@ -103,8 +103,8 @@ const seedAdminUser = async () => {
                 }
               ]
             },
-            views: {
-              create: [{}, {}] // 2 views
+            completed: {
+              create: [{}, {}] // 2 completed
             }
           }
         ]

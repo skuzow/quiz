@@ -26,8 +26,8 @@ class TestRepository {
   > = {
     [TestOrder.NEWEST]: { createdAt: SortOrder.DESC },
     [TestOrder.OLDEST]: { createdAt: SortOrder.ASC },
-    [TestOrder.MOSTPOPULAR]: { views: { _count: SortOrder.DESC } },
-    [TestOrder.LEASTPOPULAR]: { views: { _count: SortOrder.ASC } },
+    [TestOrder.MOSTPOPULAR]: { completed: { _count: SortOrder.DESC } },
+    [TestOrder.LEASTPOPULAR]: { completed: { _count: SortOrder.ASC } },
     [TestOrder.LONGEST]: { questions: { _count: SortOrder.DESC } },
     [TestOrder.SHORTEST]: { questions: { _count: SortOrder.ASC } }
   };
@@ -209,6 +209,17 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
+  async complete(id: string) {
+    await this.userTestModel.update({
+      where: { id },
+      data: {
+        completed: {
+          create: {}
+        }
+      }
+    });
+  }
+
   async delete(id: string) {
     await this.userTestModel.delete({ where: { id } });
   }
@@ -260,7 +271,7 @@ class TestRepository {
           type: question.type.name
         }))
         .toReversed(),
-      views: test._count.views,
+      completed: test._count.completed,
       _count: undefined
     };
   }
@@ -272,7 +283,7 @@ class TestRepository {
         (category: any) => category.category.name
       ),
       questions: test._count.questions,
-      views: test._count.views,
+      completed: test._count.completed,
       _count: undefined
     }));
   }

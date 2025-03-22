@@ -22,9 +22,8 @@ const {
       <NavigationMenuItem>
         <NavigationMenuTrigger
           :class="
-            $route.path.startsWith(localePath(exploreNavMenuItems[0]!.link))
-              ? 'bg-accent'
-              : 'bg-transparent'
+            $route.path.startsWith(localePath(exploreNavMenuAside.link)) &&
+            'bg-accent text-accent-foreground'
           "
         >
           {{ $t('nav.explore') }}
@@ -45,9 +44,11 @@ const {
       <NavigationMenuItem>
         <NavigationMenuTrigger
           :class="
-            $route.path.startsWith(localePath(createNavMenuItems[0]!.link))
-              ? 'bg-accent'
-              : 'bg-transparent'
+            ($route.path.startsWith(localePath(createNavMenuItems[0]!.link)) ||
+              $route.path.startsWith(
+                localePath(createNavMenuItems[1]!.link)
+              )) &&
+            'bg-accent text-accent-foreground'
           "
         >
           {{ $t('nav.create') }}
@@ -73,9 +74,9 @@ const {
             :class="
               cn(
                 navigationMenuTriggerStyle(),
-                $route.path.startsWith(localePath(aboutNavMenuItems[0]!.link))
-                  ? 'bg-accent'
-                  : 'bg-transparent'
+                $route.path.startsWith(
+                  localePath(aboutNavMenuItems[0]!.link)
+                ) && 'bg-accent text-accent-foreground'
               )
             "
           >

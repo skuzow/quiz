@@ -20,7 +20,7 @@ export interface UserTestPartial {
   author: UserPartial | null;
   categories: TestCategory[];
   questions: number;
-  views: number;
+  completed: number;
   createdAt: Date;
 }
 
@@ -33,7 +33,7 @@ export interface UserTest {
   author: UserPartial;
   categories: TestCategory[];
   questions: UserTestQuestion[];
-  views: number;
+  completed: number;
   createdAt: Date;
 }
 

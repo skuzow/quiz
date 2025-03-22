@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-import { EyeIcon, FileQuestionIcon, LockIcon } from 'lucide-vue-next';
+import {
+  CircleCheck,
+  FileQuestionIcon,
+  CalendarIcon,
+  LockIcon
+} from 'lucide-vue-next';
 
 interface Props {
   test: UserTestPartial;
@@ -55,7 +60,10 @@ const imageAlt: string = `image-${test.id}`;
 
       <div
         :class="
-          cn('flex', test.categories.length ? 'justify-between' : 'justify-end')
+          cn(
+            'flex flex-col gap-y-3 sm:flex-row sm:gap-y-0',
+            test.categories.length ? 'justify-between' : 'justify-end'
+          )
         "
       >
         <TestsCategories
@@ -63,10 +71,10 @@ const imageAlt: string = `image-${test.id}`;
           :categories="test.categories"
         />
 
-        <ul class="flex gap-x-2">
+        <ul class="flex h-[22px] gap-x-2 text-sm">
           <li class="flex items-center gap-x-1">
-            {{ test.views }}
-            <EyeIcon :size="16" />
+            {{ test.completed }}
+            <CircleCheck :size="16" />
           </li>
 
           <li class="flex items-center gap-x-1">
@@ -74,7 +82,12 @@ const imageAlt: string = `image-${test.id}`;
             <FileQuestionIcon :size="16" />
           </li>
 
-          <li v-if="!test.published" class="flex items-center py-1">
+          <li class="flex items-center gap-x-1">
+            <CommonDate :date="test.createdAt" />
+            <CalendarIcon :size="16" />
+          </li>
+
+          <li v-if="!test.published" class="flex items-center">
             <LockIcon :size="16" />
           </li>
         </ul>

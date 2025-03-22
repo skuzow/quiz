@@ -11,7 +11,11 @@ const { categories, class: className } = defineProps<Props>();
 
 <template>
   <ul :class="cn('flex gap-x-2', className)">
-    <li v-for="(category, indexCategory) in categories" :key="indexCategory">
+    <li
+      v-for="(category, indexCategory) in categories"
+      :key="indexCategory"
+      class="flex items-center"
+    >
       <Badge>{{ $t(`categories.${category.toLowerCase()}`) }}</Badge>
     </li>
   </ul>
