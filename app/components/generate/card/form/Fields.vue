@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { FormInput } from '@/constants/form.constant';
 import {
   TestQuestionTypeValues,
   TEST_GENERATION_QUESTION_OPTIONS_MIN,
@@ -11,8 +12,6 @@ interface Props {
 }
 
 const { isFieldDirty } = defineProps<Props>();
-
-const { FormInput } = useFormMessage();
 </script>
 
 <template>

@@ -1,6 +1,10 @@
 export enum TestOrder {
-  ASC = 'ASC',
-  DESC = 'DESC'
+  NEWEST = 'NEWEST',
+  OLDEST = 'OLDEST',
+  MOSTPOPULAR = 'MOSTPOPULAR',
+  LEASTPOPULAR = 'LEASTPOPULAR',
+  LONGEST = 'LONGEST',
+  SHORTEST = 'SHORTEST'
 }
 
 export const TestOrderValues = Object.values(TestOrder) as [

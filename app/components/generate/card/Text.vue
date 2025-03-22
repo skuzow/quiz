@@ -1,12 +1,12 @@
 <script lang="ts" setup>
+import { FormInput } from '@/constants/form.constant';
+
 const {
   isLoadingWithText,
   internalServerErrorWithText,
   isFieldDirty,
   generateWithText
 } = useGenerateWithText();
-
-const { FormInput } = useFormMessage();
 </script>
 
 <template>

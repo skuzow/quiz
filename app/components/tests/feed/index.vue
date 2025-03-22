@@ -8,28 +8,13 @@ interface Props {
 
 const { id, username } = defineProps<Props>();
 
-const {
-  tests,
-  isLoading,
-  hasMore,
-  errorMessage,
-  isFieldDirty,
-  searchTests,
-  handleScroll
-} = useTestsFeed(id, username);
-
-onMounted(() => {
-  searchTests();
-
-  window.addEventListener('scroll', handleScroll);
-});
-
-onUnmounted(() => window.removeEventListener('scroll', handleScroll));
+const { tests, isLoading, hasMore, errorMessage, isFieldDirty, searchEnter } =
+  useTestsFeed(id, username);
 </script>
 
 <template>
   <div class="flex flex-col gap-y-4">
-    <TestsFeedForm :is-field-dirty="isFieldDirty" />
+    <TestsFeedForm :is-field-dirty="isFieldDirty" @search-enter="searchEnter" />
 
     <section>
       <ol ref="infinite-scroll" class="grid grid-cols-1 gap-4">

@@ -1,14 +1,36 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { Prisma } from '@prisma/client';
+
 import {
   USER_TEST_SELECT,
   USER_TEST_PARTIAL_AUTHOR_SELECT,
   USER_TEST_PARTIAL_SELECT
 } from './queries/selects';
 
-import { TEST_SEARCH_PAGE_SIZE } from '#shared/constants/test.constant';
+import {
+  TEST_SEARCH_PAGE_SIZE,
+  TestOrder
+} from '#shared/constants/test.constant';
+
+const enum SortOrder {
+  DESC = 'desc',
+  ASC = 'asc'
+}
 
 class TestRepository {
   private userTestModel = prisma.userTest;
+
+  private testSortMap: Record<
+    TestOrder,
+    Prisma.UserTestOrderByWithRelationInput
+  > = {
+    [TestOrder.NEWEST]: { createdAt: SortOrder.DESC },
+    [TestOrder.OLDEST]: { createdAt: SortOrder.ASC },
+    [TestOrder.MOSTPOPULAR]: { views: { _count: SortOrder.DESC } },
+    [TestOrder.LEASTPOPULAR]: { views: { _count: SortOrder.ASC } },
+    [TestOrder.LONGEST]: { questions: { _count: SortOrder.DESC } },
+    [TestOrder.SHORTEST]: { questions: { _count: SortOrder.ASC } }
+  };
 
   async findById(id: string): Promise<UserTest | null> {
     const test = await this.userTestModel.findFirst({
@@ -23,20 +45,19 @@ class TestRepository {
 
   async findAll(
     authUserId: string | undefined,
-    { page, search }: TestSearch
+    { page, search, sort, filter }: TestSearch
   ): Promise<UserTestPartial[] | null> {
-    const skip: number = this.skipTests(page);
-
     const tests = await this.userTestModel.findMany({
       where: {
-        OR: [
-          { published: { equals: true as const } },
-          { authorId: authUserId }
-        ],
-        ...this.searchTests(search)
+        AND: [
+          this.visibleTests(authUserId),
+          this.searchTests(search),
+          this.filterTests(filter)
+        ]
       },
-      skip,
+      skip: this.skipTests(page),
       take: TEST_SEARCH_PAGE_SIZE,
+      orderBy: this.sortTests(sort),
       select: USER_TEST_PARTIAL_AUTHOR_SELECT
     });
 
@@ -48,21 +69,20 @@ class TestRepository {
   async findAllById(
     id: string,
     authUserId: string | undefined,
-    { page, search }: TestSearch
+    { page, search, sort, filter }: TestSearch
   ): Promise<UserTestPartial[] | null> {
-    const skip: number = this.skipTests(page);
-
     const tests = await this.userTestModel.findMany({
       where: {
-        authorId: id,
-        OR: [
-          { published: { equals: true as const } },
-          { authorId: authUserId }
-        ],
-        ...this.searchTests(search)
+        AND: [
+          { authorId: id },
+          this.visibleTests(authUserId),
+          this.searchTests(search),
+          this.filterTests(filter)
+        ]
       },
-      skip,
+      skip: this.skipTests(page),
       take: TEST_SEARCH_PAGE_SIZE,
+      orderBy: this.sortTests(sort),
       select: USER_TEST_PARTIAL_SELECT
     });
 
@@ -74,21 +94,20 @@ class TestRepository {
   async findAllByUsername(
     username: string,
     authUserId: string | undefined,
-    { page, search }: TestSearch
+    { page, search, sort, filter }: TestSearch
   ): Promise<UserTestPartial[] | null> {
-    const skip: number = this.skipTests(page);
-
     const tests = await this.userTestModel.findMany({
       where: {
-        author: { username: username },
-        OR: [
-          { published: { equals: true as const } },
-          { authorId: authUserId }
-        ],
-        ...this.searchTests(search)
+        AND: [
+          { author: { username: username } },
+          this.visibleTests(authUserId),
+          this.searchTests(search),
+          this.filterTests(filter)
+        ]
       },
-      skip,
+      skip: this.skipTests(page),
       take: TEST_SEARCH_PAGE_SIZE,
+      orderBy: this.sortTests(sort),
       select: USER_TEST_PARTIAL_SELECT
     });
 
@@ -194,11 +213,13 @@ class TestRepository {
     await this.userTestModel.delete({ where: { id } });
   }
 
-  private skipTests(page: number): number {
-    return page * TEST_SEARCH_PAGE_SIZE;
+  private visibleTests(authUserId?: string) {
+    return {
+      OR: [{ published: { equals: true as const } }, { authorId: authUserId }]
+    };
   }
 
-  private searchTests(search?: string) {
+  private searchTests(search: TestSearch['search']) {
     if (!search) return {};
 
     return {
@@ -207,6 +228,24 @@ class TestRepository {
         { description: { contains: search } }
       ]
     };
+  }
+
+  private filterTests(filter: TestSearch['filter']) {
+    if (!filter) return {};
+
+    return {
+      categories: { some: { category: { name: filter } } }
+    };
+  }
+
+  private skipTests(page: TestSearch['page']): number {
+    return page * TEST_SEARCH_PAGE_SIZE;
+  }
+
+  private sortTests(sort: TestSearch['sort']) {
+    if (!sort) return {};
+
+    return this.testSortMap[sort];
   }
 
   private transformUserTest(test: any): UserTest {

@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import type { FieldEntry, FieldArrayContext } from 'vee-validate';
-import { Trash2Icon } from 'lucide-vue-next';
+import { XIcon } from 'lucide-vue-next';
 
+import { FormInput } from '@/constants/form.constant';
 import { TestQuestionType } from '#shared/constants/test.constant';
 
 interface Props {
@@ -15,7 +16,7 @@ interface Props {
 
 const { index, path, isFieldDirty, option } = defineProps<Props>();
 
-const { FormInput, exampleMessage } = useFormMessage();
+const { exampleMessage } = useFormMessage();
 </script>
 
 <template>
@@ -42,7 +43,8 @@ const { FormInput, exampleMessage } = useFormMessage();
                 class="h-9 w-9 border-input"
                 :class="{
                   'rounded-full':
-                    questionField.value?.type === TestQuestionType.SINGLE
+                    (questionField.value as UserTestQuestion)?.type ===
+                    TestQuestionType.SINGLE
                 }"
                 @update:checked="handleChange"
               />
@@ -64,7 +66,7 @@ const { FormInput, exampleMessage } = useFormMessage();
           class="shrink-0"
           @click.prevent="option.remove(index)"
         >
-          <Trash2Icon :size="16" />
+          <XIcon :size="16" />
           <span class="sr-only">Delete test option {{ index + 1 }}</span>
         </Button>
       </div>

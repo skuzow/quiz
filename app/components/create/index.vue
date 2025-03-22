@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { Trash2Icon, ImageUpIcon } from 'lucide-vue-next';
 
+import { FormInput } from '@/constants/form.constant';
+
 interface Props {
   edit?: boolean;
 }
@@ -25,7 +27,7 @@ const {
   deleteTest
 } = useCreate(edit);
 
-const { FormInput, exampleMessage } = useFormMessage();
+const { exampleMessage } = useFormMessage();
 </script>
 
 <template>

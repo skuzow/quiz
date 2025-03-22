@@ -10,9 +10,8 @@ import {
 } from 'radix-vue';
 import { ChevronsUpDownIcon, CheckIcon } from 'lucide-vue-next';
 
+import { FormInput } from '@/constants/form.constant';
 import { TestCategoryValues } from '#shared/constants/test.constant';
-
-const { FormInput } = useFormMessage();
 </script>
 
 <template>

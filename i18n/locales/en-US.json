@@ -181,6 +181,14 @@
     "drag": "Drop it to Upload",
     "invalidType": "Invalid file type"
   },
+  "order": {
+    "newest": "Newest",
+    "oldest": "Oldest",
+    "mostpopular": "Most Popular",
+    "leastpopular": "Least Popular",
+    "longest": "Longest",
+    "shortest": "Shortest"
+  },
   "categories": {
     "technology": "Technology",
     "programming": "Programming",

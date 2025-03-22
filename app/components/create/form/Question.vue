@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { FieldEntry, FieldArrayContext } from 'vee-validate';
-import { ChevronUpIcon, ChevronDownIcon, Trash2Icon } from 'lucide-vue-next';
+import { ChevronUpIcon, ChevronDownIcon, XIcon } from 'lucide-vue-next';
+
+import { FormInput } from '@/constants/form.constant';
 
 interface Props {
   field: FieldEntry;
@@ -13,7 +15,7 @@ interface Props {
 
 const { field, index, path, isFieldDirty, question } = defineProps<Props>();
 
-const { FormInput, exampleMessage } = useFormMessage();
+const { exampleMessage } = useFormMessage();
 </script>
 
 <template>
@@ -64,7 +66,7 @@ const { FormInput, exampleMessage } = useFormMessage();
           class="shrink-0"
           @click.prevent="question.remove(index)"
         >
-          <Trash2Icon :size="16" />
+          <XIcon :size="16" />
           <span class="sr-only">Delete test question {{ index + 1 }}</span>
         </Button>
       </div>

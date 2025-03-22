@@ -4,23 +4,30 @@ import { useForm } from 'vee-validate';
 
 import type { NuxtError } from '#app';
 
+import { FormInput } from '@/constants/form.constant';
 import {
   TEST_SEARCH_PAGE_SIZE,
-  TEST_SEARCH_TEXT_MAX
+  TEST_SEARCH_TEXT_MAX,
+  TestOrderValues,
+  TestCategoryValues,
+  type TestOrder,
+  type TestCategory
 } from '#shared/constants/test.constant';
 
 const SEARCH_TIMEOUT: number = 1000;
 
 export const useTestsFeed = (id?: string, username?: string) => {
+  const route = useRoute();
+  const router = useRouter();
+
   const { $api } = useNuxtApp();
   const { t: $t } = useI18n();
 
-  const { FormInput, maxMessage } = useFormMessage();
+  const { maxMessage } = useFormMessage();
 
   const tests: Ref<UserTestPartial[]> = ref([]);
 
   const page: Ref<number> = ref(0);
-  const search: Ref<string | undefined> = ref();
 
   const isLoading: Ref<boolean> = ref(false);
   const hasMore: Ref<boolean> = ref(true);
@@ -34,14 +41,23 @@ export const useTestsFeed = (id?: string, username?: string) => {
       .max(TEST_SEARCH_TEXT_MAX, {
         message: maxMessage(FormInput.SEARCH, TEST_SEARCH_TEXT_MAX)
       })
-      .refine(async (value) => await searchTimeout(value))
-      .optional()
+      .optional(),
+    sort: z.enum(TestOrderValues).optional(),
+    filter: z.enum(TestCategoryValues).optional()
   });
 
   const validationSchema = toTypedSchema(FeedSchema);
 
-  const { isFieldDirty } = useForm({
-    validationSchema
+  const { values, isFieldDirty } = useForm({
+    validationSchema,
+    initialValues: {
+      search: (route.query.search as string) || undefined,
+      sort:
+        ((route.query.sort as string)?.toUpperCase() as TestOrder) || undefined,
+      filter:
+        ((route.query.filter as string)?.toUpperCase() as TestCategory) ||
+        undefined
+    }
   });
 
   const testsRequest = async (dto: TestSearch) => {
@@ -57,7 +73,12 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
     if (reset) resetTests();
 
-    const dto: TestSearch = { page: page.value, search: search.value };
+    const dto: TestSearch = {
+      page: page.value,
+      search: values.search,
+      sort: values.sort,
+      filter: values.filter
+    };
 
     try {
       const response = await testsRequest(dto);
@@ -102,15 +123,13 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
   let searchNodeTimeout: NodeJS.Timeout;
 
-  const searchTimeout = async (value: string): Promise<boolean> => {
-    if (isInvalidSearch(value)) return false;
+  const searchTimeout = async (): Promise<boolean> => {
+    if (isInvalidSearch()) return false;
 
     if (searchNodeTimeout) clearTimeout(searchNodeTimeout);
 
     return new Promise((resolve) => {
       searchNodeTimeout = setTimeout(async () => {
-        search.value = value;
-
         await searchTests(true);
 
         resolve(true);
@@ -118,9 +137,45 @@ export const useTestsFeed = (id?: string, username?: string) => {
     });
   };
 
-  const isInvalidSearch = (value: string): boolean => {
-    return value.length > TEST_SEARCH_TEXT_MAX;
+  const searchEnter = async () => {
+    if (isInvalidSearch()) return;
+
+    if (searchNodeTimeout) clearTimeout(searchNodeTimeout);
+
+    await searchTests(true);
   };
+
+  const isInvalidSearch = (): boolean => {
+    return !!values.search && values.search.length > TEST_SEARCH_TEXT_MAX;
+  };
+
+  watch(
+    () => [values.search, values.sort, values.filter],
+    async (newValues, oldValues) => {
+      router.push({
+        query: {
+          search: values.search || undefined,
+          sort: values.sort?.toLowerCase(),
+          filter: values.filter?.toLowerCase()
+        }
+      });
+
+      if (newValues[0] !== oldValues[0]) await searchTimeout();
+      else {
+        if (searchNodeTimeout) clearTimeout(searchNodeTimeout);
+
+        await searchTests(true);
+      }
+    }
+  );
+
+  onMounted(async () => {
+    await searchTests();
+
+    window.addEventListener('scroll', handleScroll);
+  });
+
+  onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 
   return {
     tests,
@@ -128,7 +183,6 @@ export const useTestsFeed = (id?: string, username?: string) => {
     hasMore,
     errorMessage,
     isFieldDirty,
-    searchTests,
-    handleScroll
+    searchEnter
   };
 };

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+import { FormInput } from '@/constants/form.constant';
 import {
   USER_EMAIL_MAX,
   USER_NAME_MIN,
@@ -19,13 +20,8 @@ export const useSignup = () => {
 
   const { signUp } = useAuth();
 
-  const {
-    FormInput,
-    requiredMessage,
-    minMessage,
-    maxMessage,
-    alreadyUseMessage
-  } = useFormMessage();
+  const { requiredMessage, minMessage, maxMessage, alreadyUseMessage } =
+    useFormMessage();
 
   const isLoadingWithEmail: Ref<boolean> = ref(false);
   const errorMessageWithEmail: Ref<string | undefined> = ref(undefined);
