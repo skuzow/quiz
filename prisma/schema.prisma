@@ -128,7 +128,7 @@ model UserTest {
 
   categories UserTestToTestCategory[]
   questions  UserTestQuestion[]
-  views      UserTestView[]
+  completed  UserTestCompleted[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -191,11 +191,11 @@ model TestQuestionType {
   updatedAt DateTime @updatedAt
 }
 
-model UserTestView {
+model UserTestCompleted {
   id String @id @default(cuid())
 
   test   UserTest @relation(fields: [testId], references: [id], onDelete: Cascade)
   testId String
 
-  viewedAt DateTime @default(now())
+  completedAt DateTime @default(now())
 }

@@ -4,7 +4,7 @@ import {
   LockIcon,
   CalendarIcon,
   FileQuestionIcon,
-  EyeIcon
+  CircleCheck
 } from 'lucide-vue-next';
 
 interface Props {
@@ -97,8 +97,8 @@ const editTest = async () => {
           </li>
 
           <li class="flex items-center gap-x-1">
-            <EyeIcon :size="16" />
-            {{ test.views }}
+            <CircleCheck :size="16" />
+            {{ test.completed }}
           </li>
         </ul>
       </div>

@@ -23,7 +23,7 @@ export const USER_TEST_PARTIAL_SELECT: Prisma.UserTestSelect = {
     }
   },
   _count: {
-    select: { questions: true, views: true }
+    select: { questions: true, completed: true }
   },
   createdAt: true
 };

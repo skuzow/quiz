@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import {
-  EyeIcon,
+  CircleCheck,
   FileQuestionIcon,
   CalendarIcon,
   LockIcon
@@ -73,8 +73,8 @@ const imageAlt: string = `image-${test.id}`;
 
         <ul class="flex h-[22px] gap-x-2 text-sm">
           <li class="flex items-center gap-x-1">
-            {{ test.views }}
-            <EyeIcon :size="16" />
+            {{ test.completed }}
+            <CircleCheck :size="16" />
           </li>
 
           <li class="flex items-center gap-x-1">
