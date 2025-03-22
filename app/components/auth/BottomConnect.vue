@@ -16,9 +16,10 @@ const { text, connection } = defineProps<Props>();
     <NuxtLinkLocale
       :to="`/${connection}`"
       :title="$t(`nav.header.${connection}`)"
-      class="hover:underline"
     >
-      {{ $t(`nav.header.${connection}`) }}
+      <Button variant="link" class="p-0">
+        {{ $t(`nav.header.${connection}`) }}
+      </Button>
     </NuxtLinkLocale>
   </p>
 </template>
