@@ -22,7 +22,7 @@ const Routes = {
     FetchUserUsername: (username: string) =>
       `${PREFIX.TEST}/users/username/${username}`,
     FetchAI: () => `${PREFIX.TEST}/ai`,
-    View: (id: string) => `${PREFIX.TEST}/${id}/view`
+    Complete: (id: string) => `${PREFIX.TEST}/${id}/complete`
   }
 };
 

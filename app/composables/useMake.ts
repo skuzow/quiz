@@ -8,7 +8,8 @@ import {
   TEST_CREATION_QUESTION_OPTIONS_MAX
 } from '#shared/constants/test.constant';
 
-export const useMake = (questions: UserTestQuestion[]) => {
+export const useMake = (test: UserTest) => {
+  const { $api } = useNuxtApp();
   const { t: $t } = useI18n();
 
   const { minMessage } = useFormMessage();
@@ -62,7 +63,7 @@ export const useMake = (questions: UserTestQuestion[]) => {
   const { handleSubmit, errorBag, isFieldTouched, resetForm } = useForm({
     validationSchema,
     initialValues: {
-      questions: questions.map(({ type }) => {
+      questions: test.questions.map(({ type }) => {
         if (type === TestQuestionType.SINGLE)
           return {
             type: TestQuestionType.SINGLE as const,
@@ -91,6 +92,8 @@ export const useMake = (questions: UserTestQuestion[]) => {
 
     isLoadingMake.value = true;
 
+    $api.test.complete(test.id);
+
     correctTest(questions);
 
     isLoadingMake.value = false;
@@ -99,7 +102,7 @@ export const useMake = (questions: UserTestQuestion[]) => {
   const correctTest = (makeQuestions: MakeQuestionForm[]) => {
     makeCorrection.value = makeQuestions.map(
       ({ type, options: makeOptions }, indexMakeQuestion) => {
-        const question: UserTestQuestion = questions[indexMakeQuestion]!;
+        const question: UserTestQuestion = test.questions[indexMakeQuestion]!;
 
         if (type === TestQuestionType.SINGLE)
           return correctSingleQuestion(makeOptions, question);

@@ -105,7 +105,7 @@ const editTest = async () => {
     </div>
 
     <section>
-      <TestsMakeForm :questions="test.questions" />
+      <TestsMakeForm :test="test" />
     </section>
   </div>
 </template>
