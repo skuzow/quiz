@@ -4,6 +4,8 @@ interface Props {
 }
 
 const { navMenuItems } = defineProps<Props>();
+
+const localePath = useLocalePath();
 </script>
 
 <template>
@@ -12,7 +14,13 @@ const { navMenuItems } = defineProps<Props>();
       <NuxtLinkLocale
         :to="link"
         :title="title"
-        class="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+        :class="
+          cn(
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            $route.fullPath === localePath(link) &&
+              'bg-accent text-accent-foreground'
+          )
+        "
       >
         <div class="text-sm font-medium leading-none">{{ title }}</div>
 
