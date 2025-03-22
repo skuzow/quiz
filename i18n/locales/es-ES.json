@@ -182,12 +182,12 @@
     "invalidType": "Tipo de archivo no válido"
   },
   "order": {
-    "newest": "Más Reciente",
-    "oldest": "Menos Reciente",
-    "mostpopular": "Más Popular",
-    "leastpopular": "Menos Popular",
-    "longest": "Más Largo",
-    "shortest": "Más Corto"
+    "newest": "Más Recientes",
+    "oldest": "Menos Recientes",
+    "mostpopular": "Más Populares",
+    "leastpopular": "Menos Populares",
+    "longest": "Más Largos",
+    "shortest": "Más Cortos"
   },
   "categories": {
     "technology": "Tecnología",
