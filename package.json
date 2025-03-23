@@ -71,6 +71,9 @@
     "tsx": "^4.19.3",
     "typescript": "^5.7.3"
   },
+  "peerDependencies": {
+    "@intlify/message-compiler": "^11.1.2"
+  },
   "pnpm": {
     "onlyBuiltDependencies": [
       "@parcel/watcher",
