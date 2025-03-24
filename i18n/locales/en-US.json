@@ -3,6 +3,7 @@
   "cancel": "Cancel",
   "confirm": "Confirm",
   "continue": "Continue",
+  "click": "Click here",
   "nav": {
     "home": "Home",
     "explore": "Explore",
@@ -139,10 +140,14 @@
     }
   },
   "login": {
-    "description": "Log in to manage your tests."
+    "description": "Log in to manage your tests.",
+    "forgotPassword": "Forgot your password?"
   },
   "signup": {
     "description": "Sign up to create your own tests."
+  },
+  "forgotPassword": {
+    "title": "Forgot Password"
   },
   "generate": {
     "title": "Generate Test with AI",

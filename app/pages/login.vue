@@ -50,10 +50,27 @@ const {
 
       <AuthProviderButtons />
 
-      <AuthBottomConnect
-        :text="$t('auth.dontHaveAccount')"
-        connection="signup"
-      />
+      <div>
+        <p class="flex items-center justify-center gap-x-2 text-sm">
+          <span class="text-muted-foreground">
+            {{ $t('login.forgotPassword') }}
+          </span>
+
+          <NuxtLinkLocale
+            to="/forgot-password"
+            :title="$t('forgotPassword.title')"
+          >
+            <Button variant="link" class="p-0">
+              {{ $t('click') }}
+            </Button>
+          </NuxtLinkLocale>
+        </p>
+
+        <AuthBottomConnect
+          :text="$t('auth.dontHaveAccount')"
+          connection="signup"
+        />
+      </div>
     </section>
   </div>
 </template>

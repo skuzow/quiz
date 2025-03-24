@@ -3,6 +3,7 @@
   "cancel": "Cancelar",
   "confirm": "Confirmar",
   "continue": "Continuar",
+  "click": "Haz click aquí",
   "nav": {
     "home": "Inicio",
     "explore": "Explorar",
@@ -139,10 +140,14 @@
     }
   },
   "login": {
-    "description": "Inicia sesión para gestionar tus tests."
+    "description": "Inicia sesión para gestionar tus tests.",
+    "forgotPassword": "¿Olvidaste tu contraseña?"
   },
   "signup": {
     "description": "Regístrate para crear tus propios tests."
+  },
+  "forgotPassword": {
+    "title": "Olvidé la Contraseña"
   },
   "generate": {
     "title": "Generar Test con IA",
