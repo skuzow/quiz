@@ -3,6 +3,8 @@
   "cancel": "Cancel",
   "confirm": "Confirm",
   "continue": "Continue",
+  "understood": "Understood",
+  "click": "Click here",
   "nav": {
     "home": "Home",
     "explore": "Explore",
@@ -75,6 +77,7 @@
     "name": "Name",
     "username": "Username",
     "password": "Password",
+    "confirmPassword": "Confirm Password",
     "file": "File",
     "text": "Text",
     "type": "Type of Questions",
@@ -97,6 +100,7 @@
     "use": "is already in use",
     "example": "Example",
     "select": "Select",
+    "passwordsNotMatch": "Passwords do not match.",
     "invalidEmailOrPassword": "Invalid email or password.",
     "emailNotVerified": "Email not verified.",
     "types": {
@@ -139,10 +143,22 @@
     }
   },
   "login": {
-    "description": "Log in to manage your tests."
+    "description": "Log in to manage your tests.",
+    "forgotPassword": "Forgot your password?"
   },
   "signup": {
     "description": "Sign up to create your own tests."
+  },
+  "forgotPassword": {
+    "title": "Forgot Password",
+    "description": "Enter your email to receive a password reset link.",
+    "button": "Reset password",
+    "login": "Back to Log In"
+  },
+  "resetPassword": {
+    "title": "Reset Password",
+    "description": "Enter your new password.",
+    "button": "Change password"
   },
   "generate": {
     "title": "Generate Test with AI",
@@ -210,8 +226,11 @@
   "alert": {
     "verifyEmail": {
       "title": "A verification email has been sent",
-      "description": "Please check your inbox and verify your email to access to your account.",
-      "confirm": "Understood"
+      "description": "Please check your inbox and verify your email to access to your account."
+    },
+    "forgotPassword": {
+      "title": "A password reset email has been sent",
+      "description": "Please check your inbox and follow the instructions to reset your password."
     },
     "overrideTest": {
       "title": "You already have a test in progress",
@@ -227,6 +246,10 @@
     }
   },
   "toast": {
+    "resetPassword": {
+      "title": "✅ Password reset successfully",
+      "description": "You can now log in with your new password."
+    },
     "test": {
       "generate": "✅ Test generated successfully",
       "create": "✅ Test created successfully",

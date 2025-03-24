@@ -59,6 +59,10 @@ export default defineNuxtConfig({
     indexable: false // delete this when site is finished
   },
 
+  robots: {
+    disallow: ['/forgot-password', '/reset-password']
+  },
+
   pinia: {
     storesDirs: ['./app/stores/**']
   },

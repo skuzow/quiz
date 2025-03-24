@@ -93,7 +93,7 @@ export const useLogin = () => {
         alert({
           title: $t('alert.verifyEmail.title'),
           description: $t('alert.verifyEmail.description'),
-          confirm: $t('alert.verifyEmail.confirm')
+          confirm: $t('understood')
         });
       } else loginForm.resetField(FormInput.PASSWORD);
     } else await navigateTo(localePath('/tests'));

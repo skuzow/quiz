@@ -217,7 +217,7 @@ export const useSignup = () => {
       alert({
         title: $t('alert.verifyEmail.title'),
         description: $t('alert.verifyEmail.description'),
-        confirm: $t('alert.verifyEmail.confirm')
+        confirm: $t('understood')
       });
     }
   };
