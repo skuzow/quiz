@@ -22,7 +22,6 @@ const sendVerificationEmail = async (user: User, url: string) => {
 };
 
 const sendResetPassword = async (user: User, url: string) => {
-  console.log('sendResetPassword', user, url);
   await resend.emails.send({
     from: EMAIL_AUTHOR,
     to: [user.email],
