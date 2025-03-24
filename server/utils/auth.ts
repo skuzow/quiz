@@ -25,7 +25,10 @@ export const auth = betterAuth({
   },
   emailAndPassword: {
     enabled: true,
-    requireEmailVerification: true
+    requireEmailVerification: true,
+    sendResetPassword: async ({ user, url }, _request) => {
+      email.sendResetPassword(user, url);
+    }
   },
   socialProviders: {
     google: {

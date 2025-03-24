@@ -21,6 +21,20 @@ const sendVerificationEmail = async (user: User, url: string) => {
   });
 };
 
+const sendResetPassword = async (user: User, url: string) => {
+  console.log('sendResetPassword', user, url);
+  await resend.emails.send({
+    from: EMAIL_AUTHOR,
+    to: [user.email],
+    subject: 'Reset your skuzow/quiz account password',
+    html: `
+    <p>Click this link to reset your account password: ${url}</p>
+    <p>If you didn't perform this action please contact us at contact@quiz.skuzow.com</p>
+    `
+  });
+};
+
 export default {
-  sendVerificationEmail
+  sendVerificationEmail,
+  sendResetPassword
 };
