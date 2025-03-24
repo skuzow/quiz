@@ -100,6 +100,7 @@ export const useAuth = () => {
     authUserURL,
     signUp: authClient.signUp,
     signIn: authClient.signIn,
+    forgetPassword: authClient.forgetPassword,
     signOut
   };
 };

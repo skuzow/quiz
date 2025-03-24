@@ -3,6 +3,7 @@
   "cancel": "Cancelar",
   "confirm": "Confirmar",
   "continue": "Continuar",
+  "understood": "Entendido",
   "click": "Haz click aquí",
   "nav": {
     "home": "Inicio",
@@ -147,7 +148,10 @@
     "description": "Regístrate para crear tus propios tests."
   },
   "forgotPassword": {
-    "title": "Olvidé la Contraseña"
+    "title": "Olvidé la Contraseña",
+    "description": "Introduzca su correo electrónico para recibir un enlace de restablecimiento de contraseña.",
+    "button": "Restablecer contraseña",
+    "login": "Volver a Iniciar Sesión"
   },
   "generate": {
     "title": "Generar Test con IA",
@@ -215,8 +219,11 @@
   "alert": {
     "verifyEmail": {
       "title": "Se ha enviado un correo electrónico de verificación",
-      "description": "Por favor, revise su bandeja de entrada y verifique su correo electrónico para acceder a su cuenta.",
-      "confirm": "Entendido"
+      "description": "Por favor, revise su bandeja de entrada y verifique su correo electrónico para acceder a su cuenta."
+    },
+    "forgotPassword": {
+      "title": "Se ha enviado un correo electrónico de restablecimiento de contraseña",
+      "description": "Por favor, revise su bandeja de entrada y siga las instrucciones para restablecer su contraseña."
     },
     "overrideTest": {
       "title": "Ya tienes un test en curso",
