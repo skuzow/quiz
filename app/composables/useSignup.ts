@@ -25,6 +25,8 @@ export const useSignup = () => {
   const { requiredMessage, minMessage, maxMessage, alreadyUseMessage } =
     useFormMessage();
 
+  const { alert } = useAlert();
+
   const isLoadingWithEmail: Ref<boolean> = ref(false);
   const errorMessageWithEmail: Ref<string | undefined> = ref(undefined);
 
@@ -209,7 +211,15 @@ export const useSignup = () => {
     if (error) {
       errorMessageWithEmail.value = error.message;
       signupForm.resetField(FormInput.PASSWORD);
-    } else await navigateTo(localePath('/tests'));
+    } else {
+      await navigateTo(localePath('/tests'));
+
+      alert({
+        title: $t('alert.verifyEmail.title'),
+        description: $t('alert.verifyEmail.description'),
+        confirm: $t('alert.verifyEmail.confirm')
+      });
+    }
   };
 
   return {

@@ -17,6 +17,8 @@ export const useLogin = () => {
 
   const { requiredMessage, minMessage, maxMessage } = useFormMessage();
 
+  const { alert } = useAlert();
+
   const isLoadingWithEmail: Ref<boolean> = ref(false);
   const errorMessageWithEmail: Ref<string | undefined> = ref(undefined);
 
@@ -67,6 +69,11 @@ export const useLogin = () => {
     }
   };
 
+  const errorMessageMap: Record<string, string> = {
+    INVALID_EMAIL_OR_PASSWORD: $t('form.invalidEmailOrPassword'),
+    EMAIL_NOT_VERIFIED: $t('form.emailNotVerified')
+  };
+
   const loginWithEmail = async ({ email, password }: LoginForm) => {
     if (isLoadingWithEmail.value) return;
 
@@ -77,11 +84,18 @@ export const useLogin = () => {
     isLoadingWithEmail.value = false;
 
     if (error) {
-      if (error.code === 'INVALID_EMAIL_OR_PASSWORD')
-        errorMessageWithEmail.value = $t('form.invalidEmailOrPassword');
-      else errorMessageWithEmail.value = error.message;
+      errorMessageWithEmail.value =
+        errorMessageMap[error.code!] || error.message;
 
-      loginForm.resetField(FormInput.PASSWORD);
+      if (error.code === 'EMAIL_NOT_VERIFIED') {
+        await navigateTo(localePath('/tests'));
+
+        alert({
+          title: $t('alert.verifyEmail.title'),
+          description: $t('alert.verifyEmail.description'),
+          confirm: $t('alert.verifyEmail.confirm')
+        });
+      } else loginForm.resetField(FormInput.PASSWORD);
     } else await navigateTo(localePath('/tests'));
   };
 
