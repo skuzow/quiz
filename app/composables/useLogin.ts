@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { toTypedSchema } from '@vee-validate/zod';
+import { useForm } from 'vee-validate';
 
 import { FormInput } from '@/constants/form.constant';
 import {
@@ -41,6 +43,12 @@ export const useLogin = () => {
 
   type LoginForm = z.TypeOf<typeof LoginSchema>;
 
+  const validationSchema = toTypedSchema(LoginSchema);
+
+  const loginForm = useForm({
+    validationSchema
+  });
+
   const fieldConfig = {
     email: {
       label: $t('form.email'),
@@ -73,7 +81,7 @@ export const useLogin = () => {
         errorMessageWithEmail.value = $t('form.invalidEmailOrPassword');
       else errorMessageWithEmail.value = error.message;
 
-      clearPasswordInput();
+      loginForm.resetField(FormInput.PASSWORD);
     } else await navigateTo(localePath('/tests'));
   };
 
@@ -81,6 +89,7 @@ export const useLogin = () => {
     isLoadingWithEmail,
     errorMessageWithEmail,
     LoginSchema,
+    loginForm,
     fieldConfig,
     loginWithEmail
   };

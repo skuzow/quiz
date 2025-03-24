@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { toTypedSchema } from '@vee-validate/zod';
+import { useForm } from 'vee-validate';
 
 import { FormInput } from '@/constants/form.constant';
 import {
@@ -76,6 +78,12 @@ export const useSignup = () => {
   });
 
   type SignupForm = z.TypeOf<typeof SignupSchema>;
+
+  const validationSchema = toTypedSchema(SignupSchema);
+
+  const signupForm = useForm({
+    validationSchema
+  });
 
   const fieldConfig = {
     email: {
@@ -200,7 +208,7 @@ export const useSignup = () => {
 
     if (error) {
       errorMessageWithEmail.value = error.message;
-      clearPasswordInput();
+      signupForm.resetField(FormInput.PASSWORD);
     } else await navigateTo(localePath('/tests'));
   };
 
@@ -208,6 +216,7 @@ export const useSignup = () => {
     isLoadingWithEmail,
     errorMessageWithEmail,
     SignupSchema,
+    signupForm,
     fieldConfig,
     signupWithEmail
   };
