@@ -3,6 +3,7 @@ export enum FormInput {
   NAME = 'name',
   USERNAME = 'username',
   PASSWORD = 'password',
+  CONFIRM_PASSWORD = 'confirmPassword',
   FILE = 'file',
   TEXT = 'text',
   TYPE = 'type',

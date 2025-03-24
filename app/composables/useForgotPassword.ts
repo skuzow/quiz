@@ -9,7 +9,7 @@ export const useForgotPassword = () => {
   const { t: $t } = useI18n();
   const localePath = useLocalePath();
 
-  const { forgetPassword } = useAuth();
+  const auth = useAuth();
 
   const { requiredMessage, maxMessage } = useFormMessage();
 
@@ -52,7 +52,7 @@ export const useForgotPassword = () => {
 
     isLoadingForgotPassword.value = true;
 
-    const { error } = await forgetPassword({
+    const { error } = await auth.forgotPassword({
       email: email,
       redirectTo: localePath('/reset-password')
     });

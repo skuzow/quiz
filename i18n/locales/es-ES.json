@@ -77,6 +77,7 @@
     "name": "Nombre",
     "username": "Nombre de usuario",
     "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
     "file": "Archivo",
     "text": "Texto",
     "type": "Tipo de Preguntas",
@@ -99,6 +100,7 @@
     "use": "está en uso",
     "example": "Ejemplo de",
     "select": "Selecciona",
+    "passwordsNotMatch": "Las contraseñas no coinciden.",
     "invalidEmailOrPassword": "Correo electrónico o contraseña no válidos.",
     "emailNotVerified": "Correo electrónico no verificado.",
     "types": {
@@ -152,6 +154,11 @@
     "description": "Introduzca su correo electrónico para recibir un enlace de restablecimiento de contraseña.",
     "button": "Restablecer contraseña",
     "login": "Volver a Iniciar Sesión"
+  },
+  "resetPassword": {
+    "title": "Restablecer Contraseña",
+    "description": "Introduzca su nueva contraseña.",
+    "button": "Cambiar contraseña"
   },
   "generate": {
     "title": "Generar Test con IA",
@@ -239,6 +246,10 @@
     }
   },
   "toast": {
+    "resetPassword": {
+      "title": "✅ Contraseña restablecida con éxito",
+      "description": "Ahora puedes iniciar sesión con tu nueva contraseña."
+    },
     "test": {
       "generate": "✅ Test generado con éxito",
       "create": "✅ Test creado con éxito",
