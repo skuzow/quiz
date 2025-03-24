@@ -18,10 +18,14 @@ export const auth = betterAuth({
   }),
   plugins: [username(), twoFactor()],
   emailVerification: {
-    sendOnSignUp: true
+    sendOnSignUp: true,
+    autoSignInAfterVerification: true,
+    sendVerificationEmail: async ({ user, url }, _request) =>
+      email.sendVerificationEmail(user, url)
   },
   emailAndPassword: {
-    enabled: true
+    enabled: true,
+    requireEmailVerification: true
   },
   socialProviders: {
     google: {
