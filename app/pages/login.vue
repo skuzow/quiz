@@ -12,6 +12,7 @@ const {
   isLoadingWithEmail,
   errorMessageWithEmail,
   LoginSchema,
+  loginForm,
   fieldConfig,
   loginWithEmail
 } = useLogin();
@@ -28,6 +29,7 @@ const {
       <AutoForm
         class="flex flex-col gap-y-6"
         :schema="LoginSchema"
+        :form="loginForm"
         :field-config="fieldConfig"
         @submit="loginWithEmail"
       >

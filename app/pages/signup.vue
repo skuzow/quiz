@@ -12,6 +12,7 @@ const {
   isLoadingWithEmail,
   errorMessageWithEmail,
   SignupSchema,
+  signupForm,
   fieldConfig,
   signupWithEmail
 } = useSignup();
@@ -28,6 +29,7 @@ const {
       <AutoForm
         class="flex flex-col gap-y-6"
         :schema="SignupSchema"
+        :form="signupForm"
         :field-config="fieldConfig"
         @submit="signupWithEmail"
       >

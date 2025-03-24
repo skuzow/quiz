@@ -98,6 +98,7 @@
     "example": "Example",
     "select": "Select",
     "invalidEmailOrPassword": "Invalid email or password.",
+    "emailNotVerified": "Email not verified.",
     "types": {
       "all": "All Types",
       "single": "Single",
@@ -207,6 +208,11 @@
     "languages": "Languages"
   },
   "alert": {
+    "verifyEmail": {
+      "title": "A verification email has been sent",
+      "description": "Please check your inbox and verify your email to access to your account.",
+      "confirm": "Understood"
+    },
     "overrideTest": {
       "title": "You already have a test in progress",
       "description": "If you continue, you will lose your current test. Do you want to continue?"

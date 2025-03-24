@@ -98,6 +98,7 @@
     "example": "Ejemplo de",
     "select": "Selecciona",
     "invalidEmailOrPassword": "Correo electrónico o contraseña no válidos.",
+    "emailNotVerified": "Correo electrónico no verificado.",
     "types": {
       "all": "Todos los Tipos",
       "single": "Única",
@@ -207,6 +208,11 @@
     "languages": "Idiomas"
   },
   "alert": {
+    "verifyEmail": {
+      "title": "Se ha enviado un correo electrónico de verificación",
+      "description": "Por favor, revise su bandeja de entrada y verifique su correo electrónico para acceder a su cuenta.",
+      "confirm": "Entendido"
+    },
     "overrideTest": {
       "title": "Ya tienes un test en curso",
       "description": "Si continúas, se perderá el test actual. ¿Estás seguro de que quieres continuar?"

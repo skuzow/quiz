@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { toTypedSchema } from '@vee-validate/zod';
+import { useForm } from 'vee-validate';
 
 import { FormInput } from '@/constants/form.constant';
 import {
@@ -22,6 +24,8 @@ export const useSignup = () => {
 
   const { requiredMessage, minMessage, maxMessage, alreadyUseMessage } =
     useFormMessage();
+
+  const { alert } = useAlert();
 
   const isLoadingWithEmail: Ref<boolean> = ref(false);
   const errorMessageWithEmail: Ref<string | undefined> = ref(undefined);
@@ -76,6 +80,12 @@ export const useSignup = () => {
   });
 
   type SignupForm = z.TypeOf<typeof SignupSchema>;
+
+  const validationSchema = toTypedSchema(SignupSchema);
+
+  const signupForm = useForm({
+    validationSchema
+  });
 
   const fieldConfig = {
     email: {
@@ -200,14 +210,23 @@ export const useSignup = () => {
 
     if (error) {
       errorMessageWithEmail.value = error.message;
-      clearPasswordInput();
-    } else await navigateTo(localePath('/tests'));
+      signupForm.resetField(FormInput.PASSWORD);
+    } else {
+      await navigateTo(localePath('/tests'));
+
+      alert({
+        title: $t('alert.verifyEmail.title'),
+        description: $t('alert.verifyEmail.description'),
+        confirm: $t('alert.verifyEmail.confirm')
+      });
+    }
   };
 
   return {
     isLoadingWithEmail,
     errorMessageWithEmail,
     SignupSchema,
+    signupForm,
     fieldConfig,
     signupWithEmail
   };
