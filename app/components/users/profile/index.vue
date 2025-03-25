@@ -20,6 +20,8 @@ seoMeta({
 
 const { authUser, isAuthenticated } = useAuth();
 
+const { openAuthSettings } = useAuthSettings();
+
 const tempRoles = ['User'];
 </script>
 
@@ -38,6 +40,7 @@ const tempRoles = ['User'];
       <Button
         v-if="isAuthenticated && authUser?.id === user.id"
         class="absolute bottom-2 right-2 gap-x-2"
+        @click="openAuthSettings"
       >
         <Settings2Icon :size="16" />
         {{ $t('nav.header.user.settings') }}
