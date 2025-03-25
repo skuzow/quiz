@@ -64,14 +64,6 @@ export const useAuth = () => {
 
   const localePath = useLocalePath();
 
-  const authUserInfo: ComputedRef<string> = computed(() => {
-    if (!authUser.value) return '';
-
-    return authUser.value.username
-      ? `@${authUser.value.username}`
-      : authUser.value.email;
-  });
-
   const authUserURL: ComputedRef<string> = computed(() => {
     if (!authUser.value) return '';
 
@@ -96,7 +88,6 @@ export const useAuth = () => {
     authUser,
     isAuthenticated,
     fetchSession,
-    authUserInfo,
     authUserURL,
     signUp: authClient.signUp,
     signIn: authClient.signIn,

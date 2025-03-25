@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { MenuIcon, UserRoundIcon, Settings2Icon } from 'lucide-vue-next';
 
-const { authUser, isAuthenticated, authUserInfo, authUserURL, signOut } =
-  useAuth();
+const { authUser, isAuthenticated, authUserURL, signOut } = useAuth();
 
 const { openAuthSettings } = useAuthSettings();
 
@@ -31,11 +30,11 @@ const isOpen: Ref<boolean> = ref(false);
               <div v-if="isAuthenticated" class="flex justify-start gap-x-2">
                 <CommonAvatar loading="lazy" :user="authUser" />
 
-                <div class="flex flex-col items-start">
+                <div class="flex flex-col items-start justify-center">
                   <h3 class="text-sm">{{ authUser?.name }}</h3>
 
-                  <p class="text-xs font-medium">
-                    {{ authUserInfo }}
+                  <p v-if="authUser?.username" class="text-xs font-medium">
+                    {{ `@${authUser.username}` }}
                   </p>
                 </div>
               </div>

@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { UserRoundIcon, Settings2Icon, LogOutIcon } from 'lucide-vue-next';
 
-const { authUser, authUserInfo, authUserURL, signOut } = useAuth();
+const { authUser, authUserURL, signOut } = useAuth();
 
 const { openAuthSettings } = useAuthSettings();
 </script>
@@ -15,8 +15,8 @@ const { openAuthSettings } = useAuthSettings();
       <DropdownMenuLabel>
         <h3>{{ authUser?.name }}</h3>
 
-        <p class="text-xs font-medium">
-          {{ authUserInfo }}
+        <p v-if="authUser?.username" class="text-xs font-medium">
+          {{ `@${authUser.username}` }}
         </p>
       </DropdownMenuLabel>
 
