@@ -58,7 +58,7 @@ const tempRoles = ['User'];
 
           <span class="sr-only"> - </span>
 
-          <span v-if="user.username">{{ user.username }}</span>
+          <span v-if="user.username">{{ `@${user.username}` }}</span>
         </h1>
 
         <ul class="flex gap-x-2">
