@@ -1,5 +1,7 @@
 <template>
   <GradientSVG />
+  <AuthSettings />
+
   <AlertProvider />
   <Toaster />
 

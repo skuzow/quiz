@@ -15,6 +15,7 @@ seoMeta({
 
 <template>
   <GradientSVG />
+  <AuthSettings />
 
   <NuxtLayout>
     <section class="flex flex-col items-center gap-y-10">

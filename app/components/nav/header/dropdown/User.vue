@@ -2,6 +2,8 @@
 import { UserRoundIcon, Settings2Icon, LogOutIcon } from 'lucide-vue-next';
 
 const { authUser, authUserInfo, authUserURL, signOut } = useAuth();
+
+const { openAuthSettings } = useAuthSettings();
 </script>
 
 <template>
@@ -28,7 +30,7 @@ const { authUser, authUserInfo, authUserURL, signOut } = useAuth();
           </DropdownMenuItem>
         </NuxtLink>
 
-        <DropdownMenuItem class="gap-2">
+        <DropdownMenuItem class="gap-2" @click="openAuthSettings">
           <Settings2Icon :size="16" />
           <span>{{ $t('nav.header.user.settings') }}</span>
         </DropdownMenuItem>

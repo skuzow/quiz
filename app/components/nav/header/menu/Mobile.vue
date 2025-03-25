@@ -4,12 +4,16 @@ import { MenuIcon, UserRoundIcon, Settings2Icon } from 'lucide-vue-next';
 const { authUser, isAuthenticated, authUserInfo, authUserURL, signOut } =
   useAuth();
 
+const { openAuthSettings } = useAuthSettings();
+
 const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
   useNavMenu();
+
+const isOpen: Ref<boolean> = ref(false);
 </script>
 
 <template>
-  <Sheet>
+  <Sheet v-model:open="isOpen">
     <SheetTrigger as-child>
       <Button variant="ghost" size="icon" class="md:hidden">
         <MenuIcon :size="18" />
@@ -64,7 +68,16 @@ const { exploreNavMenuItems, createNavMenuItems, aboutNavMenuItems } =
           </li>
 
           <li>
-            <Button variant="link" class="gap-2 pl-0">
+            <Button
+              variant="link"
+              class="gap-2 pl-0"
+              @click="
+                () => {
+                  isOpen = false;
+                  openAuthSettings();
+                }
+              "
+            >
               <Settings2Icon :size="16" />
               <span>{{ $t('nav.header.user.settings') }}</span>
             </Button>
