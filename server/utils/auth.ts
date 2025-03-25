@@ -4,6 +4,11 @@ import { username, twoFactor } from 'better-auth/plugins';
 
 import prisma from './prisma';
 
+import {
+  USER_USERNAME_MIN,
+  USER_USERNAME_MAX
+} from '#shared/constants/user.constant';
+
 const {
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
@@ -16,7 +21,13 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'sqlite'
   }),
-  plugins: [username(), twoFactor()],
+  plugins: [
+    username({
+      minUsernameLength: USER_USERNAME_MIN,
+      maxUsernameLength: USER_USERNAME_MAX
+    }),
+    twoFactor()
+  ],
   emailVerification: {
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
