@@ -1,8 +1,11 @@
 <script lang="ts" setup>
 const { isAuthenticated, authUser } = useAuth();
 
-const { isOpen, isProfileFormOpen, isUsernameFormOpen, isEmailFormOpen } =
-  useAuthSettings();
+const { isOpen } = useAuthSettings();
+
+const isProfileFormOpen: Ref<boolean> = ref(false);
+const isUsernameFormOpen: Ref<boolean> = ref(false);
+const isEmailFormOpen: Ref<boolean> = ref(false);
 </script>
 
 <template>

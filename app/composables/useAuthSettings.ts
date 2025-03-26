@@ -3,10 +3,6 @@ export const useAuthSettings = () => {
 
   const isOpen = useState<boolean>('settings:isOpen', () => false);
 
-  const isProfileFormOpen: Ref<boolean> = ref(false);
-  const isUsernameFormOpen: Ref<boolean> = ref(false);
-  const isEmailFormOpen: Ref<boolean> = ref(false);
-
   const openAuthSettings = () => {
     if (!isAuthenticated.value) return;
 
@@ -15,9 +11,6 @@ export const useAuthSettings = () => {
 
   return {
     isOpen,
-    isProfileFormOpen,
-    isUsernameFormOpen,
-    isEmailFormOpen,
     openAuthSettings
   };
 };
