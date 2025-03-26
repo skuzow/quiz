@@ -22,7 +22,7 @@ const isEmailFormOpen: Ref<boolean> = ref(false);
           <Accordion type="single" collapsible default-value="change-profile">
             <AccordionItem
               value="change-profile"
-              :class="{ 'border-b-transparent': isProfileFormOpen }"
+              :class="{ 'border-none': isProfileFormOpen }"
             >
               <AccordionTrigger>
                 <h3 class="font-bold">Profile</h3>
@@ -60,7 +60,7 @@ const isEmailFormOpen: Ref<boolean> = ref(false);
           <Accordion type="single" collapsible default-value="change-username">
             <AccordionItem
               value="change-username"
-              :class="{ 'border-b-transparent': isUsernameFormOpen }"
+              :class="{ 'border-none': isUsernameFormOpen }"
             >
               <AccordionTrigger>
                 <h3 class="font-bold">Username</h3>
@@ -90,7 +90,7 @@ const isEmailFormOpen: Ref<boolean> = ref(false);
           <Accordion type="single" collapsible>
             <AccordionItem
               value="change-email"
-              :class="{ 'border-b-transparent': isEmailFormOpen }"
+              :class="{ 'border-none': isEmailFormOpen }"
             >
               <AccordionTrigger>
                 <h3 class="font-bold">Email</h3>
