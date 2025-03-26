@@ -24,7 +24,7 @@ const isEmailFormOpen: Ref<boolean> = ref(false);
           <div :class="{ 'pb-4': !isProfileFormOpen }">
             <div
               v-if="!isProfileFormOpen"
-              class="flex flex-row items-center justify-between py-1 pl-2.5"
+              class="flex flex-row items-center justify-between pl-2.5"
             >
               <div class="flex flex-row items-center gap-x-3">
                 <CommonAvatar
@@ -55,7 +55,7 @@ const isEmailFormOpen: Ref<boolean> = ref(false);
           <div :class="{ 'pb-4': !isUsernameFormOpen }">
             <div
               v-if="!isUsernameFormOpen"
-              class="flex flex-row items-center justify-between py-1 pl-2.5"
+              class="flex flex-row items-center justify-between pl-2.5"
             >
               <p>{{ authUser.username || 'Not defined' }}</p>
 
@@ -83,7 +83,7 @@ const isEmailFormOpen: Ref<boolean> = ref(false);
               <AccordionContent :class="{ 'p-0': isEmailFormOpen }">
                 <div
                   v-if="!isEmailFormOpen"
-                  class="flex flex-row items-center justify-between py-1 pl-2.5"
+                  class="flex flex-row items-center justify-between pl-2.5"
                 >
                   <p>{{ authUser.email }}</p>
 
