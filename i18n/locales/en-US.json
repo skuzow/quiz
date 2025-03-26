@@ -93,6 +93,7 @@
     "answeredQuestions": "Answered Questions",
     "search": "Search",
     "emailFormat": "Invalid email format.",
+    "usernameFormat": "Invalid username format.",
     "required": "is required",
     "least": "must be at least",
     "most": "must be at most",

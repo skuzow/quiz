@@ -93,6 +93,7 @@
     "answeredQuestions": "Preguntas Contestadas",
     "search": "Búsqueda",
     "emailFormat": "Formato de correo electrónico no válido.",
+    "usernameFormat": "Formato de nombre de usuario no válido.",
     "required": "es obligatorio",
     "least": "debe ser como mínimo",
     "most": "debe ser como máximo",
