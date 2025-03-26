@@ -17,73 +17,58 @@ const isEmailFormOpen: Ref<boolean> = ref(false);
 
       <Separator />
 
-      <div class="flex flex-col gap-y-4">
-        <section>
-          <Accordion type="single" collapsible default-value="change-profile">
-            <AccordionItem
-              value="change-profile"
-              :class="{ 'border-none': isProfileFormOpen }"
+      <div class="flex flex-col gap-y-4 text-sm">
+        <section :class="{ 'border-b': !isProfileFormOpen }">
+          <h3 class="py-4 font-bold">Profile</h3>
+
+          <div :class="{ 'pb-4': !isProfileFormOpen }">
+            <div
+              v-if="!isProfileFormOpen"
+              class="flex flex-row items-center justify-between py-1 pl-2.5"
             >
-              <AccordionTrigger>
-                <h3 class="font-bold">Profile</h3>
-              </AccordionTrigger>
-              <AccordionContent :class="{ 'p-0': isProfileFormOpen }">
-                <div
-                  v-if="!isProfileFormOpen"
-                  class="flex flex-row items-center justify-between pb-1 pl-2.5 pt-1"
-                >
-                  <div class="flex flex-row items-center gap-x-3">
-                    <CommonAvatar
-                      size="sm"
-                      :height="40"
-                      :width="40"
-                      :user="authUser"
-                    />
-                    <p>{{ authUser.name }}</p>
-                  </div>
-
-                  <Button variant="ghost" @click="isProfileFormOpen = true">
-                    Update profile
-                  </Button>
-                </div>
-
-                <AuthSettingsFormProfile
-                  v-if="isProfileFormOpen"
-                  @close-profile-form="isProfileFormOpen = false"
+              <div class="flex flex-row items-center gap-x-3">
+                <CommonAvatar
+                  size="sm"
+                  :height="40"
+                  :width="40"
+                  :pointer="false"
+                  :user="authUser"
                 />
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+                <p>{{ authUser.name }}</p>
+              </div>
+
+              <Button variant="ghost" @click="isProfileFormOpen = true">
+                Update profile
+              </Button>
+            </div>
+
+            <AuthSettingsFormProfile
+              v-if="isProfileFormOpen"
+              @close-profile-form="isProfileFormOpen = false"
+            />
+          </div>
         </section>
 
-        <section>
-          <Accordion type="single" collapsible default-value="change-username">
-            <AccordionItem
-              value="change-username"
-              :class="{ 'border-none': isUsernameFormOpen }"
+        <section :class="{ 'border-b': !isUsernameFormOpen }">
+          <h3 class="py-4 font-bold">Username</h3>
+
+          <div :class="{ 'pb-4': !isUsernameFormOpen }">
+            <div
+              v-if="!isUsernameFormOpen"
+              class="flex flex-row items-center justify-between py-1 pl-2.5"
             >
-              <AccordionTrigger>
-                <h3 class="font-bold">Username</h3>
-              </AccordionTrigger>
-              <AccordionContent :class="{ 'p-0': isUsernameFormOpen }">
-                <div
-                  v-if="!isUsernameFormOpen"
-                  class="flex flex-row items-center justify-between pb-1 pl-2.5 pt-1"
-                >
-                  <p>{{ authUser.username || 'Not defined' }}</p>
+              <p>{{ authUser.username || 'Not defined' }}</p>
 
-                  <Button variant="ghost" @click="isUsernameFormOpen = true">
-                    Update username
-                  </Button>
-                </div>
+              <Button variant="ghost" @click="isUsernameFormOpen = true">
+                Update username
+              </Button>
+            </div>
 
-                <AuthSettingsFormUsername
-                  v-if="isUsernameFormOpen"
-                  @close-username-form="isUsernameFormOpen = false"
-                />
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+            <AuthSettingsFormUsername
+              v-if="isUsernameFormOpen"
+              @close-username-form="isUsernameFormOpen = false"
+            />
+          </div>
         </section>
 
         <section>
@@ -98,7 +83,7 @@ const isEmailFormOpen: Ref<boolean> = ref(false);
               <AccordionContent :class="{ 'p-0': isEmailFormOpen }">
                 <div
                   v-if="!isEmailFormOpen"
-                  class="flex flex-row items-center justify-between pb-1 pl-2.5 pt-1"
+                  class="flex flex-row items-center justify-between py-1 pl-2.5"
                 >
                   <p>{{ authUser.email }}</p>
 
