@@ -60,7 +60,7 @@ const isEmailFormOpen: Ref<boolean> = ref(false);
               <p>{{ authUser.username || 'Not defined' }}</p>
 
               <Button variant="ghost" @click="isUsernameFormOpen = true">
-                Update username
+                {{ authUser.username ? 'Update username' : 'Set username' }}
               </Button>
             </div>
 
