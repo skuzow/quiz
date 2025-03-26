@@ -3,9 +3,9 @@ const { isAuthenticated, authUser } = useAuth();
 
 const { isOpen } = useAuthSettings();
 
-const isProfileFormOpen: Ref<boolean> = ref(false);
-const isUsernameFormOpen: Ref<boolean> = ref(false);
-const isEmailFormOpen: Ref<boolean> = ref(false);
+const isUpdateProfileOpen: Ref<boolean> = ref(false);
+const isUpdateUsernameOpen: Ref<boolean> = ref(false);
+const isUpdateEmailOpen: Ref<boolean> = ref(false);
 </script>
 
 <template>
@@ -18,12 +18,12 @@ const isEmailFormOpen: Ref<boolean> = ref(false);
       <Separator />
 
       <div class="flex flex-col gap-y-4 text-sm">
-        <section :class="{ 'border-b': !isProfileFormOpen }">
+        <section :class="{ 'border-b': !isUpdateProfileOpen }">
           <h3 class="py-4 font-bold">Profile</h3>
 
-          <div :class="{ 'pb-4': !isProfileFormOpen }">
+          <div :class="{ 'pb-4': !isUpdateProfileOpen }">
             <div
-              v-if="!isProfileFormOpen"
+              v-if="!isUpdateProfileOpen"
               class="flex flex-row items-center justify-between pl-2.5"
             >
               <div class="flex flex-row items-center gap-x-3">
@@ -37,36 +37,36 @@ const isEmailFormOpen: Ref<boolean> = ref(false);
                 <p>{{ authUser.name }}</p>
               </div>
 
-              <Button variant="ghost" @click="isProfileFormOpen = true">
+              <Button variant="ghost" @click="isUpdateProfileOpen = true">
                 Update profile
               </Button>
             </div>
 
             <AuthSettingsFormProfile
-              v-if="isProfileFormOpen"
-              @close-profile-form="isProfileFormOpen = false"
+              v-if="isUpdateProfileOpen"
+              @close-update-profile="isUpdateProfileOpen = false"
             />
           </div>
         </section>
 
-        <section :class="{ 'border-b': !isUsernameFormOpen }">
+        <section :class="{ 'border-b': !isUpdateUsernameOpen }">
           <h3 class="py-4 font-bold">Username</h3>
 
-          <div :class="{ 'pb-4': !isUsernameFormOpen }">
+          <div :class="{ 'pb-4': !isUpdateUsernameOpen }">
             <div
-              v-if="!isUsernameFormOpen"
+              v-if="!isUpdateUsernameOpen"
               class="flex flex-row items-center justify-between pl-2.5"
             >
               <p>{{ authUser.username || 'Not defined' }}</p>
 
-              <Button variant="ghost" @click="isUsernameFormOpen = true">
+              <Button variant="ghost" @click="isUpdateUsernameOpen = true">
                 {{ authUser.username ? 'Update username' : 'Set username' }}
               </Button>
             </div>
 
             <AuthSettingsFormUsername
-              v-if="isUsernameFormOpen"
-              @close-username-form="isUsernameFormOpen = false"
+              v-if="isUpdateUsernameOpen"
+              @close-update-username="isUpdateUsernameOpen = false"
             />
           </div>
         </section>
@@ -75,26 +75,26 @@ const isEmailFormOpen: Ref<boolean> = ref(false);
           <Accordion type="single" collapsible>
             <AccordionItem
               value="change-email"
-              :class="{ 'border-none': isEmailFormOpen }"
+              :class="{ 'border-none': isUpdateEmailOpen }"
             >
               <AccordionTrigger>
                 <h3 class="font-bold">Email</h3>
               </AccordionTrigger>
-              <AccordionContent :class="{ 'p-0': isEmailFormOpen }">
+              <AccordionContent :class="{ 'p-0': isUpdateEmailOpen }">
                 <div
-                  v-if="!isEmailFormOpen"
+                  v-if="!isUpdateEmailOpen"
                   class="flex flex-row items-center justify-between pl-2.5"
                 >
                   <p>{{ authUser.email }}</p>
 
-                  <Button variant="ghost" @click="isEmailFormOpen = true">
+                  <Button variant="ghost" @click="isUpdateEmailOpen = true">
                     Update email
                   </Button>
                 </div>
 
                 <AuthSettingsFormEmail
-                  v-if="isEmailFormOpen"
-                  @close-email-form="isEmailFormOpen = false"
+                  v-if="isUpdateEmailOpen"
+                  @close-update-email="isUpdateEmailOpen = false"
                 />
               </AccordionContent>
             </AccordionItem>
