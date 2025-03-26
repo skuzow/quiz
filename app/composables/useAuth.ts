@@ -93,6 +93,7 @@ export const useAuth = () => {
     signIn: authClient.signIn,
     forgotPassword: authClient.forgetPassword,
     resetPassword: authClient.resetPassword,
+    updateAuthUser: authClient.updateUser,
     signOut
   };
 };
