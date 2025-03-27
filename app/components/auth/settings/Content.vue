@@ -5,7 +5,7 @@ import { useToast } from '@/components/ui/toast/use-toast';
 
 const { authUser, deleteAuthUser } = useAuth();
 
-const { isOpen } = useAuthSettings();
+const { closeAuthSettings } = useAuthSettings();
 
 const localePath = useLocalePath();
 const { t: $t } = useI18n();
@@ -22,7 +22,7 @@ const isLoadingDeleteAccount: Ref<boolean> = ref(false);
 const deleteAccount = async () => {
   if (isLoadingDeleteAccount.value) return;
 
-  isOpen.value = false;
+  closeAuthSettings();
 
   const response: boolean = await alert({
     title: $t('alert.auth.settings.deleteAccount.title'),

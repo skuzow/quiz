@@ -9,8 +9,13 @@ export const useAuthSettings = () => {
     isOpen.value = true;
   };
 
+  const closeAuthSettings = () => {
+    isOpen.value = false;
+  };
+
   return {
     isOpen,
-    openAuthSettings
+    openAuthSettings,
+    closeAuthSettings
   };
 };
