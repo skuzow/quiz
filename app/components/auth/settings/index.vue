@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { Settings2Icon } from 'lucide-vue-next';
+
 const { isAuthenticated, authUser } = useAuth();
 
 const { isOpen } = useAuthSettings();
@@ -12,7 +14,10 @@ const isUpdateEmailOpen: Ref<boolean> = ref(false);
   <Dialog v-if="isAuthenticated && authUser" v-model:open="isOpen">
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Settings</DialogTitle>
+        <DialogTitle class="flex items-center gap-x-2.5">
+          <Settings2Icon :size="20" />
+          Settings
+        </DialogTitle>
       </DialogHeader>
 
       <Separator />
