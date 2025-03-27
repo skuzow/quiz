@@ -4,6 +4,7 @@
   "confirm": "Confirmar",
   "continue": "Continuar",
   "understood": "Entendido",
+  "save": "Guardar cambios",
   "click": "Haz click aquí",
   "nav": {
     "home": "Inicio",
@@ -115,7 +116,23 @@
     "google": "Continuar con Google",
     "github": "Continuar con Github",
     "dontHaveAccount": "¿No tienes una cuenta?",
-    "alreadyHaveAccount": "¿Ya tienes una cuenta?"
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "settings": {
+      "profile": {
+        "title": "Perfil",
+        "button": "Actualizar perfil"
+      },
+      "username": {
+        "title": "Nombre de usuario",
+        "notDefined": "No definido",
+        "button": "Actualizar nombre de usuario",
+        "buttonSet": "Establecer nombre de usuario"
+      },
+      "deleteAccount": {
+        "title": "Eliminar cuenta",
+        "description": "Esta acción es irreversible"
+      }
+    }
   },
   "landing": {
     "title": {
@@ -225,6 +242,14 @@
     "languages": "Idiomas"
   },
   "alert": {
+    "auth": {
+      "settings": {
+        "deleteAccount": {
+          "title": "¿Estás seguro de que quieres eliminar tu cuenta?",
+          "description": "Se enviará un correo electrónico de confirmación."
+        }
+      }
+    },
     "verifyEmail": {
       "title": "Se ha enviado un correo electrónico de verificación",
       "description": "Por favor, revise su bandeja de entrada y verifique su correo electrónico para acceder a su cuenta."
@@ -247,6 +272,17 @@
     }
   },
   "toast": {
+    "auth": {
+      "settings": {
+        "profile": "✅ Perfil actualizado con éxito",
+        "username": "✅ Nombre de usuario actualizado con éxito",
+        "deleteAccount": {
+          "error": "Error al enviar el correo electrónico de confirmación",
+          "title": "✅ Se ha enviado un correo electrónico de confirmación",
+          "description": "Revise su bandeja de entrada para confirmar la eliminación de su cuenta."
+        }
+      }
+    },
     "resetPassword": {
       "title": "✅ Contraseña restablecida con éxito",
       "description": "Ahora puedes iniciar sesión con tu nueva contraseña."

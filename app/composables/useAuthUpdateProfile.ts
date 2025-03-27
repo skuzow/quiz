@@ -69,7 +69,7 @@ export const useAuthUpdateProfile = () => {
       closeUpdateProfile();
 
       toast({
-        title: '✅ Profile updated successfully',
+        title: $t('toast.auth.settings.profile'),
         description: name
       });
     }

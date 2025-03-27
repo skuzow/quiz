@@ -81,7 +81,7 @@ export const useAuthUpdateUsername = () => {
       closeUpdateUsername();
 
       toast({
-        title: '✅ Username updated successfully',
+        title: $t('toast.auth.settings.username'),
         description: username
       });
     }

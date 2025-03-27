@@ -4,6 +4,7 @@
   "confirm": "Confirm",
   "continue": "Continue",
   "understood": "Understood",
+  "save": "Save changes",
   "click": "Click here",
   "nav": {
     "home": "Home",
@@ -115,7 +116,23 @@
     "google": "Continue with Google",
     "github": "Continue with Github",
     "dontHaveAccount": "Don't have an account?",
-    "alreadyHaveAccount": "Already have an account?"
+    "alreadyHaveAccount": "Already have an account?",
+    "settings": {
+      "profile": {
+        "title": "Profile",
+        "button": "Update profile"
+      },
+      "username": {
+        "title": "Username",
+        "notDefined": "Not defined",
+        "button": "Update username",
+        "buttonSet": "Set username"
+      },
+      "deleteAccount": {
+        "title": "Delete account",
+        "description": "This action is irreversible"
+      }
+    }
   },
   "landing": {
     "title": {
@@ -225,6 +242,14 @@
     "languages": "Languages"
   },
   "alert": {
+    "auth": {
+      "settings": {
+        "deleteAccount": {
+          "title": "Are you sure you want to delete your account?",
+          "description": "A confirmation email will be sent."
+        }
+      }
+    },
     "verifyEmail": {
       "title": "A verification email has been sent",
       "description": "Please check your inbox and verify your email to access to your account."
@@ -247,6 +272,17 @@
     }
   },
   "toast": {
+    "auth": {
+      "settings": {
+        "profile": "✅ Profile updated successfully",
+        "username": "✅ Username updated successfully",
+        "deleteAccount": {
+          "error": "Error sending confirmation email",
+          "title": "✅ A confirmation email has been sent",
+          "description": "Check your inbox to confirm the deletion of your account."
+        }
+      }
+    },
     "resetPassword": {
       "title": "✅ Password reset successfully",
       "description": "You can now log in with your new password."

@@ -28,7 +28,7 @@ const {
 
         <div class="flex justify-end gap-x-2">
           <Button variant="ghost" @click.prevent="closeUpdateProfile">
-            Cancel
+            {{ $t('cancel') }}
           </Button>
 
           <Button type="submit">
@@ -36,7 +36,7 @@ const {
               v-if="isLoadingUpdateProfile"
               class="mr-2 fill-primary-foreground"
             />
-            Save changes
+            {{ $t('save') }}
           </Button>
         </div>
       </AutoForm>
