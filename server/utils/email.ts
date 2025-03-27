@@ -13,7 +13,7 @@ const sendVerificationEmail = async (user: User, url: string) => {
     to: [user.email],
     subject: 'Verify your skuzow/quiz account',
     html: `
-    <p>Welcome!</p>
+    <p>Welcome ${user.name}!</p>
     <p>You have successfully created a skuzow/quiz account.</p>
     <p>Please verify your email address and complete your registration clicking this link: ${url}</p>
     <p>If you didn't create this account please contact us at contact@quiz.skuzow.com</p>
@@ -27,6 +27,7 @@ const sendResetPassword = async (user: User, url: string) => {
     to: [user.email],
     subject: 'Reset your skuzow/quiz account password',
     html: `
+    <p>Dear ${user.name},</p>
     <p>Click this link to reset your account password: ${url}</p>
     <p>If you didn't perform this action please contact us at contact@quiz.skuzow.com</p>
     `
@@ -39,7 +40,8 @@ const sendDeleteAccountVerification = async (user: User, url: string) => {
     to: [user.email],
     subject: 'Delete your skuzow/quiz account',
     html: `
-    <p>We are sorry to see you go.</p>
+    <p>Dear ${user.name},</p>
+    <p>We are sorry to see you go :(</p>
     <p>Take in mind that this action is irreversible.</p>
     <p>Click this link to delete your account: ${url}</p>
     <p>If you didn't perform this action please contact us at contact@quiz.skuzow.com</p>
