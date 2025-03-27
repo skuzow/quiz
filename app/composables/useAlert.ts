@@ -3,6 +3,7 @@ interface AlertOptions {
   description: string;
   cancel?: string;
   confirm?: string;
+  danger?: boolean;
 }
 
 let resolvePromise: ((value: boolean) => void) | null = null;
