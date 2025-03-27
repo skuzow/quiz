@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const emit = defineEmits(['close-update-email']);
+defineEmits(['close-update-email']);
 </script>
 
 <template>
