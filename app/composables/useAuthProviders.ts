@@ -1,6 +1,8 @@
 import { useToast } from '@/components/ui/toast/use-toast';
 
 export const useAuthProviders = () => {
+  const { t: $t } = useI18n();
+
   const { signIn } = useAuth();
 
   const { toast } = useToast();
@@ -38,7 +40,7 @@ export const useAuthProviders = () => {
 
   const showErrorToast = (provider: string, description?: string) => {
     toast({
-      title: `Error signing up with ${provider}`,
+      title: `${$t('toast.auth.error')} ${provider}`,
       description: description,
       variant: 'destructive'
     });

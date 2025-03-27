@@ -273,6 +273,7 @@
   },
   "toast": {
     "auth": {
+      "error": "Error signing up with",
       "settings": {
         "profile": "✅ Profile updated successfully",
         "username": "✅ Username updated successfully",
