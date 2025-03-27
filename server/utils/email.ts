@@ -33,7 +33,22 @@ const sendResetPassword = async (user: User, url: string) => {
   });
 };
 
+const sendDeleteAccountVerification = async (user: User, url: string) => {
+  await resend.emails.send({
+    from: EMAIL_AUTHOR,
+    to: [user.email],
+    subject: 'Delete your skuzow/quiz account',
+    html: `
+    <p>We are sorry to see you go.</p>
+    <p>Take in mind that this action is irreversible.</p>
+    <p>Click this link to delete your account: ${url}</p>
+    <p>If you didn't perform this action please contact us at contact@quiz.skuzow.com</p>
+    `
+  });
+};
+
 export default {
   sendVerificationEmail,
-  sendResetPassword
+  sendResetPassword,
+  sendDeleteAccountVerification
 };

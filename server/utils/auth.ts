@@ -41,6 +41,14 @@ export const auth = betterAuth({
       email.sendResetPassword(user, url);
     }
   },
+  user: {
+    deleteUser: {
+      enabled: true,
+      sendDeleteAccountVerification: async ({ user, url }, _request) => {
+        email.sendDeleteAccountVerification(user, url);
+      }
+    }
+  },
   socialProviders: {
     google: {
       clientId: GOOGLE_CLIENT_ID as string,
