@@ -34,14 +34,18 @@ const sendResetPassword = async (user: User, url: string) => {
   });
 };
 
-const sendChangeEmailVerification = async (user: User, url: string) => {
+const sendChangeEmailVerification = async (
+  user: User,
+  newEmail: string,
+  url: string
+) => {
   await resend.emails.send({
     from: EMAIL_AUTHOR,
     to: [user.email],
     subject: 'Change your skuzow/quiz account email',
     html: `
     <p>Dear ${user.name},</p>
-    <p>Click this link to change your account email: ${url}</p>
+    <p>Click this link to change your account email to ${newEmail}: ${url}</p>
     <p>If you didn't perform this action please contact us at contact@quiz.skuzow.com</p>
     `
   });
