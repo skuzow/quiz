@@ -20,7 +20,7 @@ const unlinkedProviders: ComputedRef<AuthProvider[]> = computed(() =>
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <Button align="end" variant="ghost" class="gap-x-2">
+      <Button variant="ghost" class="gap-x-2">
         <LinkIcon :size="16" />
         {{ $t('auth.settings.account.linked.link') }}
       </Button>
