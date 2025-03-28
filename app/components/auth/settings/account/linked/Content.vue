@@ -11,7 +11,7 @@ const {
 
 const accountProviders = computed(() =>
   accounts.value?.data
-    ?.filter((account) => account.provider !== 'credentials')
+    ?.filter((account) => account.provider !== 'credential')
     .map((account) => account.provider)
 );
 </script>
