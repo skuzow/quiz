@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { useToast } from '@/components/ui/toast/use-toast';
 
+const localePath = useLocalePath();
+const { t: $t } = useI18n();
+
 const { deleteAuthUser } = useAuth();
 
 const { closeAuthSettings } = useAuthSettings();
-
-const localePath = useLocalePath();
-const { t: $t } = useI18n();
 
 const { alert } = useAlert();
 const { toast } = useToast();
@@ -19,8 +19,8 @@ const deleteAccount = async () => {
   closeAuthSettings();
 
   const response: boolean = await alert({
-    title: $t('alert.auth.settings.deleteAccount.title'),
-    description: $t('alert.auth.settings.deleteAccount.description'),
+    title: $t('alert.auth.settings.account.delete.title'),
+    description: $t('alert.auth.settings.account.delete.description'),
     danger: true
   });
 
@@ -36,14 +36,14 @@ const deleteAccount = async () => {
 
   if (error) {
     toast({
-      title: $t('toast.auth.settings.deleteAccount.error'),
+      title: $t('toast.auth.settings.account.delete.error'),
       description: error.message,
       variant: 'destructive'
     });
   } else {
     toast({
-      title: $t('toast.auth.settings.deleteAccount.title'),
-      description: $t('toast.auth.settings.deleteAccount.description')
+      title: $t('toast.auth.settings.account.delete.title'),
+      description: $t('toast.auth.settings.account.delete.description')
     });
   }
 };
@@ -55,14 +55,14 @@ const deleteAccount = async () => {
       <AccordionItem value="delete-account" class="border-b-transparent">
         <AccordionTrigger>
           <h3 class="font-bold">
-            {{ $t('auth.settings.deleteAccount.title') }}
+            {{ $t('auth.settings.account.delete.title') }}
           </h3>
         </AccordionTrigger>
         <AccordionContent class="flex items-center justify-between pl-2.5">
-          <p>{{ $t('auth.settings.deleteAccount.description') }}</p>
+          <p>{{ $t('auth.settings.account.delete.description') }}</p>
 
           <Button variant="destructive" @click="deleteAccount">
-            {{ $t('auth.settings.deleteAccount.title') }}
+            {{ $t('auth.settings.account.delete.title') }}
           </Button>
         </AccordionContent>
       </AccordionItem>

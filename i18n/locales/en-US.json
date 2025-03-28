@@ -133,9 +133,11 @@
         "button": "Revoke",
         "current": "Current"
       },
-      "deleteAccount": {
-        "title": "Delete account",
-        "description": "This action is irreversible"
+      "account": {
+        "delete": {
+          "title": "Delete account",
+          "description": "This action is irreversible"
+        }
       }
     }
   },
@@ -249,9 +251,11 @@
   "alert": {
     "auth": {
       "settings": {
-        "deleteAccount": {
-          "title": "Are you sure you want to delete your account?",
-          "description": "A confirmation email will be sent."
+        "account": {
+          "delete": {
+            "title": "Are you sure you want to delete your account?",
+            "description": "A confirmation email will be sent."
+          }
         }
       }
     },
@@ -282,10 +286,12 @@
       "settings": {
         "profile": "✅ Profile updated successfully",
         "username": "✅ Username updated successfully",
-        "deleteAccount": {
-          "error": "Error sending confirmation email",
-          "title": "✅ A confirmation email has been sent",
-          "description": "Check your inbox to confirm the deletion of your account."
+        "account": {
+          "delete": {
+            "error": "Error sending confirmation email",
+            "title": "✅ A confirmation email has been sent",
+            "description": "Check your inbox to confirm the deletion of your account."
+          }
         },
         "sessions": {
           "error": "Error revoking session",

@@ -133,9 +133,11 @@
         "button": "Revocar",
         "current": "Actual"
       },
-      "deleteAccount": {
-        "title": "Eliminar cuenta",
-        "description": "Esta acción es irreversible"
+      "account": {
+        "delete": {
+          "title": "Eliminar cuenta",
+          "description": "Esta acción es irreversible"
+        }
       }
     }
   },
@@ -249,9 +251,11 @@
   "alert": {
     "auth": {
       "settings": {
-        "deleteAccount": {
-          "title": "¿Estás seguro de que quieres eliminar tu cuenta?",
-          "description": "Se enviará un correo electrónico de confirmación."
+        "account": {
+          "delete": {
+            "title": "¿Estás seguro de que quieres eliminar tu cuenta?",
+            "description": "Se enviará un correo electrónico de confirmación."
+          }
         }
       }
     },
@@ -282,10 +286,12 @@
       "settings": {
         "profile": "✅ Perfil actualizado con éxito",
         "username": "✅ Nombre de usuario actualizado con éxito",
-        "deleteAccount": {
-          "error": "Error al enviar el correo electrónico de confirmación",
-          "title": "✅ Se ha enviado un correo electrónico de confirmación",
-          "description": "Revise su bandeja de entrada para confirmar la eliminación de su cuenta."
+        "account": {
+          "delete": {
+            "error": "Error al enviar el correo electrónico de confirmación",
+            "title": "✅ Se ha enviado un correo electrónico de confirmación",
+            "description": "Revise su bandeja de entrada para confirmar la eliminación de su cuenta."
+          }
         },
         "sessions": {
           "error": "Error al revocar la sesión",
