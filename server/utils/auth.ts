@@ -48,6 +48,12 @@ export const auth = betterAuth({
     }
   },
   user: {
+    changeEmail: {
+      enabled: true,
+      sendChangeEmailVerification: async ({ user, url }, _request) => {
+        await email.sendChangeEmailVerification(user, url);
+      }
+    },
     deleteUser: {
       enabled: true,
       sendDeleteAccountVerification: async ({ user, url }, _request) => {
