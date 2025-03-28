@@ -21,15 +21,23 @@ const { unlinkAccount } = useAuth();
 
 const { toast } = useToast();
 
+const isLoadingUnlinkAccount: Ref<boolean> = ref(false);
+
 const accountProvider: string =
   account.provider === 'credential'
     ? $t('auth.settings.account.linked.credential')
     : titleCase(account.provider);
 
 const clickUnlinkAccount = async () => {
+  if (isLoadingUnlinkAccount.value) return;
+
+  isLoadingUnlinkAccount.value = true;
+
   const { error } = await unlinkAccount({
     providerId: account.provider
   });
+
+  isLoadingUnlinkAccount.value = false;
 
   if (error) {
     toast({
@@ -74,7 +82,8 @@ const clickUnlinkAccount = async () => {
       :disabled="length === 1"
       @click="clickUnlinkAccount"
     >
-      <UnlinkIcon :size="16" />
+      <IconLoader v-if="isLoadingUnlinkAccount" class="fill-destructive" />
+      <UnlinkIcon v-else :size="16" />
       {{ $t('auth.settings.account.linked.button') }}
     </Button>
   </div>
