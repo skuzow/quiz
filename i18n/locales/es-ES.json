@@ -134,6 +134,11 @@
         "current": "Actual"
       },
       "account": {
+        "linked": {
+          "title": "Cuentas conectadas",
+          "credential": "Credenciales",
+          "button": "Desconectar"
+        },
         "delete": {
           "title": "Eliminar cuenta",
           "description": "Esta acción es irreversible"

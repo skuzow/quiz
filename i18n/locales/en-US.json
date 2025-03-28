@@ -134,6 +134,11 @@
         "current": "Current"
       },
       "account": {
+        "linked": {
+          "title": "Linked accounts",
+          "credential": "Credentials",
+          "button": "Unlink"
+        },
         "delete": {
           "title": "Delete account",
           "description": "This action is irreversible"

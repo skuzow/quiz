@@ -110,6 +110,7 @@ export const useAuth = () => {
     updateAuthUser: authClient.updateUser,
     listAuthSessions: authClient.listSessions,
     revokeSession,
+    listAccounts: authClient.listAccounts,
     deleteAuthUser: authClient.deleteUser
   };
 };
