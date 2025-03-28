@@ -23,13 +23,21 @@ const { authSession, revokeSession } = useAuth();
 
 const { toast } = useToast();
 
+const isLoadingRevokeSession: Ref<boolean> = ref(false);
+
 const userAgent: string | undefined = session.userAgent
   ?.split('(')[1]
   ?.split(')')[0]
   ?.replaceAll(';', ' -');
 
 const clickRevokeSession = async () => {
+  if (isLoadingRevokeSession.value) return;
+
+  isLoadingRevokeSession.value = true;
+
   const { error } = await revokeSession(session.token);
+
+  isLoadingRevokeSession.value = false;
 
   if (error) {
     toast({
@@ -79,7 +87,8 @@ const clickRevokeSession = async () => {
       variant="ghost"
       @click="clickRevokeSession"
     >
-      <UserRoundXIcon :size="16" />
+      <IconLoader v-if="isLoadingRevokeSession" class="fill-destructive" />
+      <UserRoundXIcon v-else :size="16" />
       {{ $t('auth.settings.sessions.button') }}
     </Button>
   </div>
