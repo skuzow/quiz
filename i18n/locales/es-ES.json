@@ -286,6 +286,10 @@
           "error": "Error al enviar el correo electrónico de confirmación",
           "title": "✅ Se ha enviado un correo electrónico de confirmación",
           "description": "Revise su bandeja de entrada para confirmar la eliminación de su cuenta."
+        },
+        "sessions": {
+          "error": "Error al revocar la sesión",
+          "title": "✅ Sesión revocada con éxito"
         }
       }
     },

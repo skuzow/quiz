@@ -7,6 +7,8 @@ import {
   UserRoundXIcon
 } from 'lucide-vue-next';
 
+import { useToast } from '@/components/ui/toast/use-toast';
+
 interface Props {
   session: Session;
 }
@@ -15,7 +17,11 @@ const { session } = defineProps<Props>();
 
 const emit = defineEmits(['refresh-sessions']);
 
+const { t: $t } = useI18n();
+
 const { authSession, revokeSession } = useAuth();
+
+const { toast } = useToast();
 
 const userAgent: string | undefined = session.userAgent
   ?.split('(')[1]
@@ -25,7 +31,20 @@ const userAgent: string | undefined = session.userAgent
 const clickRevokeSession = async () => {
   const { error } = await revokeSession(session.token);
 
-  if (!error) emit('refresh-sessions');
+  if (error) {
+    toast({
+      title: $t('toast.auth.settings.sessions.error'),
+      description: error.message,
+      variant: 'destructive'
+    });
+  } else {
+    toast({
+      title: $t('toast.auth.settings.sessions.title'),
+      description: userAgent
+    });
+
+    emit('refresh-sessions');
+  }
 };
 </script>
 

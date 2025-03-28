@@ -286,6 +286,10 @@
           "error": "Error sending confirmation email",
           "title": "✅ A confirmation email has been sent",
           "description": "Check your inbox to confirm the deletion of your account."
+        },
+        "sessions": {
+          "error": "Error revoking session",
+          "title": "✅ Session revoked successfully"
         }
       }
     },
