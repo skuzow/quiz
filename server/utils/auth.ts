@@ -41,6 +41,11 @@ export const auth = betterAuth({
       email.sendResetPassword(user, url);
     }
   },
+  account: {
+    accountLinking: {
+      enabled: true
+    }
+  },
   user: {
     deleteUser: {
       enabled: true,
