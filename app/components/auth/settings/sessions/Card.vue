@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { Session } from 'better-auth';
+import type { Session } from 'better-auth/types';
 import {
   LaptopMinimalIcon,
   CalendarX2Icon,
@@ -74,7 +74,7 @@ const clickRevokeSession = async () => {
       </div>
     </div>
 
-    <Button class="gap-x-2" variant="secondary" @click="clickRevokeSession">
+    <Button class="gap-x-2" variant="destructive" @click="clickRevokeSession">
       <UserRoundXIcon :size="16" />
       {{ $t('auth.settings.sessions.button') }}
     </Button>
