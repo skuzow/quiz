@@ -5,7 +5,7 @@ const {
   status,
   refresh,
   data: accounts
-} = await useLazyAsyncData('accounts', () => listAccounts());
+} = await useLazyAsyncData('linked-accounts', () => listAccounts());
 </script>
 
 <template>
