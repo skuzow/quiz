@@ -5,9 +5,7 @@ export enum AuthProvider {
   GITHUB = 'github'
 }
 
-export const AuthProviderValues = Object.values(AuthProvider) as unknown as [
-  keyof typeof AuthProvider
-];
+export const AuthProviderValues = Object.values(AuthProvider);
 
 export const authProviderIconMap: Record<string, Component> = {
   [AuthProvider.GOOGLE]: IconGoogle,
