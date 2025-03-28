@@ -128,6 +128,11 @@
         "button": "Actualizar nombre de usuario",
         "buttonSet": "Establecer nombre de usuario"
       },
+      "sessions": {
+        "title": "Sesiones",
+        "button": "Revocar",
+        "current": "Actual"
+      },
       "deleteAccount": {
         "title": "Eliminar cuenta",
         "description": "Esta acción es irreversible"

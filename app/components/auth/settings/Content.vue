@@ -20,6 +20,8 @@ import { Settings2Icon } from 'lucide-vue-next';
 
       <!-- <AuthSettingsEmail /> -->
 
+      <AuthSettingsSessions />
+
       <AuthSettingsAccountDelete />
     </div>
   </DialogContent>

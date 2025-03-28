@@ -83,6 +83,19 @@ export const useAuth = () => {
     return res;
   };
 
+  const revokeSession = async (token: string) => {
+    const res = await authClient.revokeSession({ token });
+
+    if (!res.error && token === authSession.value?.token) {
+      await navigateTo(localePath('/'));
+
+      authSession.value = null;
+      authUser.value = null;
+    }
+
+    return res;
+  };
+
   return {
     authSession,
     authUser,
@@ -95,6 +108,8 @@ export const useAuth = () => {
     forgotPassword: authClient.forgetPassword,
     resetPassword: authClient.resetPassword,
     updateAuthUser: authClient.updateUser,
+    listAuthSessions: authClient.listSessions,
+    revokeSession,
     deleteAuthUser: authClient.deleteUser
   };
 };
