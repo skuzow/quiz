@@ -11,12 +11,11 @@ const sendVerificationEmail = async (user: User, url: string) => {
   await resend.emails.send({
     from: EMAIL_AUTHOR,
     to: [user.email],
-    subject: 'Verify your skuzow/quiz account',
+    subject: 'Verify your skuzow/quiz account email address',
     html: `
-    <p>Welcome ${user.name}!</p>
-    <p>You have successfully created a skuzow/quiz account.</p>
-    <p>Please verify your email address and complete your registration clicking this link: ${url}</p>
-    <p>If you didn't create this account please contact us at contact@quiz.skuzow.com</p>
+    <p>Dear ${user.name},</p>
+    <p>Click this link to verify your email address: ${url}</p>
+    <p>If you didn't perform this action please contact us at contact@quiz.skuzow.com</p>
     `
   });
 };
@@ -42,10 +41,10 @@ const sendChangeEmailVerification = async (
   await resend.emails.send({
     from: EMAIL_AUTHOR,
     to: [user.email],
-    subject: 'Change your skuzow/quiz account email',
+    subject: 'Change your skuzow/quiz account email address',
     html: `
     <p>Dear ${user.name},</p>
-    <p>Click this link to change your account email to ${newEmail}: ${url}</p>
+    <p>Click this link to change your account email address to ${newEmail}: ${url}</p>
     <p>If you didn't perform this action please contact us at contact@quiz.skuzow.com</p>
     `
   });
