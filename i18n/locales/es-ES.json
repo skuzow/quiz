@@ -302,6 +302,9 @@
             "unlink": {
               "error": "Error al desvincular la cuenta",
               "title": "✅ Cuenta desvinculada con éxito"
+            },
+            "link": {
+              "error": "Error al vincular la cuenta"
             }
           }
         },

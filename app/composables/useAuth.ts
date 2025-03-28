@@ -112,6 +112,7 @@ export const useAuth = () => {
     revokeSession,
     listAccounts: authClient.listAccounts,
     unlinkAccount: authClient.unlinkAccount,
+    linkAccount: authClient.linkSocial,
     deleteAuthUser: authClient.deleteUser
   };
 };
