@@ -14,7 +14,8 @@ const sendVerificationEmail = async (user: User, url: string) => {
     subject: 'Verify your skuzow/quiz account email address',
     html: `
     <p>Dear ${user.name},</p>
-    <p>Click this link to verify your email address: ${url}</p>
+    <p>Click this link to verify your email address:</p>
+    <p>${url}</p>
     <p>If you didn't perform this action please contact us at contact@quiz.skuzow.com</p>
     `
   });
@@ -27,7 +28,8 @@ const sendResetPassword = async (user: User, url: string) => {
     subject: 'Reset your skuzow/quiz account password',
     html: `
     <p>Dear ${user.name},</p>
-    <p>Click this link to reset your account password: ${url}</p>
+    <p>Click this link to reset your account password:</p>
+    <p>${url}</p>
     <p>If you didn't perform this action please contact us at contact@quiz.skuzow.com</p>
     `
   });
@@ -44,7 +46,8 @@ const sendChangeEmailVerification = async (
     subject: 'Change your skuzow/quiz account email address',
     html: `
     <p>Dear ${user.name},</p>
-    <p>Click this link to change your account email address to ${newEmail}: ${url}</p>
+    <p>Click this link to change your account email address to (${newEmail}):</p>
+    <p>${url}</p>
     <p>If you didn't perform this action please contact us at contact@quiz.skuzow.com</p>
     `
   });
@@ -59,7 +62,8 @@ const sendDeleteAccountVerification = async (user: User, url: string) => {
     <p>Dear ${user.name},</p>
     <p>We are sorry to see you go :(</p>
     <p>Take in mind that this action is irreversible.</p>
-    <p>Click this link to delete your account: ${url}</p>
+    <p>Click this link to delete your account:</p>
+    <p>${url}</p>
     <p>If you didn't perform this action please contact us at contact@quiz.skuzow.com</p>
     `
   });
