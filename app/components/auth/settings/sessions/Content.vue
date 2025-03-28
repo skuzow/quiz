@@ -12,7 +12,7 @@ const {
   <IconLoader v-if="status === 'pending' && !sessions" />
 
   <ul
-    v-else-if="status === 'success' && sessions"
+    v-else-if="status === 'success' && sessions?.data"
     class="flex flex-col gap-y-2 pt-1"
   >
     <li v-for="session in sessions.data" :key="session.id">

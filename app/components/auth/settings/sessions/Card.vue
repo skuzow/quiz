@@ -50,31 +50,35 @@ const clickRevokeSession = async () => {
 
 <template>
   <div
-    class="flex flex-col justify-between gap-y-3 overflow-hidden rounded-xl border bg-card p-3 text-card-foreground sm:flex-row sm:gap-y-0"
+    class="flex flex-col justify-between gap-y-3 overflow-hidden rounded-xl border bg-card p-3 text-card-foreground sm:flex-row sm:items-center sm:gap-y-0"
   >
     <div>
-      <div class="flex items-center gap-x-2">
+      <p class="flex items-center gap-x-2">
         <LaptopMinimalIcon :size="16" />
         {{ userAgent }}
-      </div>
+      </p>
 
       <div class="flex flex-row gap-x-3">
-        <div class="flex items-center gap-x-2">
+        <p class="flex items-center gap-x-2">
           <CalendarX2Icon :size="16" />
           <CommonDate :date="session.expiresAt" />
-        </div>
+        </p>
 
-        <div
+        <p
           v-if="authSession?.token === session.token"
           class="flex items-center gap-x-2"
         >
           <UserRoundIcon :size="16" />
           {{ $t('auth.settings.sessions.current') }}
-        </div>
+        </p>
       </div>
     </div>
 
-    <Button class="gap-x-2" variant="destructive" @click="clickRevokeSession">
+    <Button
+      class="justify-start gap-x-2 text-destructive hover:text-destructive"
+      variant="ghost"
+      @click="clickRevokeSession"
+    >
       <UserRoundXIcon :size="16" />
       {{ $t('auth.settings.sessions.button') }}
     </Button>
