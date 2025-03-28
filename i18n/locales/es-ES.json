@@ -137,7 +137,8 @@
         "linked": {
           "title": "Cuentas conectadas",
           "credential": "Credenciales",
-          "button": "Desconectar"
+          "button": "Desconectar",
+          "link": "Conectar cuenta"
         },
         "delete": {
           "title": "Eliminar cuenta",

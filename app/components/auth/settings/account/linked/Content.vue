@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { AuthProviderValues } from '@/constants/auth.constant';
+
 const { listAccounts } = useAuth();
 
 const {
@@ -6,6 +8,12 @@ const {
   refresh,
   data: accounts
 } = await useLazyAsyncData('linked-accounts', () => listAccounts());
+
+const accountProviders = computed(() =>
+  accounts.value?.data
+    ?.filter((account) => account.provider !== 'credentials')
+    .map((account) => account.provider)
+);
 </script>
 
 <template>
@@ -20,6 +28,15 @@ const {
         :account="account"
         :length="accounts.data.length"
         @refresh-accounts="refresh"
+      />
+    </li>
+
+    <li
+      v-if="accountProviders?.length !== AuthProviderValues.length"
+      class="text-end"
+    >
+      <AuthSettingsAccountLinkedDropdown
+        :account-providers="accountProviders"
       />
     </li>
   </ul>

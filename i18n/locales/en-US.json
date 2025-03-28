@@ -137,7 +137,8 @@
         "linked": {
           "title": "Linked accounts",
           "credential": "Credentials",
-          "button": "Unlink"
+          "button": "Unlink",
+          "link": "Link account"
         },
         "delete": {
           "title": "Delete account",
