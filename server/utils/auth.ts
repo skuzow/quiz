@@ -31,14 +31,15 @@ export const auth = betterAuth({
   emailVerification: {
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
-    sendVerificationEmail: async ({ user, url }, _request) =>
-      email.sendVerificationEmail(user, url)
+    sendVerificationEmail: async ({ user, url }, _request) => {
+      await email.sendVerificationEmail(user, url);
+    }
   },
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
     sendResetPassword: async ({ user, url }, _request) => {
-      email.sendResetPassword(user, url);
+      await email.sendResetPassword(user, url);
     }
   },
   account: {
@@ -50,7 +51,7 @@ export const auth = betterAuth({
     deleteUser: {
       enabled: true,
       sendDeleteAccountVerification: async ({ user, url }, _request) => {
-        email.sendDeleteAccountVerification(user, url);
+        await email.sendDeleteAccountVerification(user, url);
       }
     }
   },
