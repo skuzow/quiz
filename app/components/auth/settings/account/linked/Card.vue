@@ -11,7 +11,7 @@ interface Props {
   length: number;
 }
 
-const { account } = defineProps<Props>();
+const { account, length } = defineProps<Props>();
 
 const emit = defineEmits(['refresh-accounts']);
 
