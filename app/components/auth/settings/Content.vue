@@ -20,7 +20,7 @@ import { Settings2Icon } from 'lucide-vue-next';
 
       <AuthSettingsUsername />
 
-      <!-- <AuthSettingsEmail /> -->
+      <AuthSettingsEmail />
 
       <AuthSettingsSessions />
 

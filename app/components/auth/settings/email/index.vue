@@ -21,15 +21,15 @@ const isUpdateEmailOpen: Ref<boolean> = ref(false);
           >
             <p>{{ authUser?.email }}</p>
 
-            <Button variant="ghost" @click="isUpdateEmailOpen = true">
+            <!-- <Button variant="ghost" @click="isUpdateEmailOpen = true">
               Update email
-            </Button>
+            </Button> -->
           </div>
 
-          <AuthSettingsEmailForm
+          <!-- <AuthSettingsEmailForm
             v-else
             @close-update-email="isUpdateEmailOpen = false"
-          />
+          /> -->
         </AccordionContent>
       </AccordionItem>
     </Accordion>
