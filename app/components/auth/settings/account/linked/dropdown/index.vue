@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 import { LinkIcon } from 'lucide-vue-next';
 
-import { AuthProviderValues } from '@/constants/auth.constant';
+import {
+  AuthProviderValues,
+  type AuthProvider
+} from '@/constants/auth.constant';
 
 interface Props {
   accountProviders?: string[];
@@ -9,7 +12,7 @@ interface Props {
 
 const { accountProviders } = defineProps<Props>();
 
-const unlinkedProviders = computed(() =>
+const unlinkedProviders: ComputedRef<AuthProvider[]> = computed(() =>
   AuthProviderValues.filter((provider) => !accountProviders?.includes(provider))
 );
 </script>

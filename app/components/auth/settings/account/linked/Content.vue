@@ -9,7 +9,7 @@ const {
   data: accounts
 } = await useLazyAsyncData('linked-accounts', () => listAccounts());
 
-const accountProviders = computed(() =>
+const accountProviders: ComputedRef<string[] | undefined> = computed(() =>
   accounts.value?.data
     ?.filter((account) => account.provider !== 'credential')
     .map((account) => account.provider)

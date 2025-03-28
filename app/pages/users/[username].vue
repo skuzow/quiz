@@ -18,7 +18,9 @@ const { status, data } = await useLazyAsyncData(
   }
 );
 
-const user = computed(() => data.value?.body.user);
+const user: ComputedRef<User | undefined> = computed(
+  () => data.value?.body.user
+);
 </script>
 
 <template>
