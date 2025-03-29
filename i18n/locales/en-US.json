@@ -128,6 +128,13 @@
         "button": "Update username",
         "buttonSet": "Set username"
       },
+      "email": {
+        "title": "Email",
+        "verified": "Verified",
+        "unverified": "Unverified",
+        "button": "Update email",
+        "buttonVerify": "Verify email"
+      },
       "sessions": {
         "title": "Sessions",
         "button": "Revoke",
@@ -292,10 +299,21 @@
       "settings": {
         "profile": "✅ Profile updated successfully",
         "username": "✅ Username updated successfully",
+        "email": {
+          "update": {
+            "title": "📩 A confirmation email has been sent",
+            "description": "Check your inbox to confirm the email change of your account."
+          },
+          "verify": {
+            "error": "Error sending verification email",
+            "title": "📩 A verification email has been sent",
+            "description": "Check your inbox to verify your email."
+          }
+        },
         "account": {
           "delete": {
             "error": "Error sending confirmation email",
-            "title": "✅ A confirmation email has been sent",
+            "title": "📩 A confirmation email has been sent",
             "description": "Check your inbox to confirm the deletion of your account."
           },
           "linked": {

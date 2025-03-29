@@ -128,6 +128,13 @@
         "button": "Actualizar nombre de usuario",
         "buttonSet": "Establecer nombre de usuario"
       },
+      "email": {
+        "title": "Correo electrónico",
+        "verified": "Verificado",
+        "unverified": "No verificado",
+        "button": "Actualizar correo electrónico",
+        "buttonVerify": "Verificar correo electrónico"
+      },
       "sessions": {
         "title": "Sesiones",
         "button": "Revocar",
@@ -292,10 +299,21 @@
       "settings": {
         "profile": "✅ Perfil actualizado con éxito",
         "username": "✅ Nombre de usuario actualizado con éxito",
+        "email": {
+          "update": {
+            "title": "📩 Se ha enviado un correo electrónico de confirmación",
+            "description": "Revise su bandeja de entrada para confirmar el cambio de correo electrónico de su cuenta."
+          },
+          "verify": {
+            "error": "Error al enviar el correo electrónico de verificación",
+            "title": "📩 Se ha enviado un correo electrónico de verificación",
+            "description": "Revise su bandeja de entrada para verificar su correo electrónico."
+          }
+        },
         "account": {
           "delete": {
             "error": "Error al enviar el correo electrónico de confirmación",
-            "title": "✅ Se ha enviado un correo electrónico de confirmación",
+            "title": "📩 Se ha enviado un correo electrónico de confirmación",
             "description": "Revise su bandeja de entrada para confirmar la eliminación de su cuenta."
           },
           "linked": {

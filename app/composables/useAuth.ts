@@ -108,6 +108,8 @@ export const useAuth = () => {
     forgotPassword: authClient.forgetPassword,
     resetPassword: authClient.resetPassword,
     updateAuthUser: authClient.updateUser,
+    changeEmail: authClient.changeEmail,
+    verifyEmail: authClient.sendVerificationEmail,
     listAuthSessions: authClient.listSessions,
     revokeSession,
     listAccounts: authClient.listAccounts,
