@@ -82,14 +82,16 @@ const clickRevokeSession = async () => {
       </div>
     </div>
 
-    <Button
-      class="justify-start gap-x-2 text-destructive hover:text-destructive"
-      variant="ghost"
-      @click="clickRevokeSession"
-    >
-      <IconLoader v-if="isLoadingRevokeSession" class="fill-destructive" />
-      <UserRoundXIcon v-else :size="16" />
-      {{ $t('auth.settings.sessions.button') }}
-    </Button>
+    <div class="text-end">
+      <Button
+        class="gap-x-2 text-destructive hover:text-destructive"
+        variant="ghost"
+        @click="clickRevokeSession"
+      >
+        <IconLoader v-if="isLoadingRevokeSession" class="fill-destructive" />
+        <UserRoundXIcon v-else :size="16" />
+        {{ $t('auth.settings.sessions.button') }}
+      </Button>
+    </div>
   </div>
 </template>
