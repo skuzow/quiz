@@ -54,7 +54,12 @@ const clickVerifyEmail = async () => {
         <AccordionContent :class="cn('pl-2.5', isUpdateEmailOpen && 'p-0')">
           <div
             v-if="!isUpdateEmailOpen"
-            class="flex flex-col justify-between gap-y-2 sm:flex-row sm:items-start sm:gap-y-0"
+            :class="
+              cn(
+                'flex flex-col justify-between gap-y-2 sm:flex-row sm:gap-y-0',
+                authUser?.emailVerified ? 'sm:items-center' : 'sm:items-start'
+              )
+            "
           >
             <div>
               <p class="flex items-center gap-x-2">
