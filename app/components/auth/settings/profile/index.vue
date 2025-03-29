@@ -12,7 +12,7 @@ const isUpdateProfileOpen: Ref<boolean> = ref(false);
 
     <div
       v-if="!isUpdateProfileOpen"
-      class="flex flex-row items-center justify-between pb-4 pl-2.5"
+      class="flex flex-col justify-between gap-y-2 pb-4 pl-2.5 sm:flex-row sm:items-center sm:gap-y-0"
     >
       <div class="flex flex-row items-center gap-x-3">
         <CommonAvatar
@@ -25,9 +25,11 @@ const isUpdateProfileOpen: Ref<boolean> = ref(false);
         <p>{{ authUser?.name }}</p>
       </div>
 
-      <Button variant="ghost" @click="isUpdateProfileOpen = true">
-        {{ $t('auth.settings.profile.button') }}
-      </Button>
+      <div class="text-end">
+        <Button variant="ghost" @click="isUpdateProfileOpen = true">
+          {{ $t('auth.settings.profile.button') }}
+        </Button>
+      </div>
     </div>
 
     <AuthSettingsProfileForm

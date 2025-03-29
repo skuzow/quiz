@@ -12,19 +12,21 @@ const isUpdateUsernameOpen: Ref<boolean> = ref(false);
 
     <div
       v-if="!isUpdateUsernameOpen"
-      class="flex flex-row items-center justify-between pb-4 pl-2.5"
+      class="flex flex-col justify-between gap-y-2 pb-4 pl-2.5 sm:flex-row sm:items-center sm:gap-y-0"
     >
       <p>
         {{ authUser?.username || $t('auth.settings.username.notDefined') }}
       </p>
 
-      <Button variant="ghost" @click="isUpdateUsernameOpen = true">
-        {{
-          authUser?.username
-            ? $t('auth.settings.username.button')
-            : $t('auth.settings.username.buttonSet')
-        }}
-      </Button>
+      <div class="text-end">
+        <Button variant="ghost" @click="isUpdateUsernameOpen = true">
+          {{
+            authUser?.username
+              ? $t('auth.settings.username.button')
+              : $t('auth.settings.username.buttonSet')
+          }}
+        </Button>
+      </div>
     </div>
 
     <AuthSettingsUsernameForm
