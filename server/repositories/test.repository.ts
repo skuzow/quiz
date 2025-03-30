@@ -129,8 +129,8 @@ class TestRepository {
       data: {
         author: { connect: { id: authUserId } },
         published,
-        title,
-        description,
+        title: title.trim(),
+        description: description.trim(),
         categories: categories?.length
           ? {
               create: categories.map((category) => ({
@@ -141,12 +141,12 @@ class TestRepository {
         questions: {
           create: questions.map((question, indexQuestion) => ({
             number: indexQuestion,
-            text: question.text,
+            text: question.text.trim(),
             type: { connect: { name: question.type } },
             options: {
               create: question.options.map((option, indexOption) => ({
                 number: indexOption,
-                text: option.text,
+                text: option.text.trim(),
                 isCorrect: option.isCorrect
               }))
             }
@@ -182,8 +182,8 @@ class TestRepository {
       where: { id },
       data: {
         published,
-        title,
-        description,
+        title: title.trim(),
+        description: description.trim(),
         categories: categories?.length
           ? {
               deleteMany: {},
@@ -196,12 +196,12 @@ class TestRepository {
           deleteMany: {},
           create: questions.map((question, indexQuestion) => ({
             number: indexQuestion,
-            text: question.text,
+            text: question.text.trim(),
             type: { connect: { name: question.type } },
             options: {
               create: question.options.map((option, indexOption) => ({
                 number: indexOption,
-                text: option.text,
+                text: option.text.trim(),
                 isCorrect: option.isCorrect
               }))
             }

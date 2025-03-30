@@ -36,7 +36,8 @@ export const useGenerateWithText = () => {
       })
       .min(TEST_GENERATION_TEXT_MIN, {
         message: minMessage(FormInput.TEXT, TEST_GENERATION_TEXT_MIN)
-      }),
+      })
+      .trim(),
     type: z.enum(['ALL', ...TestQuestionTypeValues]).default('ALL'),
     questions: z
       .number({
