@@ -32,13 +32,18 @@ class TestRepository {
     [TestOrder.SHORTEST]: { questions: { _count: SortOrder.ASC } }
   };
 
-  async findById(id: string): Promise<UserTest | null> {
+  async findById(
+    authUserId: string | undefined,
+    id: string
+  ): Promise<UserTest | null> {
     const test = await this.userTestModel.findFirst({
       where: { id: id },
       select: USER_TEST_SELECT
     });
 
     if (!test) return null;
+
+    if (!test.published && test.author.id !== authUserId) return null;
 
     return this.transformUserTest(test);
   }
