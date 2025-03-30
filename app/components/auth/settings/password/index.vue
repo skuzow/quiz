@@ -36,7 +36,7 @@ const updatePassword = async () => {
 <template>
   <section>
     <Accordion type="single" collapsible>
-      <AccordionItem value="update-password">
+      <AccordionItem value="reset-password">
         <AccordionTrigger>
           <h3 class="font-bold">
             {{ $t('auth.settings.password.title') }}

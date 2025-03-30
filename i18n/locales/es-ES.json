@@ -137,7 +137,7 @@
       },
       "password": {
         "title": "Contraseña",
-        "button": "Actualizar contraseña"
+        "button": "Restablecer contraseña"
       },
       "sessions": {
         "title": "Sesiones",
