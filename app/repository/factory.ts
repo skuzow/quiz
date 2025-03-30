@@ -30,13 +30,13 @@ abstract class HttpFactory {
   }
 
   async call<T>({ method, url, body, fetchOptions }: HttpRequest) {
-    const locale = useCookie('i18n_redirected');
+    const cookie = useRequestHeaders(['cookie']);
 
     return this.$fetch<ApiResponse<T>>(url, {
       method,
       body,
       headers: {
-        'Accept-Language': locale.value || 'en',
+        ...cookie,
         'Content-Type': 'application/json'
       },
       ...fetchOptions

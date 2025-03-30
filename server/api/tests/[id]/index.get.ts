@@ -1,7 +1,12 @@
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event);
 
-  const test: UserTest | null = await repository.test.findById(id);
+  const authSession = await repository.auth.getSession(event.headers);
+
+  const test: UserTest | null = await repository.test.findById(
+    authSession?.user.id,
+    id
+  );
 
   if (!test)
     return sendError(
