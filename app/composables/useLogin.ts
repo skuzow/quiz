@@ -30,7 +30,8 @@ export const useLogin = () => {
       .email($t('form.emailFormat'))
       .max(USER_EMAIL_MAX, {
         message: maxMessage(FormInput.EMAIL, USER_EMAIL_MAX)
-      }),
+      })
+      .trim(),
     password: z
       .string({
         required_error: requiredMessage(FormInput.PASSWORD)

@@ -39,6 +39,7 @@ export const useSignup = () => {
       .max(USER_EMAIL_MAX, {
         message: maxMessage(FormInput.EMAIL, USER_EMAIL_MAX)
       })
+      .trim()
       .refine(
         async (value) => await isEmailAvailableTimeout(value),
         alreadyUseMessage(FormInput.EMAIL)
@@ -52,7 +53,8 @@ export const useSignup = () => {
       })
       .max(USER_NAME_MAX, {
         message: maxMessage(FormInput.NAME, USER_NAME_MAX)
-      }),
+      })
+      .trim(),
     username: z
       .string({
         required_error: requiredMessage(FormInput.USERNAME)
@@ -189,6 +191,10 @@ export const useSignup = () => {
     }
   };
 
+  const errorMessageMap: Record<string, string> = {
+    USERNAME_IS_INVALID: $t('form.usernameFormat')
+  };
+
   const signupWithEmail = async ({
     email,
     name,
@@ -209,7 +215,9 @@ export const useSignup = () => {
     isLoadingWithEmail.value = false;
 
     if (error) {
-      errorMessageWithEmail.value = error.message;
+      errorMessageWithEmail.value =
+        errorMessageMap[error.code!] || error.message;
+
       signupForm.resetField(FormInput.PASSWORD);
     } else {
       await navigateTo(localePath('/tests'));
