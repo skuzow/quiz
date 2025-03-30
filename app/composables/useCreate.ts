@@ -258,7 +258,8 @@ export const useCreate = (edit?: boolean) => {
     if (edit) {
       const response: boolean = await alert({
         title: $t('alert.deleteTest.title'),
-        description: $t('alert.deleteTest.description')
+        description: $t('alert.deleteTest.description'),
+        danger: true
       });
 
       if (!response) return;
