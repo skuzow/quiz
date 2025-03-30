@@ -7,14 +7,14 @@ class AuthRepository {
   }
 
   async checkEmail(email: string): Promise<boolean> {
-    return !!(await this.userModel.findFirst({
-      where: { email: email }
+    return !!(await this.userModel.findUnique({
+      where: { email: email.toLowerCase() }
     }));
   }
 
   async checkUsername(username: string): Promise<boolean> {
-    return !!(await this.userModel.findFirst({
-      where: { username: username }
+    return !!(await this.userModel.findUnique({
+      where: { username: username.toLowerCase() }
     }));
   }
 }

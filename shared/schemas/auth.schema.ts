@@ -7,7 +7,7 @@ import {
 } from '../constants/user.constant';
 
 export const AuthEmailCheckSchema = z.object({
-  email: z.string().max(USER_EMAIL_MAX)
+  email: z.string().email().max(USER_EMAIL_MAX)
 });
 
 export const AuthUsernameCheckSchema = z.object({
