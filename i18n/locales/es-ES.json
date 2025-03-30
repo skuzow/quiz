@@ -135,6 +135,10 @@
         "button": "Actualizar correo electrónico",
         "buttonVerify": "Verificar correo electrónico"
       },
+      "password": {
+        "title": "Contraseña",
+        "button": "Actualizar contraseña"
+      },
       "sessions": {
         "title": "Sesiones",
         "button": "Revocar",
@@ -313,6 +317,11 @@
             "title": "📩 Se ha enviado un correo electrónico de verificación",
             "description": "Revise su bandeja de entrada para verificar su correo electrónico."
           }
+        },
+        "password": {
+          "error": "Error al enviar el correo electrónico de restablecimiento de contraseña",
+          "title": "📩 Se ha enviado un correo electrónico para restablecer su contraseña",
+          "description": "Revise su bandeja de entrada para restablecer su contraseña."
         },
         "account": {
           "delete": {

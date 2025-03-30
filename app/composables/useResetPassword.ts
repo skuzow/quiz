@@ -95,6 +95,10 @@ export const useResetPassword = () => {
 
       resetPasswordForm.resetField(FormInput.PASSWORD);
       resetPasswordForm.resetField(FormInput.CONFIRM_PASSWORD);
+    } else if (auth.isAuthenticated.value) {
+      await navigateTo(auth.authUserURL.value);
+
+      toast({ title: $t('toast.resetPassword.title') });
     } else {
       await navigateTo(localePath('/login'));
 

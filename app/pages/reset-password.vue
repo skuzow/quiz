@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-definePageMeta({ middleware: ['reset-password', 'auth-login'] });
+definePageMeta({ middleware: ['reset-password'] });
 
 const { t: $t } = useI18n();
 

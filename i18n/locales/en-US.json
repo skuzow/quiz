@@ -135,6 +135,10 @@
         "button": "Update email",
         "buttonVerify": "Verify email"
       },
+      "password": {
+        "title": "Password",
+        "button": "Update password"
+      },
       "sessions": {
         "title": "Sessions",
         "button": "Revoke",
@@ -313,6 +317,11 @@
             "title": "📩 A verification email has been sent",
             "description": "Check your inbox to verify your email."
           }
+        },
+        "password": {
+          "error": "Error sending password reset email",
+          "title": "📩 A password reset email has been sent",
+          "description": "Check your inbox to reset your password."
         },
         "account": {
           "delete": {

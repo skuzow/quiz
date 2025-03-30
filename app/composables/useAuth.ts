@@ -83,6 +83,13 @@ export const useAuth = () => {
     return res;
   };
 
+  const forgotPassword = async (email: string) => {
+    return authClient.forgetPassword({
+      email: email,
+      redirectTo: localePath('/reset-password')
+    });
+  };
+
   const revokeSession = async (token: string) => {
     const res = await authClient.revokeSession({ token });
 
@@ -105,7 +112,7 @@ export const useAuth = () => {
     signUp: authClient.signUp,
     signIn: authClient.signIn,
     signOut,
-    forgotPassword: authClient.forgetPassword,
+    forgotPassword,
     resetPassword: authClient.resetPassword,
     updateAuthUser: authClient.updateUser,
     changeEmail: authClient.changeEmail,
