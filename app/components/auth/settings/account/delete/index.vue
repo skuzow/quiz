@@ -6,8 +6,6 @@ const { t: $t } = useI18n();
 
 const { deleteAuthUser } = useAuth();
 
-const { closeAuthSettings } = useAuthSettings();
-
 const { alert } = useAlert();
 const { toast } = useToast();
 
@@ -15,8 +13,6 @@ const isLoadingDeleteAccount: Ref<boolean> = ref(false);
 
 const deleteAccount = async () => {
   if (isLoadingDeleteAccount.value) return;
-
-  closeAuthSettings();
 
   const response: boolean = await alert({
     title: $t('alert.auth.settings.account.delete.title'),
