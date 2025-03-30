@@ -14,7 +14,10 @@ export default defineEventHandler(async (event) => {
 
   const { id } = getRouterParams(event);
 
-  const prevTest: UserTest | null = await repository.test.findById(id);
+  const prevTest: UserTest | null = await repository.test.findById(
+    authSession?.user.id,
+    id
+  );
 
   if (!prevTest)
     return sendError(
