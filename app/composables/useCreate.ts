@@ -53,7 +53,8 @@ export const useCreate = (edit?: boolean) => {
       .max(
         TEST_CREATION_QUESTION_OPTION_TEXT_MAX,
         maxMessage(FormInput.OPTION, TEST_CREATION_QUESTION_OPTION_TEXT_MAX)
-      ),
+      )
+      .trim(),
     isCorrect: z.boolean()
   });
 
@@ -68,7 +69,8 @@ export const useCreate = (edit?: boolean) => {
         .max(
           TEST_CREATION_QUESTION_TEXT_MAX,
           maxMessage(FormInput.QUESTION, TEST_CREATION_QUESTION_TEXT_MAX)
-        ),
+        )
+        .trim(),
       type: z.enum(TestQuestionTypeValues),
       options: z
         .array(CreateQuestionOptionSchema, {
@@ -113,7 +115,8 @@ export const useCreate = (edit?: boolean) => {
       .max(
         TEST_CREATION_TITLE_MAX,
         maxMessage(FormInput.TITLE, TEST_CREATION_TITLE_MAX)
-      ),
+      )
+      .trim(),
     description: z
       .string({ required_error: requiredMessage(FormInput.DESCRIPTION) })
       .min(
@@ -123,7 +126,8 @@ export const useCreate = (edit?: boolean) => {
       .max(
         TEST_CREATION_DESCRIPTION_MAX,
         maxMessage(FormInput.DESCRIPTION, TEST_CREATION_DESCRIPTION_MAX)
-      ),
+      )
+      .trim(),
     categories: z
       .array(z.enum(TestCategoryValues))
       .max(
