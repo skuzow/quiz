@@ -21,7 +21,10 @@ const isDesktop: Ref<boolean> = useMediaQuery('(min-width: 768px)');
           {{ options?.cancel || $t('cancel') }}
         </AlertDialogCancel>
 
-        <AlertDialogAction @click="dismiss(true)">
+        <AlertDialogAction
+          :variant="options?.danger ? 'destructive' : 'default'"
+          @click="dismiss(true)"
+        >
           {{ options?.confirm || $t('confirm') }}
         </AlertDialogAction>
       </AlertDialogFooter>
@@ -39,7 +42,10 @@ const isDesktop: Ref<boolean> = useMediaQuery('(min-width: 768px)');
       </DrawerHeader>
       <DrawerFooter class="mb-6">
         <DrawerClose as-child>
-          <Button @click="dismiss(true)">
+          <Button
+            :variant="options?.danger ? 'destructive' : 'default'"
+            @click="dismiss(true)"
+          >
             {{ options?.confirm || $t('confirm') }}
           </Button>
         </DrawerClose>

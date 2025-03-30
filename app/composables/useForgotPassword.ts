@@ -52,10 +52,7 @@ export const useForgotPassword = () => {
 
     isLoadingForgotPassword.value = true;
 
-    const { error } = await auth.forgotPassword({
-      email: email,
-      redirectTo: localePath('/reset-password')
-    });
+    const { error } = await auth.forgotPassword(email);
 
     isLoadingForgotPassword.value = false;
 

@@ -4,6 +4,7 @@
   "confirm": "Confirmar",
   "continue": "Continuar",
   "understood": "Entendido",
+  "save": "Guardar cambios",
   "click": "Haz click aquí",
   "nav": {
     "home": "Inicio",
@@ -93,6 +94,7 @@
     "answeredQuestions": "Preguntas Contestadas",
     "search": "Búsqueda",
     "emailFormat": "Formato de correo electrónico no válido.",
+    "usernameFormat": "Formato de nombre de usuario no válido.",
     "required": "es obligatorio",
     "least": "debe ser como mínimo",
     "most": "debe ser como máximo",
@@ -114,7 +116,47 @@
     "google": "Continuar con Google",
     "github": "Continuar con Github",
     "dontHaveAccount": "¿No tienes una cuenta?",
-    "alreadyHaveAccount": "¿Ya tienes una cuenta?"
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "settings": {
+      "profile": {
+        "title": "Perfil",
+        "button": "Actualizar perfil"
+      },
+      "username": {
+        "title": "Nombre de usuario",
+        "notDefined": "No definido",
+        "button": "Actualizar nombre de usuario",
+        "buttonSet": "Establecer nombre de usuario"
+      },
+      "email": {
+        "title": "Correo electrónico",
+        "verified": "Verificado",
+        "unverified": "No verificado",
+        "button": "Actualizar correo electrónico",
+        "buttonVerify": "Verificar correo electrónico"
+      },
+      "password": {
+        "title": "Contraseña",
+        "button": "Restablecer contraseña"
+      },
+      "sessions": {
+        "title": "Sesiones",
+        "button": "Revocar",
+        "current": "Actual"
+      },
+      "account": {
+        "linked": {
+          "title": "Cuentas conectadas",
+          "credential": "Credenciales",
+          "button": "Desconectar",
+          "link": "Conectar cuenta"
+        },
+        "delete": {
+          "title": "Eliminar cuenta",
+          "description": "Esta acción es irreversible"
+        }
+      }
+    }
   },
   "landing": {
     "title": {
@@ -224,6 +266,16 @@
     "languages": "Idiomas"
   },
   "alert": {
+    "auth": {
+      "settings": {
+        "account": {
+          "delete": {
+            "title": "¿Estás seguro de que quieres eliminar tu cuenta?",
+            "description": "Se enviará un correo electrónico de confirmación."
+          }
+        }
+      }
+    },
     "verifyEmail": {
       "title": "Se ha enviado un correo electrónico de verificación",
       "description": "Por favor, revise su bandeja de entrada y verifique su correo electrónico para acceder a su cuenta."
@@ -246,6 +298,53 @@
     }
   },
   "toast": {
+    "auth": {
+      "error": "Error al registrarse con",
+      "settings": {
+        "profile": "✅ Perfil actualizado con éxito",
+        "username": "✅ Nombre de usuario actualizado con éxito",
+        "email": {
+          "update": {
+            "title": "📩 Se ha enviado un correo electrónico de confirmación",
+            "description": "Revise su bandeja de entrada para confirmar el cambio de correo electrónico de su cuenta.",
+            "unverified": {
+              "title": "✅ Correo electrónico actualizado con éxito",
+              "description": "📩 Se ha enviado un correo electrónico de verificación, revise su bandeja de entrada para verificarlo."
+            }
+          },
+          "verify": {
+            "error": "Error al enviar el correo electrónico de verificación",
+            "title": "📩 Se ha enviado un correo electrónico de verificación",
+            "description": "Revise su bandeja de entrada para verificar su correo electrónico."
+          }
+        },
+        "password": {
+          "error": "Error al enviar el correo electrónico de restablecimiento de contraseña",
+          "title": "📩 Se ha enviado un correo electrónico para restablecer su contraseña",
+          "description": "Revise su bandeja de entrada para restablecer su contraseña."
+        },
+        "account": {
+          "delete": {
+            "error": "Error al enviar el correo electrónico de confirmación",
+            "title": "📩 Se ha enviado un correo electrónico de confirmación",
+            "description": "Revise su bandeja de entrada para confirmar la eliminación de su cuenta."
+          },
+          "linked": {
+            "unlink": {
+              "error": "Error al desvincular la cuenta",
+              "title": "✅ Cuenta desvinculada con éxito"
+            },
+            "link": {
+              "error": "Error al vincular la cuenta"
+            }
+          }
+        },
+        "sessions": {
+          "error": "Error al revocar la sesión",
+          "title": "✅ Sesión revocada con éxito"
+        }
+      }
+    },
     "resetPassword": {
       "title": "✅ Contraseña restablecida con éxito",
       "description": "Ahora puedes iniciar sesión con tu nueva contraseña."

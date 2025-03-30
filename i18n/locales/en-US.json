@@ -4,6 +4,7 @@
   "confirm": "Confirm",
   "continue": "Continue",
   "understood": "Understood",
+  "save": "Save changes",
   "click": "Click here",
   "nav": {
     "home": "Home",
@@ -93,6 +94,7 @@
     "answeredQuestions": "Answered Questions",
     "search": "Search",
     "emailFormat": "Invalid email format.",
+    "usernameFormat": "Invalid username format.",
     "required": "is required",
     "least": "must be at least",
     "most": "must be at most",
@@ -114,7 +116,47 @@
     "google": "Continue with Google",
     "github": "Continue with Github",
     "dontHaveAccount": "Don't have an account?",
-    "alreadyHaveAccount": "Already have an account?"
+    "alreadyHaveAccount": "Already have an account?",
+    "settings": {
+      "profile": {
+        "title": "Profile",
+        "button": "Update profile"
+      },
+      "username": {
+        "title": "Username",
+        "notDefined": "Not defined",
+        "button": "Update username",
+        "buttonSet": "Set username"
+      },
+      "email": {
+        "title": "Email",
+        "verified": "Verified",
+        "unverified": "Unverified",
+        "button": "Update email",
+        "buttonVerify": "Verify email"
+      },
+      "password": {
+        "title": "Password",
+        "button": "Reset password"
+      },
+      "sessions": {
+        "title": "Sessions",
+        "button": "Revoke",
+        "current": "Current"
+      },
+      "account": {
+        "linked": {
+          "title": "Linked accounts",
+          "credential": "Credentials",
+          "button": "Unlink",
+          "link": "Link account"
+        },
+        "delete": {
+          "title": "Delete account",
+          "description": "This action is irreversible"
+        }
+      }
+    }
   },
   "landing": {
     "title": {
@@ -224,6 +266,16 @@
     "languages": "Languages"
   },
   "alert": {
+    "auth": {
+      "settings": {
+        "account": {
+          "delete": {
+            "title": "Are you sure you want to delete your account?",
+            "description": "A confirmation email will be sent."
+          }
+        }
+      }
+    },
     "verifyEmail": {
       "title": "A verification email has been sent",
       "description": "Please check your inbox and verify your email to access to your account."
@@ -246,6 +298,53 @@
     }
   },
   "toast": {
+    "auth": {
+      "error": "Error signing up with",
+      "settings": {
+        "profile": "✅ Profile updated successfully",
+        "username": "✅ Username updated successfully",
+        "email": {
+          "update": {
+            "title": "📩 A confirmation email has been sent",
+            "description": "Check your inbox to confirm the email change of your account.",
+            "unverified": {
+              "title": "✅ Email updated successfully",
+              "description": "📩 A verification email has been sent, check your inbox to verify it."
+            }
+          },
+          "verify": {
+            "error": "Error sending verification email",
+            "title": "📩 A verification email has been sent",
+            "description": "Check your inbox to verify your email."
+          }
+        },
+        "password": {
+          "error": "Error sending password reset email",
+          "title": "📩 A password reset email has been sent",
+          "description": "Check your inbox to reset your password."
+        },
+        "account": {
+          "delete": {
+            "error": "Error sending confirmation email",
+            "title": "📩 A confirmation email has been sent",
+            "description": "Check your inbox to confirm the deletion of your account."
+          },
+          "linked": {
+            "unlink": {
+              "error": "Error unlinking account",
+              "title": "✅ Account unlinked successfully"
+            },
+            "link": {
+              "error": "Error linking account"
+            }
+          }
+        },
+        "sessions": {
+          "error": "Error revoking session",
+          "title": "✅ Session revoked successfully"
+        }
+      }
+    },
     "resetPassword": {
       "title": "✅ Password reset successfully",
       "description": "You can now log in with your new password."

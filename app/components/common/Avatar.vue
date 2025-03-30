@@ -11,6 +11,7 @@ interface Props {
   width?: number;
   loading?: 'lazy' | 'eager';
   alt?: string;
+  pointer?: boolean;
   user: UserPartial | User | typeof authUser.value;
 }
 
@@ -21,6 +22,7 @@ const {
   width = 36,
   loading,
   alt = 'Avatar',
+  pointer = true,
   user
 } = defineProps<Props>();
 </script>
@@ -32,8 +34,9 @@ const {
     :user="user"
     :class="
       cn(
-        'cursor-pointer',
-        !user?.image &&
+        pointer && 'cursor-pointer',
+        pointer &&
+          !user?.image &&
           'transition-all duration-200 hover:brightness-95 dark:hover:brightness-110'
       )
     "

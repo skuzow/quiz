@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import { UserRoundIcon, Settings2Icon, LogOutIcon } from 'lucide-vue-next';
 
-const { authUser, authUserInfo, authUserURL, signOut } = useAuth();
+const { authUser, authUserURL, signOut } = useAuth();
+
+const { openAuthSettings } = useAuthSettings();
 </script>
 
 <template>
@@ -13,8 +15,8 @@ const { authUser, authUserInfo, authUserURL, signOut } = useAuth();
       <DropdownMenuLabel>
         <h3>{{ authUser?.name }}</h3>
 
-        <p class="text-xs font-medium">
-          {{ authUserInfo }}
+        <p v-if="authUser?.username" class="text-xs font-medium">
+          {{ `@${authUser.username}` }}
         </p>
       </DropdownMenuLabel>
 
@@ -28,7 +30,7 @@ const { authUser, authUserInfo, authUserURL, signOut } = useAuth();
           </DropdownMenuItem>
         </NuxtLink>
 
-        <DropdownMenuItem class="gap-2">
+        <DropdownMenuItem class="gap-2" @click="openAuthSettings">
           <Settings2Icon :size="16" />
           <span>{{ $t('nav.header.user.settings') }}</span>
         </DropdownMenuItem>

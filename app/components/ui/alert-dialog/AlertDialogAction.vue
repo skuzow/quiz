@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import { buttonVariants } from '@/components/ui/button';
+import { type ButtonVariants, buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { AlertDialogAction, type AlertDialogActionProps } from 'radix-vue';
 import { computed, type HTMLAttributes } from 'vue';
 
 const props = defineProps<
-  AlertDialogActionProps & { class?: HTMLAttributes['class'] }
+  AlertDialogActionProps & {
+    variant?: ButtonVariants['variant'];
+    size?: ButtonVariants['size'];
+    class?: HTMLAttributes['class'];
+  }
 >();
 
 const delegatedProps = computed(() => {
-  const { class: _, ...delegated } = props;
+  const { variant: _variant, size: _size, class: _, ...delegated } = props;
 
   return delegated;
 });
@@ -18,7 +22,7 @@ const delegatedProps = computed(() => {
 <template>
   <AlertDialogAction
     v-bind="delegatedProps"
-    :class="cn(buttonVariants(), props.class)"
+    :class="cn(buttonVariants({ variant, size }), props.class)"
   >
     <slot />
   </AlertDialogAction>

@@ -4,6 +4,11 @@ import { username, twoFactor } from 'better-auth/plugins';
 
 import prisma from './prisma';
 
+import {
+  USER_USERNAME_MIN,
+  USER_USERNAME_MAX
+} from '#shared/constants/user.constant';
+
 const {
   GOOGLE_CLIENT_ID,
   GOOGLE_CLIENT_SECRET,
@@ -16,18 +21,47 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: 'sqlite'
   }),
-  plugins: [username(), twoFactor()],
+  plugins: [
+    username({
+      minUsernameLength: USER_USERNAME_MIN,
+      maxUsernameLength: USER_USERNAME_MAX
+    }),
+    twoFactor()
+  ],
   emailVerification: {
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
-    sendVerificationEmail: async ({ user, url }, _request) =>
-      email.sendVerificationEmail(user, url)
+    sendVerificationEmail: async ({ user, url }, _request) => {
+      await email.sendVerificationEmail(user, url);
+    }
   },
   emailAndPassword: {
     enabled: true,
     requireEmailVerification: true,
     sendResetPassword: async ({ user, url }, _request) => {
-      email.sendResetPassword(user, url);
+      await email.sendResetPassword(user, url);
+    }
+  },
+  account: {
+    accountLinking: {
+      enabled: true
+    }
+  },
+  user: {
+    changeEmail: {
+      enabled: true,
+      sendChangeEmailVerification: async (
+        { user, newEmail, url },
+        _request
+      ) => {
+        await email.sendChangeEmailVerification(user, newEmail, url);
+      }
+    },
+    deleteUser: {
+      enabled: true,
+      sendDeleteAccountVerification: async ({ user, url }, _request) => {
+        await email.sendDeleteAccountVerification(user, url);
+      }
     }
   },
   socialProviders: {

@@ -5,5 +5,9 @@ export default defineNuxtRouteMiddleware(async (to, _from) => {
 
   const result = z.string().safeParse(token);
 
-  if (!result.success) return await navigateTo('/');
+  if (!result.success) {
+    const localePath = useLocalePath();
+
+    return await navigateTo(localePath('/'));
+  }
 });

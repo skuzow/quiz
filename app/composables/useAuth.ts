@@ -64,14 +64,6 @@ export const useAuth = () => {
 
   const localePath = useLocalePath();
 
-  const authUserInfo: ComputedRef<string> = computed(() => {
-    if (!authUser.value) return '';
-
-    return authUser.value.username
-      ? `@${authUser.value.username}`
-      : authUser.value.email;
-  });
-
   const authUserURL: ComputedRef<string> = computed(() => {
     if (!authUser.value) return '';
 
@@ -91,17 +83,45 @@ export const useAuth = () => {
     return res;
   };
 
+  const forgotPassword = async (email: string) => {
+    return authClient.forgetPassword({
+      email: email,
+      redirectTo: localePath('/reset-password')
+    });
+  };
+
+  const revokeSession = async (token: string) => {
+    const res = await authClient.revokeSession({ token });
+
+    if (!res.error && token === authSession.value?.token) {
+      await navigateTo(localePath('/'));
+
+      authSession.value = null;
+      authUser.value = null;
+    }
+
+    return res;
+  };
+
   return {
     authSession,
     authUser,
     isAuthenticated,
     fetchSession,
-    authUserInfo,
     authUserURL,
     signUp: authClient.signUp,
     signIn: authClient.signIn,
-    forgotPassword: authClient.forgetPassword,
+    signOut,
+    forgotPassword,
     resetPassword: authClient.resetPassword,
-    signOut
+    updateAuthUser: authClient.updateUser,
+    changeEmail: authClient.changeEmail,
+    verifyEmail: authClient.sendVerificationEmail,
+    listAuthSessions: authClient.listSessions,
+    revokeSession,
+    listAccounts: authClient.listAccounts,
+    unlinkAccount: authClient.unlinkAccount,
+    linkAccount: authClient.linkSocial,
+    deleteAuthUser: authClient.deleteUser
   };
 };
