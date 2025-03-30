@@ -302,7 +302,11 @@
         "email": {
           "update": {
             "title": "📩 Se ha enviado un correo electrónico de confirmación",
-            "description": "Revise su bandeja de entrada para confirmar el cambio de correo electrónico de su cuenta."
+            "description": "Revise su bandeja de entrada para confirmar el cambio de correo electrónico de su cuenta.",
+            "unverified": {
+              "title": "✅ Correo electrónico actualizado con éxito",
+              "description": "📩 Se ha enviado un correo electrónico de verificación, revise su bandeja de entrada para verificarlo."
+            }
           },
           "verify": {
             "error": "Error al enviar el correo electrónico de verificación",

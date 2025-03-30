@@ -74,10 +74,21 @@ export const useAuthUpdateEmail = () => {
     } else {
       closeUpdateEmail();
 
-      toast({
-        title: $t('toast.auth.settings.email.update.title'),
-        description: $t('toast.auth.settings.email.update.description')
-      });
+      if (authUser.value?.emailVerified) {
+        toast({
+          title: $t('toast.auth.settings.email.update.title'),
+          description: $t('toast.auth.settings.email.update.description')
+        });
+      } else {
+        authUser.value!.email = email;
+
+        toast({
+          title: $t('toast.auth.settings.email.update.unverified.title'),
+          description: $t(
+            'toast.auth.settings.email.update.unverified.description'
+          )
+        });
+      }
     }
   };
 

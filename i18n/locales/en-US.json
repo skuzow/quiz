@@ -302,7 +302,11 @@
         "email": {
           "update": {
             "title": "📩 A confirmation email has been sent",
-            "description": "Check your inbox to confirm the email change of your account."
+            "description": "Check your inbox to confirm the email change of your account.",
+            "unverified": {
+              "title": "✅ Email updated successfully",
+              "description": "📩 A verification email has been sent, check your inbox to verify it."
+            }
           },
           "verify": {
             "error": "Error sending verification email",
