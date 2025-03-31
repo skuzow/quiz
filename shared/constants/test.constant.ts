@@ -1,46 +1,40 @@
 export enum TestOrder {
-  NEWEST = 'NEWEST',
-  OLDEST = 'OLDEST',
-  MOSTPOPULAR = 'MOSTPOPULAR',
-  LEASTPOPULAR = 'LEASTPOPULAR',
-  LONGEST = 'LONGEST',
-  SHORTEST = 'SHORTEST'
+  NEWEST = 'newest',
+  OLDEST = 'oldest',
+  MOSTPOPULAR = 'mostpopular',
+  LEASTPOPULAR = 'leastpopular',
+  LONGEST = 'longest',
+  SHORTEST = 'shortest'
 }
 
-export const TestOrderValues = Object.values(TestOrder) as [
-  keyof typeof TestOrder
-];
+export const TestOrderValues = Object.values(TestOrder);
 
 export enum TestCategory {
-  TECHNOLOGY = 'TECHNOLOGY',
-  PROGRAMMING = 'PROGRAMMING',
-  SCIENCE = 'SCIENCE',
-  MATH = 'MATH',
-  HISTORY = 'HISTORY',
-  GEOGRAPHY = 'GEOGRAPHY',
-  LITERATURE = 'LITERATURE',
-  ART = 'ART',
-  SPORTS = 'SPORTS',
-  MUSIC = 'MUSIC',
-  MOVIES = 'MOVIES',
-  GAMES = 'GAMES',
-  FOOD = 'FOOD',
-  ANIMALS = 'ANIMALS',
-  LANGUAGES = 'LANGUAGES'
+  TECHNOLOGY = 'technology',
+  PROGRAMMING = 'programming',
+  SCIENCE = 'science',
+  MATH = 'math',
+  HISTORY = 'history',
+  GEOGRAPHY = 'geography',
+  LITERATURE = 'literature',
+  ART = 'art',
+  SPORTS = 'sports',
+  MUSIC = 'music',
+  MOVIES = 'movies',
+  GAMES = 'games',
+  FOOD = 'food',
+  ANIMALS = 'animals',
+  LANGUAGES = 'languages'
 }
 
-export const TestCategoryValues = Object.values(TestCategory) as [
-  keyof typeof TestCategory
-];
+export const TestCategoryValues = Object.values(TestCategory);
 
 export enum TestQuestionType {
-  SINGLE = 'SINGLE',
-  MULTIPLE = 'MULTIPLE'
+  SINGLE = 'single',
+  MULTIPLE = 'multiple'
 }
 
-export const TestQuestionTypeValues = Object.values(TestQuestionType) as [
-  keyof typeof TestQuestionType
-];
+export const TestQuestionTypeValues = Object.values(TestQuestionType);
 
 export const TEST_CREATION_TITLE_MIN: number = 10;
 export const TEST_CREATION_TITLE_MAX: number = 150;

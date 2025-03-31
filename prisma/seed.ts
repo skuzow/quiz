@@ -1,29 +1,25 @@
 import prisma from '../server/utils/prisma';
 
-import { UserRole } from '../shared/constants/user.constant';
+import { UserRoleValues } from '../shared/constants/user.constant';
 import {
-  TestCategory,
-  TestQuestionType
+  TestCategoryValues,
+  TestQuestionTypeValues
 } from '../shared/constants/test.constant';
 
 // const { ADMIN_EMAIL, ADMIN_USERNAME, ADMIN_PASSWORD } = process.env;
 
 const seedRoles = async () => {
-  const roles: string[] = Object.values(UserRole);
-
-  roles.forEach(async (role) => {
+  UserRoleValues.forEach(async (userRole) => {
     await prisma.role.upsert({
-      where: { name: role },
+      where: { name: userRole },
       update: {},
-      create: { name: role }
+      create: { name: userRole }
     });
   });
 };
 
 const seedTestCategories = async () => {
-  const testCategories: string[] = Object.values(TestCategory);
-
-  testCategories.forEach(async (testCategory) => {
+  TestCategoryValues.forEach(async (testCategory) => {
     await prisma.testCategory.upsert({
       where: { name: testCategory },
       update: {},
@@ -33,9 +29,7 @@ const seedTestCategories = async () => {
 };
 
 const seedTestQuestionTypes = async () => {
-  const testQuestionTypes: string[] = Object.values(TestQuestionType);
-
-  testQuestionTypes.forEach(async (testQuestionType) => {
+  TestQuestionTypeValues.forEach(async (testQuestionType) => {
     await prisma.testQuestionType.upsert({
       where: { name: testQuestionType },
       update: {},

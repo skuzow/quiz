@@ -6,9 +6,8 @@ import { useToast } from '@/components/ui/toast/use-toast';
 
 import { FormInput } from '@/constants/form.constant';
 import {
-  TestCategoryValues,
+  TestCategory,
   TestQuestionType,
-  TestQuestionTypeValues,
   TEST_CREATION_TITLE_MIN,
   TEST_CREATION_TITLE_MAX,
   TEST_CREATION_DESCRIPTION_MIN,
@@ -71,7 +70,7 @@ export const useCreate = (edit?: boolean) => {
           maxMessage(FormInput.QUESTION, TEST_CREATION_QUESTION_TEXT_MAX)
         )
         .trim(),
-      type: z.enum(TestQuestionTypeValues),
+      type: z.nativeEnum(TestQuestionType),
       options: z
         .array(CreateQuestionOptionSchema, {
           required_error: requiredMessage(FormInput.OPTIONS)
@@ -129,7 +128,7 @@ export const useCreate = (edit?: boolean) => {
       )
       .trim(),
     categories: z
-      .array(z.enum(TestCategoryValues))
+      .array(z.nativeEnum(TestCategory))
       .max(
         TEST_CREATION_CATEGORIES_MAX,
         maxMessage(FormInput.CATEGORIES, TEST_CREATION_CATEGORIES_MAX, false)

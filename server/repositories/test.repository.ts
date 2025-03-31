@@ -8,8 +8,8 @@ import {
 } from './queries/selects';
 
 import {
-  TEST_SEARCH_PAGE_SIZE,
-  TestOrder
+  TestOrder,
+  TEST_SEARCH_PAGE_SIZE
 } from '#shared/constants/test.constant';
 
 const enum SortOrder {

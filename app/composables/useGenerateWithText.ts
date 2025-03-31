@@ -5,13 +5,14 @@ import { useForm } from 'vee-validate';
 import { useToast } from '@/components/ui/toast/use-toast';
 
 import { FormInput } from '@/constants/form.constant';
+import { TestGenerationQuestionType } from '@/constants/test.constant';
 import {
-  TestQuestionTypeValues,
   TEST_GENERATION_QUESTIONS_MIN,
   TEST_GENERATION_QUESTIONS_MAX,
   TEST_GENERATION_QUESTION_OPTIONS_MIN,
   TEST_GENERATION_QUESTION_OPTIONS_MAX,
-  TEST_GENERATION_TEXT_MIN
+  TEST_GENERATION_TEXT_MIN,
+  type TestQuestionType
 } from '#shared/constants/test.constant';
 
 export const useGenerateWithText = () => {
@@ -38,7 +39,9 @@ export const useGenerateWithText = () => {
         message: minMessage(FormInput.TEXT, TEST_GENERATION_TEXT_MIN)
       })
       .trim(),
-    type: z.enum(['ALL', ...TestQuestionTypeValues]).default('ALL'),
+    type: z
+      .nativeEnum(TestGenerationQuestionType)
+      .default(TestGenerationQuestionType.ALL),
     questions: z
       .number({
         required_error: requiredMessage(FormInput.QUESTIONS)
@@ -103,7 +106,10 @@ export const useGenerateWithText = () => {
           lang: locale.value,
           questions: {
             number: questions,
-            type: type === 'ALL' ? undefined : type,
+            type:
+              type === TestGenerationQuestionType.ALL
+                ? undefined
+                : (type as unknown as TestQuestionType),
             options
           },
           info: text

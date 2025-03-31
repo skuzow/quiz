@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { FormInput } from '@/constants/form.constant';
+import { TestGenerationQuestionTypeValues } from '@/constants/test.constant';
 import {
-  TestQuestionTypeValues,
   TEST_GENERATION_QUESTION_OPTIONS_MIN,
   TEST_GENERATION_QUESTION_OPTIONS_MAX
 } from '#shared/constants/test.constant';
@@ -27,13 +27,12 @@ const { isFieldDirty } = defineProps<Props>();
           </FormControl>
           <SelectContent>
             <SelectGroup>
-              <SelectItem value="ALL">{{ $t('form.types.all') }}</SelectItem>
               <SelectItem
-                v-for="type in TestQuestionTypeValues"
+                v-for="type in TestGenerationQuestionTypeValues"
                 :key="type"
                 :value="type"
               >
-                {{ $t(`form.types.${type.toLowerCase()}`) }}
+                {{ $t(`form.types.${type}`) }}
               </SelectItem>
             </SelectGroup>
           </SelectContent>

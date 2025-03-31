@@ -6,12 +6,10 @@ import type { NuxtError } from '#app';
 
 import { FormInput } from '@/constants/form.constant';
 import {
+  TestOrder,
+  TestCategory,
   TEST_SEARCH_PAGE_SIZE,
-  TEST_SEARCH_TEXT_MAX,
-  TestOrderValues,
-  TestCategoryValues,
-  type TestOrder,
-  type TestCategory
+  TEST_SEARCH_TEXT_MAX
 } from '#shared/constants/test.constant';
 
 const SEARCH_TIMEOUT: number = 1000;
@@ -35,8 +33,8 @@ export const useTestsFeed = (id?: string, username?: string) => {
 
   const queryValues = computed(() => ({
     search: route.query.search as string,
-    sort: (route.query.sort as string)?.toUpperCase() as TestOrder,
-    filter: (route.query.filter as string)?.toUpperCase() as TestCategory
+    sort: route.query.sort as TestOrder,
+    filter: route.query.filter as TestCategory
   }));
 
   const infiniteScroll = useTemplateRef<HTMLElement>('infinite-scroll');
@@ -48,8 +46,8 @@ export const useTestsFeed = (id?: string, username?: string) => {
         message: maxMessage(FormInput.SEARCH, TEST_SEARCH_TEXT_MAX)
       })
       .optional(),
-    sort: z.enum(TestOrderValues).optional(),
-    filter: z.enum(TestCategoryValues).optional()
+    sort: z.nativeEnum(TestOrder).optional(),
+    filter: z.nativeEnum(TestCategory).optional()
   });
 
   type FeedForm = z.TypeOf<typeof FeedSchema>;
@@ -160,8 +158,8 @@ export const useTestsFeed = (id?: string, username?: string) => {
     await router.push({
       query: {
         search: values.search || undefined,
-        sort: values.sort?.toLowerCase(),
-        filter: values.filter?.toLowerCase()
+        sort: values.sort,
+        filter: values.filter
       }
     });
   });

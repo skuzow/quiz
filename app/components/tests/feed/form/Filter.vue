@@ -13,7 +13,7 @@ const route = useRoute();
 const { setValue } = useField<TestCategory | undefined>('filter');
 
 const prevValue: Ref<TestCategory | undefined> = ref(
-  ((route.query.filter as string)?.toUpperCase() as TestCategory) || undefined
+  (route.query.filter as TestCategory) || undefined
 );
 
 const handleUnselectValue = (currentValue: TestCategory) => {
@@ -41,7 +41,7 @@ const handleUnselectValue = (currentValue: TestCategory) => {
               variant="secondary"
               :text="
                 value
-                  ? $t(`categories.${value.toLowerCase()}`)
+                  ? $t(`categories.${value}`)
                   : $t('tests.search.buttons.filter')
               "
             >
@@ -56,7 +56,7 @@ const handleUnselectValue = (currentValue: TestCategory) => {
               :key="category"
               :value="category"
             >
-              {{ $t(`categories.${category.toLowerCase()}`) }}
+              {{ $t(`categories.${category}`) }}
             </SelectItem>
           </SelectGroup>
         </SelectContent>
