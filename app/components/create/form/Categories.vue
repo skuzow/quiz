@@ -35,7 +35,7 @@ import { TestCategoryValues } from '#shared/constants/test.constant';
                 <TagsInputItem
                   v-for="categoryValue in value"
                   :key="categoryValue"
-                  :value="$t(`categories.${categoryValue.toLowerCase()}`)"
+                  :value="$t(`categories.${categoryValue}`)"
                   class="transition-colors"
                 >
                   <TagsInputItemText class="text-xs font-semibold" />
@@ -64,7 +64,7 @@ import { TestCategoryValues } from '#shared/constants/test.constant';
                     :class="{ 'bg-accent': value.includes(category) }"
                   >
                     <span>
-                      {{ $t(`categories.${category.toLowerCase()}`) }}
+                      {{ $t(`categories.${category}`) }}
                     </span>
 
                     <ComboboxItemIndicator

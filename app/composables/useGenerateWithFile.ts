@@ -5,12 +5,13 @@ import { useForm } from 'vee-validate';
 import { useToast } from '@/components/ui/toast/use-toast';
 
 import { FormInput } from '@/constants/form.constant';
+import { TestGenerationQuestionType } from '@/constants/test.constant';
 import {
-  TestQuestionTypeValues,
   TEST_GENERATION_QUESTIONS_MIN,
   TEST_GENERATION_QUESTIONS_MAX,
   TEST_GENERATION_QUESTION_OPTIONS_MIN,
-  TEST_GENERATION_QUESTION_OPTIONS_MAX
+  TEST_GENERATION_QUESTION_OPTIONS_MAX,
+  type TestQuestionType
 } from '#shared/constants/test.constant';
 
 import type { PreviewFile } from '@/types/file.type';
@@ -39,7 +40,9 @@ export const useGenerateWithFile = () => {
   const internalServerErrorWithFile: Ref<boolean> = ref(false);
 
   const GenerateFileSchema = z.object({
-    type: z.enum(['ALL', ...TestQuestionTypeValues]).default('ALL'),
+    type: z
+      .nativeEnum(TestGenerationQuestionType)
+      .default(TestGenerationQuestionType.ALL),
     questions: z
       .number({
         required_error: requiredMessage(FormInput.QUESTIONS)
@@ -112,7 +115,10 @@ export const useGenerateWithFile = () => {
           lang: locale.value,
           questions: {
             number: questions,
-            type: type === 'ALL' ? undefined : type,
+            type:
+              type === TestGenerationQuestionType.ALL
+                ? undefined
+                : (type as unknown as TestQuestionType),
             options
           },
           info: formatTextContent(text)

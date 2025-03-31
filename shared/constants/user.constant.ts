@@ -1,7 +1,9 @@
 export enum UserRole {
-  USER = 'USER',
-  ADMIN = 'ADMIN'
+  USER = 'user',
+  ADMIN = 'admin'
 }
+
+export const UserRoleValues = Object.values(UserRole);
 
 export const USER_EMAIL_MAX: number = 50;
 export const USER_NAME_MIN: number = 3;

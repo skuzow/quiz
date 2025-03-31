@@ -1,10 +1,9 @@
 import { z } from 'zod';
 
 import {
-  TestOrderValues,
-  TestCategoryValues,
+  TestOrder,
+  TestCategory,
   TestQuestionType,
-  TestQuestionTypeValues,
   TEST_CREATION_TITLE_MIN,
   TEST_CREATION_TITLE_MAX,
   TEST_CREATION_DESCRIPTION_MIN,
@@ -40,7 +39,7 @@ const TestCreationQuestionSchema = z
       .string()
       .min(TEST_CREATION_QUESTION_TEXT_MIN)
       .max(TEST_CREATION_QUESTION_TEXT_MAX),
-    type: z.enum(TestQuestionTypeValues),
+    type: z.nativeEnum(TestQuestionType),
     options: z
       .array(TestCreationQuestionOptionSchema)
       .min(TEST_CREATION_QUESTION_OPTIONS_MIN)
@@ -61,7 +60,7 @@ export const TestCreationSchema = z.object({
     .min(TEST_CREATION_DESCRIPTION_MIN)
     .max(TEST_CREATION_DESCRIPTION_MAX),
   categories: z
-    .array(z.enum(TestCategoryValues))
+    .array(z.nativeEnum(TestCategory))
     .max(TEST_CREATION_CATEGORIES_MAX)
     .optional(),
   questions: z
@@ -79,7 +78,7 @@ export const TestGenerationSchema = z.object({
       .int()
       .min(TEST_GENERATION_QUESTIONS_MIN)
       .max(TEST_GENERATION_QUESTIONS_MAX),
-    type: z.enum(TestQuestionTypeValues).optional(), // empty: all
+    type: z.nativeEnum(TestQuestionType).optional(), // empty: all
     options: z
       .number()
       .int()
@@ -93,6 +92,6 @@ export const TestGenerationSchema = z.object({
 export const TestSearchSchema = z.object({
   page: z.number().int().min(0),
   search: z.string().max(TEST_SEARCH_TEXT_MAX).optional(),
-  sort: z.enum(TestOrderValues).optional(),
-  filter: z.enum(TestCategoryValues).optional()
+  sort: z.nativeEnum(TestOrder).optional(),
+  filter: z.nativeEnum(TestCategory).optional()
 });

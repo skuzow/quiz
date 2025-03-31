@@ -19,7 +19,7 @@ const route = useRoute();
 const { setValue } = useField<TestOrder | undefined>('sort');
 
 const prevValue: Ref<TestOrder | undefined> = ref(
-  ((route.query.sort as string)?.toUpperCase() as TestOrder) || undefined
+  (route.query.sort as TestOrder) || undefined
 );
 
 const sortIconMap: Record<TestOrder, LucideIcon> = {
@@ -55,9 +55,7 @@ const handleUnselectValue = (currentValue: TestOrder) => {
             <TestsFeedFormButton
               variant="outline"
               :text="
-                value
-                  ? $t(`order.${value.toLowerCase()}`)
-                  : $t('tests.search.buttons.sort')
+                value ? $t(`order.${value}`) : $t('tests.search.buttons.sort')
               "
             >
               <ArrowDownUpIcon :size="16" />
@@ -74,7 +72,7 @@ const handleUnselectValue = (currentValue: TestOrder) => {
               <div class="flex items-center gap-x-2">
                 <component :is="sortIconMap[order]" :size="16" />
 
-                {{ $t(`order.${order.toLowerCase()}`) }}
+                {{ $t(`order.${order}`) }}
               </div>
             </SelectItem>
           </SelectGroup>

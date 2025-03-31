@@ -16,7 +16,7 @@ const { categories, class: className } = defineProps<Props>();
       :key="indexCategory"
       class="flex items-center"
     >
-      <Badge>{{ $t(`categories.${category.toLowerCase()}`) }}</Badge>
+      <Badge>{{ $t(`categories.${category}`) }}</Badge>
     </li>
   </ul>
 </template>

@@ -24,7 +24,7 @@ const { path } = defineProps<Props>();
               :key="type"
               :value="type"
             >
-              {{ $t(`form.types.${type.toLowerCase()}`) }}
+              {{ $t(`form.types.${type}`) }}
             </SelectItem>
           </SelectGroup>
         </SelectContent>
