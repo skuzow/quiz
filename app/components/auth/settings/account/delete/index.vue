@@ -58,6 +58,7 @@ const deleteAccount = async () => {
           <p>{{ $t('auth.settings.account.delete.description') }}</p>
 
           <Button variant="destructive" @click="deleteAccount">
+            <IconLoader v-if="isLoadingDeleteAccount" class="mr-2" />
             {{ $t('auth.settings.account.delete.title') }}
           </Button>
         </AccordionContent>
