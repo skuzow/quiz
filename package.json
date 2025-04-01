@@ -39,6 +39,7 @@
     "@vueuse/core": "^12.7.0",
     "better-auth": "^1.1.21",
     "class-variance-authority": "^0.7.1",
+    "cloudinary": "^2.6.0",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.476.0",
     "mammoth": "^1.9.0",
