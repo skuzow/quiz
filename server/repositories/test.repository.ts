@@ -214,6 +214,16 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
+  async updateImage(id: string, image: string): Promise<string | null> {
+    const user = await this.userTestModel.update({
+      where: { id },
+      data: { image },
+      select: { image: true }
+    });
+
+    return user.image;
+  }
+
   async complete(id: string) {
     await this.userTestModel.update({
       where: { id },
