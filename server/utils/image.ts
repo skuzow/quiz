@@ -1,4 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
+import sharp from 'sharp';
 import type { UploadApiResponse } from 'cloudinary';
 
 const {
@@ -16,12 +17,15 @@ cloudinary.config({
 
 const upload = async (
   imageBuffer: Buffer<ArrayBufferLike>,
+  width: number,
   name: string,
   folder: string
 ) => {
-  return new Promise<UploadApiResponse>((resolve, reject) => {
-    folder = getFullFolder(folder);
+  const optimizedImageBuffer = await optimize(imageBuffer, width);
 
+  folder = getFullFolder(folder);
+
+  return new Promise<UploadApiResponse>((resolve, reject) => {
     cloudinary.uploader
       .upload_stream(
         {
@@ -35,7 +39,7 @@ const upload = async (
           else resolve(result);
         }
       )
-      .end(imageBuffer);
+      .end(optimizedImageBuffer);
   });
 };
 
@@ -52,6 +56,13 @@ const remove = async (name: string, folder: string) => {
       }
     );
   });
+};
+
+const optimize = async (
+  imageBuffer: Buffer<ArrayBufferLike>,
+  width: number
+): Promise<Buffer<ArrayBufferLike>> => {
+  return sharp(imageBuffer).resize(width).webp({ quality: 75 }).toBuffer();
 };
 
 const getFullFolder = (folder: string): string => {
