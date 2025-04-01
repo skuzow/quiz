@@ -1,8 +1,12 @@
 import { v2 as cloudinary } from 'cloudinary';
 import type { UploadApiResponse } from 'cloudinary';
 
-const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } =
-  process.env;
+const {
+  CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_API_KEY,
+  CLOUDINARY_API_SECRET,
+  CLOUDINARY_BASE_FOLDER
+} = process.env;
 
 cloudinary.config({
   cloud_name: CLOUDINARY_CLOUD_NAME,
@@ -16,6 +20,8 @@ const upload = async (
   folder: string
 ) => {
   return new Promise<UploadApiResponse>((resolve, reject) => {
+    folder = getFullFolder(folder);
+
     cloudinary.uploader
       .upload_stream(
         {
@@ -34,6 +40,8 @@ const upload = async (
 };
 
 const remove = async (name: string, folder: string) => {
+  folder = getFullFolder(folder);
+
   return new Promise<{ result: string }>((resolve, reject) => {
     cloudinary.uploader.destroy(
       getPublicId(name, folder),
@@ -44,6 +52,10 @@ const remove = async (name: string, folder: string) => {
       }
     );
   });
+};
+
+const getFullFolder = (folder: string): string => {
+  return CLOUDINARY_BASE_FOLDER + '/' + folder;
 };
 
 const getPublicId = (name: string, folder: string): string => {
