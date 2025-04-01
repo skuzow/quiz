@@ -349,7 +349,7 @@
       "title": "✅ Contraseña restablecida con éxito",
       "description": "Ahora puedes iniciar sesión con tu nueva contraseña."
     },
-    "test": {
+    "tests": {
       "generate": "✅ Test generado con éxito",
       "create": "✅ Test creado con éxito",
       "edit": "✅ Test editado con éxito",

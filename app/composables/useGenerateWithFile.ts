@@ -129,7 +129,7 @@ export const useGenerateWithFile = () => {
         await navigateTo(localePath('/create'));
 
         toast({
-          title: $t('toast.test.generate'),
+          title: $t('toast.tests.generate'),
           description: testStore.createTest.title
         });
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

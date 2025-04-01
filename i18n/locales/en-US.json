@@ -349,7 +349,7 @@
       "title": "✅ Password reset successfully",
       "description": "You can now log in with your new password."
     },
-    "test": {
+    "tests": {
       "generate": "✅ Test generated successfully",
       "create": "✅ Test created successfully",
       "edit": "✅ Test edited successfully",

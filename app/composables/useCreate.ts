@@ -246,7 +246,7 @@ export const useCreate = (edit?: boolean) => {
       await navigateTo(localePath(`/tests/${test.id}`));
 
       toast({
-        title: edit ? $t('toast.test.edit') : $t('toast.test.create'),
+        title: edit ? $t('toast.tests.edit') : $t('toast.tests.create'),
         description: test.title
       });
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -279,7 +279,7 @@ export const useCreate = (edit?: boolean) => {
       await navigateTo(authUserURL.value);
 
       toast({
-        title: $t('toast.test.delete'),
+        title: $t('toast.tests.delete'),
         description: testStore.editTest?.title
       });
 
