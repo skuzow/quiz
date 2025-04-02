@@ -1,9 +1,9 @@
 import {
-  COMMON_TOP_IMAGE_HEIGHT,
-  COMMON_TOP_IMAGE_WIDTH,
-  COMMON_IMAGE_SIZE_MAX_MB,
-  COMMON_IMAGE_SIZE_MAX
-} from '#shared/constants/common.constant';
+  IMAGE_COMMON_TOP_HEIGHT,
+  IMAGE_COMMON_TOP_WIDTH,
+  IMAGE_SIZE_MAX_MB,
+  IMAGE_SIZE_MAX
+} from '#shared/constants/image.constant';
 
 export default defineEventHandler(async (event) => {
   const authSession = await repository.auth.getSession(event.headers);
@@ -68,12 +68,12 @@ export default defineEventHandler(async (event) => {
     );
   }
 
-  if (imageMultipartData.data.byteLength > COMMON_IMAGE_SIZE_MAX) {
+  if (imageMultipartData.data.byteLength > IMAGE_SIZE_MAX) {
     return sendError(
       event,
       createError({
         statusCode: 400,
-        statusMessage: `Image file size exceeds the maximum size of ${COMMON_IMAGE_SIZE_MAX_MB} MB`
+        statusMessage: `Image file size exceeds the maximum size of ${IMAGE_SIZE_MAX_MB} MB`
       })
     );
   }
@@ -81,8 +81,8 @@ export default defineEventHandler(async (event) => {
   try {
     const uploadedImage = await image.upload(
       imageMultipartData.data,
-      COMMON_TOP_IMAGE_HEIGHT,
-      COMMON_TOP_IMAGE_WIDTH,
+      IMAGE_COMMON_TOP_HEIGHT,
+      IMAGE_COMMON_TOP_WIDTH,
       prevTest.id,
       'tests'
     );

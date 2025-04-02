@@ -8,9 +8,9 @@ import { useToast } from '@/components/ui/toast/use-toast';
 
 import { FormInput } from '@/constants/form.constant';
 import {
-  COMMON_IMAGE_SIZE_MAX_MB,
-  COMMON_IMAGE_SIZE_MAX
-} from '#shared/constants/common.constant';
+  IMAGE_SIZE_MAX_MB,
+  IMAGE_SIZE_MAX
+} from '#shared/constants/image.constant';
 import { USER_NAME_MIN, USER_NAME_MAX } from '#shared/constants/user.constant';
 
 export const useAuthUpdateProfile = () => {
@@ -95,9 +95,9 @@ export const useAuthUpdateProfile = () => {
 
     const file: File = input.files[0]!;
 
-    if (file.size > COMMON_IMAGE_SIZE_MAX) {
+    if (file.size > IMAGE_SIZE_MAX) {
       return toast({
-        title: `${$t('form.image.size')} ${COMMON_IMAGE_SIZE_MAX_MB} MB`,
+        title: `${$t('form.image.size')} ${IMAGE_SIZE_MAX_MB} MB`,
         variant: 'destructive'
       });
     }

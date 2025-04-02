@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import {
-  COMMON_TOP_IMAGE_HEIGHT,
-  COMMON_TOP_IMAGE_WIDTH
-} from '#shared/constants/common.constant';
+  IMAGE_COMMON_TOP_HEIGHT,
+  IMAGE_COMMON_TOP_WIDTH
+} from '#shared/constants/image.constant';
 
 interface Props {
   src: string;
@@ -16,11 +16,11 @@ const { src, alt } = defineProps<Props>();
   <div class="relative w-full">
     <CommonPicture
       :src="src"
-      :height="COMMON_TOP_IMAGE_HEIGHT"
-      :width="COMMON_TOP_IMAGE_WIDTH"
+      :height="IMAGE_COMMON_TOP_HEIGHT"
+      :width="IMAGE_COMMON_TOP_WIDTH"
       loading="lazy"
       :alt="alt"
-      :class="`h-[${COMMON_TOP_IMAGE_HEIGHT}px] w-full rounded-md object-cover`"
+      :class="`h-[${IMAGE_COMMON_TOP_HEIGHT}px] w-full rounded-md object-cover`"
     />
 
     <slot />
