@@ -2,14 +2,21 @@ import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
+import type { NuxtError } from '#app';
+
 import { useToast } from '@/components/ui/toast/use-toast';
 
 import { FormInput } from '@/constants/form.constant';
+import {
+  IMAGE_SIZE_MAX_MB,
+  IMAGE_SIZE_MAX
+} from '#shared/constants/image.constant';
 import { USER_NAME_MIN, USER_NAME_MAX } from '#shared/constants/user.constant';
 
 export const useAuthUpdateProfile = () => {
   const emit = getCurrentInstance()!.emit;
 
+  const { $api } = useNuxtApp();
   const { t: $t } = useI18n();
 
   const { authUser, updateAuthUser } = useAuth();
@@ -20,6 +27,10 @@ export const useAuthUpdateProfile = () => {
 
   const isLoadingUpdateProfile: Ref<boolean> = ref(false);
   const errorMessageUpdateProfile: Ref<string | undefined> = ref(undefined);
+
+  const imageInput = useTemplateRef<HTMLInputElement>('user-image-input');
+
+  const isLoadingUpdateImage: Ref<boolean> = ref(false);
 
   const UpdateProfileSchema = z.object({
     name: z
@@ -75,6 +86,50 @@ export const useAuthUpdateProfile = () => {
     }
   };
 
+  const clickImageInput = () => imageInput.value?.click();
+
+  const updateImage = async (event: Event) => {
+    const input = event.target as HTMLInputElement;
+
+    if (!input.files?.length) return;
+
+    const file: File = input.files[0]!;
+
+    if (file.size > IMAGE_SIZE_MAX) {
+      return toast({
+        title: `${$t('form.image.size')} ${IMAGE_SIZE_MAX_MB} MB`,
+        variant: 'destructive'
+      });
+    }
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    isLoadingUpdateImage.value = true;
+
+    try {
+      const response = await $api.user.updateImage(
+        authUser.value!.id,
+        formData
+      );
+
+      authUser.value!.image = response.body.image;
+
+      toast({ title: $t('toast.auth.settings.profile.image.title') });
+    } catch (error) {
+      toast({
+        title: $t('toast.auth.settings.profile.image.error'),
+        description: (error as NuxtError).statusMessage,
+        variant: 'destructive'
+      });
+    } finally {
+      isLoadingUpdateImage.value = false;
+      input.value = '';
+
+      closeUpdateProfile();
+    }
+  };
+
   const closeUpdateProfile = () => {
     emit('close-update-profile');
 
@@ -84,10 +139,13 @@ export const useAuthUpdateProfile = () => {
   return {
     isLoadingUpdateProfile,
     errorMessageUpdateProfile,
+    isLoadingUpdateImage,
     UpdateProfileSchema,
     updateProfileForm,
     fieldConfig,
     updateProfile,
+    clickImageInput,
+    updateImage,
     closeUpdateProfile
   };
 };

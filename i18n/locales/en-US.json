@@ -109,6 +109,10 @@
       "all": "All Types",
       "single": "Single",
       "multiple": "Multiple"
+    },
+    "image": {
+      "size": "Image file size exceeds the maximum size of",
+      "button": "Update image"
     }
   },
   "auth": {
@@ -301,7 +305,13 @@
     "auth": {
       "error": "Error signing up with",
       "settings": {
-        "profile": "✅ Profile updated successfully",
+        "profile": {
+          "title": "✅ Profile updated successfully",
+          "image": {
+            "error": "Error updating image",
+            "title": "✅ Image updated successfully"
+          }
+        },
         "username": "✅ Username updated successfully",
         "email": {
           "update": {
@@ -349,11 +359,19 @@
       "title": "✅ Password reset successfully",
       "description": "You can now log in with your new password."
     },
-    "test": {
+    "tests": {
       "generate": "✅ Test generated successfully",
       "create": "✅ Test created successfully",
       "edit": "✅ Test edited successfully",
       "delete": "✅ Test deleted successfully"
+    },
+    "users": {
+      "profile": {
+        "image": {
+          "error": "Error updating profile image",
+          "title": "✅ Profile image updated successfully"
+        }
+      }
     }
   },
   "error": {

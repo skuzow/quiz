@@ -15,6 +15,7 @@ const {
   isLoadingCreate,
   internalServerErrorCreate,
   isLoadingDelete,
+  image,
   initialIncorrectOptionValue,
   initialSingleQuestionValue,
   errorBag,
@@ -24,7 +25,9 @@ const {
   questionPath,
   optionPath,
   createTest,
-  deleteTest
+  deleteTest,
+  clickImageInput,
+  updateImageInput
 } = useCreate(edit);
 
 const { exampleMessage } = useFormMessage();
@@ -32,7 +35,15 @@ const { exampleMessage } = useFormMessage();
 
 <template>
   <form class="flex flex-col gap-y-6" @submit="createTest">
-    <CommonTopImage src="/images/test.avif" alt="Test image">
+    <CommonTopImage :src="image" alt="Test image">
+      <input
+        ref="test-image-input"
+        type="file"
+        accept="image/*"
+        class="hidden"
+        @change="updateImageInput"
+      />
+
       <NuxtLink
         :to="authUserURL"
         :title="$t('nav.header.user.profile')"
@@ -60,7 +71,10 @@ const { exampleMessage } = useFormMessage();
         </span>
       </Button>
 
-      <Button class="absolute bottom-2 right-2 gap-x-1" @click.prevent="">
+      <Button
+        class="absolute bottom-2 right-2 gap-x-1"
+        @click.prevent="clickImageInput"
+      >
         <ImageUpIcon :size="16" />
         {{ $t('create.form.uploadImage') }}
       </Button>

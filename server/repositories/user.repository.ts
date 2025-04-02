@@ -26,6 +26,29 @@ class UserRepository {
     return this.transformUser(user);
   }
 
+  async updateImage(id: string, image: string): Promise<string | null> {
+    const user = await this.userModel.update({
+      where: { id },
+      data: { image },
+      select: { image: true }
+    });
+
+    return user.image;
+  }
+
+  async updateProfileImage(
+    id: string,
+    profileImage: string
+  ): Promise<string | null> {
+    const user = await this.userModel.update({
+      where: { id },
+      data: { profileImage },
+      select: { profileImage: true }
+    });
+
+    return user.profileImage;
+  }
+
   private transformUser(user: any): User {
     return {
       ...user,

@@ -6,6 +6,10 @@ import { useToast } from '@/components/ui/toast/use-toast';
 
 import { FormInput } from '@/constants/form.constant';
 import {
+  IMAGE_SIZE_MAX_MB,
+  IMAGE_SIZE_MAX
+} from '#shared/constants/image.constant';
+import {
   TestCategory,
   TestQuestionType,
   TEST_CREATION_TITLE_MIN,
@@ -41,6 +45,18 @@ export const useCreate = (edit?: boolean) => {
   const internalServerErrorCreate: Ref<boolean> = ref(false);
 
   const isLoadingDelete: Ref<boolean> = ref(false);
+
+  const imageInput = useTemplateRef<HTMLInputElement>('test-image-input');
+
+  const imageFile: Ref<File | undefined> = ref(undefined);
+
+  const image: ComputedRef<string> = computed(() => {
+    if (imageFile.value) return URL.createObjectURL(imageFile.value);
+
+    return edit && testStore.editTest?.image
+      ? testStore.editTest.image
+      : '/images/test.avif';
+  });
 
   const CreateQuestionOptionSchema = z.object({
     text: z
@@ -243,10 +259,12 @@ export const useCreate = (edit?: boolean) => {
 
       const test: UserTest = result.body.test;
 
+      await updateImage(test.id);
+
       await navigateTo(localePath(`/tests/${test.id}`));
 
       toast({
-        title: edit ? $t('toast.test.edit') : $t('toast.test.create'),
+        title: edit ? $t('toast.tests.edit') : $t('toast.tests.create'),
         description: test.title
       });
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -279,7 +297,7 @@ export const useCreate = (edit?: boolean) => {
       await navigateTo(authUserURL.value);
 
       toast({
-        title: $t('toast.test.delete'),
+        title: $t('toast.tests.delete'),
         description: testStore.editTest?.title
       });
 
@@ -287,10 +305,39 @@ export const useCreate = (edit?: boolean) => {
     }
   };
 
+  const updateImage = async (testId: string) => {
+    if (!imageFile.value) return;
+
+    const formData = new FormData();
+    formData.append('image', imageFile.value);
+
+    await $api.test.updateImage(testId, formData);
+  };
+
+  const clickImageInput = () => imageInput.value?.click();
+
+  const updateImageInput = async (event: Event) => {
+    const input = event.target as HTMLInputElement;
+
+    if (!input.files?.length) return;
+
+    const file: File = input.files[0]!;
+
+    if (file.size > IMAGE_SIZE_MAX) {
+      return toast({
+        title: `${$t('form.image.size')} ${IMAGE_SIZE_MAX_MB} MB`,
+        variant: 'destructive'
+      });
+    }
+
+    imageFile.value = file;
+  };
+
   return {
     isLoadingCreate,
     internalServerErrorCreate,
     isLoadingDelete,
+    image,
     initialIncorrectOptionValue,
     initialSingleQuestionValue,
     errorBag,
@@ -300,6 +347,8 @@ export const useCreate = (edit?: boolean) => {
     questionPath,
     optionPath,
     createTest,
-    deleteTest
+    deleteTest,
+    clickImageInput,
+    updateImageInput
   };
 };

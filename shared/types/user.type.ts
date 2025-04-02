@@ -12,6 +12,7 @@ export interface User {
   name: string;
   username: string | null;
   image: string | null;
+  profileImage: string | null;
   roles: UserRole[];
   createdAt: Date;
 }

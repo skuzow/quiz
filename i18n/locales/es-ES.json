@@ -109,6 +109,10 @@
       "all": "Todos los Tipos",
       "single": "Única",
       "multiple": "Múltiple"
+    },
+    "image": {
+      "size": "El tamaño del archivo de imagen supera el tamaño máximo de",
+      "button": "Actualizar imagen"
     }
   },
   "auth": {
@@ -301,7 +305,13 @@
     "auth": {
       "error": "Error al registrarse con",
       "settings": {
-        "profile": "✅ Perfil actualizado con éxito",
+        "profile": {
+          "title": "✅ Perfil actualizado con éxito",
+          "image": {
+            "error": "Error al actualizar la imagen",
+            "title": "✅ Imagen actualizada con éxito"
+          }
+        },
         "username": "✅ Nombre de usuario actualizado con éxito",
         "email": {
           "update": {
@@ -349,11 +359,19 @@
       "title": "✅ Contraseña restablecida con éxito",
       "description": "Ahora puedes iniciar sesión con tu nueva contraseña."
     },
-    "test": {
+    "tests": {
       "generate": "✅ Test generado con éxito",
       "create": "✅ Test creado con éxito",
       "edit": "✅ Test editado con éxito",
       "delete": "✅ Test eliminado con éxito"
+    },
+    "users": {
+      "profile": {
+        "image": {
+          "error": "Error al actualizar la imagen de perfil",
+          "title": "✅ Imagen de perfil actualizada con éxito"
+        }
+      }
     }
   },
   "error": {

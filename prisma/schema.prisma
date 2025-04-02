@@ -18,6 +18,7 @@ model User {
   image            String?
   emailVerified    Boolean  @default(false)
   twoFactorEnabled Boolean?
+  profileImage     String?
 
   accounts   Account[]
   sessions   Session[]

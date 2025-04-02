@@ -2,8 +2,8 @@
 interface Props {
   format?: string[];
   src: string;
-  height: string;
-  width: string;
+  height: number;
+  width: number;
   loading?: 'lazy' | 'eager';
   alt: string;
   class?: string;

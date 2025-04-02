@@ -13,11 +13,14 @@ const Routes = {
   },
   User: {
     FetchId: (id: string) => `${PREFIX.USER}/${id}`,
+    FetchIdImage: (id: string) => `${PREFIX.USER}/${id}/image`,
+    FetchIdProfileImage: (id: string) => `${PREFIX.USER}/${id}/profile-image`,
     FetchUsername: (username: string) => `${PREFIX.USER}/username/${username}`
   },
   Test: {
     Fetch: () => PREFIX.TEST,
     FetchId: (id: string) => `${PREFIX.TEST}/${id}`,
+    FetchIdImage: (id: string) => `${PREFIX.TEST}/${id}/image`,
     FetchUserId: (id: string) => `${PREFIX.TEST}/users/${id}`,
     FetchUserUsername: (username: string) =>
       `${PREFIX.TEST}/users/username/${username}`,

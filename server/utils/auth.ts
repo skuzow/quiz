@@ -1,13 +1,15 @@
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { username, twoFactor } from 'better-auth/plugins';
+import type { User } from '@prisma/client';
 
 import prisma from './prisma';
 
+import { ImageFolder } from '../constants/image.constant';
 import {
   USER_USERNAME_MIN,
   USER_USERNAME_MAX
-} from '#shared/constants/user.constant';
+} from '../../shared/constants/user.constant';
 
 const {
   GOOGLE_CLIENT_ID,
@@ -48,6 +50,13 @@ export const auth = betterAuth({
     }
   },
   user: {
+    additionalFields: {
+      profileImage: {
+        type: 'string',
+        required: false,
+        defaultValue: null
+      }
+    },
     changeEmail: {
       enabled: true,
       sendChangeEmailVerification: async (
@@ -61,6 +70,20 @@ export const auth = betterAuth({
       enabled: true,
       sendDeleteAccountVerification: async ({ user, url }, _request) => {
         await email.sendDeleteAccountVerification(user, url);
+      },
+      beforeDelete: async (user, _request) => {
+        if (user.image) await image.remove(user.id, ImageFolder.USER_IMAGE);
+
+        if ((user as User).profileImage)
+          await image.remove(user.id, ImageFolder.USER_PROFILE_IMAGE);
+
+        const tests = await repository.test.findAllIdById(user.id);
+
+        if (!tests) return;
+
+        tests.forEach(
+          async ({ id }) => await image.remove(id, ImageFolder.TEST)
+        );
       }
     }
   },

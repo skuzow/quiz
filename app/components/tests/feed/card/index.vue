@@ -23,9 +23,9 @@ const imageAlt: string = `image-${test.id}`;
   >
     <div class="relative border-b sm:w-1/4 sm:border-b-0 sm:border-r">
       <CommonPicture
-        src="/images/test.avif"
-        height="140"
-        width="605"
+        :src="test.image || '/images/test.avif'"
+        :height="140"
+        :width="605"
         loading="lazy"
         :alt="imageAlt"
         class="h-[110px] object-cover sm:h-[140px]"

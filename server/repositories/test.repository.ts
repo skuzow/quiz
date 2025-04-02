@@ -7,6 +7,7 @@ import {
   USER_TEST_PARTIAL_SELECT
 } from './queries/selects';
 
+import { ImageFolder } from '../constants/image.constant';
 import {
   TestOrder,
   TEST_SEARCH_PAGE_SIZE
@@ -121,6 +122,17 @@ class TestRepository {
     return this.transformUserTestsPartial(tests);
   }
 
+  async complete(id: string) {
+    await this.userTestModel.update({
+      where: { id },
+      data: {
+        completed: {
+          create: {}
+        }
+      }
+    });
+  }
+
   async create(
     authUserId: string,
     { published, title, description, categories, questions }: TestCreation
@@ -214,19 +226,31 @@ class TestRepository {
     return this.transformUserTest(test);
   }
 
-  async complete(id: string) {
-    await this.userTestModel.update({
+  async updateImage(id: string, image: string): Promise<string | null> {
+    const user = await this.userTestModel.update({
       where: { id },
-      data: {
-        completed: {
-          create: {}
-        }
-      }
+      data: { image },
+      select: { image: true }
     });
+
+    return user.image;
   }
 
   async delete(id: string) {
     await this.userTestModel.delete({ where: { id } });
+
+    await image.remove(id, ImageFolder.TEST);
+  }
+
+  async findAllIdById(id: string) {
+    const tests = await this.userTestModel.findMany({
+      where: { authorId: id },
+      select: { id: true }
+    });
+
+    if (!tests || tests.length === 0) return null;
+
+    return tests;
   }
 
   private visibleTests(authUserId?: string) {

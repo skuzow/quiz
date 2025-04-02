@@ -18,18 +18,25 @@ class UserModule extends FetchFactory {
     });
   }
 
-  async update(id: string, dto: User) {
-    return this.call<{ user: User }>({
+  async updateImage(id: string, imageFormData: FormData) {
+    return this.call<{ image: string }>({
       method: 'PUT',
-      url: this.ROUTE.FetchId(id),
-      body: dto
+      url: this.ROUTE.FetchIdImage(id),
+      body: imageFormData,
+      fetchOptions: {
+        headers: {}
+      }
     });
   }
 
-  async delete(id: string) {
-    return this.call({
-      method: 'DELETE',
-      url: this.ROUTE.FetchId(id)
+  async updateProfileImage(id: string, imageFormData: FormData) {
+    return this.call<{ profileImage: string }>({
+      method: 'PUT',
+      url: this.ROUTE.FetchIdProfileImage(id),
+      body: imageFormData,
+      fetchOptions: {
+        headers: {}
+      }
     });
   }
 }
