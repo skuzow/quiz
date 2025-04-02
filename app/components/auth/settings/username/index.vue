@@ -15,7 +15,9 @@ const isUpdateUsernameOpen: Ref<boolean> = ref(false);
       class="flex flex-col justify-between gap-y-2 pb-4 pl-2.5 sm:flex-row sm:items-center sm:gap-y-0"
     >
       <p>
-        {{ authUser?.username || $t('auth.settings.username.notDefined') }}
+        {{
+          authUser?.displayUsername || $t('auth.settings.username.notDefined')
+        }}
       </p>
 
       <div class="text-end">
