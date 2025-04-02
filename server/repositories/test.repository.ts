@@ -121,6 +121,17 @@ class TestRepository {
     return this.transformUserTestsPartial(tests);
   }
 
+  async complete(id: string) {
+    await this.userTestModel.update({
+      where: { id },
+      data: {
+        completed: {
+          create: {}
+        }
+      }
+    });
+  }
+
   async create(
     authUserId: string,
     { published, title, description, categories, questions }: TestCreation
@@ -222,17 +233,6 @@ class TestRepository {
     });
 
     return user.image;
-  }
-
-  async complete(id: string) {
-    await this.userTestModel.update({
-      where: { id },
-      data: {
-        completed: {
-          create: {}
-        }
-      }
-    });
   }
 
   async delete(id: string) {
