@@ -39,6 +39,14 @@ const tempRoles = ['User'];
       :src="profileImage"
       alt="User profile image"
     >
+      <input
+        ref="user-profile-image-input"
+        type="file"
+        accept="image/*"
+        class="hidden"
+        @change="updateProfileImage"
+      />
+
       <CommonAvatar
         size="lg"
         :height="96"
@@ -46,14 +54,6 @@ const tempRoles = ['User'];
         loading="lazy"
         :user="user"
         class="absolute bottom-2 left-2"
-      />
-
-      <input
-        ref="user-profile-image-input"
-        type="file"
-        accept="image/*"
-        class="hidden"
-        @change="updateProfileImage"
       />
 
       <div
