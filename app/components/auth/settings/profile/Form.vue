@@ -22,7 +22,7 @@ const {
 <template>
   <Card>
     <input
-      ref="image-input"
+      ref="user-image-input"
       type="file"
       accept="image/*"
       class="hidden"

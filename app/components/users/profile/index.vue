@@ -49,7 +49,7 @@ const tempRoles = ['User'];
       />
 
       <input
-        ref="profile-image-input"
+        ref="user-profile-image-input"
         type="file"
         accept="image/*"
         class="hidden"

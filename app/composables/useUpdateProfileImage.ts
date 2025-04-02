@@ -14,7 +14,7 @@ export const useUpdateProfileImage = (user: User) => {
   const { toast } = useToast();
 
   const profileImageInput = useTemplateRef<HTMLInputElement>(
-    'profile-image-input'
+    'user-profile-image-input'
   );
 
   const profileImage: Ref<string> = ref(

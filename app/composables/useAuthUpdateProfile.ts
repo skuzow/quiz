@@ -28,7 +28,7 @@ export const useAuthUpdateProfile = () => {
   const isLoadingUpdateProfile: Ref<boolean> = ref(false);
   const errorMessageUpdateProfile: Ref<string | undefined> = ref(undefined);
 
-  const profileImageInput = useTemplateRef<HTMLInputElement>('image-input');
+  const imageInput = useTemplateRef<HTMLInputElement>('user-image-input');
 
   const isLoadingUpdateImage: Ref<boolean> = ref(false);
 
@@ -86,7 +86,7 @@ export const useAuthUpdateProfile = () => {
     }
   };
 
-  const clickImageInput = () => profileImageInput.value?.click();
+  const clickImageInput = () => imageInput.value?.click();
 
   const updateImage = async (event: Event) => {
     const input = event.target as HTMLInputElement;
