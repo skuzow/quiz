@@ -7,7 +7,7 @@ import prisma from './prisma';
 import {
   USER_USERNAME_MIN,
   USER_USERNAME_MAX
-} from '#shared/constants/user.constant';
+} from '../../shared/constants/user.constant';
 
 const {
   GOOGLE_CLIENT_ID,
@@ -48,6 +48,13 @@ export const auth = betterAuth({
     }
   },
   user: {
+    additionalFields: {
+      profileImage: {
+        type: 'string',
+        required: false,
+        defaultValue: null
+      }
+    },
     changeEmail: {
       enabled: true,
       sendChangeEmailVerification: async (
