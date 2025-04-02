@@ -17,11 +17,12 @@ cloudinary.config({
 
 const upload = async (
   imageBuffer: Buffer<ArrayBufferLike>,
+  height: number,
   width: number,
   name: string,
   folder: string
 ) => {
-  const optimizedImageBuffer = await optimize(imageBuffer, width);
+  const optimizedImageBuffer = await optimize(imageBuffer, height, width);
 
   folder = getFullFolder(folder);
 
@@ -60,9 +61,13 @@ const remove = async (name: string, folder: string) => {
 
 const optimize = async (
   imageBuffer: Buffer<ArrayBufferLike>,
+  height: number,
   width: number
 ): Promise<Buffer<ArrayBufferLike>> => {
-  return sharp(imageBuffer).resize(width).webp({ quality: 75 }).toBuffer();
+  return sharp(imageBuffer)
+    .resize(width * 2, height * 2)
+    .webp({ quality: 75 })
+    .toBuffer();
 };
 
 const getFullFolder = (folder: string): string => {
