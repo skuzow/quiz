@@ -33,8 +33,11 @@ const isOpen: Ref<boolean> = ref(false);
                 <div class="flex flex-col items-start justify-center">
                   <h3 class="text-left text-sm">{{ authUser?.name }}</h3>
 
-                  <p v-if="authUser?.username" class="text-xs font-medium">
-                    {{ `@${authUser.username}` }}
+                  <p
+                    v-if="authUser?.displayUsername"
+                    class="text-xs font-medium"
+                  >
+                    {{ `@${authUser.displayUsername}` }}
                   </p>
                 </div>
               </div>

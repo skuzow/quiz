@@ -9,8 +9,8 @@ const { user } = defineProps<Props>();
 
 const { t: $t } = useI18n();
 
-const title: string = user.username
-  ? `${user.username} (${user.name})`
+const title: string = user.displayUsername
+  ? `${user.displayUsername} (${user.name})`
   : user.name;
 
 seoMeta({
@@ -88,7 +88,9 @@ const tempRoles = ['User'];
 
           <span class="sr-only"> - </span>
 
-          <span v-if="user.username">{{ `@${user.username}` }}</span>
+          <span v-if="user.displayUsername">
+            {{ `@${user.displayUsername}` }}
+          </span>
         </h1>
 
         <ul class="flex gap-x-2">

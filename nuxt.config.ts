@@ -12,21 +12,7 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@pinia/nuxt',
     '@formkit/auto-animate/nuxt',
-    'shadcn-nuxt',
-
-    (_options, nuxt) => {
-      nuxt.hook('devtools:customTabs', (tabs) => {
-        tabs.push({
-          name: 'api-docs',
-          title: 'API Docs',
-          icon: 'lucide:telescope',
-          view: {
-            type: 'iframe',
-            src: '/_nitro/scalar'
-          }
-        });
-      });
-    }
+    'shadcn-nuxt'
   ],
 
   runtimeConfig: {
@@ -50,6 +36,9 @@ export default defineNuxtConfig({
     locales,
     experimental: {
       localeDetector: 'localeDetector.ts'
+    },
+    bundle: {
+      optimizeTranslationDirective: false
     }
   },
 
@@ -83,9 +72,6 @@ export default defineNuxtConfig({
   nitro: {
     imports: {
       dirs: ['./server/utils']
-    },
-    experimental: {
-      openAPI: true
     }
   },
   future: { compatibilityVersion: 4 },

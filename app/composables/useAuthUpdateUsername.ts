@@ -51,7 +51,7 @@ export const useAuthUpdateUsername = () => {
       label: $t('form.username'),
       inputProps: {
         type: 'text',
-        placeholder: authUser.value?.username || 'skuzow'
+        placeholder: authUser.value?.displayUsername || 'skuzow'
       }
     }
   };

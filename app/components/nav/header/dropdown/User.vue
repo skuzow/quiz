@@ -15,8 +15,8 @@ const { openAuthSettings } = useAuthSettings();
       <DropdownMenuLabel>
         <h3>{{ authUser?.name }}</h3>
 
-        <p v-if="authUser?.username" class="text-xs font-medium">
-          {{ `@${authUser.username}` }}
+        <p v-if="authUser?.displayUsername" class="text-xs font-medium">
+          {{ `@${authUser.displayUsername}` }}
         </p>
       </DropdownMenuLabel>
 
