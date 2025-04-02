@@ -100,7 +100,8 @@ export const useGenerateWithFile = () => {
         const response: boolean = await alert({
           title: $t('alert.overrideTest.title'),
           description: $t('alert.overrideTest.description'),
-          confirm: $t('continue')
+          confirm: $t('continue'),
+          danger: true
         });
 
         if (!response) return;
