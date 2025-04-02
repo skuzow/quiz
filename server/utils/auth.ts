@@ -1,6 +1,7 @@
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { username, twoFactor } from 'better-auth/plugins';
+import type { User } from '@prisma/client';
 
 import prisma from './prisma';
 
@@ -68,6 +69,18 @@ export const auth = betterAuth({
       enabled: true,
       sendDeleteAccountVerification: async ({ user, url }, _request) => {
         await email.sendDeleteAccountVerification(user, url);
+      },
+      beforeDelete: async (user, _request) => {
+        if (user.image) await image.remove(user.id, 'users');
+
+        if ((user as User).profileImage)
+          await image.remove(user.id, 'users/profile');
+
+        const tests = await repository.test.findAllIdById(user.id);
+
+        if (!tests) return;
+
+        tests.forEach(async ({ id }) => await image.remove(id, 'tests'));
       }
     }
   },
