@@ -15,40 +15,40 @@ importers:
         specifier: ^11.1.2
         version: 11.1.2
       '@libsql/client':
-        specifier: ^0.14.0
-        version: 0.14.0
+        specifier: ^0.15.2
+        version: 0.15.2
       '@nuxt/image':
-        specifier: 1.9.0
-        version: 1.9.0(db0@0.3.1(@libsql/client@0.14.0))(ioredis@5.6.0)(magicast@0.3.5)
+        specifier: 1.10.0
+        version: 1.10.0(db0@0.3.1(@libsql/client@0.15.2))(ioredis@5.6.0)(magicast@0.3.5)
       '@nuxtjs/color-mode':
         specifier: ^3.5.2
         version: 3.5.2(magicast@0.3.5)
       '@nuxtjs/i18n':
-        specifier: ^9.2.1
+        specifier: ^9.4.0
         version: 9.4.0(@vue/compiler-dom@3.5.13)(eslint@9.23.0(jiti@2.4.2))(magicast@0.3.5)(rollup@4.39.0)(vue@3.5.13(typescript@5.8.2))
       '@nuxtjs/robots':
-        specifier: ^5.2.4
+        specifier: ^5.2.8
         version: 5.2.8(magicast@0.3.5)(vue@3.5.13(typescript@5.8.2))
       '@nuxtjs/sitemap':
-        specifier: ^7.2.6
+        specifier: ^7.2.9
         version: 7.2.9(h3@1.15.1)(magicast@0.3.5)(vite@6.2.4(@types/node@22.14.0)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))(vue@3.5.13(typescript@5.8.2))
       '@pinia/nuxt':
         specifier: ^0.10.1
         version: 0.10.1(magicast@0.3.5)(pinia@3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2)))
       '@prisma/adapter-libsql':
-        specifier: ^6.4.1
-        version: 6.5.0(@libsql/client@0.14.0)
+        specifier: ^6.5.0
+        version: 6.5.0(@libsql/client@0.15.2)
       '@prisma/client':
-        specifier: ^6.4.1
+        specifier: ^6.5.0
         version: 6.5.0(prisma@6.5.0(typescript@5.8.2))(typescript@5.8.2)
       '@vee-validate/zod':
         specifier: ^4.15.0
         version: 4.15.0(vue@3.5.13(typescript@5.8.2))(zod@3.24.2)
       '@vueuse/core':
-        specifier: ^12.7.0
-        version: 12.8.2(typescript@5.8.2)
+        specifier: ^13.0.0
+        version: 13.0.0(vue@3.5.13(typescript@5.8.2))
       better-auth:
-        specifier: ^1.1.21
+        specifier: ^1.2.5
         version: 1.2.5(typescript@5.8.2)
       class-variance-authority:
         specifier: ^0.7.1
@@ -60,25 +60,25 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1
       lucide-vue-next:
-        specifier: ^0.476.0
-        version: 0.476.0(vue@3.5.13(typescript@5.8.2))
+        specifier: ^0.487.0
+        version: 0.487.0(vue@3.5.13(typescript@5.8.2))
       mammoth:
         specifier: ^1.9.0
         version: 1.9.0
       nuxt:
         specifier: ^3.16.2
-        version: 3.16.2(@libsql/client@0.14.0)(@parcel/watcher@2.5.1)(@types/node@22.14.0)(db0@0.3.1(@libsql/client@0.14.0))(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(tsx@4.19.3)(typescript@5.8.2)(vite@6.2.4(@types/node@22.14.0)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))(yaml@2.7.1)
+        version: 3.16.2(@libsql/client@0.15.2)(@parcel/watcher@2.5.1)(@types/node@22.14.0)(db0@0.3.1(@libsql/client@0.15.2))(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(tsx@4.19.3)(typescript@5.8.2)(vite@6.2.4(@types/node@22.14.0)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))(yaml@2.7.1)
       pdfjs-dist:
-        specifier: ^4.10.38
-        version: 4.10.38
+        specifier: ^5.1.91
+        version: 5.1.91
       pinia:
         specifier: ^3.0.1
         version: 3.0.1(typescript@5.8.2)(vue@3.5.13(typescript@5.8.2))
       radix-vue:
-        specifier: ^1.9.16
+        specifier: ^1.9.17
         version: 1.9.17(vue@3.5.13(typescript@5.8.2))
       resend:
-        specifier: ^4.1.2
+        specifier: ^4.2.0
         version: 4.2.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       shadcn-nuxt:
         specifier: ^0.11.4
@@ -106,31 +106,31 @@ importers:
         version: 3.24.2
     devDependencies:
       '@nuxt/eslint':
-        specifier: ^1.1.0
+        specifier: ^1.3.0
         version: 1.3.0(@vue/compiler-sfc@3.5.13)(eslint@9.23.0(jiti@2.4.2))(magicast@0.3.5)(typescript@5.8.2)(vite@6.2.4(@types/node@22.14.0)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))
       '@nuxtjs/tailwindcss':
-        specifier: ^6.13.1
+        specifier: ^6.13.2
         version: 6.13.2(magicast@0.3.5)
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@3.4.17)
       eslint:
-        specifier: ^9.21.0
+        specifier: ^9.23.0
         version: 9.23.0(jiti@2.4.2)
       eslint-config-prettier:
-        specifier: ^10.0.2
+        specifier: ^10.1.1
         version: 10.1.1(eslint@9.23.0(jiti@2.4.2))
       eslint-plugin-prettier:
-        specifier: ^5.2.3
+        specifier: ^5.2.6
         version: 5.2.6(eslint-config-prettier@10.1.1(eslint@9.23.0(jiti@2.4.2)))(eslint@9.23.0(jiti@2.4.2))(prettier@3.5.3)
       prettier:
-        specifier: ^3.5.2
+        specifier: ^3.5.3
         version: 3.5.3
       prettier-plugin-tailwindcss:
         specifier: ^0.6.11
         version: 0.6.11(prettier@3.5.3)
       prisma:
-        specifier: ^6.4.1
+        specifier: ^6.5.0
         version: 6.5.0(typescript@5.8.2)
       tailwindcss:
         specifier: ^3.4.17
@@ -142,7 +142,7 @@ importers:
         specifier: ^4.19.3
         version: 4.19.3
       typescript:
-        specifier: ^5.7.3
+        specifier: ^5.8.2
         version: 5.8.2
 
 packages:
@@ -799,19 +799,19 @@ packages:
   '@levischuck/tiny-cbor@0.2.11':
     resolution: {integrity: sha512-llBRm4dT4Z89aRsm6u2oEZ8tfwL/2l6BwpZ7JcyieouniDECM5AqNgr/y08zalEIvW3RSK4upYyybDcmjXqAow==}
 
-  '@libsql/client@0.14.0':
-    resolution: {integrity: sha512-/9HEKfn6fwXB5aTEEoMeFh4CtG0ZzbncBb1e++OCdVpgKZ/xyMsIVYXm0w7Pv4RUel803vE6LwniB3PqD72R0Q==}
+  '@libsql/client@0.15.2':
+    resolution: {integrity: sha512-D0No4jqDj5I+buvEyFajBugohzJXCBt9aRHCEXGrJS/9obnAO2z18Os3xgyPsWX0Yw4NQfSYaayRdowqkssmXA==}
 
-  '@libsql/core@0.14.0':
-    resolution: {integrity: sha512-nhbuXf7GP3PSZgdCY2Ecj8vz187ptHlZQ0VRc751oB2C1W8jQUXKKklvt7t1LJiUTQBVJuadF628eUk+3cRi4Q==}
+  '@libsql/core@0.15.2':
+    resolution: {integrity: sha512-+UIN0OlzWa54MqnHbtaJ3FEJj6k2VrwrjX1sSSxzYlM+dWuadjMwOVp7gHpSYJGKWw0RQWLGge4fbW4TCvIm3A==}
 
-  '@libsql/darwin-arm64@0.4.7':
-    resolution: {integrity: sha512-yOL742IfWUlUevnI5PdnIT4fryY3LYTdLm56bnY0wXBw7dhFcnjuA7jrH3oSVz2mjZTHujxoITgAE7V6Z+eAbg==}
+  '@libsql/darwin-arm64@0.5.4':
+    resolution: {integrity: sha512-4PnRdklaQg27vAZxtQgKl+xBHimCH2KRgKId+h63gkAtz5yFTMmX+Q4Ez804T1BgrZuB5ujIvueEEuust2ceSQ==}
     cpu: [arm64]
     os: [darwin]
 
-  '@libsql/darwin-x64@0.4.7':
-    resolution: {integrity: sha512-ezc7V75+eoyyH07BO9tIyJdqXXcRfZMbKcLCeF8+qWK5nP8wWuMcfOVywecsXGRbT99zc5eNra4NEx6z5PkSsA==}
+  '@libsql/darwin-x64@0.5.4':
+    resolution: {integrity: sha512-r+Z3UXQWxluXKA5cPj5KciNsmSXVTnq9/tmDczngJrogyXwdbbSShYkzov5M+YBlUCKv2VCbNnfxxoIqQnV9Gg==}
     cpu: [x64]
     os: [darwin]
 
@@ -825,28 +825,28 @@ packages:
   '@libsql/isomorphic-ws@0.1.5':
     resolution: {integrity: sha512-DtLWIH29onUYR00i0GlQ3UdcTRC6EP4u9w/h9LxpUZJWRMARk6dQwZ6Jkd+QdwVpuAOrdxt18v0K2uIYR3fwFg==}
 
-  '@libsql/linux-arm64-gnu@0.4.7':
-    resolution: {integrity: sha512-WlX2VYB5diM4kFfNaYcyhw5y+UJAI3xcMkEUJZPtRDEIu85SsSFrQ+gvoKfcVh76B//ztSeEX2wl9yrjF7BBCA==}
+  '@libsql/linux-arm64-gnu@0.5.4':
+    resolution: {integrity: sha512-QmGXa3TGM6URe7vCOqdvr4Koay+4h5D6y4gdhnPCvXNYrRHgpq5OwEafP9GFalbO32Y1ppLY4enO2LwY0k63Qw==}
     cpu: [arm64]
     os: [linux]
 
-  '@libsql/linux-arm64-musl@0.4.7':
-    resolution: {integrity: sha512-6kK9xAArVRlTCpWeqnNMCoXW1pe7WITI378n4NpvU5EJ0Ok3aNTIC2nRPRjhro90QcnmLL1jPcrVwO4WD1U0xw==}
+  '@libsql/linux-arm64-musl@0.5.4':
+    resolution: {integrity: sha512-cx4/7/xUjgNbiRsghRHujSvIqaTNFQC7Oo1gkGXGsh8hBwkdXr1QdOpeitq745sl6OlbInRrW2C7B2juxX3hcQ==}
     cpu: [arm64]
     os: [linux]
 
-  '@libsql/linux-x64-gnu@0.4.7':
-    resolution: {integrity: sha512-CMnNRCmlWQqqzlTw6NeaZXzLWI8bydaXDke63JTUCvu8R+fj/ENsLrVBtPDlxQ0wGsYdXGlrUCH8Qi9gJep0yQ==}
+  '@libsql/linux-x64-gnu@0.5.4':
+    resolution: {integrity: sha512-oPrE9Zyqd7fElS9uCGW2jn55cautD+gDIflfyF5+W/QYzll5OJ2vyMBZOBgdNopuZHrmHYihbespJn3t0WJDJg==}
     cpu: [x64]
     os: [linux]
 
-  '@libsql/linux-x64-musl@0.4.7':
-    resolution: {integrity: sha512-nI6tpS1t6WzGAt1Kx1n1HsvtBbZ+jHn0m7ogNNT6pQHZQj7AFFTIMeDQw/i/Nt5H38np1GVRNsFe99eSIMs9XA==}
+  '@libsql/linux-x64-musl@0.5.4':
+    resolution: {integrity: sha512-XzyVdVe43MexkAaHzUvsi4tpPhfSDn3UndIYFrIu0lYkkiz4oKjTK7Iq96j2bcOeJv0pBGxiv+8Z9I6yp/aI2A==}
     cpu: [x64]
     os: [linux]
 
-  '@libsql/win32-x64-msvc@0.4.7':
-    resolution: {integrity: sha512-7pJzOWzPm6oJUxml+PCDRzYQ4A1hTMHAciTAHfFK4fkbDZX33nWPVG7Y3vqdKtslcwAzwmrNDc6sXy2nwWnbiw==}
+  '@libsql/win32-x64-msvc@0.5.4':
+    resolution: {integrity: sha512-xWQyAQEsX+odBrMSXTpm3WOFeoJIX7QncCkaZcsaqdEFueOdNDIdcKAQKMoNlwtj1rCxE72RK4byw/Bflf6Jgg==}
     cpu: [x64]
     os: [win32]
 
@@ -1018,9 +1018,9 @@ packages:
       vite-plugin-eslint2:
         optional: true
 
-  '@nuxt/image@1.9.0':
-    resolution: {integrity: sha512-kuuePx/jtlmsuG/G8mTMELntw4p8MLD4tu9f4A064xor/ks29oEoBmFRzvfFwxqZ7cqfG2M4LZfTZFjQz5St+Q==}
-    engines: {node: '>=18.20.5'}
+  '@nuxt/image@1.10.0':
+    resolution: {integrity: sha512-/B58GeEmme7bkmQUrXzEw8P9sJb9BkMaYZqLDtq8ZdDLEddE3P4nVya8RQPB+p4b7EdqWajpPqdy1A2ZPLev/A==}
+    engines: {node: '>=18.20.6'}
 
   '@nuxt/kit@3.16.2':
     resolution: {integrity: sha512-K1SAUo2vweTfudKZzjKsZ5YJoxPLTspR5qz5+G61xtZreLpsdpDYfBseqsIAl5VFLJuszeRpWQ01jP9LfQ6Ksw==}
@@ -1859,20 +1859,24 @@ packages:
   '@vueuse/core@10.11.1':
     resolution: {integrity: sha512-guoy26JQktXPcz+0n3GukWIy/JDNKti9v6VEMu6kV2sYBsWuGiTU8OWdg+ADfUbHg3/3DlqySDe7JmdHrktiww==}
 
-  '@vueuse/core@12.8.2':
-    resolution: {integrity: sha512-HbvCmZdzAu3VGi/pWYm5Ut+Kd9mn1ZHnn4L5G8kOQTPs/IwIAmJoBrmYk2ckLArgMXZj0AW3n5CAejLUO+PhdQ==}
+  '@vueuse/core@13.0.0':
+    resolution: {integrity: sha512-rkgb4a8/0b234lMGCT29WkCjPfsX0oxrIRR7FDndRoW3FsaC9NBzefXg/9TLhAgwM11f49XnutshM4LzJBrQ5g==}
+    peerDependencies:
+      vue: ^3.5.0
 
   '@vueuse/metadata@10.11.1':
     resolution: {integrity: sha512-IGa5FXd003Ug1qAZmyE8wF3sJ81xGLSqTqtQ6jaVfkeZ4i5kS2mwQF61yhVqojRnenVew5PldLyRgvdl4YYuSw==}
 
-  '@vueuse/metadata@12.8.2':
-    resolution: {integrity: sha512-rAyLGEuoBJ/Il5AmFHiziCPdQzRt88VxR+Y/A/QhJ1EWtWqPBBAxTAFaSkviwEuOEZNtW8pvkPgoCZQ+HxqW1A==}
+  '@vueuse/metadata@13.0.0':
+    resolution: {integrity: sha512-TRNksqmvtvqsuHf7bbgH9OSXEV2b6+M3BSN4LR5oxWKykOFT9gV78+C2/0++Pq9KCp9KQ1OQDPvGlWNQpOb2Mw==}
 
   '@vueuse/shared@10.11.1':
     resolution: {integrity: sha512-LHpC8711VFZlDaYUXEBbFBCQ7GS3dVU9mjOhhMhXP6txTV4EhYQg/KGnQuvt/sPAtoUKq7VVUnL6mVtFoL42sA==}
 
-  '@vueuse/shared@12.8.2':
-    resolution: {integrity: sha512-dznP38YzxZoNloI0qpEfpkms8knDtaoQ6Y/sfS0L7Yki4zh40LFHEhur0odJC6xTHG5dxWVPiUWBXn+wCG2s5w==}
+  '@vueuse/shared@13.0.0':
+    resolution: {integrity: sha512-9MiHhAPw+sqCF/RLo8V6HsjRqEdNEWVpDLm2WBRW2G/kSQjb8X901sozXpSCaeLG0f7TEfMrT4XNaA5m1ez7Dg==}
+    peerDependencies:
+      vue: ^3.5.0
 
   '@xmldom/xmldom@0.8.10':
     resolution: {integrity: sha512-2WALfTl4xo2SkGCYRt6rDTFfk9R1czmBvUQy12gK2KuRKIpWEhcbbzy8EZXtz/jkRqHX8bFEc6FC1HjX4TUWYw==}
@@ -3361,8 +3365,9 @@ packages:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
     engines: {node: '>= 0.8.0'}
 
-  libsql@0.4.7:
-    resolution: {integrity: sha512-T9eIRCs6b0J1SHKYIvD8+KCJMcWZ900iZyxdnSCdqxN12Z1ijzT+jY5nrk72Jw4B0HGzms2NgpryArlJqvc3Lw==}
+  libsql@0.5.4:
+    resolution: {integrity: sha512-GEFeWca4SDAQFxjHWJBE6GK52LEtSskiujbG3rqmmeTO9t4sfSBKIURNLLpKDDF7fb7jmTuuRkDAn9BZGITQNw==}
+    cpu: [x64, arm64, wasm32]
     os: [darwin, linux, win32]
 
   lie@3.3.0:
@@ -3428,8 +3433,8 @@ packages:
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
-  lucide-vue-next@0.476.0:
-    resolution: {integrity: sha512-deFzs+/sAcGAEzEKFK+5dPHWg5lUl4eYrRbtdpzNYVxoBLIoGLB5yvx9VwbplJRiGWhPduYr4ZmLqAYgy8UY5A==}
+  lucide-vue-next@0.487.0:
+    resolution: {integrity: sha512-ilVgu9EHkfId7WSjmoPkzp13cuzpSGO5J16AmltjRHFoj6MlCBGY8BzsBU/ISKVlDheUxM+MsIYjNo/1hSEa6w==}
     peerDependencies:
       vue: '>=3.0.1'
 
@@ -3712,9 +3717,6 @@ packages:
   ofetch@1.4.1:
     resolution: {integrity: sha512-QZj2DfGplQAr2oj9KzceK9Hwz6Whxazmn85yYeVuS3u9XTMOGMRx0kO95MQ+vLsj/S/NwBDMMLU5hpxvI6Tklw==}
 
-  ohash@1.1.6:
-    resolution: {integrity: sha512-TBu7PtV8YkAZn0tSxobKY2n2aAQva936lhRrj6957aDaCf9IEtqsKbgMzXE/F/sjqYOwmrukeORHNLe5glk7Cg==}
-
   ohash@2.0.11:
     resolution: {integrity: sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==}
 
@@ -3857,8 +3859,8 @@ packages:
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
-  pdfjs-dist@4.10.38:
-    resolution: {integrity: sha512-/Y3fcFrXEAsMjJXeL9J8+ZG9U01LbuWaYypvDW2ycW1jL269L3js3DVBjDJ0Up9Np1uqDXsDrRihHANhZOlwdQ==}
+  pdfjs-dist@5.1.91:
+    resolution: {integrity: sha512-qSIADdagooJB4wWCBnrBJjRvASevmxL0BwafvOuKJG5uTQdYoFBrhrRYnucKNiSc9qS6JIk0hC5y1yktFljXkA==}
     engines: {node: '>=20'}
 
   peberminta@0.9.0:
@@ -5917,25 +5919,25 @@ snapshots:
 
   '@levischuck/tiny-cbor@0.2.11': {}
 
-  '@libsql/client@0.14.0':
+  '@libsql/client@0.15.2':
     dependencies:
-      '@libsql/core': 0.14.0
+      '@libsql/core': 0.15.2
       '@libsql/hrana-client': 0.7.0
       js-base64: 3.7.7
-      libsql: 0.4.7
+      libsql: 0.5.4
       promise-limit: 2.7.0
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
 
-  '@libsql/core@0.14.0':
+  '@libsql/core@0.15.2':
     dependencies:
       js-base64: 3.7.7
 
-  '@libsql/darwin-arm64@0.4.7':
+  '@libsql/darwin-arm64@0.5.4':
     optional: true
 
-  '@libsql/darwin-x64@0.4.7':
+  '@libsql/darwin-x64@0.5.4':
     optional: true
 
   '@libsql/hrana-client@0.7.0':
@@ -5958,19 +5960,19 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@libsql/linux-arm64-gnu@0.4.7':
+  '@libsql/linux-arm64-gnu@0.5.4':
     optional: true
 
-  '@libsql/linux-arm64-musl@0.4.7':
+  '@libsql/linux-arm64-musl@0.5.4':
     optional: true
 
-  '@libsql/linux-x64-gnu@0.4.7':
+  '@libsql/linux-x64-gnu@0.5.4':
     optional: true
 
-  '@libsql/linux-x64-musl@0.4.7':
+  '@libsql/linux-x64-musl@0.5.4':
     optional: true
 
-  '@libsql/win32-x64-msvc@0.4.7':
+  '@libsql/win32-x64-msvc@0.5.4':
     optional: true
 
   '@mapbox/node-pre-gyp@2.0.0':
@@ -6234,19 +6236,20 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@nuxt/image@1.9.0(db0@0.3.1(@libsql/client@0.14.0))(ioredis@5.6.0)(magicast@0.3.5)':
+  '@nuxt/image@1.10.0(db0@0.3.1(@libsql/client@0.15.2))(ioredis@5.6.0)(magicast@0.3.5)':
     dependencies:
       '@nuxt/kit': 3.16.2(magicast@0.3.5)
       consola: 3.4.2
       defu: 6.1.4
       h3: 1.15.1
       image-meta: 0.2.1
-      ohash: 1.1.6
+      knitwork: 1.2.0
+      ohash: 2.0.11
       pathe: 2.0.3
       std-env: 3.8.1
       ufo: 1.5.4
     optionalDependencies:
-      ipx: 2.1.0(db0@0.3.1(@libsql/client@0.14.0))(ioredis@5.6.0)
+      ipx: 2.1.0(db0@0.3.1(@libsql/client@0.15.2))(ioredis@5.6.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -6688,9 +6691,9 @@ snapshots:
 
   '@poppinss/exception@1.2.1': {}
 
-  '@prisma/adapter-libsql@6.5.0(@libsql/client@0.14.0)':
+  '@prisma/adapter-libsql@6.5.0(@libsql/client@0.15.2)':
     dependencies:
-      '@libsql/client': 0.14.0
+      '@libsql/client': 0.15.2
       '@prisma/driver-adapter-utils': 6.5.0
       async-mutex: 0.5.0
 
@@ -7263,18 +7266,16 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@vueuse/core@12.8.2(typescript@5.8.2)':
+  '@vueuse/core@13.0.0(vue@3.5.13(typescript@5.8.2))':
     dependencies:
       '@types/web-bluetooth': 0.0.21
-      '@vueuse/metadata': 12.8.2
-      '@vueuse/shared': 12.8.2(typescript@5.8.2)
+      '@vueuse/metadata': 13.0.0
+      '@vueuse/shared': 13.0.0(vue@3.5.13(typescript@5.8.2))
       vue: 3.5.13(typescript@5.8.2)
-    transitivePeerDependencies:
-      - typescript
 
   '@vueuse/metadata@10.11.1': {}
 
-  '@vueuse/metadata@12.8.2': {}
+  '@vueuse/metadata@13.0.0': {}
 
   '@vueuse/shared@10.11.1(vue@3.5.13(typescript@5.8.2))':
     dependencies:
@@ -7283,11 +7284,9 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  '@vueuse/shared@12.8.2(typescript@5.8.2)':
+  '@vueuse/shared@13.0.0(vue@3.5.13(typescript@5.8.2))':
     dependencies:
       vue: 3.5.13(typescript@5.8.2)
-    transitivePeerDependencies:
-      - typescript
 
   '@xmldom/xmldom@0.8.10': {}
 
@@ -7822,9 +7821,9 @@ snapshots:
 
   data-uri-to-buffer@4.0.1: {}
 
-  db0@0.3.1(@libsql/client@0.14.0):
+  db0@0.3.1(@libsql/client@0.15.2):
     optionalDependencies:
-      '@libsql/client': 0.14.0
+      '@libsql/client': 0.15.2
 
   debug@2.6.9:
     dependencies:
@@ -8616,7 +8615,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ipx@2.1.0(db0@0.3.1(@libsql/client@0.14.0))(ioredis@5.6.0):
+  ipx@2.1.0(db0@0.3.1(@libsql/client@0.15.2))(ioredis@5.6.0):
     dependencies:
       '@fastify/accept-negotiator': 1.1.0
       citty: 0.1.6
@@ -8632,7 +8631,7 @@ snapshots:
       sharp: 0.32.6
       svgo: 3.3.2
       ufo: 1.5.4
-      unstorage: 1.15.0(db0@0.3.1(@libsql/client@0.14.0))(ioredis@5.6.0)
+      unstorage: 1.15.0(db0@0.3.1(@libsql/client@0.15.2))(ioredis@5.6.0)
       xss: 1.0.15
     transitivePeerDependencies:
       - '@azure/app-configuration'
@@ -8892,18 +8891,18 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  libsql@0.4.7:
+  libsql@0.5.4:
     dependencies:
       '@neon-rs/load': 0.0.4
       detect-libc: 2.0.2
     optionalDependencies:
-      '@libsql/darwin-arm64': 0.4.7
-      '@libsql/darwin-x64': 0.4.7
-      '@libsql/linux-arm64-gnu': 0.4.7
-      '@libsql/linux-arm64-musl': 0.4.7
-      '@libsql/linux-x64-gnu': 0.4.7
-      '@libsql/linux-x64-musl': 0.4.7
-      '@libsql/win32-x64-msvc': 0.4.7
+      '@libsql/darwin-arm64': 0.5.4
+      '@libsql/darwin-x64': 0.5.4
+      '@libsql/linux-arm64-gnu': 0.5.4
+      '@libsql/linux-arm64-musl': 0.5.4
+      '@libsql/linux-x64-gnu': 0.5.4
+      '@libsql/linux-x64-musl': 0.5.4
+      '@libsql/win32-x64-msvc': 0.5.4
 
   lie@3.3.0:
     dependencies:
@@ -8978,7 +8977,7 @@ snapshots:
     dependencies:
       yallist: 3.1.1
 
-  lucide-vue-next@0.476.0(vue@3.5.13(typescript@5.8.2)):
+  lucide-vue-next@0.487.0(vue@3.5.13(typescript@5.8.2)):
     dependencies:
       vue: 3.5.13(typescript@5.8.2)
 
@@ -9115,7 +9114,7 @@ snapshots:
 
   negotiator@0.6.3: {}
 
-  nitropack@2.11.8(@libsql/client@0.14.0):
+  nitropack@2.11.8(@libsql/client@0.15.2):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.4.0
       '@netlify/functions': 3.0.4
@@ -9137,7 +9136,7 @@ snapshots:
       cookie-es: 2.0.0
       croner: 9.0.0
       crossws: 0.3.4
-      db0: 0.3.1(@libsql/client@0.14.0)
+      db0: 0.3.1(@libsql/client@0.15.2)
       defu: 6.1.4
       destr: 2.0.3
       dot-prop: 9.0.0
@@ -9183,7 +9182,7 @@ snapshots:
       unenv: 2.0.0-rc.15
       unimport: 4.1.3
       unplugin-utils: 0.2.4
-      unstorage: 1.15.0(db0@0.3.1(@libsql/client@0.14.0))(ioredis@5.6.0)
+      unstorage: 1.15.0(db0@0.3.1(@libsql/client@0.15.2))(ioredis@5.6.0)
       untyped: 2.0.0
       unwasm: 0.3.9
       youch: 4.1.0-beta.6
@@ -9298,7 +9297,7 @@ snapshots:
       - magicast
       - vue
 
-  nuxt@3.16.2(@libsql/client@0.14.0)(@parcel/watcher@2.5.1)(@types/node@22.14.0)(db0@0.3.1(@libsql/client@0.14.0))(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(tsx@4.19.3)(typescript@5.8.2)(vite@6.2.4(@types/node@22.14.0)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))(yaml@2.7.1):
+  nuxt@3.16.2(@libsql/client@0.15.2)(@parcel/watcher@2.5.1)(@types/node@22.14.0)(db0@0.3.1(@libsql/client@0.15.2))(eslint@9.23.0(jiti@2.4.2))(ioredis@5.6.0)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.39.0)(terser@5.39.0)(tsx@4.19.3)(typescript@5.8.2)(vite@6.2.4(@types/node@22.14.0)(jiti@2.4.2)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))(yaml@2.7.1):
     dependencies:
       '@nuxt/cli': 3.24.0(magicast@0.3.5)
       '@nuxt/devalue': 2.0.2
@@ -9335,7 +9334,7 @@ snapshots:
       mlly: 1.7.4
       mocked-exports: 0.1.1
       nanotar: 0.2.0
-      nitropack: 2.11.8(@libsql/client@0.14.0)
+      nitropack: 2.11.8(@libsql/client@0.15.2)
       nypm: 0.6.0
       ofetch: 1.4.1
       ohash: 2.0.11
@@ -9357,7 +9356,7 @@ snapshots:
       unimport: 4.1.3
       unplugin: 2.2.2
       unplugin-vue-router: 0.12.0(vue-router@4.5.0(vue@3.5.13(typescript@5.8.2)))(vue@3.5.13(typescript@5.8.2))
-      unstorage: 1.15.0(db0@0.3.1(@libsql/client@0.14.0))(ioredis@5.6.0)
+      unstorage: 1.15.0(db0@0.3.1(@libsql/client@0.15.2))(ioredis@5.6.0)
       untyped: 2.0.0
       vue: 3.5.13(typescript@5.8.2)
       vue-bundle-renderer: 2.1.1
@@ -9436,8 +9435,6 @@ snapshots:
       destr: 2.0.3
       node-fetch-native: 1.6.6
       ufo: 1.5.4
-
-  ohash@1.1.6: {}
 
   ohash@2.0.11: {}
 
@@ -9598,7 +9595,7 @@ snapshots:
 
   pathe@2.0.3: {}
 
-  pdfjs-dist@4.10.38:
+  pdfjs-dist@5.1.91:
     optionalDependencies:
       '@napi-rs/canvas': 0.1.68
 
@@ -10718,7 +10715,7 @@ snapshots:
       '@unrs/resolver-binding-win32-ia32-msvc': 1.3.3
       '@unrs/resolver-binding-win32-x64-msvc': 1.3.3
 
-  unstorage@1.15.0(db0@0.3.1(@libsql/client@0.14.0))(ioredis@5.6.0):
+  unstorage@1.15.0(db0@0.3.1(@libsql/client@0.15.2))(ioredis@5.6.0):
     dependencies:
       anymatch: 3.1.3
       chokidar: 4.0.3
@@ -10729,7 +10726,7 @@ snapshots:
       ofetch: 1.4.1
       ufo: 1.5.4
     optionalDependencies:
-      db0: 0.3.1(@libsql/client@0.14.0)
+      db0: 0.3.1(@libsql/client@0.15.2)
       ioredis: 5.6.0
 
   untun@0.1.3:
