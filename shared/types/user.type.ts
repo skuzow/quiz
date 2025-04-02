@@ -11,6 +11,7 @@ export interface User {
   id: string;
   name: string;
   username: string | null;
+  displayUsername: string | null;
   image: string | null;
   profileImage: string | null;
   roles: UserRole[];

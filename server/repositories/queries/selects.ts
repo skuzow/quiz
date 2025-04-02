@@ -42,6 +42,7 @@ export const USER_TEST_COMPLETED_SELECT: Prisma.UserTestCompletedSelect = {
 
 export const USER_SELECT: Prisma.UserSelect = {
   ...USER_PARTIAL_SELECT,
+  displayUsername: true,
   profileImage: true,
   roles: {
     select: ROLE_SELECT
