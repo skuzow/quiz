@@ -241,6 +241,17 @@ class TestRepository {
     await image.remove(id, 'tests');
   }
 
+  async findAllIdById(id: string) {
+    const tests = await this.userTestModel.findMany({
+      where: { authorId: id },
+      select: { id: true }
+    });
+
+    if (!tests || tests.length === 0) return null;
+
+    return tests;
+  }
+
   private visibleTests(authUserId?: string) {
     return {
       OR: [{ published: { equals: true as const } }, { authorId: authUserId }]
