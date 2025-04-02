@@ -90,7 +90,11 @@ export const useGenerateWithFile = () => {
 
       requiredFileError.value = false;
 
-      if (!file.value) return (requiredFileError.value = true);
+      if (!file.value) {
+        requiredFileError.value = true;
+
+        return;
+      }
 
       if (testStore.createTest) {
         const response: boolean = await alert({
