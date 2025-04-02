@@ -25,7 +25,7 @@ const user: ComputedRef<User | undefined> = computed(
 
 <template>
   <div class="flex flex-col gap-y-8">
-    <UsersProfileSkeleton v-if="status === 'pending' && !data" />
+    <UsersProfileSkeleton v-if="status === 'pending' || !data" />
 
     <UsersProfile v-else-if="status === 'success' && user" :user="user" />
 

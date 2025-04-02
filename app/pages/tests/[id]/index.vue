@@ -22,7 +22,7 @@ const test: ComputedRef<UserTest | undefined> = computed(
 
 <template>
   <div>
-    <TestsMakeSkeleton v-if="status === 'pending' && !data" />
+    <TestsMakeSkeleton v-if="status === 'pending' || !data" />
 
     <TestsMake v-else-if="status === 'success' && test" :test="test" />
   </div>
