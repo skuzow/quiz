@@ -1,6 +1,6 @@
 import {
-  COMMON_TOP_IMAGE_HEIGHT,
-  COMMON_TOP_IMAGE_WIDTH,
+  COMMON_AVATAR_HEIGHT,
+  COMMON_AVATAR_WIDTH,
   COMMON_IMAGE_SIZE_MAX_MB,
   COMMON_IMAGE_SIZE_MAX
 } from '#shared/constants/common.constant';
@@ -78,20 +78,22 @@ export default defineEventHandler(async (event) => {
   try {
     const uploadedImage = await image.upload(
       imageMultipartData.data,
-      COMMON_TOP_IMAGE_HEIGHT,
-      COMMON_TOP_IMAGE_WIDTH,
+      COMMON_AVATAR_HEIGHT,
+      COMMON_AVATAR_WIDTH,
       prevUser.id,
-      'users/profile'
+      'users'
     );
 
-    const userProfileImage: string | null =
-      await repository.user.updateProfileImage(id, uploadedImage.secure_url);
+    const userImage: string | null = await repository.user.updateImage(
+      id,
+      uploadedImage.secure_url
+    );
 
     return {
       statusCode: 200,
-      statusMessage: 'User profile image edited successfully',
+      statusMessage: 'User image edited successfully',
       body: {
-        profileImage: userProfileImage
+        image: userImage
       }
     };
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -100,7 +102,7 @@ export default defineEventHandler(async (event) => {
       event,
       createError({
         statusCode: 500,
-        statusMessage: 'User profile image edit failed'
+        statusMessage: 'User image edit failed'
       })
     );
   }
