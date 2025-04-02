@@ -105,6 +105,7 @@
     "passwordsNotMatch": "Las contraseñas no coinciden.",
     "invalidEmailOrPassword": "Correo electrónico o contraseña no válidos.",
     "emailNotVerified": "Correo electrónico no verificado.",
+    "imageSize": "El tamaño del archivo de imagen supera el tamaño máximo de",
     "types": {
       "all": "Todos los Tipos",
       "single": "Única",
@@ -182,6 +183,13 @@
       "edit": "Editar",
       "correct": "Corregir",
       "retry": "Reintentar"
+    }
+  },
+  "users": {
+    "profile": {
+      "image": {
+        "button": "Actualizar imagen"
+      }
     }
   },
   "login": {
@@ -354,6 +362,14 @@
       "create": "✅ Test creado con éxito",
       "edit": "✅ Test editado con éxito",
       "delete": "✅ Test eliminado con éxito"
+    },
+    "users": {
+      "profile": {
+        "image": {
+          "error": "Error al actualizar la imagen de perfil",
+          "title": "✅ Imagen de perfil actualizada con éxito"
+        }
+      }
     }
   },
   "error": {

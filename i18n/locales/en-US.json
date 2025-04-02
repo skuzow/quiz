@@ -105,6 +105,7 @@
     "passwordsNotMatch": "Passwords do not match.",
     "invalidEmailOrPassword": "Invalid email or password.",
     "emailNotVerified": "Email not verified.",
+    "imageSize": "Image file size exceeds the maximum size of",
     "types": {
       "all": "All Types",
       "single": "Single",
@@ -182,6 +183,13 @@
       "edit": "Edit",
       "correct": "Correct",
       "retry": "Retry"
+    }
+  },
+  "users": {
+    "profile": {
+      "image": {
+        "button": "Update image"
+      }
     }
   },
   "login": {
@@ -354,6 +362,14 @@
       "create": "✅ Test created successfully",
       "edit": "✅ Test edited successfully",
       "delete": "✅ Test deleted successfully"
+    },
+    "users": {
+      "profile": {
+        "image": {
+          "error": "Error updating profile image",
+          "title": "✅ Profile image updated successfully"
+        }
+      }
     }
   },
   "error": {
