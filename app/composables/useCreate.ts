@@ -6,6 +6,10 @@ import { useToast } from '@/components/ui/toast/use-toast';
 
 import { FormInput } from '@/constants/form.constant';
 import {
+  COMMON_IMAGE_SIZE_MAX_MB,
+  COMMON_IMAGE_SIZE_MAX
+} from '#shared/constants/common.constant';
+import {
   TestCategory,
   TestQuestionType,
   TEST_CREATION_TITLE_MIN,
@@ -41,6 +45,18 @@ export const useCreate = (edit?: boolean) => {
   const internalServerErrorCreate: Ref<boolean> = ref(false);
 
   const isLoadingDelete: Ref<boolean> = ref(false);
+
+  const imageInput = useTemplateRef<HTMLInputElement>('test-image-input');
+
+  const imageFile: Ref<File | undefined> = ref(undefined);
+
+  const image: ComputedRef<string> = computed(() => {
+    if (imageFile.value) return URL.createObjectURL(imageFile.value);
+
+    return edit && testStore.editTest?.image
+      ? testStore.editTest.image
+      : '/images/test.avif';
+  });
 
   const CreateQuestionOptionSchema = z.object({
     text: z
@@ -243,6 +259,8 @@ export const useCreate = (edit?: boolean) => {
 
       const test: UserTest = result.body.test;
 
+      await updateImage(test.id);
+
       await navigateTo(localePath(`/tests/${test.id}`));
 
       toast({
@@ -287,10 +305,39 @@ export const useCreate = (edit?: boolean) => {
     }
   };
 
+  const updateImage = async (testId: string) => {
+    if (!imageFile.value) return;
+
+    const formData = new FormData();
+    formData.append('image', imageFile.value);
+
+    await $api.test.updateImage(testId, formData);
+  };
+
+  const clickImageInput = () => imageInput.value?.click();
+
+  const updateImageInput = async (event: Event) => {
+    const input = event.target as HTMLInputElement;
+
+    if (!input.files?.length) return;
+
+    const file: File = input.files[0]!;
+
+    if (file.size > COMMON_IMAGE_SIZE_MAX) {
+      return toast({
+        title: `${$t('form.image.size')} ${COMMON_IMAGE_SIZE_MAX_MB} MB`,
+        variant: 'destructive'
+      });
+    }
+
+    imageFile.value = file;
+  };
+
   return {
     isLoadingCreate,
     internalServerErrorCreate,
     isLoadingDelete,
+    image,
     initialIncorrectOptionValue,
     initialSingleQuestionValue,
     errorBag,
@@ -300,6 +347,8 @@ export const useCreate = (edit?: boolean) => {
     questionPath,
     optionPath,
     createTest,
-    deleteTest
+    deleteTest,
+    clickImageInput,
+    updateImageInput
   };
 };

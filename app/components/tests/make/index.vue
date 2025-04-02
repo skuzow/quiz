@@ -36,7 +36,7 @@ const editTest = async () => {
 <template>
   <div class="flex flex-col gap-y-8">
     <div class="flex flex-col gap-y-6">
-      <CommonTopImage src="/images/test.avif" alt="Test image">
+      <CommonTopImage :src="test.image || '/images/test.avif'" alt="Test image">
         <NuxtLinkLocale
           :to="`/users/${test.author.username || `id/${test.author.id}`}`"
           :title="`${$t('nav.header.user.profile')} ${test.author.name}`"
