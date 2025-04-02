@@ -67,7 +67,7 @@ const tempRoles = ['User'];
         >
           <IconLoader v-if="isLoadingUpdateProfileImage" />
           <ImageUpIcon v-else :size="16" />
-          {{ $t('users.profile.image.button') }}
+          {{ $t('form.image.button') }}
         </Button>
 
         <Button class="gap-x-2" @click="openAuthSettings">

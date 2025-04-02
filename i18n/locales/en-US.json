@@ -105,11 +105,14 @@
     "passwordsNotMatch": "Passwords do not match.",
     "invalidEmailOrPassword": "Invalid email or password.",
     "emailNotVerified": "Email not verified.",
-    "imageSize": "Image file size exceeds the maximum size of",
     "types": {
       "all": "All Types",
       "single": "Single",
       "multiple": "Multiple"
+    },
+    "image": {
+      "size": "Image file size exceeds the maximum size of",
+      "button": "Update image"
     }
   },
   "auth": {
@@ -183,13 +186,6 @@
       "edit": "Edit",
       "correct": "Correct",
       "retry": "Retry"
-    }
-  },
-  "users": {
-    "profile": {
-      "image": {
-        "button": "Update image"
-      }
     }
   },
   "login": {
@@ -309,7 +305,13 @@
     "auth": {
       "error": "Error signing up with",
       "settings": {
-        "profile": "✅ Profile updated successfully",
+        "profile": {
+          "title": "✅ Profile updated successfully",
+          "image": {
+            "error": "Error updating image",
+            "title": "✅ Image updated successfully"
+          }
+        },
         "username": "✅ Username updated successfully",
         "email": {
           "update": {

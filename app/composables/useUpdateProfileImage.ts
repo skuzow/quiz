@@ -8,8 +8,8 @@ import {
 } from '#shared/constants/common.constant';
 
 export const useUpdateProfileImage = (user: User) => {
-  const { t: $t } = useI18n();
   const { $api } = useNuxtApp();
+  const { t: $t } = useI18n();
 
   const { toast } = useToast();
 
@@ -34,7 +34,7 @@ export const useUpdateProfileImage = (user: User) => {
 
     if (file.size > COMMON_IMAGE_SIZE_MAX) {
       return toast({
-        title: `${$t('form.imageSize')} ${COMMON_IMAGE_SIZE_MAX_MB} MB`,
+        title: `${$t('form.image.size')} ${COMMON_IMAGE_SIZE_MAX_MB} MB`,
         variant: 'destructive'
       });
     }
