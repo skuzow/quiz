@@ -237,6 +237,8 @@ class TestRepository {
 
   async delete(id: string) {
     await this.userTestModel.delete({ where: { id } });
+
+    await image.remove(id, 'tests');
   }
 
   private visibleTests(authUserId?: string) {
