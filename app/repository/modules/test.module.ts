@@ -72,6 +72,17 @@ class TestModule extends FetchFactory {
     });
   }
 
+  async updateImage(id: string, imageFormData: FormData) {
+    return this.call<{ image: string }>({
+      method: 'PUT',
+      url: this.ROUTE.FetchIdImage(id),
+      body: imageFormData,
+      fetchOptions: {
+        headers: {}
+      }
+    });
+  }
+
   async delete(id: string) {
     return this.call({
       method: 'DELETE',
