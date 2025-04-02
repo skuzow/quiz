@@ -1,3 +1,4 @@
+import { ImageFolder } from '../../../constants/image.constant';
 import {
   IMAGE_COMMON_AVATAR_HEIGHT,
   IMAGE_COMMON_AVATAR_WIDTH,
@@ -81,7 +82,7 @@ export default defineEventHandler(async (event) => {
       IMAGE_COMMON_AVATAR_HEIGHT,
       IMAGE_COMMON_AVATAR_WIDTH,
       prevUser.id,
-      'users'
+      ImageFolder.USER_IMAGE
     );
 
     const userImage: string | null = await repository.user.updateImage(

@@ -1,3 +1,4 @@
+import { ImageFolder } from '../../../constants/image.constant';
 import {
   IMAGE_COMMON_TOP_HEIGHT,
   IMAGE_COMMON_TOP_WIDTH,
@@ -81,7 +82,7 @@ export default defineEventHandler(async (event) => {
       IMAGE_COMMON_TOP_HEIGHT,
       IMAGE_COMMON_TOP_WIDTH,
       prevUser.id,
-      'users/profile'
+      ImageFolder.USER_PROFILE_IMAGE
     );
 
     const userProfileImage: string | null =

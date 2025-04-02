@@ -5,6 +5,7 @@ import type { User } from '@prisma/client';
 
 import prisma from './prisma';
 
+import { ImageFolder } from '../constants/image.constant';
 import {
   USER_USERNAME_MIN,
   USER_USERNAME_MAX
@@ -71,16 +72,18 @@ export const auth = betterAuth({
         await email.sendDeleteAccountVerification(user, url);
       },
       beforeDelete: async (user, _request) => {
-        if (user.image) await image.remove(user.id, 'users');
+        if (user.image) await image.remove(user.id, ImageFolder.USER_IMAGE);
 
         if ((user as User).profileImage)
-          await image.remove(user.id, 'users/profile');
+          await image.remove(user.id, ImageFolder.USER_PROFILE_IMAGE);
 
         const tests = await repository.test.findAllIdById(user.id);
 
         if (!tests) return;
 
-        tests.forEach(async ({ id }) => await image.remove(id, 'tests'));
+        tests.forEach(
+          async ({ id }) => await image.remove(id, ImageFolder.TEST)
+        );
       }
     }
   },

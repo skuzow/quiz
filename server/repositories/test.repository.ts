@@ -7,6 +7,7 @@ import {
   USER_TEST_PARTIAL_SELECT
 } from './queries/selects';
 
+import { ImageFolder } from '../constants/image.constant';
 import {
   TestOrder,
   TEST_SEARCH_PAGE_SIZE
@@ -238,7 +239,7 @@ class TestRepository {
   async delete(id: string) {
     await this.userTestModel.delete({ where: { id } });
 
-    await image.remove(id, 'tests');
+    await image.remove(id, ImageFolder.TEST);
   }
 
   async findAllIdById(id: string) {
