@@ -23,6 +23,20 @@ export default defineNuxtConfig({
     }
   },
 
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        'img-src': [
+          "'self'",
+          'blob:',
+          'https://res.cloudinary.com',
+          'https://lh3.googleusercontent.com',
+          'https://avatars.githubusercontent.com'
+        ]
+      }
+    }
+  },
+
   colorMode: {
     preference: 'system',
     fallback: 'dark',
