@@ -34,9 +34,6 @@ export default defineNuxtConfig({
     lazy: true,
     defaultLocale: 'en',
     locales,
-    experimental: {
-      localeDetector: 'localeDetector.ts'
-    },
     bundle: {
       optimizeTranslationDirective: false
     }
