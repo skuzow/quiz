@@ -35,7 +35,7 @@ const { exampleMessage } = useFormMessage();
 
 <template>
   <form class="flex flex-col gap-y-6" @submit="createTest">
-    <CommonTopImage :src="image" alt="Test image">
+    <CommonTopImage :key="image" :src="image" alt="Test image">
       <input
         ref="test-image-input"
         type="file"
