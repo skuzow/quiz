@@ -1,9 +1,5 @@
 import type { Prisma } from '@prisma/client';
 
-export const ROLE_SELECT: Prisma.UserToRoleSelect = {
-  role: { select: { name: true } }
-};
-
 export const USER_PARTIAL_SELECT: Prisma.UserSelect = {
   id: true,
   name: true,
@@ -44,9 +40,6 @@ export const USER_SELECT: Prisma.UserSelect = {
   ...USER_PARTIAL_SELECT,
   displayUsername: true,
   profileImage: true,
-  roles: {
-    select: ROLE_SELECT
-  },
   createdAt: true
 };
 

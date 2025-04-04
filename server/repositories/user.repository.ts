@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { USER_SELECT } from './queries/selects';
 
 class UserRepository {
@@ -12,7 +11,7 @@ class UserRepository {
 
     if (!user) return null;
 
-    return this.transformUser(user);
+    return user;
   }
 
   async findByUsername(username: string): Promise<User | null> {
@@ -23,7 +22,7 @@ class UserRepository {
 
     if (!user) return null;
 
-    return this.transformUser(user);
+    return user;
   }
 
   async updateImage(id: string, image: string): Promise<string | null> {
@@ -47,13 +46,6 @@ class UserRepository {
     });
 
     return user.profileImage;
-  }
-
-  private transformUser(user: any): User {
-    return {
-      ...user,
-      roles: user.roles.map((role: any) => role.role.name)
-    };
   }
 }
 

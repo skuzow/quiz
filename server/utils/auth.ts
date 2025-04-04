@@ -30,6 +30,12 @@ export const auth = betterAuth({
     }),
     twoFactor()
   ],
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 5 * 60
+    }
+  },
   emailVerification: {
     sendOnSignUp: true,
     autoSignInAfterVerification: true,

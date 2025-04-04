@@ -1,5 +1,3 @@
-import type { UserRole } from '../constants/user.constant';
-
 export interface UserPartial {
   id: string;
   name: string;
@@ -14,6 +12,5 @@ export interface User {
   displayUsername: string | null;
   image: string | null;
   profileImage: string | null;
-  roles: UserRole[];
   createdAt: Date;
 }

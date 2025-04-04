@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { Settings2Icon, ImageUpIcon, CalendarIcon } from 'lucide-vue-next';
 
+import { UserRole } from '#shared/constants/user.constant';
+
 interface Props {
   user: User;
 }
@@ -29,7 +31,7 @@ const {
   updateProfileImage
 } = useUpdateProfileImage(user);
 
-const tempRoles = ['User'];
+const basicRoles = [UserRole.USER];
 </script>
 
 <template>
@@ -95,11 +97,11 @@ const tempRoles = ['User'];
 
         <ul class="flex gap-x-2">
           <li
-            v-for="(role, indexRole) in tempRoles"
+            v-for="(role, indexRole) in basicRoles"
             :key="indexRole"
             class="flex items-center"
           >
-            <Badge>{{ role }}</Badge>
+            <Badge>{{ $t(`roles.${role}`) }}</Badge>
           </li>
         </ul>
       </div>

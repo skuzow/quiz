@@ -269,6 +269,9 @@
     "animals": "Animals",
     "languages": "Languages"
   },
+  "roles": {
+    "user": "User"
+  },
   "alert": {
     "auth": {
       "settings": {
