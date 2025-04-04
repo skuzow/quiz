@@ -1,22 +1,11 @@
 import prisma from '../server/utils/prisma';
 
-import { UserRoleValues } from '../shared/constants/user.constant';
 import {
   TestCategoryValues,
   TestQuestionTypeValues
 } from '../shared/constants/test.constant';
 
 // const { ADMIN_EMAIL, ADMIN_USERNAME, ADMIN_PASSWORD } = process.env;
-
-const seedRoles = async () => {
-  UserRoleValues.forEach(async (userRole) => {
-    await prisma.role.upsert({
-      where: { name: userRole },
-      update: {},
-      create: { name: userRole }
-    });
-  });
-};
 
 const seedTestCategories = async () => {
   TestCategoryValues.forEach(async (testCategory) => {
@@ -106,7 +95,6 @@ const seedTestQuestionTypes = async () => {
 // };
 
 const seed = async () => {
-  seedRoles();
   seedTestCategories();
   seedTestQuestionTypes();
 
