@@ -80,7 +80,7 @@ export const useAuthUpdateProfile = () => {
       closeUpdateProfile();
 
       toast({
-        title: $t('toast.auth.settings.profile'),
+        title: $t('toast.auth.settings.profile.title'),
         description: name
       });
     }
