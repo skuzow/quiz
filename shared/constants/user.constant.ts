@@ -1,3 +1,7 @@
+export enum UserRole {
+  USER = 'user'
+}
+
 export const USER_EMAIL_MAX: number = 50;
 export const USER_NAME_MIN: number = 3;
 export const USER_NAME_MAX: number = 40;
