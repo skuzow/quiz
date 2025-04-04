@@ -19,7 +19,7 @@ export const useAuthUpdateProfile = () => {
   const { $api } = useNuxtApp();
   const { t: $t } = useI18n();
 
-  const { authUser, updateAuthUser } = useAuth();
+  const { authUser, fetchSession, updateAuthUser } = useAuth();
 
   const { requiredMessage, minMessage, maxMessage } = useFormMessage();
 
@@ -128,6 +128,8 @@ export const useAuthUpdateProfile = () => {
 
       closeUpdateProfile();
     }
+
+    await fetchSession(true);
   };
 
   const closeUpdateProfile = () => {

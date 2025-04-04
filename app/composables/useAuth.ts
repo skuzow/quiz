@@ -35,12 +35,15 @@ export const useAuth = () => {
     ? ref(false)
     : useState('auth:isSessionFetching', () => false);
 
-  const fetchSession = async () => {
+  const fetchSession = async (disableCookieCache: boolean = false) => {
     if (isSessionFetching.value) return;
 
     isSessionFetching.value = true;
 
     const { data } = await authClient.getSession({
+      query: {
+        disableCookieCache
+      },
       fetchOptions: {
         headers
       }
