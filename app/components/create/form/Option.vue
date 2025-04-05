@@ -28,7 +28,7 @@ const { exampleMessage } = useFormMessage();
     <FormItem v-auto-animate>
       <FormLabel>
         <CommonGradientText>{{ index + 1 }}.</CommonGradientText>
-        {{ $t('form.option') }}
+        {{ $t('form.option') }}<FormRequired />
       </FormLabel>
       <div class="flex gap-x-2">
         <FormField

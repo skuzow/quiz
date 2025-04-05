@@ -99,7 +99,7 @@ const { exampleMessage } = useFormMessage();
           :validate-on-blur="!isFieldDirty"
         >
           <FormItem v-auto-animate>
-            <FormLabel>{{ $t('form.title') }}</FormLabel>
+            <FormLabel>{{ $t('form.title') }}<FormRequired /></FormLabel>
             <FormControl>
               <Input
                 type="text"
@@ -117,7 +117,7 @@ const { exampleMessage } = useFormMessage();
           :validate-on-blur="!isFieldDirty"
         >
           <FormItem v-auto-animate>
-            <FormLabel>{{ $t('form.description') }}</FormLabel>
+            <FormLabel>{{ $t('form.description') }}<FormRequired /></FormLabel>
             <FormControl>
               <Textarea
                 type="text"
