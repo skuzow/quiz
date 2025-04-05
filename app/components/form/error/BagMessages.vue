@@ -8,7 +8,7 @@ const { errorBag, errorKey } = defineProps<Props>();
 </script>
 
 <template>
-  <CommonErrorMessage
+  <FormErrorMessage
     v-if="errorBag.hasOwnProperty(errorKey) && errorBag[errorKey]?.length !== 0"
   >
     <ul v-auto-animate>
@@ -19,5 +19,5 @@ const { errorBag, errorKey } = defineProps<Props>();
         {{ error }}
       </li>
     </ul>
-  </CommonErrorMessage>
+  </FormErrorMessage>
 </template>

@@ -128,8 +128,8 @@ const resetFileInput = () => {
       />
     </div>
 
-    <CommonErrorMessage v-if="invalidFileType">
+    <FormErrorMessage v-if="invalidFileType">
       {{ $t('file.invalidType') }}
-    </CommonErrorMessage>
+    </FormErrorMessage>
   </div>
 </template>

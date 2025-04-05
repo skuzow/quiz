@@ -33,14 +33,14 @@ const {
         :field-config="fieldConfig"
         @submit="resetPassword"
       >
-        <CommonErrorBagMessages
+        <FormErrorBagMessages
           :error-bag="resetPasswordForm.errorBag.value"
           error-key=""
         />
 
-        <CommonErrorMessage v-if="errorMessageResetPassword">
+        <FormErrorMessage v-if="errorMessageResetPassword">
           {{ errorMessageResetPassword }}
-        </CommonErrorMessage>
+        </FormErrorMessage>
 
         <Button type="submit">
           <IconLoader

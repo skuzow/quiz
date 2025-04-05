@@ -99,7 +99,7 @@ const { exampleMessage } = useFormMessage();
           :validate-on-blur="!isFieldDirty"
         >
           <FormItem v-auto-animate>
-            <FormLabel>{{ $t('form.title') }}</FormLabel>
+            <FormLabel>{{ $t('form.title') }}<FormRequired /></FormLabel>
             <FormControl>
               <Input
                 type="text"
@@ -117,7 +117,7 @@ const { exampleMessage } = useFormMessage();
           :validate-on-blur="!isFieldDirty"
         >
           <FormItem v-auto-animate>
-            <FormLabel>{{ $t('form.description') }}</FormLabel>
+            <FormLabel>{{ $t('form.description') }}<FormRequired /></FormLabel>
             <FormControl>
               <Textarea
                 type="text"
@@ -166,12 +166,12 @@ const { exampleMessage } = useFormMessage();
             </li>
           </ol>
 
-          <CommonErrorBagMessages
+          <FormErrorBagMessages
             :error-bag="errorBag"
             :error-key="`questions[${indexQuestion}].options`"
           />
 
-          <CommonErrorBagMessages
+          <FormErrorBagMessages
             :error-bag="errorBag"
             :error-key="`questions[${indexQuestion}]`"
           />
@@ -192,11 +192,11 @@ const { exampleMessage } = useFormMessage();
         </li>
       </ol>
 
-      <CommonErrorBagMessages :error-bag="errorBag" error-key="questions" />
+      <FormErrorBagMessages :error-bag="errorBag" error-key="questions" />
 
-      <CommonErrorMessage v-if="internalServerErrorCreate">
+      <FormErrorMessage v-if="internalServerErrorCreate">
         {{ $t('error.internalServer') }}
-      </CommonErrorMessage>
+      </FormErrorMessage>
 
       <div class="flex gap-x-2">
         <Button

@@ -26,7 +26,7 @@ const {
       </li>
     </ol>
 
-    <CommonErrorBagMessages
+    <FormErrorBagMessages
       v-if="isFieldTouched('questions')"
       :error-bag="errorBag"
       error-key="questions"

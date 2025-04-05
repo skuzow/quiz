@@ -40,9 +40,9 @@ const {
         <div class="flex flex-col gap-y-2">
           <GenerateCardFormFields :is-field-dirty="isFieldDirty" />
 
-          <CommonErrorMessage v-if="internalServerErrorWithText">
+          <FormErrorMessage v-if="internalServerErrorWithText">
             {{ $t('error.internalServer') }}
-          </CommonErrorMessage>
+          </FormErrorMessage>
         </div>
       </CardContent>
 

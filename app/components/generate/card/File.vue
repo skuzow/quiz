@@ -36,25 +36,21 @@ const types: FileTypes[] = [FileTypes.PDF, FileTypes.DOCX, FileTypes.TXT];
     <form @submit="generateWithFile">
       <CardContent class="flex flex-col gap-y-6">
         <div class="flex flex-col gap-y-2">
-          <CommonFileInput
-            :accept="accept"
-            :types="types"
-            @change="onFileChange"
-          >
+          <FormFileInput :accept="accept" :types="types" @change="onFileChange">
             <FileSearchIcon :size="50" />
-          </CommonFileInput>
+          </FormFileInput>
 
-          <CommonErrorMessage v-if="requiredFileError">
+          <FormErrorMessage v-if="requiredFileError">
             {{ requiredMessage(FormInput.FILE) }}
-          </CommonErrorMessage>
+          </FormErrorMessage>
         </div>
 
         <div class="flex flex-col gap-y-2">
           <GenerateCardFormFields :is-field-dirty="isFieldDirty" />
 
-          <CommonErrorMessage v-if="internalServerErrorWithFile">
+          <FormErrorMessage v-if="internalServerErrorWithFile">
             {{ $t('error.internalServer') }}
-          </CommonErrorMessage>
+          </FormErrorMessage>
         </div>
       </CardContent>
 
