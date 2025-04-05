@@ -33,9 +33,9 @@ const {
         :field-config="fieldConfig"
         @submit="signupWithEmail"
       >
-        <CommonErrorMessage v-if="errorMessageWithEmail">
+        <FormErrorMessage v-if="errorMessageWithEmail">
           {{ errorMessageWithEmail }}
-        </CommonErrorMessage>
+        </FormErrorMessage>
 
         <Button type="submit">
           <IconLoader

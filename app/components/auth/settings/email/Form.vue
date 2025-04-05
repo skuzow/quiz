@@ -22,9 +22,9 @@ const {
         :field-config="fieldConfig"
         @submit="updateEmail"
       >
-        <CommonErrorMessage v-if="errorMessageUpdateEmail">
+        <FormErrorMessage v-if="errorMessageUpdateEmail">
           {{ errorMessageUpdateEmail }}
-        </CommonErrorMessage>
+        </FormErrorMessage>
 
         <div class="flex justify-end gap-x-2">
           <Button variant="ghost" @click.prevent="closeUpdateEmail">

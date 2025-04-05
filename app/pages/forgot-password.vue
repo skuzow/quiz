@@ -35,9 +35,9 @@ const {
         :field-config="fieldConfig"
         @submit="forgotPassword"
       >
-        <CommonErrorMessage v-if="errorMessageForgotPassword">
+        <FormErrorMessage v-if="errorMessageForgotPassword">
           {{ errorMessageForgotPassword }}
-        </CommonErrorMessage>
+        </FormErrorMessage>
 
         <Button type="submit">
           <IconLoader

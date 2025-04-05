@@ -53,9 +53,9 @@ const {
         :field-config="fieldConfig"
         @submit="updateProfile"
       >
-        <CommonErrorMessage v-if="errorMessageUpdateProfile">
+        <FormErrorMessage v-if="errorMessageUpdateProfile">
           {{ errorMessageUpdateProfile }}
-        </CommonErrorMessage>
+        </FormErrorMessage>
 
         <div class="flex justify-end gap-x-2">
           <Button variant="ghost" @click.prevent="closeUpdateProfile">
