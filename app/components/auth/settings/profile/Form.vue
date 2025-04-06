@@ -33,8 +33,8 @@ const {
       <div class="flex items-center justify-between">
         <CommonAvatar
           size="base"
-          :height="64"
           :width="64"
+          :height="64"
           :pointer="false"
           :user="authUser"
         />

@@ -52,8 +52,8 @@ const basicRoles = [UserRole.USER];
 
       <CommonAvatar
         size="lg"
-        :height="96"
         :width="96"
+        :height="96"
         loading="lazy"
         :user="user"
         class="absolute bottom-2 left-2"

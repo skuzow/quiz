@@ -1,6 +1,7 @@
+import { ImageFolder } from '../../../constants/image.constant';
 import {
-  IMAGE_COMMON_TOP_HEIGHT,
   IMAGE_COMMON_TOP_WIDTH,
+  IMAGE_COMMON_TOP_HEIGHT,
   IMAGE_SIZE_MAX_MB,
   IMAGE_SIZE_MAX
 } from '#shared/constants/image.constant';
@@ -81,10 +82,10 @@ export default defineEventHandler(async (event) => {
   try {
     const uploadedImage = await image.upload(
       imageMultipartData.data,
-      IMAGE_COMMON_TOP_HEIGHT,
       IMAGE_COMMON_TOP_WIDTH,
+      IMAGE_COMMON_TOP_HEIGHT,
       prevTest.id,
-      'tests'
+      ImageFolder.TEST
     );
 
     const testImage: string | null = await repository.test.updateImage(

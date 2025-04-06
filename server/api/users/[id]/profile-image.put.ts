@@ -1,7 +1,7 @@
 import { ImageFolder } from '../../../constants/image.constant';
 import {
-  IMAGE_COMMON_TOP_HEIGHT,
   IMAGE_COMMON_TOP_WIDTH,
+  IMAGE_COMMON_TOP_HEIGHT,
   IMAGE_SIZE_MAX_MB,
   IMAGE_SIZE_MAX
 } from '#shared/constants/image.constant';
@@ -79,8 +79,8 @@ export default defineEventHandler(async (event) => {
   try {
     const uploadedImage = await image.upload(
       imageMultipartData.data,
-      IMAGE_COMMON_TOP_HEIGHT,
       IMAGE_COMMON_TOP_WIDTH,
+      IMAGE_COMMON_TOP_HEIGHT,
       prevUser.id,
       ImageFolder.USER_PROFILE_IMAGE
     );

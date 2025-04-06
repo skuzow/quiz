@@ -7,8 +7,8 @@ const { authUser } = useAuth();
 interface Props {
   size?: AvatarVariants['size'];
   shape?: AvatarVariants['shape'];
-  height?: number;
   width?: number;
+  height?: number;
   loading?: 'lazy' | 'eager';
   alt?: string;
   pointer?: boolean;
@@ -18,8 +18,8 @@ interface Props {
 const {
   size,
   shape,
-  height = 36,
   width = 36,
+  height = 36,
   loading,
   alt = 'Avatar',
   pointer = true,
@@ -44,8 +44,8 @@ const {
     <AvatarImage
       v-if="user?.image"
       :src="user?.image"
-      :height="height"
       :width="width"
+      :height="height"
       :loading="loading"
       :title="alt"
       :alt="alt"
