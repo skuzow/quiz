@@ -17,7 +17,8 @@ const title: string = user.displayUsername
 
 seoMeta({
   title,
-  description: `${title} ${$t('nav.header.user.profile')}`
+  description: `${title} ${$t('nav.header.user.profile')}`,
+  image: user.image
 });
 
 const { authUser, isAuthenticated } = useAuth();

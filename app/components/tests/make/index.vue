@@ -15,7 +15,8 @@ const { test } = defineProps<Props>();
 
 seoMeta({
   title: test.title,
-  description: test.description
+  description: test.description,
+  image: test.image
 });
 
 const localePath = useLocalePath();
