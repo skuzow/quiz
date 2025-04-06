@@ -31,13 +31,6 @@ useHead({
       type: 'font/woff2',
       crossorigin: ''
     },
-    {
-      rel: 'preload',
-      href: '/fonts/GeistMonoVF.woff2',
-      as: 'font',
-      type: 'font/woff2',
-      crossorigin: ''
-    },
 
     {
       rel: 'icon',

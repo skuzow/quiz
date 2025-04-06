@@ -92,8 +92,7 @@ const config: Config = {
       }
     },
     fontFamily: {
-      sans: ['Geist', ...fontFamily.sans],
-      mono: ['GeistMono', ...fontFamily.mono]
+      sans: ['Geist', ...fontFamily.sans]
     }
   },
   plugins: [animate, typography]
