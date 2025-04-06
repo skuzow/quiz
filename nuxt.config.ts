@@ -3,6 +3,8 @@ import locales from './i18n/locales';
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
+    'nuxt-security',
+    '@nuxtjs/fontaine',
     '@nuxtjs/color-mode',
     '@nuxt/eslint',
     '@nuxtjs/i18n',
@@ -20,6 +22,14 @@ export default defineNuxtConfig({
       apiUrl: '',
       apiKey: ''
     }
+  },
+
+  security: {
+    headers: {
+      contentSecurityPolicy: false,
+      xXSSProtection: false
+    },
+    xssValidator: false
   },
 
   colorMode: {

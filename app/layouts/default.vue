@@ -19,26 +19,25 @@ const themeColor = computed(() =>
   colorMode.value === Theme.DARK ? ThemeColor.DARK : ThemeColor.LIGHT
 );
 
+if (import.meta.server) {
+  useHead({
+    link: [
+      {
+        rel: 'preload',
+        href: '/fonts/GeistVF.woff2',
+        as: 'font',
+        type: 'font/woff2',
+        crossorigin: ''
+      }
+    ]
+  });
+}
+
 useHead({
   htmlAttrs: {
     lang: locale
   },
   link: [
-    {
-      rel: 'preload',
-      href: '/fonts/GeistVF.woff2',
-      as: 'font',
-      type: 'font/woff2',
-      crossorigin: ''
-    },
-    {
-      rel: 'preload',
-      href: '/fonts/GeistMonoVF.woff2',
-      as: 'font',
-      type: 'font/woff2',
-      crossorigin: ''
-    },
-
     {
       rel: 'icon',
       type: 'image/svg+xml',
