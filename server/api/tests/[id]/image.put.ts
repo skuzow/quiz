@@ -81,8 +81,8 @@ export default defineEventHandler(async (event) => {
   try {
     const uploadedImage = await image.upload(
       imageMultipartData.data,
-      IMAGE_COMMON_TOP_HEIGHT,
       IMAGE_COMMON_TOP_WIDTH,
+      IMAGE_COMMON_TOP_HEIGHT,
       prevTest.id,
       'tests'
     );
