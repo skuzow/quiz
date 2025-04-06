@@ -17,8 +17,8 @@ const isUpdateProfileOpen: Ref<boolean> = ref(false);
       <div class="flex flex-row items-center gap-x-3">
         <CommonAvatar
           size="sm"
-          :height="40"
           :width="40"
+          :height="40"
           :pointer="false"
           :user="authUser"
         />

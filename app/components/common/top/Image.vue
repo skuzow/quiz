@@ -11,8 +11,8 @@ const { src, alt } = defineProps<Props>();
   <div class="relative w-full">
     <CommonPicture
       :src="src"
-      :height="172"
       :width="1088"
+      :height="172"
       loading="lazy"
       :alt="alt"
       :class="`h-[172px] w-full rounded-md object-cover`"

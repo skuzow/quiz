@@ -2,8 +2,8 @@
 interface Props {
   format?: string[];
   src: string;
-  height: number;
   width: number;
+  height: number;
   loading?: 'lazy' | 'eager';
   alt: string;
   class?: string;
@@ -12,8 +12,8 @@ interface Props {
 const {
   format = ['avif', 'webp'],
   src,
-  height,
   width,
+  height,
   loading,
   alt,
   class: className
@@ -24,8 +24,8 @@ const {
   <NuxtPicture
     :format="format.join(',')"
     :src="src"
-    :height="height"
     :width="width"
+    :height="height"
     :loading="loading"
     :title="alt"
     :alt="alt"
