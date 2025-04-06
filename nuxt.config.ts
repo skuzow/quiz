@@ -34,8 +34,10 @@ export default defineNuxtConfig({
           'https://lh3.googleusercontent.com',
           'https://avatars.githubusercontent.com'
         ]
-      }
-    }
+      },
+      xXSSProtection: false
+    },
+    xssValidator: false
   },
 
   colorMode: {
