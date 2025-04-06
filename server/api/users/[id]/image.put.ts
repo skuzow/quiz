@@ -1,7 +1,7 @@
 import { ImageFolder } from '../../../constants/image.constant';
 import {
-  IMAGE_COMMON_AVATAR_HEIGHT,
   IMAGE_COMMON_AVATAR_WIDTH,
+  IMAGE_COMMON_AVATAR_HEIGHT,
   IMAGE_SIZE_MAX_MB,
   IMAGE_SIZE_MAX
 } from '#shared/constants/image.constant';
