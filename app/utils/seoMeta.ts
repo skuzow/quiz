@@ -1,21 +1,14 @@
 interface SeoMeta {
   title?: string;
   description?: string;
-  image?: string;
+  image?: string | null;
 }
 
-const seoMeta = ({
-  title,
-  description,
-  image = '/images/website.png'
-}: SeoMeta = {}) => {
-  const { t: $t } = useI18n();
+const seoMeta = ({ title, description, image }: SeoMeta = {}) => {
+  const { origin } = useRequestURL();
+  const { path } = useRoute();
 
-  const originURL: string = useRequestURL().origin;
-  const routePath: string = useRoute().path;
-
-  const websiteURL: string = originURL + routePath;
-  const imageURL: string = originURL + image;
+  const websiteURL: string = origin + path;
 
   useHead({
     link: [
@@ -29,7 +22,13 @@ const seoMeta = ({
   if (title) title = `${title} - skuzow/quiz`;
   else title = 'skuzow/quiz';
 
-  if (!description) description = $t('description');
+  if (!description) {
+    const { t: $t } = useI18n();
+
+    description = $t('description');
+  }
+
+  if (!image) image = origin + '/images/website.png';
 
   useSeoMeta({
     title: title,
@@ -37,13 +36,13 @@ const seoMeta = ({
 
     twitterTitle: title,
     twitterDescription: description,
-    twitterImage: imageURL,
+    twitterImage: image,
     twitterImageAlt: title,
 
     ogUrl: websiteURL,
     ogTitle: title,
     ogDescription: description,
-    ogImage: imageURL,
+    ogImage: image,
     ogImageAlt: title,
     ogSiteName: title
   });
