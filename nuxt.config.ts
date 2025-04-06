@@ -4,6 +4,7 @@ import locales from './i18n/locales';
 export default defineNuxtConfig({
   modules: [
     'nuxt-security',
+    '@nuxtjs/fontaine',
     '@nuxtjs/color-mode',
     '@nuxt/eslint',
     '@nuxtjs/i18n',
