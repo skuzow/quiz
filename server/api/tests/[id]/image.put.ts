@@ -1,3 +1,4 @@
+import { ImageFolder } from '../../../constants/image.constant';
 import {
   IMAGE_COMMON_TOP_HEIGHT,
   IMAGE_COMMON_TOP_WIDTH,
@@ -84,7 +85,7 @@ export default defineEventHandler(async (event) => {
       IMAGE_COMMON_TOP_WIDTH,
       IMAGE_COMMON_TOP_HEIGHT,
       prevTest.id,
-      'tests'
+      ImageFolder.TEST
     );
 
     const testImage: string | null = await repository.test.updateImage(
