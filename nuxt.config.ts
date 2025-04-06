@@ -12,6 +12,7 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@nuxtjs/sitemap',
     '@nuxtjs/tailwindcss',
+    '@nuxt/test-utils/module',
     '@pinia/nuxt',
     '@formkit/auto-animate/nuxt',
     'shadcn-nuxt'
