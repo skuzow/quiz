@@ -5,6 +5,8 @@
   "scripts": {
     "build": "prisma generate && nuxt build",
     "dev": "nuxt dev",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
@@ -63,6 +65,7 @@
     "@nuxtjs/fontaine": "^0.5.0",
     "@nuxtjs/tailwindcss": "^6.13.2",
     "@tailwindcss/typography": "^0.5.16",
+    "@vitest/coverage-v8": "^3.1.1",
     "@vue/test-utils": "^2.4.6",
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
