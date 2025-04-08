@@ -19,10 +19,11 @@ describe('i18n', async () => {
   });
 
   test('renders ES translation correctly in /es route', async () => {
+    setLocale('es');
+
     const page = await createPage();
     await page.goto(url('/es'));
 
-    setLocale('es');
     const description = await page.textContent('p');
 
     expect(description).toBe($t('description'));
