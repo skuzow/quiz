@@ -13,15 +13,17 @@ vi.mock('~/composables/useAuth', () => ({
 }));
 
 describe('Create', () => {
+  const { t: $t } = useI18n();
+
   it('can mount the component', async () => {
     const component = await mountSuspended(Create);
     const componentHtml = component.html();
 
-    expect(componentHtml).toContain('Publish');
-    expect(componentHtml).toContain('Title');
-    expect(componentHtml).toContain('Description');
-    expect(componentHtml).toContain('Categories');
-    expect(componentHtml).toContain('Question');
-    expect(componentHtml).toContain('Option');
+    expect(componentHtml).toContain($t('form.published'));
+    expect(componentHtml).toContain($t('form.title'));
+    expect(componentHtml).toContain($t('form.description'));
+    expect(componentHtml).toContain($t('form.categories'));
+    expect(componentHtml).toContain($t('form.question'));
+    expect(componentHtml).toContain($t('form.option'));
   });
 });
