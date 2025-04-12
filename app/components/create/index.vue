@@ -60,7 +60,7 @@ const { exampleMessage } = useFormMessage();
 
       <Button
         size="icon"
-        variant="secondary"
+        variant="destructive"
         class="absolute right-2 top-2"
         @click.prevent="deleteTest"
       >
