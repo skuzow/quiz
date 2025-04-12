@@ -25,5 +25,7 @@ jobs:
           version: 10
       - name: install dependencies
         run: pnpm install --frozen-lockfile
+      - name: install playwright
+        run: pnpx playwright-core install --with-deps
       - name: run tests
         run: pnpm test
