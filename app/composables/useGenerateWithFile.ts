@@ -15,7 +15,7 @@ import {
 } from '#shared/constants/test.constant';
 
 import type { PreviewFile } from '@/types/file.type';
-import { FileTypes } from '@/constants/file.constant';
+import { FileType } from '@/constants/file.constant';
 
 export const useGenerateWithFile = () => {
   const { $api } = useNuxtApp();
@@ -148,9 +148,9 @@ export const useGenerateWithFile = () => {
 
   const parseFile = async (file: File) => {
     const fileParsers = {
-      [FileTypes.TXT]: txtParse,
-      [FileTypes.PDF]: pdfParse,
-      [FileTypes.DOCX]: docxParse
+      [FileType.TXT]: txtParse,
+      [FileType.PDF]: pdfParse,
+      [FileType.DOCX]: docxParse
     };
 
     const parser = fileParsers[file.type as keyof typeof fileParsers];

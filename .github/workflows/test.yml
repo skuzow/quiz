@@ -1,0 +1,34 @@
+name: 🧪 test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      TURSO_DATABASE_URL: ${{ secrets.TURSO_DATABASE_URL }}
+      TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+      BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+      CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+      CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+      CLOUDINARY_BASE_FOLDER: ${{ secrets.CLOUDINARY_BASE_FOLDER }}
+      NUXT_QUIZ_AI_API_URL: ${{ secrets.NUXT_QUIZ_AI_API_URL }}
+      NUXT_QUIZ_AI_API_KEY: ${{ secrets.NUXT_QUIZ_AI_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - name: install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: install playwright
+        run: pnpx playwright-core install --with-deps
+      - name: run tests
+        run: pnpm test

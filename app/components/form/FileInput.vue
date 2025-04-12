@@ -2,11 +2,11 @@
 import { XIcon, CloudUploadIcon } from 'lucide-vue-next';
 
 import type { PreviewFile } from '@/types/file.type';
-import type { FileExtensions, FileTypes } from '@/constants/file.constant';
+import type { FileExtension, FileType } from '@/constants/file.constant';
 
 interface Props {
-  accept: FileExtensions[];
-  types: FileTypes[];
+  accept: FileExtension[];
+  types: FileType[];
 }
 
 const { accept, types } = defineProps<Props>();
@@ -42,7 +42,7 @@ const onFileChange = (files: FileList) => {
 
   invalidFileType.value = false;
 
-  if (!types.includes(file.type as FileTypes)) {
+  if (!types.includes(file.type as FileType)) {
     invalidFileType.value = true;
     active.value = false;
 
