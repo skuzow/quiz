@@ -230,11 +230,12 @@
     "title": "Create Test with Blocks",
     "description": "Fill out the form to create your own test.",
     "form": {
-      "uploadImage": "Upload Image",
-      "addOption": "Add Option",
-      "addQuestion": "Add Question",
-      "create": "Create Test"
-    }
+      "uploadImage": "Upload image",
+      "updateImage": "Update image",
+      "addOption": "Add option",
+      "addQuestion": "Add question"
+    },
+    "button": "Create test"
   },
   "edit": {
     "title": "Edit Test"

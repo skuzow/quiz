@@ -230,11 +230,12 @@
     "title": "Crear Test con Bloques",
     "description": "Rellena el formulario para crear tu propio test.",
     "form": {
-      "uploadImage": "Subir Imagen",
-      "addOption": "Añadir Opción",
-      "addQuestion": "Añadir Pregunta",
-      "create": "Crear Test"
-    }
+      "uploadImage": "Subir imagen",
+      "updateImage": "Actualizar imagen",
+      "addOption": "Añadir opción",
+      "addQuestion": "Añadir pregunta"
+    },
+    "button": "Crear test"
   },
   "edit": {
     "title": "Editar Test"

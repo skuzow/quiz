@@ -76,7 +76,9 @@ const { exampleMessage } = useFormMessage();
         @click.prevent="clickImageInput"
       >
         <ImageUpIcon :size="16" />
-        {{ $t('create.form.uploadImage') }}
+        {{
+          edit ? $t('create.form.updateImage') : $t('create.form.uploadImage')
+        }}
       </Button>
     </CommonTopImage>
 
@@ -211,7 +213,7 @@ const { exampleMessage } = useFormMessage();
             v-if="isLoadingCreate"
             class="mr-2 fill-primary-foreground"
           />
-          {{ edit ? $t('edit.title') : $t('create.form.create') }}
+          {{ edit ? $t('save') : $t('create.button') }}
         </Button>
       </div>
     </section>
