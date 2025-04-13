@@ -205,21 +205,21 @@ export const useCreate = (edit?: boolean) => {
 
   const validationSchema = toTypedSchema(CreateSchema);
 
-  const { handleSubmit, errorBag, isFieldDirty } = useForm({
+  const { values, handleSubmit, errorBag, isFieldDirty } = useForm({
     validationSchema,
     initialValues:
       (edit ? testStore.editTest : testStore.createTest) || initialFormValue
   });
 
-  // watch(
-  //   values,
-  //   (newValues) => {
-  //     console.log(newValues);
-  //     testStore.createTest = newValues;
-  //     console.log(testStore.createTest);
-  //   },
-  //   { deep: true }
-  // );
+  if (!edit) {
+    watch(
+      values,
+      (newValues) => {
+        testStore.createTest = convertPartialDeepToPlain(newValues);
+      },
+      { deep: true }
+    );
+  }
 
   const questions: FieldArrayContext<CreateQuestionForm> = useFieldArray(
     FormInput.QUESTIONS
