@@ -37,7 +37,7 @@ export default defineNuxtConfig({
     preference: 'system',
     fallback: 'dark',
     classSuffix: '',
-    storage: 'cookie',
+    storage: 'localStorage',
     storageKey: 'color-mode'
   },
 
