@@ -229,6 +229,7 @@
   "create": {
     "title": "Create Test with Blocks",
     "description": "Fill out the form to create your own test.",
+    "reset": "Reset test creation",
     "form": {
       "uploadImage": "Upload image",
       "updateImage": "Update image",
@@ -238,7 +239,8 @@
     "button": "Create test"
   },
   "edit": {
-    "title": "Edit Test"
+    "title": "Edit Test",
+    "delete": "Delete test"
   },
   "file": {
     "upload": "Click or Drag & Drop to Upload",
