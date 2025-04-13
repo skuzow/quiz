@@ -296,6 +296,10 @@
       "title": "You already have a test in progress",
       "description": "If you continue, you will lose your current test. Do you want to continue?"
     },
+    "resetTest": {
+      "title": "Are you sure you want reset this test creation?",
+      "description": "This action cannot be undone."
+    },
     "emptyQuestions": {
       "title": "You have unanswered questions",
       "description": "Are you sure you want to correct the test?"
@@ -365,6 +369,7 @@
     },
     "tests": {
       "generate": "✅ Test generated successfully",
+      "reset": "✅ Test creation reset successfully",
       "create": "✅ Test created successfully",
       "edit": "✅ Test edited successfully",
       "delete": "✅ Test deleted successfully"

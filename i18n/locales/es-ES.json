@@ -296,6 +296,10 @@
       "title": "Ya tienes un test en curso",
       "description": "Si continúas, se perderá el test actual. ¿Estás seguro de que quieres continuar?"
     },
+    "resetTest": {
+      "title": "¿Estás seguro de que quieres restablecer esta creación de test?",
+      "description": "Esta acción no se puede deshacer."
+    },
     "emptyQuestions": {
       "title": "Tienes preguntas sin responder",
       "description": "¿Estás seguro de que quieres corregir el test?"
@@ -365,6 +369,7 @@
     },
     "tests": {
       "generate": "✅ Test generado con éxito",
+      "reset": "✅ Creación de test restablecida con éxito",
       "create": "✅ Test creado con éxito",
       "edit": "✅ Test editado con éxito",
       "delete": "✅ Test eliminado con éxito"

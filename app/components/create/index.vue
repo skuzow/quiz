@@ -25,6 +25,7 @@ const {
   questionPath,
   optionPath,
   createTest,
+  resetTest,
   deleteTest,
   clickImageInput,
   updateImageInput
@@ -62,12 +63,12 @@ const { exampleMessage } = useFormMessage();
         size="icon"
         variant="destructive"
         class="absolute right-2 top-2"
-        @click.prevent="deleteTest"
+        @click.prevent="edit ? deleteTest() : resetTest()"
       >
         <IconLoader v-if="isLoadingDelete" />
         <Trash2Icon v-else :size="16" />
         <span class="sr-only">
-          {{ edit ? 'Delete test' : 'Delete test creation' }}
+          {{ edit ? 'Delete test' : 'Reset test creation' }}
         </span>
       </Button>
 
