@@ -205,21 +205,21 @@ export const useCreate = (edit?: boolean) => {
 
   const validationSchema = toTypedSchema(CreateSchema);
 
-  const { handleSubmit, errorBag, isFieldDirty } = useForm({
+  const { values, handleSubmit, errorBag, isFieldDirty, resetForm } = useForm({
     validationSchema,
     initialValues:
       (edit ? testStore.editTest : testStore.createTest) || initialFormValue
   });
 
-  // watch(
-  //   values,
-  //   (newValues) => {
-  //     console.log(newValues);
-  //     testStore.createTest = newValues;
-  //     console.log(testStore.createTest);
-  //   },
-  //   { deep: true }
-  // );
+  if (!edit) {
+    watch(
+      values,
+      (newValues) => {
+        testStore.createTest = convertPartialDeepToPlain(newValues);
+      },
+      { deep: true }
+    );
+  }
 
   const questions: FieldArrayContext<CreateQuestionForm> = useFieldArray(
     FormInput.QUESTIONS
@@ -275,34 +275,45 @@ export const useCreate = (edit?: boolean) => {
     }
   });
 
-  const deleteTest = async () => {
-    if (edit) {
-      const response: boolean = await alert({
-        title: $t('alert.deleteTest.title'),
-        description: $t('alert.deleteTest.description'),
-        danger: true
-      });
+  const resetTest = async () => {
+    const response: boolean = await alert({
+      title: $t('alert.resetTest.title'),
+      description: $t('alert.resetTest.description'),
+      danger: true
+    });
 
-      if (!response) return;
-    }
+    if (!response) return;
+
+    testStore.createTest = undefined;
+
+    resetForm({ values: initialFormValue });
+
+    toast({ title: $t('toast.tests.reset') });
+  };
+
+  const deleteTest = async () => {
+    const response: boolean = await alert({
+      title: $t('alert.deleteTest.title'),
+      description: $t('alert.deleteTest.description'),
+      danger: true
+    });
+
+    if (!response) return;
 
     isLoadingDelete.value = true;
 
-    if (edit) await $api.test.delete(testStore.editTest!.id);
-    else console.log('Delete test creation'); // TODO: delete test creation
+    await $api.test.delete(testStore.editTest!.id);
 
     isLoadingDelete.value = false;
 
-    if (edit) {
-      await navigateTo(authUserURL.value);
+    await navigateTo(authUserURL.value);
 
-      toast({
-        title: $t('toast.tests.delete'),
-        description: testStore.editTest?.title
-      });
+    toast({
+      title: $t('toast.tests.delete'),
+      description: testStore.editTest?.title
+    });
 
-      testStore.editTest = undefined;
-    }
+    testStore.editTest = undefined;
   };
 
   const updateImage = async (testId: string) => {
@@ -347,6 +358,7 @@ export const useCreate = (edit?: boolean) => {
     questionPath,
     optionPath,
     createTest,
+    resetTest,
     deleteTest,
     clickImageInput,
     updateImageInput

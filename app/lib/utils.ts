@@ -25,3 +25,7 @@ export const abbreviate = (value: string): string => {
 export const titleCase = (value: string): string => {
   return value[0]?.toUpperCase() + value.substring(1).toLowerCase();
 };
+
+export const convertPartialDeepToPlain = <T>(obj: Partial<T>): T => {
+  return JSON.parse(JSON.stringify(obj));
+};

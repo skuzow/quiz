@@ -229,15 +229,18 @@
   "create": {
     "title": "Create Test with Blocks",
     "description": "Fill out the form to create your own test.",
+    "reset": "Reset test creation",
     "form": {
-      "uploadImage": "Upload Image",
-      "addOption": "Add Option",
-      "addQuestion": "Add Question",
-      "create": "Create Test"
-    }
+      "uploadImage": "Upload image",
+      "updateImage": "Update image",
+      "addOption": "Add option",
+      "addQuestion": "Add question"
+    },
+    "button": "Create test"
   },
   "edit": {
-    "title": "Edit Test"
+    "title": "Edit Test",
+    "delete": "Delete test"
   },
   "file": {
     "upload": "Click or Drag & Drop to Upload",
@@ -294,6 +297,10 @@
     "overrideTest": {
       "title": "You already have a test in progress",
       "description": "If you continue, you will lose your current test. Do you want to continue?"
+    },
+    "resetTest": {
+      "title": "Are you sure you want reset this test creation?",
+      "description": "This action cannot be undone."
     },
     "emptyQuestions": {
       "title": "You have unanswered questions",
@@ -364,6 +371,7 @@
     },
     "tests": {
       "generate": "✅ Test generated successfully",
+      "reset": "✅ Test creation reset successfully",
       "create": "✅ Test created successfully",
       "edit": "✅ Test edited successfully",
       "delete": "✅ Test deleted successfully"

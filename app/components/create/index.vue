@@ -25,6 +25,7 @@ const {
   questionPath,
   optionPath,
   createTest,
+  resetTest,
   deleteTest,
   clickImageInput,
   updateImageInput
@@ -62,12 +63,12 @@ const { exampleMessage } = useFormMessage();
         size="icon"
         variant="destructive"
         class="absolute right-2 top-2"
-        @click.prevent="deleteTest"
+        @click.prevent="edit ? deleteTest() : resetTest()"
       >
         <IconLoader v-if="isLoadingDelete" />
         <Trash2Icon v-else :size="16" />
         <span class="sr-only">
-          {{ edit ? 'Delete test' : 'Delete test creation' }}
+          {{ edit ? $t('edit.delete') : $t('create.reset') }}
         </span>
       </Button>
 
@@ -76,7 +77,9 @@ const { exampleMessage } = useFormMessage();
         @click.prevent="clickImageInput"
       >
         <ImageUpIcon :size="16" />
-        {{ $t('create.form.uploadImage') }}
+        {{
+          edit ? $t('create.form.updateImage') : $t('create.form.uploadImage')
+        }}
       </Button>
     </CommonTopImage>
 
@@ -211,7 +214,7 @@ const { exampleMessage } = useFormMessage();
             v-if="isLoadingCreate"
             class="mr-2 fill-primary-foreground"
           />
-          {{ edit ? $t('edit.title') : $t('create.form.create') }}
+          {{ edit ? $t('save') : $t('create.button') }}
         </Button>
       </div>
     </section>

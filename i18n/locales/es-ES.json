@@ -229,15 +229,18 @@
   "create": {
     "title": "Crear Test con Bloques",
     "description": "Rellena el formulario para crear tu propio test.",
+    "reset": "Restablecer creación de test",
     "form": {
-      "uploadImage": "Subir Imagen",
-      "addOption": "Añadir Opción",
-      "addQuestion": "Añadir Pregunta",
-      "create": "Crear Test"
-    }
+      "uploadImage": "Subir imagen",
+      "updateImage": "Actualizar imagen",
+      "addOption": "Añadir opción",
+      "addQuestion": "Añadir pregunta"
+    },
+    "button": "Crear test"
   },
   "edit": {
-    "title": "Editar Test"
+    "title": "Editar Test",
+    "delete": "Eliminar test"
   },
   "file": {
     "upload": "Haz Click o Arrastra y Suelta para Cargar",
@@ -294,6 +297,10 @@
     "overrideTest": {
       "title": "Ya tienes un test en curso",
       "description": "Si continúas, se perderá el test actual. ¿Estás seguro de que quieres continuar?"
+    },
+    "resetTest": {
+      "title": "¿Estás seguro de que quieres restablecer esta creación de test?",
+      "description": "Esta acción no se puede deshacer."
     },
     "emptyQuestions": {
       "title": "Tienes preguntas sin responder",
@@ -364,6 +371,7 @@
     },
     "tests": {
       "generate": "✅ Test generado con éxito",
+      "reset": "✅ Creación de test restablecida con éxito",
       "create": "✅ Test creado con éxito",
       "edit": "✅ Test editado con éxito",
       "delete": "✅ Test eliminado con éxito"
