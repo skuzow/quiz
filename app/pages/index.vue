@@ -34,5 +34,7 @@ seoMeta();
         </NuxtLinkLocale>
       </div>
     </section>
+
+    <LandingFaq />
   </div>
 </template>
