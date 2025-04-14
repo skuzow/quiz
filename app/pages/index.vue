@@ -35,6 +35,8 @@ seoMeta();
       </div>
     </section>
 
+    <LandingFeatures />
+
     <LandingFaq />
   </div>
 </template>
