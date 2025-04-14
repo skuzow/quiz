@@ -5,7 +5,7 @@ seoMeta();
 </script>
 
 <template>
-  <div class="mt-6 md:mt-10">
+  <div class="mt-6 space-y-20 md:mt-10 md:space-y-48">
     <section class="flex flex-col items-center text-center">
       <h1 class="mb-5 text-5xl font-extrabold md:mb-8 md:max-w-3xl md:text-7xl">
         <CommonGradientText>
@@ -14,7 +14,7 @@ seoMeta();
         {{ $t('landing.title.normal') }}
       </h1>
 
-      <p class="mb-7 text-pretty md:mb-9 md:max-w-xl md:text-xl">
+      <p class="mb-7 text-pretty text-lg md:mb-9 md:max-w-xl md:text-xl">
         {{ $t('description') }}
       </p>
 
