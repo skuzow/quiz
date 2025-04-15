@@ -6,8 +6,7 @@ interface Props {
   class?: string;
 }
 
-const { direction, class: className = 'bg-gradient-to-r' } =
-  defineProps<Props>();
+const { direction, class: className } = defineProps<Props>();
 
 const directionVariant: string = gradientVariants({ direction });
 </script>
