@@ -74,7 +74,7 @@ const editTest = async () => {
       >
         <div class="flex flex-col gap-y-2">
           <h1 class="overflow-hidden text-ellipsis text-2xl font-bold">
-            <CommonGradientText class="bg-gradient-to-b">
+            <CommonGradientText direction="bottomTop">
               {{ test.title }}
             </CommonGradientText>
           </h1>

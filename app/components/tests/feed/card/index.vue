@@ -49,7 +49,7 @@ const imageAlt: string = `image-${test.id}`;
 
     <div class="p-6 sm:w-3/4">
       <h2 class="mb-1.5 truncate text-lg font-bold">
-        <CommonGradientText class="bg-gradient-to-b">
+        <CommonGradientText direction="bottomTop">
           {{ test.title }}
         </CommonGradientText>
       </h2>
