@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { CircleCheckBig, BrainIcon, ClockIcon } from 'lucide-vue-next';
+import { CircleCheckBig, BrainIcon, ClockFadingIcon } from 'lucide-vue-next';
 
 const features = [
   {
@@ -13,7 +13,7 @@ const features = [
     description: 'Generate tests with advanced AI technology'
   },
   {
-    icon: ClockIcon,
+    icon: ClockFadingIcon,
     title: 'Time-Saving',
     description:
       'Streamline your test creation process with our fast-forward forms'
