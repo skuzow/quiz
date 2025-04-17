@@ -22,11 +22,11 @@ const features = [
 </script>
 
 <template>
-  <section class="flex flex-col items-center gap-y-16">
-    <div class="space-y-4 text-center">
-      <h2 class="text-3xl font-bold md:text-4xl">Powerful Creation Features</h2>
-      <p class="text-lg">Everything you need to power your tests</p>
-    </div>
+  <section>
+    <LandingSectionTitle
+      title="Powerful Creation Features"
+      description="Everything you need to power your tests"
+    />
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
       <Card

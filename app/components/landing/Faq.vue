@@ -27,11 +27,11 @@ const faq = [
 </script>
 
 <template>
-  <section class="flex flex-col items-center gap-y-16">
-    <div class="space-y-4 text-center">
-      <h2 class="text-3xl font-bold md:text-4xl">Frequently Asked Questions</h2>
-      <p class="text-lg">Everything you need to know</p>
-    </div>
+  <section class="flex flex-col items-center">
+    <LandingSectionTitle
+      title="Frequently Asked Questions"
+      description="Everything you need to know"
+    />
 
     <Accordion type="single" collapsible class="w-full max-w-3xl">
       <AccordionItem
