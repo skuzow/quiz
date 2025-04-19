@@ -19,7 +19,7 @@ seoMeta({
 
   <NuxtLayout>
     <section class="flex flex-col items-center gap-y-10">
-      <NavLogo :size="240" class="rotate-90 md:size-80" />
+      <NavLogo :size="240" class="rotate-180 md:size-80" />
 
       <div>
         <h1 class="mb-1 flex justify-center text-4xl font-semibold">
