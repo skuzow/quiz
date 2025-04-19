@@ -12,7 +12,7 @@ const currentYear: number = new Date().getFullYear();
       <div class="flex flex-col gap-y-3 md:flex-row md:gap-x-5 md:gap-y-0">
         <div class="flex items-center justify-center gap-x-2">
           <NavLogo />
-          <span class="font-bold">/ © skuzow/quiz {{ currentYear }}</span>
+          <span class="font-bold">/ {{ currentYear }}</span>
         </div>
 
         <ul class="flex gap-x-1">

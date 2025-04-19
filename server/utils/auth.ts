@@ -19,7 +19,7 @@ const {
 } = process.env;
 
 export const auth = betterAuth({
-  appName: 'skuzow/quiz',
+  appName: 'Quiz',
   database: prismaAdapter(prisma, {
     provider: 'sqlite'
   }),

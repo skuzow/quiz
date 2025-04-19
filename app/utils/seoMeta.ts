@@ -19,8 +19,8 @@ const seoMeta = ({ title, description, image }: SeoMeta = {}) => {
     ]
   });
 
-  if (title) title = `${title} - skuzow/quiz`;
-  else title = 'skuzow/quiz';
+  if (title) title = `${title} - Quiz`;
+  else title = 'Quiz';
 
   if (!description) {
     const { t: $t } = useI18n();
