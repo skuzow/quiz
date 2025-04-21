@@ -15,7 +15,7 @@ const { src, alt } = defineProps<Props>();
       :height="172"
       loading="lazy"
       :alt="alt"
-      :class="`h-[172px] w-full rounded-md object-cover`"
+      class="h-[172px] w-full rounded-md object-cover"
     />
 
     <slot />
