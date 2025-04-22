@@ -29,7 +29,7 @@ const features = [
     />
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
-      <Card
+      <CommonCard
         v-for="{ icon, title, description } in features"
         :key="title"
         class="flex flex-col items-center p-8 text-center"
@@ -37,7 +37,7 @@ const features = [
         <component :is="icon" :size="54" stroke="url(#gradient-svg)" />
         <h3 class="mt-5 text-lg font-semibold">{{ title }}</h3>
         <p class="mt-2">{{ description }}</p>
-      </Card>
+      </CommonCard>
     </div>
   </section>
 </template>
