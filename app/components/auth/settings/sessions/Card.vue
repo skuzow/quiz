@@ -57,8 +57,9 @@ const clickRevokeSession = async () => {
 </script>
 
 <template>
-  <div
-    class="flex flex-col justify-between gap-y-3 overflow-hidden rounded-xl border bg-card p-3 text-card-foreground sm:flex-row sm:items-center sm:gap-y-0"
+  <Card
+    :session="session"
+    class="flex flex-col justify-between gap-y-3 p-3 sm:flex-row sm:items-center sm:gap-y-0"
   >
     <div>
       <p class="flex items-center gap-x-2">
@@ -93,5 +94,5 @@ const clickRevokeSession = async () => {
         {{ $t('auth.settings.sessions.button') }}
       </Button>
     </div>
-  </div>
+  </Card>
 </template>
