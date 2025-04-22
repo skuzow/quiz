@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { CircleCheckBig, BrainIcon, ClockFadingIcon } from 'lucide-vue-next';
 
-const features = [
+const keys = [
   {
     icon: CircleCheckBig,
     title: 'Easy Creation',
@@ -24,13 +24,13 @@ const features = [
 <template>
   <section>
     <LandingSectionTitle
-      title="Powerful Creation Features"
-      description="Everything you need to power your tests"
+      title="Why Choose Quiz?"
+      description="Key features that make us stand out"
     />
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
       <CommonCard
-        v-for="{ icon, title, description } in features"
+        v-for="{ icon, title, description } in keys"
         :key="title"
         class="flex flex-col items-center p-8 text-center"
       >
