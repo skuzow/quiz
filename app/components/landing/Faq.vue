@@ -1,27 +1,26 @@
 <script lang="ts" setup>
+const { t: $t } = useI18n();
+
 const faq = [
   {
     value: 'faq-platform',
-    question: 'What is this platform for?',
-    answer:
-      "Our platform helps you create, generate, and share tests easily,whether you're an educator, student, or self-learner. You can build tests manually or use our AI tools for faster generation."
+    question: $t('landing.faq.questions.platform.question'),
+    answer: $t('landing.faq.questions.platform.answer')
   },
   {
     value: 'faq-platform-access',
-    question: 'Do I need an account to use it?',
-    answer:
-      'No, you can use the platform for making tests without creating an account. However, creating an account allows you to create and generate your own tests and manage them.'
+    question: $t('landing.faq.questions.platformAccess.question'),
+    answer: $t('landing.faq.questions.platformAccess.answer')
   },
   {
     value: 'faq-create-test',
-    question: 'How can I create a test?',
-    answer:
-      'You can create a test manually using our editor or let AI generate it for you by describing it or uploading a readable file.'
+    question: $t('landing.faq.questions.createTest.question'),
+    answer: $t('landing.faq.questions.createTest.answer')
   },
   {
     value: 'faq-question-types',
-    question: 'What types of questions are?',
-    answer: 'You can create single or multiple-choice questions.'
+    question: $t('landing.faq.questions.questionTypes.question'),
+    answer: $t('landing.faq.questions.questionTypes.answer')
   }
 ];
 </script>
@@ -29,8 +28,8 @@ const faq = [
 <template>
   <section class="flex flex-col items-center">
     <LandingSectionTitle
-      title="Frequently Asked Questions"
-      description="Everything you need to know"
+      :title="$t('landing.faq.title')"
+      :description="$t('landing.faq.description')"
     />
 
     <Accordion type="single" collapsible class="w-full max-w-3xl">

@@ -163,13 +163,37 @@
     }
   },
   "landing": {
-    "title": {
-      "gradient": "Hacer Tests",
-      "normal": "nunca fue tan fácil"
+    "top": {
+      "title": {
+        "gradient": "Hacer Tests",
+        "normal": "nunca fue tan fácil"
+      },
+      "buttons": {
+        "start": "Empezar ahora",
+        "ai": "Probar IA"
+      }
     },
-    "buttons": {
-      "start": "Empezar ahora",
-      "ai": "Probar IA"
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "description": "Todo lo que necesitas saber",
+      "questions": {
+        "platform": {
+          "question": "¿Para qué sirve esta plataforma?",
+          "answer": "Nuestra plataforma te ayuda a crear, generar y compartir tests fácilmente, ya seas educador, estudiante o autodidacta. Puedes crear tests manualmente o utilizar nuestras herramientas de IA para una generación más rápida."
+        },
+        "platformAccess": {
+          "question": "¿Necesito una cuenta para utilizarla?",
+          "answer": "Puede utilizar la plataforma para realizar tests sin crear una cuenta. Sin embargo, crear una cuenta permite crear, generar y gestionar tus propios tests."
+        },
+        "createTest": {
+          "question": "¿Cómo puedo crear un test?",
+          "answer": "Puede crear un test manualmente utilizando nuestro editor, o dejar que nuestro generador con IA lo genere por ti describiéndolo o subiendo un archivo legible."
+        },
+        "questionTypes": {
+          "question": "¿Qué tipo de preguntas hay?",
+          "answer": "Puede crear preguntas de selección única o múltiple."
+        }
+      }
     }
   },
   "tests": {

@@ -163,13 +163,37 @@
     }
   },
   "landing": {
-    "title": {
-      "gradient": "Making Tests",
-      "normal": "wasn't so easy before"
+    "top": {
+      "title": {
+        "gradient": "Making Tests",
+        "normal": "wasn't so easy before"
+      },
+      "buttons": {
+        "start": "Start now",
+        "ai": "Try AI"
+      }
     },
-    "buttons": {
-      "start": "Start now",
-      "ai": "Try AI"
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "description": "Everything you need to know",
+      "questions": {
+        "platform": {
+          "question": "What is this platform for?",
+          "answer": "Our platform helps you create, generate and share tests easily, whether you're an educator, student, or self-learner. You can build tests manually or use our AI tools for faster generation."
+        },
+        "platformAccess": {
+          "question": "Do I need an account to use it?",
+          "answer": "You can use the platform for making tests without creating an account. However, creating an account allows you to create, generate and manage your own tests."
+        },
+        "createTest": {
+          "question": "How can I create a test?",
+          "answer": "You can create a test manually using our editor, or let AI generate it for you by describing it or uploading a readable file."
+        },
+        "questionTypes": {
+          "question": "What type of questions are?",
+          "answer": "You can create single or multiple-choice questions."
+        }
+      }
     }
   },
   "tests": {
