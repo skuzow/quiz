@@ -1,22 +1,23 @@
 <script lang="ts" setup>
 import { CircleCheckBig, BrainIcon, ClockFadingIcon } from 'lucide-vue-next';
 
+const { t: $t } = useI18n();
+
 const keys = [
   {
     icon: CircleCheckBig,
-    title: 'Easy Creation',
-    description: 'Intuitive interface for quick test creation'
+    title: $t('landing.keys.cards.easy.title'),
+    description: $t('landing.keys.cards.easy.description')
   },
   {
     icon: BrainIcon,
-    title: 'AI-Powered',
-    description: 'Generate tests with advanced AI technology'
+    title: $t('landing.keys.cards.aiPowered.title'),
+    description: $t('landing.keys.cards.aiPowered.description')
   },
   {
     icon: ClockFadingIcon,
-    title: 'Time-Saving',
-    description:
-      'Streamline your test creation process with our fast-forward forms'
+    title: $t('landing.keys.cards.timeSaving.title'),
+    description: $t('landing.keys.cards.timeSaving.description')
   }
 ];
 </script>
@@ -24,8 +25,8 @@ const keys = [
 <template>
   <section>
     <LandingSectionTitle
-      title="Why Choose Quiz?"
-      description="Key features that make us stand out"
+      :title="$t('landing.keys.title')"
+      :description="$t('landing.keys.description')"
     />
 
     <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
