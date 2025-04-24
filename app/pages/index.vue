@@ -11,5 +11,7 @@ seoMeta();
     <LandingKeys />
 
     <LandingFaq />
+
+    <LandingAction />
   </div>
 </template>

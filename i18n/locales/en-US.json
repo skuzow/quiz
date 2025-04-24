@@ -197,25 +197,25 @@
     },
     "keys": {
       "title": "Why Choose Quiz?",
-      "description": "Key features that make us stand out",
+      "description": "Key features that make us stand out.",
       "cards": {
         "easy": {
           "title": "Easy Creation",
-          "description": "Intuitive interface for quick test creation"
+          "description": "Intuitive interface for quick test creation."
         },
         "aiPowered": {
           "title": "AI-Powered",
-          "description": "Generate tests with advanced AI technology"
+          "description": "Generate tests with advanced AI technology."
         },
         "timeSaving": {
           "title": "Time-Saving",
-          "description": "Streamline your test creation process with our fast-forward forms"
+          "description": "Streamline your test creation process with our fast-forward forms."
         }
       }
     },
     "faq": {
       "title": "Frequently Asked Questions",
-      "description": "Everything you need to know",
+      "description": "Everything you need to know.",
       "questions": {
         "platform": {
           "question": "What is this platform for?",
@@ -233,6 +233,14 @@
           "question": "What type of questions are?",
           "answer": "You can create single or multiple-choice questions."
         }
+      }
+    },
+    "action": {
+      "title": "Ready to revolutionize your tests?",
+      "description": "Start making and creating better tests today.",
+      "buttons": {
+        "start": "Get started now",
+        "more": "Learn more"
       }
     }
   },
