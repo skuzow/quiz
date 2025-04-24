@@ -52,7 +52,7 @@ export default defineNuxtConfig({
 
   site: {
     url: 'https://quiz.skuzow.com',
-    name: 'skuzow/quiz',
+    name: 'Quiz',
     indexable: false // delete this when site is finished
   },
 

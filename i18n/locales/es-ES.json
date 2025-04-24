@@ -163,13 +163,85 @@
     }
   },
   "landing": {
-    "title": {
-      "gradient": "Hacer Tests",
-      "normal": "nunca fue tan fácil"
+    "top": {
+      "title": {
+        "gradient": "Hacer Tests",
+        "normal": "nunca fue tan fácil"
+      },
+      "buttons": {
+        "start": "Empezar ahora",
+        "ai": "Probar IA"
+      }
     },
-    "buttons": {
-      "start": "Empezar Ahora",
-      "ai": "Probar IA"
+    "features": {
+      "feed": {
+        "title": "Descubre el Test Adecuado",
+        "description": "Filtra y ordena en nuestra extensa biblioteca de tests para encontrar el test perfecto para tus objetivos, de forma rápida y sencilla.",
+        "button": "Explorar tests"
+      },
+      "make": {
+        "title": "Haz Tests con Facilidad",
+        "description": "Sumérgete en tests ya preparados y responde preguntas sin problemas con nuestra interfaz optimizada.",
+        "button": "Empezar a hacer"
+      },
+      "create": {
+        "title": "Diseña Tests Personalizados",
+        "description": "Toma el control creativo total con nuestro editor flexible. Crea preguntas y respuestas exactamente como lo desees.",
+        "button": "Abrir editor"
+      },
+      "generate": {
+        "title": "Generador de Tests con IA",
+        "description": "Genera tests personalizados en segundos. Solo sube tu contenido o describe lo que necesitas, y nuestra IA hace el resto.",
+        "button": "Generar ahora"
+      }
+    },
+    "keys": {
+      "title": "¿Por Qué Elegir Quiz?",
+      "description": "Características clave que nos distinguen.",
+      "cards": {
+        "easy": {
+          "title": "Creación Sencilla",
+          "description": "Interfaz intuitiva para creación rápida de tests."
+        },
+        "aiPowered": {
+          "title": "Impulsado por IA",
+          "description": "Genere tests con tecnología avanzada de IA."
+        },
+        "timeSaving": {
+          "title": "Ahorro de Tiempo",
+          "description": "Agilice el proceso de creación de tests con nuestros rápidos formularios."
+        }
+      }
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "description": "Todo lo que necesitas saber.",
+      "questions": {
+        "platform": {
+          "question": "¿Para qué sirve esta plataforma?",
+          "answer": "Nuestra plataforma te ayuda a crear, generar y compartir tests fácilmente, ya seas educador, estudiante o autodidacta. Puedes crear tests manualmente o utilizar nuestras herramientas de IA para una generación más rápida."
+        },
+        "platformAccess": {
+          "question": "¿Necesito una cuenta para utilizarla?",
+          "answer": "Puede utilizar la plataforma para realizar tests sin crear una cuenta. Sin embargo, crear una cuenta permite crear, generar y gestionar tus propios tests."
+        },
+        "createTest": {
+          "question": "¿Cómo puedo crear un test?",
+          "answer": "Puede crear un test manualmente utilizando nuestro editor, o dejar que nuestro generador con IA lo genere por ti describiéndolo o subiendo un archivo legible."
+        },
+        "questionTypes": {
+          "question": "¿Qué tipo de preguntas hay?",
+          "answer": "Puede crear preguntas de selección única o múltiple."
+        }
+      }
+    },
+    "action": {
+      "title": "¿Listo para revolucionar tus tests?",
+      "description": "Empieza a hacer y crear mejores tests hoy.",
+      "buttons": {
+        "start": "Comenzar ahora",
+        "more": "Saber más"
+      }
     }
   },
   "tests": {

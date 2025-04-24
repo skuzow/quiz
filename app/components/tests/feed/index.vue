@@ -33,13 +33,17 @@ const { tests, isLoading, hasMore, errorMessage, isFieldDirty, searchEnter } =
           </li>
         </template>
 
-        <TestsFeedErrorMessage v-if="!hasMore">
-          {{ $t('error.testsMoreNotFound') }}
-        </TestsFeedErrorMessage>
+        <li v-if="!hasMore">
+          <TestsFeedErrorMessage>
+            {{ $t('error.testsMoreNotFound') }}
+          </TestsFeedErrorMessage>
+        </li>
 
-        <TestsFeedErrorMessage v-if="errorMessage">
-          {{ errorMessage }}
-        </TestsFeedErrorMessage>
+        <li v-else-if="errorMessage">
+          <TestsFeedErrorMessage>
+            {{ errorMessage }}
+          </TestsFeedErrorMessage>
+        </li>
       </ol>
     </section>
   </div>

@@ -9,6 +9,6 @@ describe('app', async () => {
     await page.goto(url('/'), { waitUntil: 'hydration' });
 
     const siteName = await page.textContent('span');
-    expect(siteName).toBe('skuzow/quiz');
+    expect(siteName).toBe('Quiz');
   });
 });

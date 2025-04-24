@@ -85,7 +85,7 @@ const basicRoles = [UserRole.USER];
     >
       <div class="flex flex-col gap-y-3">
         <h1 class="flex flex-col overflow-hidden text-ellipsis">
-          <CommonGradientText class="bg-gradient-to-b text-2xl font-bold">
+          <CommonGradientText direction="bottomTop" class="text-2xl font-bold">
             {{ user.name }}
           </CommonGradientText>
 

@@ -1,9 +1,14 @@
 <script lang="ts" setup>
+import { type GradientVariants, gradientVariants } from '.';
+
 interface Props {
+  direction?: GradientVariants['direction'];
   class?: string;
 }
 
-const { class: className = 'bg-gradient-to-r' } = defineProps<Props>();
+const { direction, class: className } = defineProps<Props>();
+
+const directionVariant: string = gradientVariants({ direction });
 </script>
 
 <template>
@@ -11,6 +16,7 @@ const { class: className = 'bg-gradient-to-r' } = defineProps<Props>();
     :class="
       cn(
         'from-gradient-start to-gradient-end bg-clip-text text-transparent',
+        directionVariant,
         className
       )
     "

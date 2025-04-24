@@ -9,10 +9,10 @@ const { isAuthenticated } = useAuth();
         <NuxtLinkLocale
           :to="isAuthenticated ? '/tests' : '/'"
           :title="isAuthenticated ? $t('tests.title') : $t('nav.home')"
-          class="flex items-center gap-x-2"
+          class="flex items-center gap-x-0.5"
         >
           <NavLogo />
-          <span class="font-bold">skuzow/quiz</span>
+          <span class="text-xl font-bold">uiz</span>
         </NuxtLinkLocale>
 
         <NavHeaderMenuDesktop class="hidden md:flex" />

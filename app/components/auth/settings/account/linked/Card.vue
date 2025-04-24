@@ -57,8 +57,10 @@ const clickUnlinkAccount = async () => {
 </script>
 
 <template>
-  <div
-    class="flex items-center justify-between overflow-hidden rounded-xl border bg-card p-3 text-card-foreground"
+  <Card
+    :account="account"
+    :length="length"
+    class="flex items-center justify-between p-3"
   >
     <div>
       <p class="flex items-center gap-x-2">
@@ -86,5 +88,5 @@ const clickUnlinkAccount = async () => {
       <UnlinkIcon v-else :size="16" />
       {{ $t('auth.settings.account.linked.button') }}
     </Button>
-  </div>
+  </Card>
 </template>
