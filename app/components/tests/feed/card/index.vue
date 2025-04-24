@@ -17,7 +17,7 @@ const imageAlt: string = `image-${test.id}`;
 
 <template>
   <NuxtLinkLocale :to="`/tests/${test.id}`" :title="test.title">
-    <CommonCard class="flex flex-col sm:flex-row">
+    <CommonCard class="flex flex-col overflow-hidden sm:flex-row">
       <div class="relative border-b sm:w-1/4 sm:border-b-0 sm:border-r">
         <CommonPicture
           :src="test.image || '/images/test.avif'"
