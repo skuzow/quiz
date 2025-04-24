@@ -173,6 +173,28 @@
         "ai": "Probar IA"
       }
     },
+    "features": {
+      "feed": {
+        "title": "Descubre el Test Adecuado",
+        "description": "Filtra y ordena en nuestra extensa biblioteca de tests para encontrar el test perfecto para tus objetivos, de forma rápida y sencilla.",
+        "button": "Explorar tests"
+      },
+      "make": {
+        "title": "Haz Tests con Facilidad",
+        "description": "Sumérgete en tests ya preparados y responde preguntas sin problemas con nuestra interfaz optimizada.",
+        "button": "Empezar a hacer"
+      },
+      "create": {
+        "title": "Diseña Tests Personalizados",
+        "description": "Toma el control creativo total con nuestro editor flexible. Crea preguntas y respuestas exactamente como lo desees.",
+        "button": "Abrir editor"
+      },
+      "generate": {
+        "title": "Generador de Tests con IA",
+        "description": "Genera tests personalizados en segundos. Solo sube tu contenido o describe lo que necesitas, y nuestra IA hace el resto.",
+        "button": "Generar ahora"
+      }
+    },
     "keys": {
       "title": "¿Por Qué Elegir Quiz?",
       "description": "Características clave que nos distinguen",

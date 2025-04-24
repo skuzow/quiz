@@ -173,6 +173,28 @@
         "ai": "Try AI"
       }
     },
+    "features": {
+      "feed": {
+        "title": "Discover the Right Test",
+        "description": "Filter and sort through our extensive library of tests to find the perfect test for your goals, fast and easy.",
+        "button": "Explore tests"
+      },
+      "make": {
+        "title": "Take Tests with Ease",
+        "description": "Dive into pre-made tests, answer questions smoothly with our optimized interface.",
+        "button": "Start making"
+      },
+      "create": {
+        "title": "Design Custom Tests",
+        "description": "Take full creative control with our flexible editor. Craft questions and answers exactly how you want them.",
+        "button": "Open editor"
+      },
+      "generate": {
+        "title": "AI-Powered Test Generator",
+        "description": "Generate tailored tests in seconds. Just upload your content or describe what you need, and our AI does the rest.",
+        "button": "Generate now"
+      }
+    },
     "keys": {
       "title": "Why Choose Quiz?",
       "description": "Key features that make us stand out",

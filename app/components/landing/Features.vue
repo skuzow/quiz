@@ -6,14 +6,15 @@ import {
   WandSparklesIcon
 } from 'lucide-vue-next';
 
+const { t: $t } = useI18n();
+
 const features = [
   {
-    title: 'Discover the Right Test',
-    description:
-      'Filter and sort through our extensive library of tests to find the perfect test for your goals, fast and easy.',
+    title: $t('landing.features.feed.title'),
+    description: $t('landing.features.feed.description'),
     button: {
       icon: SearchIcon,
-      text: 'Search now',
+      text: $t('landing.features.feed.button'),
       url: '/tests'
     },
     image: {
@@ -22,12 +23,11 @@ const features = [
     }
   },
   {
-    title: 'Take Tests with Ease',
-    description:
-      'Dive into pre-made tests, answer questions smoothly with our optimized interface.',
+    title: $t('landing.features.make.title'),
+    description: $t('landing.features.make.description'),
     button: {
       icon: ListChecksIcon,
-      text: 'Start making',
+      text: $t('landing.features.make.button'),
       url: '/tests'
     },
     image: {
@@ -36,12 +36,11 @@ const features = [
     }
   },
   {
-    title: 'Design Custom Tests',
-    description:
-      'Take full creative control with our flexible editor. Craft questions and score exactly how you want them.',
+    title: $t('landing.features.create.title'),
+    description: $t('landing.features.create.description'),
     button: {
       icon: CirclePlusIcon,
-      text: 'Open editor',
+      text: $t('landing.features.create.button'),
       url: '/create'
     },
     image: {
@@ -50,12 +49,11 @@ const features = [
     }
   },
   {
-    title: 'AI-Powered Test Generator',
-    description:
-      'Generate tailored tests in seconds. Just upload your content or describe what you need, and our AI does the rest.',
+    title: $t('landing.features.generate.title'),
+    description: $t('landing.features.generate.description'),
     button: {
       icon: WandSparklesIcon,
-      text: 'Generate now',
+      text: $t('landing.features.generate.button'),
       url: '/generate'
     },
     image: {
