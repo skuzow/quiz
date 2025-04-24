@@ -111,11 +111,11 @@ const features: Feature[] = [
       </CommonCard>
 
       <div class="w-full md:w-2/5">
-        <h3 class="mb-4 text-3xl font-semibold md:text-4xl">
+        <h2 class="mb-4 text-3xl font-semibold md:text-4xl">
           <CommonGradientText direction="bottomTop">
             {{ title }}
           </CommonGradientText>
-        </h3>
+        </h2>
         <p class="mb-6 text-lg">{{ description }}</p>
 
         <NuxtLinkLocale :to="button.url" :title="button.text">
