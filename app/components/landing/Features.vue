@@ -3,12 +3,27 @@ import {
   SearchIcon,
   ListChecksIcon,
   CirclePlusIcon,
-  WandSparklesIcon
+  WandSparklesIcon,
+  type LucideIcon
 } from 'lucide-vue-next';
 
 const { t: $t } = useI18n();
 
-const features = [
+interface Feature {
+  title: string;
+  description: string;
+  button: {
+    icon: LucideIcon;
+    text: string;
+    url: string;
+  };
+  image: {
+    light: string;
+    dark: string;
+  };
+}
+
+const features: Feature[] = [
   {
     title: $t('landing.features.feed.title'),
     description: $t('landing.features.feed.description'),

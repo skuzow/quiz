@@ -1,9 +1,20 @@
 <script lang="ts" setup>
-import { CircleCheckBig, BrainIcon, ClockFadingIcon } from 'lucide-vue-next';
+import {
+  CircleCheckBig,
+  BrainIcon,
+  ClockFadingIcon,
+  type LucideIcon
+} from 'lucide-vue-next';
 
 const { t: $t } = useI18n();
 
-const keys = [
+interface Key {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+const keys: Key[] = [
   {
     icon: CircleCheckBig,
     title: $t('landing.keys.cards.easy.title'),

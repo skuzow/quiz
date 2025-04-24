@@ -1,7 +1,13 @@
 <script lang="ts" setup>
 const { t: $t } = useI18n();
 
-const faq = [
+interface FaqItem {
+  value: string;
+  question: string;
+  answer: string;
+}
+
+const faq: FaqItem[] = [
   {
     value: 'faq-platform',
     question: $t('landing.faq.questions.platform.question'),
