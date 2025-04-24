@@ -11,7 +11,7 @@ import { ArrowUpRightIcon, SparkleIcon } from 'lucide-vue-next';
       {{ $t('landing.top.title.normal') }}
     </h1>
 
-    <p class="mb-7 text-pretty text-lg md:mb-9 md:max-w-xl md:text-xl">
+    <p class="mb-7 text-pretty text-xl md:mb-9 md:max-w-xl">
       {{ $t('description') }}
     </p>
 
