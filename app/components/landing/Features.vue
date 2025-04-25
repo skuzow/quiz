@@ -98,7 +98,7 @@ const features: Feature[] = [
           :height="380"
           loading="lazy"
           :alt="title"
-          class="h-full object-cover dark:hidden md:w-full"
+          class="object-cover dark:hidden"
         />
         <CommonPicture
           :src="image.dark"
@@ -106,7 +106,7 @@ const features: Feature[] = [
           :height="380"
           loading="lazy"
           :alt="title"
-          class="hidden h-full object-cover dark:flex md:w-full"
+          class="hidden object-cover dark:flex"
         />
       </CommonCard>
 

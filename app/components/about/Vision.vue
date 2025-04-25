@@ -8,7 +8,7 @@
           :height="380"
           loading="lazy"
           :alt="$t('about.vision.title')"
-          class="h-full object-cover md:w-full"
+          class="object-cover"
         />
       </CommonCard>
 
