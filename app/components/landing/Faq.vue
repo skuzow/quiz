@@ -33,7 +33,7 @@ const faq: FaqItem[] = [
 
 <template>
   <section class="flex flex-col items-center">
-    <LandingSectionTitle
+    <CommonSectionTitle
       :title="$t('landing.faq.title')"
       :description="$t('landing.faq.description')"
     />

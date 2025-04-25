@@ -3,7 +3,7 @@
     <CommonCard
       class="flex flex-col items-center justify-center p-8 sm:p-12 md:p-16"
     >
-      <LandingSectionTitle
+      <CommonSectionTitle
         :title="$t('landing.action.title')"
         :description="$t('landing.action.description')"
         class="mb-6"
