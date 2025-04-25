@@ -8,7 +8,7 @@ seoMeta({
 </script>
 
 <template>
-  <div>
-    <h1 class="text-8xl">about</h1>
+  <div class="mt-6 space-y-20 md:mt-10 md:space-y-48">
+    <AboutHero />
   </div>
 </template>
