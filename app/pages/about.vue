@@ -10,5 +10,7 @@ seoMeta({
 <template>
   <div class="mt-6 space-y-20 md:mt-10 md:space-y-48">
     <AboutHero />
+
+    <LandingFaq />
   </div>
 </template>
