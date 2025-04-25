@@ -163,7 +163,7 @@
     }
   },
   "landing": {
-    "top": {
+    "hero": {
       "title": {
         "gradient": "Making Tests",
         "normal": "wasn't so easy before"
@@ -245,6 +245,12 @@
     }
   },
   "about": {
+    "hero": {
+      "title": {
+        "gradient": "About",
+        "normal": "the project"
+      }
+    },
     "developer": {
       "title": "Meet the Developer",
       "description": "The person behind the project.",

@@ -6,9 +6,9 @@ import { ArrowUpRightIcon, SparkleIcon } from 'lucide-vue-next';
   <section class="flex flex-col items-center text-center">
     <h1 class="mb-5 text-5xl font-extrabold md:mb-8 md:max-w-3xl md:text-7xl">
       <CommonGradientText>
-        {{ $t('landing.top.title.gradient') }}
+        {{ $t('landing.hero.title.gradient') }}
       </CommonGradientText>
-      {{ $t('landing.top.title.normal') }}
+      {{ $t('landing.hero.title.normal') }}
     </h1>
 
     <p class="mb-7 text-pretty text-xl md:mb-9 md:max-w-xl">
@@ -16,16 +16,16 @@ import { ArrowUpRightIcon, SparkleIcon } from 'lucide-vue-next';
     </p>
 
     <div class="flex gap-x-4">
-      <NuxtLinkLocale to="/tests" :title="$t('landing.top.buttons.start')">
+      <NuxtLinkLocale to="/tests" :title="$t('landing.hero.buttons.start')">
         <Button class="gap-x-2">
-          {{ $t('landing.top.buttons.start') }}
+          {{ $t('landing.hero.buttons.start') }}
           <ArrowUpRightIcon :size="16" />
         </Button>
       </NuxtLinkLocale>
 
-      <NuxtLinkLocale to="/generate" :title="$t('landing.top.buttons.ai')">
+      <NuxtLinkLocale to="/generate" :title="$t('landing.hero.buttons.ai')">
         <Button variant="secondary" class="gap-x-2">
-          {{ $t('landing.top.buttons.ai') }}
+          {{ $t('landing.hero.buttons.ai') }}
           <SparkleIcon :size="16" stroke="url(#gradient-svg)" />
         </Button>
       </NuxtLinkLocale>

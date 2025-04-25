@@ -52,7 +52,7 @@
         }
       },
       "about": {
-        "title": "Sobre el Proyecto",
+        "title": "Acerca del Proyecto",
         "description": "Más información sobre el proyecto y las personas detrás de él."
       },
       "lang": {
@@ -163,7 +163,7 @@
     }
   },
   "landing": {
-    "top": {
+    "hero": {
       "title": {
         "gradient": "Hacer Tests",
         "normal": "nunca fue tan fácil"
@@ -245,6 +245,12 @@
     }
   },
   "about": {
+    "hero": {
+      "title": {
+        "gradient": "Acerca",
+        "normal": "del proyecto"
+      }
+    },
     "developer": {
       "title": "Conoce al Desarrollador",
       "description": "La persona detrás del proyecto.",
