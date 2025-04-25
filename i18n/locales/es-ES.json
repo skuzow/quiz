@@ -251,6 +251,13 @@
         "normal": "del proyecto"
       }
     },
+    "vision": {
+      "title": "El Objetivo",
+      "description": {
+        "first": "Como estudiante y desarrollador, reconocí la necesidad de una forma más eficiente y eficaz de crear y realizar exámenes tipo test.",
+        "second": "Quiz nació del deseo de aprovechar la tecnología de IA más avanzada para revolucionar el proceso de creación, y transformar la forma en que se realizan los tests, haciendo la experiencia más fluida, rápida y atractiva."
+      }
+    },
     "developer": {
       "title": "Conoce al Desarrollador",
       "description": "La persona detrás del proyecto.",

@@ -251,6 +251,13 @@
         "normal": "the project"
       }
     },
+    "vision": {
+      "title": "The Objetive",
+      "description": {
+        "first": "As student and developer, I recognized the need for a more efficient and effective way to make and create test exams.",
+        "second": "Quiz was born from the desire to leverage cutting-edge AI technology to revolutionize the creation process, and transform the way tests are taken, making the experience smoother, faster, and more engaging."
+      }
+    },
     "developer": {
       "title": "Meet the Developer",
       "description": "The person behind the project.",
