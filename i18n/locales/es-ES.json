@@ -245,6 +245,18 @@
     }
   },
   "about": {
+    "developer": {
+      "title": "Conoce al Desarrollador",
+      "description": "La persona detrás del proyecto.",
+      "card": {
+        "role": "Ingeniero de Software",
+        "description": "Apasionado por el desarrollo web y el código abierto. Me encanta crear herramientas que ayuden a las personas y les faciliten la vida.",
+        "links": {
+          "website": "Página web",
+          "contact": "Contactar al desarrollador"
+        }
+      }
+    },
     "contact": {
       "title": "Ponte en Contacto",
       "description": "¿Tienes preguntas, comentarios o simplemente quieres conectar? Estamos aquí para ayudarte. Escríbenos y te responderemos lo antes posible.",

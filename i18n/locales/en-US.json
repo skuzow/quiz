@@ -245,6 +245,18 @@
     }
   },
   "about": {
+    "developer": {
+      "title": "Meet the Developer",
+      "description": "The person behind the project.",
+      "card": {
+        "role": "Software Engineer",
+        "description": "Passionate about web development and open source. I love creating tools that help people and make their lives easier.",
+        "links": {
+          "website": "Website",
+          "contact": "Contact developer"
+        }
+      }
+    },
     "contact": {
       "title": "Get in Touch",
       "description": "Have questions, feedback, or just want to connect? We’re here to help. Reach out to our team and we’ll get back to you as soon as possible.",
