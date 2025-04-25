@@ -244,6 +244,13 @@
       }
     }
   },
+  "about": {
+    "contact": {
+      "title": "Ponte en Contacto",
+      "description": "¿Tienes preguntas, comentarios o simplemente quieres conectar? Estamos aquí para ayudarte. Escríbenos y te responderemos lo antes posible.",
+      "button": "Contactar ahora"
+    }
+  },
   "tests": {
     "title": "Listado Tests",
     "description": "Buscar y filtrar en nuestra amplia y variada colección de pruebas.",

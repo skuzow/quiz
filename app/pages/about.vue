@@ -12,5 +12,7 @@ seoMeta({
     <AboutHero />
 
     <LandingFaq />
+
+    <AboutContact />
   </div>
 </template>

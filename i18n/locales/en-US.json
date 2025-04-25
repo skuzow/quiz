@@ -244,6 +244,13 @@
       }
     }
   },
+  "about": {
+    "contact": {
+      "title": "Get in Touch",
+      "description": "Have questions, feedback, or just want to connect? We’re here to help. Reach out to our team and we’ll get back to you as soon as possible.",
+      "button": "Contact now"
+    }
+  },
   "tests": {
     "title": "Tests Feed",
     "description": "Search and filter in our large and varied collection of tests.",
