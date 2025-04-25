@@ -35,7 +35,7 @@ const keys: Key[] = [
 
 <template>
   <section>
-    <LandingSectionTitle
+    <CommonSectionTitle
       :title="$t('landing.keys.title')"
       :description="$t('landing.keys.description')"
     />
