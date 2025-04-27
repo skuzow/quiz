@@ -1,8 +1,5 @@
 import { describe, expect, test } from 'vitest';
 import { setup, createPage } from '@nuxt/test-utils/e2e';
-import { mockNuxtImport } from '@nuxt/test-utils/runtime';
-
-mockNuxtImport('useI18n', () => () => useNuxtApp().$i18n);
 
 describe('i18n', async () => {
   await setup();
@@ -12,19 +9,19 @@ describe('i18n', async () => {
 
     const description = await page.textContent('p');
 
-    const { t: $t } = useI18n();
+    const { t: $t } = useNuxtApp().$i18n;
 
     expect(description).toBe($t('description'));
-  }, 10000);
+  });
 
   test('renders ES translation correctly in /es route', async () => {
     const page = await createPage('/es');
 
     const description = await page.textContent('p');
 
-    const { t: $t, setLocale } = useI18n();
+    const { t: $t, setLocale } = useNuxtApp().$i18n;
     await setLocale('es');
 
     expect(description).toBe($t('description'));
-  }, 10000);
+  });
 });
