@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { setup, createPage, url } from '@nuxt/test-utils';
+import { setup, createPage, url } from '@nuxt/test-utils/e2e';
 
 describe('app', async () => {
   await setup();

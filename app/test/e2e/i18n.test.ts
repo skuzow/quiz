@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { setup, createPage } from '@nuxt/test-utils';
+import { setup, createPage } from '@nuxt/test-utils/e2e';
 import { mockNuxtImport } from '@nuxt/test-utils/runtime';
 
 mockNuxtImport('useI18n', () => () => useNuxtApp().$i18n);
