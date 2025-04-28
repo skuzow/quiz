@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { setup, createPage } from '@nuxt/test-utils/e2e';
+import { setup, createPage, url } from '@nuxt/test-utils/e2e';
 
 describe('i18n', async () => {
   await setup();
@@ -8,7 +8,8 @@ describe('i18n', async () => {
     'renders EN translation correctly in default route',
     { timeout: 10000 },
     async () => {
-      const page = await createPage('/');
+      const page = await createPage();
+      await page.goto(url('/'));
 
       const description = await page.textContent('p');
 
@@ -22,7 +23,8 @@ describe('i18n', async () => {
     'renders ES translation correctly in /es route',
     { timeout: 10000 },
     async () => {
-      const page = await createPage('/es');
+      const page = await createPage();
+      await page.goto(url('/es'));
 
       const description = await page.textContent('p');
 
