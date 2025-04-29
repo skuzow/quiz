@@ -19,17 +19,17 @@ export const useNavMenu = () => {
 
   const exploreNavMenuItems = computed<NavMenuItem[]>(() => [
     {
-      link: { path: 'tests', query: { sort: TestOrder.MOSTPOPULAR } },
+      link: { path: '/tests', query: { sort: TestOrder.MOSTPOPULAR } },
       title: $t('nav.header.explore.popular.title'),
       description: $t('nav.header.explore.popular.description')
     },
     {
-      link: { path: 'tests', query: { sort: TestOrder.LONGEST } },
+      link: { path: '/tests', query: { sort: TestOrder.LONGEST } },
       title: $t('nav.header.explore.difficult.title'),
       description: $t('nav.header.explore.difficult.description')
     },
     {
-      link: { path: 'tests', query: { sort: TestOrder.NEWEST } },
+      link: { path: '/tests', query: { sort: TestOrder.NEWEST } },
       title: $t('nav.header.explore.new.title'),
       description: $t('nav.header.explore.new.description')
     }
