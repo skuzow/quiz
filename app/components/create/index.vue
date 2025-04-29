@@ -54,7 +54,7 @@ const { exampleMessage } = useFormMessage();
           size="sm"
           :width="40"
           :height="40"
-          loading="lazy"
+          loading="eager"
           :user="authUser"
         />
       </NuxtLink>

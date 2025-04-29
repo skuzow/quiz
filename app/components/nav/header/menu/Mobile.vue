@@ -28,7 +28,7 @@ const isOpen: Ref<boolean> = ref(false);
               :title="isAuthenticated ? $t('tests.title') : $t('nav.home')"
             >
               <div v-if="isAuthenticated" class="flex justify-start gap-x-2">
-                <CommonAvatar loading="lazy" :user="authUser" />
+                <CommonAvatar loading="eager" :user="authUser" />
 
                 <div class="flex flex-col items-start justify-center">
                   <h3 class="text-left text-sm">{{ authUser?.name }}</h3>

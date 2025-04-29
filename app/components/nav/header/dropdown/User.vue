@@ -9,7 +9,7 @@ const { openAuthSettings } = useAuthSettings();
 <template>
   <DropdownMenu>
     <DropdownMenuTrigger as-child>
-      <CommonAvatar :user="authUser" />
+      <CommonAvatar loading="eager" :user="authUser" />
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end" class="w-56 font-medium">
       <DropdownMenuLabel>

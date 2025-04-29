@@ -19,6 +19,7 @@ const isUpdateProfileOpen: Ref<boolean> = ref(false);
           size="sm"
           :width="40"
           :height="40"
+          loading="eager"
           :pointer="false"
           :user="authUser"
         />

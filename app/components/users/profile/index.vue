@@ -54,7 +54,7 @@ const basicRoles = [UserRole.USER];
         size="lg"
         :width="96"
         :height="96"
-        loading="lazy"
+        loading="eager"
         :user="user"
         class="absolute bottom-2 left-2"
       />

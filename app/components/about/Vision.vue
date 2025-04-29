@@ -6,7 +6,7 @@
           src="/images/about/vision.avif"
           :width="630"
           :height="380"
-          loading="lazy"
+          loading="eager"
           :alt="$t('about.vision.title')"
           class="object-cover"
         />

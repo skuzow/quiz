@@ -13,7 +13,7 @@ const { src, alt } = defineProps<Props>();
       :src="src"
       :width="1088"
       :height="172"
-      loading="lazy"
+      loading="eager"
       :alt="alt"
       class="h-[172px] rounded-md object-cover"
     />
