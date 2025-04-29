@@ -5,6 +5,7 @@ interface Props {
   width: number;
   height: number;
   loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'auto' | 'sync';
   alt: string;
   class?: string;
 }
@@ -15,6 +16,7 @@ const {
   width,
   height,
   loading,
+  decoding = 'async',
   alt,
   class: className
 } = defineProps<Props>();
@@ -27,6 +29,7 @@ const {
     :width="width"
     :height="height"
     :loading="loading"
+    :decoding="decoding"
     :alt="alt"
     :img-attrs="{
       title: alt,

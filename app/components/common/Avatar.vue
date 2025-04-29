@@ -10,6 +10,7 @@ interface Props {
   width?: number;
   height?: number;
   loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'auto' | 'sync';
   alt?: string;
   pointer?: boolean;
   user: UserPartial | User | typeof authUser.value;
@@ -21,6 +22,7 @@ const {
   width = 36,
   height = 36,
   loading,
+  decoding = 'async',
   alt = 'Avatar',
   pointer = true,
   user
@@ -47,6 +49,7 @@ const {
       :width="width"
       :height="height"
       :loading="loading"
+      :decoding="decoding"
       :title="alt"
       :alt="alt"
     />

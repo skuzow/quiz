@@ -17,6 +17,7 @@ import { GithubIcon, GlobeIcon, MailIcon } from 'lucide-vue-next';
         :width="200"
         :height="200"
         loading="lazy"
+        decoding="async"
         title="Logo"
         alt="Logo"
         class="rounded-full"
