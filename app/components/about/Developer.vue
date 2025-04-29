@@ -12,13 +12,11 @@ import { GithubIcon, GlobeIcon, MailIcon } from 'lucide-vue-next';
     <CommonCard
       class="flex flex-col items-center gap-10 p-8 sm:p-12 md:flex-row md:p-16"
     >
-      <NuxtImg
+      <CommonImage
         src="https://avatars.githubusercontent.com/u/61398114"
         :width="200"
         :height="200"
         loading="lazy"
-        decoding="async"
-        title="Logo"
         alt="Logo"
         class="rounded-full"
       />
