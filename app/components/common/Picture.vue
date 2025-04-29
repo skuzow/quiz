@@ -27,9 +27,9 @@ const {
     :width="width"
     :height="height"
     :loading="loading"
-    :title="alt"
     :alt="alt"
     :img-attrs="{
+      title: alt,
       class: className
     }"
   />
