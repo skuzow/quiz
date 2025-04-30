@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import {
+  ChartAreaIcon,
   FilePenIcon,
   LockIcon,
   CalendarIcon,
@@ -23,7 +24,16 @@ const localePath = useLocalePath();
 
 const { authUser, isAuthenticated } = useAuth();
 
+const isLoadingStats: Ref<boolean> = ref(false);
 const isLoadingEdit: Ref<boolean> = ref(false);
+
+const statsTest = async () => {
+  isLoadingStats.value = true;
+
+  await navigateTo(localePath(`/tests/${test.id}/stats`));
+
+  isLoadingStats.value = false;
+};
 
 const editTest = async () => {
   isLoadingEdit.value = true;
@@ -58,15 +68,22 @@ const editTest = async () => {
           class="absolute bottom-2 left-2"
         />
 
-        <Button
+        <div
           v-if="isAuthenticated && authUser?.id === test.author.id"
-          class="absolute bottom-2 right-2 gap-x-2"
-          @click="editTest"
+          class="absolute bottom-2 right-2 flex flex-col gap-2 sm:flex-row"
         >
-          <IconLoader v-if="isLoadingEdit" class="fill-primary-foreground" />
-          <FilePenIcon v-else :size="16" />
-          {{ $t('tests.make.edit') }}
-        </Button>
+          <Button variant="secondary" class="gap-x-2" @click="statsTest">
+            <IconLoader v-if="isLoadingStats" />
+            <ChartAreaIcon v-else :size="16" />
+            {{ $t('tests.make.stats') }}
+          </Button>
+
+          <Button class="gap-x-2" @click="editTest">
+            <IconLoader v-if="isLoadingEdit" class="fill-primary-foreground" />
+            <FilePenIcon v-else :size="16" />
+            {{ $t('tests.make.edit') }}
+          </Button>
+        </div>
       </CommonTopImage>
 
       <div
