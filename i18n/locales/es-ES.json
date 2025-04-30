@@ -291,6 +291,10 @@
       "edit": "Editar",
       "correct": "Corregir",
       "retry": "Reintentar"
+    },
+    "edit": {
+      "title": "Editar Test",
+      "delete": "Eliminar test"
     }
   },
   "login": {
@@ -342,10 +346,6 @@
       "addQuestion": "Añadir pregunta"
     },
     "button": "Crear test"
-  },
-  "edit": {
-    "title": "Editar Test",
-    "delete": "Eliminar test"
   },
   "file": {
     "upload": "Haz Click o Arrastra y Suelta para Cargar",

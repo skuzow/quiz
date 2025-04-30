@@ -68,7 +68,7 @@ const { exampleMessage } = useFormMessage();
         <IconLoader v-if="isLoadingDelete" />
         <Trash2Icon v-else :size="16" />
         <span class="sr-only">
-          {{ edit ? $t('edit.delete') : $t('create.reset') }}
+          {{ edit ? $t('tests.edit.delete') : $t('create.reset') }}
         </span>
       </Button>
 
