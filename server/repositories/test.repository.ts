@@ -4,7 +4,8 @@ import type { Prisma } from '@prisma/client';
 import {
   USER_TEST_SELECT,
   USER_TEST_PARTIAL_AUTHOR_SELECT,
-  USER_TEST_PARTIAL_SELECT
+  USER_TEST_PARTIAL_SELECT,
+  USER_TEST_STATS_SELECT
 } from './queries/selects';
 
 import { ImageFolder } from '../constants/image.constant';
@@ -47,6 +48,17 @@ class TestRepository {
     if (!test.published && test.author.id !== authUserId) return null;
 
     return this.transformUserTest(test);
+  }
+
+  async findByIdStats(id: string): Promise<UserTestStats | null> {
+    const testStats = await this.userTestModel.findFirst({
+      where: { id: id },
+      select: USER_TEST_STATS_SELECT
+    });
+
+    if (!testStats) return null;
+
+    return this.transformUserTestStats(testStats);
   }
 
   async findAll(
