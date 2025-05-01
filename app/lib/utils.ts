@@ -29,3 +29,7 @@ export const titleCase = (value: string): string => {
 export const convertPartialDeepToPlain = <T>(obj: Partial<T>): T => {
   return JSON.parse(JSON.stringify(obj));
 };
+
+export const roundToTwo = (value: number): number => {
+  return Math.round(value * 100) / 100;
+};
