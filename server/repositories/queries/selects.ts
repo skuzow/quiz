@@ -37,13 +37,6 @@ export const USER_TEST_COMPLETED_SELECT: Prisma.UserTestCompletedSelect = {
   completedAt: true
 };
 
-export const USER_TEST_STATS_SELECT: Prisma.UserTestSelect = {
-  ...USER_TEST_PARTIAL_AUTHOR_SELECT,
-  completed: {
-    select: USER_TEST_COMPLETED_SELECT
-  }
-};
-
 export const USER_SELECT: Prisma.UserSelect = {
   ...USER_PARTIAL_SELECT,
   displayUsername: true,

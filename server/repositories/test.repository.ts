@@ -5,7 +5,7 @@ import {
   USER_TEST_SELECT,
   USER_TEST_PARTIAL_AUTHOR_SELECT,
   USER_TEST_PARTIAL_SELECT,
-  USER_TEST_STATS_SELECT
+  USER_TEST_COMPLETED_SELECT
 } from './queries/selects';
 
 import { ImageFolder } from '../constants/image.constant';
@@ -51,9 +51,18 @@ class TestRepository {
   }
 
   async findByIdStats(id: string): Promise<UserTestStats | null> {
+    const oneYearAgo = new Date();
+    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+
     const testStats = await this.userTestModel.findFirst({
       where: { id: id },
-      select: USER_TEST_STATS_SELECT
+      select: {
+        ...USER_TEST_PARTIAL_AUTHOR_SELECT,
+        completed: {
+          where: { completedAt: { gte: oneYearAgo } },
+          select: USER_TEST_COMPLETED_SELECT
+        }
+      }
     });
 
     if (!testStats) return null;
