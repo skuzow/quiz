@@ -92,15 +92,20 @@ export const useMake = (test: UserTest) => {
 
     isLoadingMake.value = true;
 
-    $api.test.complete(test.id);
+    const correction: TestCorrectionQuestion[] = correctTest(questions);
+    const score: number = scoreTest(correction);
 
-    correctTest(questions);
+    await $api.test.complete(test.id, { score });
+
+    makeCorrection.value = correction;
 
     isLoadingMake.value = false;
   });
 
-  const correctTest = (makeQuestions: MakeQuestionForm[]) => {
-    makeCorrection.value = makeQuestions.map(
+  const correctTest = (
+    makeQuestions: MakeQuestionForm[]
+  ): TestCorrectionQuestion[] => {
+    return makeQuestions.map(
       ({ type, options: makeOptions }, indexMakeQuestion) => {
         const question: UserTestQuestion = test.questions[indexMakeQuestion]!;
 
@@ -128,7 +133,7 @@ export const useMake = (test: UserTest) => {
   const correctMultipleQuestion = (
     makeQuestionOption: string[] | undefined,
     question: UserTestQuestion
-  ) => {
+  ): TestCorrectionQuestion => {
     return {
       ...question,
       options: question.options.map((option) => ({
@@ -137,6 +142,51 @@ export const useMake = (test: UserTest) => {
           makeQuestionOption?.includes(String(option.number)) || false
       }))
     };
+  };
+
+  const scoreTest = (correction: TestCorrectionQuestion[]): number => {
+    const scoreQuestions: number = correction.reduce(
+      (sum, { type, options }) => {
+        if (type === TestQuestionType.SINGLE)
+          return sum + scoreSingleQuestion(options);
+
+        return sum + scoreMultipleQuestion(options);
+      },
+      0
+    );
+
+    const average: number = scoreQuestions / correction.length;
+    const score: number = average * 10;
+
+    return roundToTwo(score);
+  };
+
+  const scoreSingleQuestion = (
+    options: TestCorrectionQuestionOption[]
+  ): number => {
+    const score: number = options.some(
+      ({ isUserSelected, isCorrect }) => isUserSelected && isCorrect
+    )
+      ? 1
+      : 0;
+
+    return score;
+  };
+
+  const scoreMultipleQuestion = (
+    options: TestCorrectionQuestionOption[]
+  ): number => {
+    const correctOptions: number = options.filter(
+      ({ isCorrect }) => isCorrect
+    ).length;
+
+    const correctSelectedOptions: number = options.filter(
+      ({ isUserSelected, isCorrect }) => isUserSelected && isCorrect
+    ).length;
+
+    const score: number = correctSelectedOptions / correctOptions;
+
+    return score;
   };
 
   const retryTest = () => {

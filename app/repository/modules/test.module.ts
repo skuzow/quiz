@@ -41,10 +41,13 @@ class TestModule extends FetchFactory {
     });
   }
 
-  async complete(id: string) {
+  async complete(id: string, dto: TestCompletion) {
     return this.call({
       method: 'POST',
-      url: this.ROUTE.Complete(id)
+      url: this.ROUTE.Complete(id),
+      fetchOptions: {
+        body: dto
+      }
     });
   }
 
