@@ -7,7 +7,7 @@ import {
 } from 'lucide-vue-next';
 
 interface Props {
-  test: UserTest;
+  test: UserTest | UserTestStats;
 }
 
 const { test } = defineProps<Props>();
@@ -37,7 +37,9 @@ const { test } = defineProps<Props>();
 
       <li class="flex items-center gap-x-1">
         <FileQuestionIcon :size="16" />
-        {{ test.questions.length }}
+        {{
+          Array.isArray(test.questions) ? test.questions.length : test.questions
+        }}
       </li>
 
       <li class="flex items-center gap-x-1">

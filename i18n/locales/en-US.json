@@ -295,6 +295,9 @@
     "edit": {
       "title": "Edit Test",
       "delete": "Delete test"
+    },
+    "stats": {
+      "title": "Test Stats"
     }
   },
   "login": {

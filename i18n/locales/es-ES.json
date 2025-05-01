@@ -295,6 +295,9 @@
     "edit": {
       "title": "Editar Test",
       "delete": "Eliminar test"
+    },
+    "stats": {
+      "title": "Estadísticas del Test"
     }
   },
   "login": {
