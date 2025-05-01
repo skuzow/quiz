@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
+import { useToast } from '@/components/ui/toast/use-toast';
+
 import { FormInput } from '@/constants/form.constant';
 import {
   TestQuestionType,
@@ -15,6 +17,7 @@ export const useMake = (test: UserTest) => {
   const { minMessage } = useFormMessage();
 
   const { alert } = useAlert();
+  const { toast } = useToast();
 
   const isLoadingMake: Ref<boolean> = ref(false);
   const makeCorrection: Ref<TestCorrectionQuestion[] | undefined> = ref();
@@ -100,6 +103,14 @@ export const useMake = (test: UserTest) => {
     makeCorrection.value = correction;
 
     isLoadingMake.value = false;
+
+    toast({
+      title:
+        score >= 5
+          ? $t('toast.tests.make.score.title.pass')
+          : $t('toast.tests.make.score.title.fail'),
+      description: `${$t('toast.tests.make.score.description')} ${score}/10`
+    });
   });
 
   const correctTest = (
@@ -131,7 +142,7 @@ export const useMake = (test: UserTest) => {
   };
 
   const correctMultipleQuestion = (
-    makeQuestionOption: string[] | undefined,
+    makeQuestionOptions: string[] | undefined,
     question: UserTestQuestion
   ): TestCorrectionQuestion => {
     return {
@@ -139,7 +150,7 @@ export const useMake = (test: UserTest) => {
       options: question.options.map((option) => ({
         ...option,
         isUserSelected:
-          makeQuestionOption?.includes(String(option.number)) || false
+          makeQuestionOptions?.includes(String(option.number)) || false
       }))
     };
   };

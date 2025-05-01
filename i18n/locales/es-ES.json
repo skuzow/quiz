@@ -479,7 +479,16 @@
       "reset": "✅ Creación de test restablecida con éxito",
       "create": "✅ Test creado con éxito",
       "edit": "✅ Test editado con éxito",
-      "delete": "✅ Test eliminado con éxito"
+      "delete": "✅ Test eliminado con éxito",
+      "make": {
+        "score": {
+          "title": {
+            "pass": "🎉 Enhorabuena por aprobar el examen",
+            "fail": "❌ Has suspendido el examen"
+          },
+          "description": "Puntuación"
+        }
+      }
     },
     "users": {
       "profile": {

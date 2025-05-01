@@ -479,7 +479,16 @@
       "reset": "✅ Test creation reset successfully",
       "create": "✅ Test created successfully",
       "edit": "✅ Test edited successfully",
-      "delete": "✅ Test deleted successfully"
+      "delete": "✅ Test deleted successfully",
+      "make": {
+        "score": {
+          "title": {
+            "pass": "🎉 Congratulations on passing the test",
+            "fail": "❌ You failed the test"
+          },
+          "description": "Score"
+        }
+      }
     },
     "users": {
       "profile": {
