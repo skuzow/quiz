@@ -95,3 +95,7 @@ export const TestSearchSchema = z.object({
   sort: z.nativeEnum(TestOrder).optional(),
   filter: z.nativeEnum(TestCategory).optional()
 });
+
+export const TestCompletionSchema = z.object({
+  score: z.number().multipleOf(0.01).min(0).max(10)
+});
