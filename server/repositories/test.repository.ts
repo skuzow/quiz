@@ -122,12 +122,14 @@ class TestRepository {
     return this.transformUserTestsPartial(tests);
   }
 
-  async complete(id: string) {
+  async complete(id: string, { score }: TestCompletion) {
     await this.userTestModel.update({
       where: { id },
       data: {
         completed: {
-          create: {}
+          create: {
+            score
+          }
         }
       }
     });
@@ -291,9 +293,7 @@ class TestRepository {
   private transformUserTest(test: any): UserTest {
     return {
       ...test,
-      categories: test.categories.map(
-        (category: any) => category.category.name
-      ),
+      categories: this.transformCategories(test.categories),
       questions: test.questions
         .map((question: any) => ({
           ...question,
@@ -305,16 +305,29 @@ class TestRepository {
     };
   }
 
+  private transformUserTestStats(testStats: any): UserTestStats {
+    return {
+      ...testStats,
+      categories: this.transformCategories(testStats.categories),
+      questions: testStats._count.questions,
+      completed: testStats._count.completed,
+      _count: undefined,
+      stats: testStats.completed
+    };
+  }
+
   private transformUserTestsPartial(tests: any): UserTestPartial[] {
     return tests.map((test: any) => ({
       ...test,
-      categories: test.categories.map(
-        (category: any) => category.category.name
-      ),
+      categories: this.transformCategories(test.categories),
       questions: test._count.questions,
       completed: test._count.completed,
       _count: undefined
     }));
+  }
+
+  private transformCategories(categories: any): string[] {
+    return categories.map((category: any) => category.category.name);
   }
 }
 

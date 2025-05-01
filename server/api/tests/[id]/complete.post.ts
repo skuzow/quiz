@@ -1,3 +1,5 @@
+import { TestCompletionSchema } from '#shared/schemas/test.schema';
+
 export default defineEventHandler(async (event) => {
   const { id } = getRouterParams(event);
 
@@ -17,7 +19,21 @@ export default defineEventHandler(async (event) => {
       })
     );
 
-  await repository.test.complete(id);
+  const body: TestCompletion = await readBody(event);
+
+  const result = TestCompletionSchema.safeParse(body);
+
+  if (!result.success)
+    return sendError(
+      event,
+      createError({
+        statusCode: 400,
+        statusMessage: 'Invalid fields',
+        data: result.error?.issues
+      })
+    );
+
+  await repository.test.complete(id, body);
 
   return {
     statusCode: 201,
