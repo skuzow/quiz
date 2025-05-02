@@ -305,6 +305,7 @@
         "year": "Last Year"
       },
       "categories": {
+        "completed": "Completed",
         "passed": "Passed",
         "failed": "Failed"
       }

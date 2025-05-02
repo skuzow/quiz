@@ -305,6 +305,7 @@
         "year": "Último Año"
       },
       "categories": {
+        "completed": "Completados",
         "passed": "Aprobados",
         "failed": "Suspensos"
       }

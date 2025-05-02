@@ -19,6 +19,8 @@ const { test } = defineProps<Props>();
 
     <TestsInfo :test="test" />
 
+    <TestsStatsChartCompleted :stats="test.stats" />
+
     <TestsStatsChartPassedFailed :stats="test.stats" />
   </div>
 </template>
