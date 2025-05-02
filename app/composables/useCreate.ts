@@ -263,6 +263,9 @@ export const useCreate = (edit?: boolean) => {
 
       await navigateTo(localePath(`/tests/${test.id}`));
 
+      if (edit) testStore.editTest = undefined;
+      else testStore.createTest = undefined;
+
       toast({
         title: edit ? $t('toast.tests.edit') : $t('toast.create.title'),
         description: test.title
