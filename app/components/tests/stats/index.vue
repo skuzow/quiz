@@ -13,7 +13,7 @@ const { test } = defineProps<Props>();
     <NuxtLinkLocale :to="`/tests/${test.id}`" :title="test.title">
       <Button variant="secondary" class="w-fit gap-x-2">
         <ArrowLeftIcon :size="16" />
-        Back to test
+        {{ $t('tests.stats.button') }}
       </Button>
     </NuxtLinkLocale>
 

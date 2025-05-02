@@ -298,6 +298,7 @@
     },
     "stats": {
       "title": "Test Stats",
+      "button": "Back to test",
       "labels": {
         "day": "Last 24 Hours",
         "month": "Last Month",

@@ -298,6 +298,7 @@
     },
     "stats": {
       "title": "Estadísticas del Test",
+      "button": "Volver al test",
       "labels": {
         "day": "Últimas 24 Horas",
         "month": "Último Mes",
