@@ -14,7 +14,7 @@ const { test } = defineProps<Props>();
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-2 lg:flex-row lg:justify-between lg:gap-y-0">
+  <div class="flex flex-col gap-y-3 lg:flex-row lg:justify-between lg:gap-y-0">
     <div class="flex flex-col gap-y-2">
       <h1 class="overflow-hidden text-ellipsis text-2xl font-bold">
         <CommonGradientText direction="bottomTop">
