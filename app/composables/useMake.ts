@@ -86,8 +86,8 @@ export const useMake = (test: UserTest) => {
 
     if (isSomeQuestionEmpty(questions)) {
       const response: boolean = await alert({
-        title: $t('alert.emptyQuestions.title'),
-        description: $t('alert.emptyQuestions.description')
+        title: $t('alert.tests.make.empty.title'),
+        description: $t('alert.tests.make.empty.description')
       });
 
       if (!response) return;

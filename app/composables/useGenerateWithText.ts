@@ -89,8 +89,8 @@ export const useGenerateWithText = () => {
 
       if (testStore.createTest) {
         const response: boolean = await alert({
-          title: $t('alert.overrideTest.title'),
-          description: $t('alert.overrideTest.description'),
+          title: $t('alert.generate.override.title'),
+          description: $t('alert.generate.override.description'),
           confirm: $t('continue'),
           danger: true
         });
@@ -121,7 +121,7 @@ export const useGenerateWithText = () => {
         await navigateTo(localePath('/create'));
 
         toast({
-          title: $t('toast.tests.generate'),
+          title: $t('toast.generate'),
           description: testStore.createTest.title
         });
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

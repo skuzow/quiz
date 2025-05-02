@@ -264,7 +264,7 @@ export const useCreate = (edit?: boolean) => {
       await navigateTo(localePath(`/tests/${test.id}`));
 
       toast({
-        title: edit ? $t('toast.tests.edit') : $t('toast.tests.create'),
+        title: edit ? $t('toast.tests.edit') : $t('toast.create.title'),
         description: test.title
       });
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -277,8 +277,8 @@ export const useCreate = (edit?: boolean) => {
 
   const resetTest = async () => {
     const response: boolean = await alert({
-      title: $t('alert.resetTest.title'),
-      description: $t('alert.resetTest.description'),
+      title: $t('alert.create.reset.title'),
+      description: $t('alert.create.reset.description'),
       danger: true
     });
 
@@ -288,13 +288,13 @@ export const useCreate = (edit?: boolean) => {
 
     resetForm({ values: initialFormValue });
 
-    toast({ title: $t('toast.tests.reset') });
+    toast({ title: $t('toast.create.reset') });
   };
 
   const deleteTest = async () => {
     const response: boolean = await alert({
-      title: $t('alert.deleteTest.title'),
-      description: $t('alert.deleteTest.description'),
+      title: $t('alert.tests.delete.title'),
+      description: $t('alert.tests.delete.description'),
       danger: true
     });
 

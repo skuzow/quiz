@@ -412,21 +412,29 @@
       "title": "A password reset email has been sent",
       "description": "Please check your inbox and follow the instructions to reset your password."
     },
-    "overrideTest": {
-      "title": "You already have a test in progress",
-      "description": "If you continue, you will lose your current test. Do you want to continue?"
+    "generate": {
+      "override": {
+        "title": "You already have a test in progress",
+        "description": "If you continue, you will lose your current test. Do you want to continue?"
+      }
     },
-    "resetTest": {
-      "title": "Are you sure you want reset this test creation?",
-      "description": "This action cannot be undone."
+    "create": {
+      "reset": {
+        "title": "Are you sure you want reset this test creation?",
+        "description": "This action cannot be undone."
+      }
     },
-    "emptyQuestions": {
-      "title": "You have unanswered questions",
-      "description": "Are you sure you want to correct the test?"
-    },
-    "deleteTest": {
-      "title": "Are you sure you want to delete this test?",
-      "description": "This action cannot be undone."
+    "tests": {
+      "make": {
+        "empty": {
+          "title": "You have unanswered questions",
+          "description": "Are you sure you want to correct the test?"
+        }
+      },
+      "delete": {
+        "title": "Are you sure you want to delete this test?",
+        "description": "This action cannot be undone."
+      }
     }
   },
   "toast": {
@@ -487,10 +495,12 @@
       "title": "✅ Password reset successfully",
       "description": "You can now log in with your new password."
     },
+    "generate": "✅ Test generated successfully",
+    "create": {
+      "title": "✅ Test created successfully",
+      "reset": "✅ Test creation reset successfully"
+    },
     "tests": {
-      "generate": "✅ Test generated successfully",
-      "reset": "✅ Test creation reset successfully",
-      "create": "✅ Test created successfully",
       "edit": "✅ Test edited successfully",
       "delete": "✅ Test deleted successfully",
       "make": {
