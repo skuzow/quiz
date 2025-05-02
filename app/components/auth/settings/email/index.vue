@@ -66,14 +66,14 @@ const clickVerifyEmail = async () => {
                 <BadgeCheckIcon
                   v-if="authUser?.emailVerified"
                   :size="16"
-                  class="stroke-green-700"
+                  class="stroke-correct"
                 />
                 <BadgeXIcon v-else :size="16" class="stroke-destructive" />
 
                 <span
                   :class="
                     authUser?.emailVerified
-                      ? 'text-green-700'
+                      ? 'text-correct'
                       : 'text-destructive'
                   "
                 >

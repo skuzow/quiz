@@ -58,6 +58,9 @@ const config: Config = {
         gradient: {
           start: 'hsl(var(--gradient-start))',
           end: 'hsl(var(--gradient-end))'
+        },
+        correct: {
+          DEFAULT: 'hsl(var(--correct))'
         }
       },
       borderRadius: {
