@@ -12,5 +12,5 @@ export interface User {
   displayUsername: string | null;
   image: string | null;
   profileImage: string | null;
-  createdAt: Date;
+  createdAt: string;
 }
