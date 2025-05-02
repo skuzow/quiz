@@ -60,6 +60,7 @@ class TestRepository {
         ...USER_TEST_PARTIAL_AUTHOR_SELECT,
         completed: {
           where: { completedAt: { gte: oneYearAgo } },
+          orderBy: { completedAt: SortOrder.ASC },
           select: USER_TEST_COMPLETED_SELECT
         }
       }
