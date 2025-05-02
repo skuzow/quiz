@@ -129,10 +129,24 @@ const current = computed(() => {
 
 <template>
   <section class="space-y-4">
-    <div class="flex items-center justify-between">
-      <h2 class="text-xl font-semibold">{{ current.label }}</h2>
+    <div
+      class="flex flex-col gap-y-2 md:flex-row md:items-center md:justify-between md:gap-y-0"
+    >
+      <label for="passed-failed-select">
+        <h2 class="text-lg font-semibold">
+          <CommonGradientText direction="bottomTop">
+            {{ $t('tests.stats.categories.passed') }} -
+            {{ $t('tests.stats.categories.failed') }}
+          </CommonGradientText>
+        </h2>
+
+        <p class="sr-only text-sm md:not-sr-only">
+          {{ current.label }}
+        </p>
+      </label>
 
       <Select
+        id="passed-failed-select"
         :model-value="selected"
         @update:model-value="(value) => (selected = value)"
       >
