@@ -297,7 +297,16 @@
       "delete": "Eliminar test"
     },
     "stats": {
-      "title": "Estadísticas del Test"
+      "title": "Estadísticas del Test",
+      "labels": {
+        "day": "Últimas 24 Horas",
+        "month": "Último Mes",
+        "year": "Último Año"
+      },
+      "categories": {
+        "passed": "Aprobados",
+        "failed": "Suspensos"
+      }
     }
   },
   "login": {

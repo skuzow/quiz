@@ -18,5 +18,7 @@ const { test } = defineProps<Props>();
     </NuxtLinkLocale>
 
     <TestsInfo :test="test" />
+
+    <TestsStatsChartPassedFailed :stats="test.stats" />
   </div>
 </template>

@@ -297,7 +297,16 @@
       "delete": "Delete test"
     },
     "stats": {
-      "title": "Test Stats"
+      "title": "Test Stats",
+      "labels": {
+        "day": "Last 24 Hours",
+        "month": "Last Month",
+        "year": "Last Year"
+      },
+      "categories": {
+        "passed": "Passed",
+        "failed": "Failed"
+      }
     }
   },
   "login": {
