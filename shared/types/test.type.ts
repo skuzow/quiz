@@ -22,7 +22,7 @@ export interface UserTestPartial {
   categories: TestCategory[];
   questions: number;
   completed: number;
-  createdAt: string;
+  createdAt: Date;
 }
 
 export interface UserTest {
@@ -35,7 +35,7 @@ export interface UserTest {
   categories: TestCategory[];
   questions: UserTestQuestion[];
   completed: number;
-  createdAt: string;
+  createdAt: Date;
 }
 
 export interface UserTestQuestion {
@@ -63,13 +63,13 @@ export interface UserTestStats {
   questions: number;
   completed: number;
   stats: UserTestCompleted[];
-  createdAt: string;
+  createdAt: Date;
 }
 
 export interface UserTestCompleted {
   id: string;
   score: number;
-  completedAt: string;
+  completedAt: Date;
 }
 
 export type TestCreation = z.infer<typeof TestCreationSchema>;
