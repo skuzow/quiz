@@ -232,6 +232,10 @@
         "questionTypes": {
           "question": "¿Qué tipo de preguntas hay?",
           "answer": "Hay preguntas de selección única y múltiple."
+        },
+        "testStats": {
+          "question": "¿Hay algún tipo de estadísticas?",
+          "answer": "Sí, estadísticas sobre tests completados, aprobados y fallidos están disponibles para todos los tests, pero solo son visibles para el creador."
         }
       }
     },

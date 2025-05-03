@@ -232,6 +232,10 @@
         "questionTypes": {
           "question": "What type of questions are?",
           "answer": "There are single and multiple choice questions."
+        },
+        "testStats": {
+          "question": "Are there any kind of statistics?",
+          "answer": "Yes, statistics on completed, passed, and failed tests are available for all tests, but only visible to the creator."
         }
       }
     },

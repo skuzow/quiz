@@ -27,6 +27,11 @@ const faq: FaqItem[] = [
     value: 'faq-question-types',
     question: $t('landing.faq.questions.questionTypes.question'),
     answer: $t('landing.faq.questions.questionTypes.answer')
+  },
+  {
+    value: 'faq-test-stats',
+    question: $t('landing.faq.questions.testStats.question'),
+    answer: $t('landing.faq.questions.testStats.answer')
   }
 ];
 </script>
