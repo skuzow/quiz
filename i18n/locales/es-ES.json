@@ -231,7 +231,7 @@
         },
         "questionTypes": {
           "question": "¿Qué tipo de preguntas hay?",
-          "answer": "Puede crear preguntas de selección única o múltiple."
+          "answer": "Hay preguntas de selección única y múltiple."
         }
       }
     },

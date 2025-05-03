@@ -231,7 +231,7 @@
         },
         "questionTypes": {
           "question": "What type of questions are?",
-          "answer": "You can create single or multiple-choice questions."
+          "answer": "There are single and multiple choice questions."
         }
       }
     },
