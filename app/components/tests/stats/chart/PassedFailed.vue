@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Chart } from '@/constants/chart.constant';
+import { Chart, type ChartKey } from '@/constants/chart.constant';
 
 interface Props {
   stats: UserTestCompleted[];
@@ -7,31 +7,29 @@ interface Props {
 
 const { stats } = defineProps<Props>();
 
-const { options, selected, current } = useChart(Chart.PASSEDFAILED, stats);
+const { options, selected, current, updateSelected } = useChart(
+  Chart.PASSEDFAILED,
+  stats
+);
+
+const selectId: string = 'passed-failed-select';
 </script>
 
 <template>
   <section class="space-y-4">
-    <div
-      class="flex flex-col gap-y-2 md:flex-row md:items-center md:justify-between md:gap-y-0"
-    >
-      <label for="passed-failed-select">
-        <h2 class="text-lg font-semibold">
-          <CommonGradientText direction="bottomTop">
-            {{ $t('tests.stats.categories.passed') }} -
-            {{ $t('tests.stats.categories.failed') }}
-          </CommonGradientText>
-        </h2>
-
-        <p class="sr-only text-sm md:not-sr-only">
-          {{ current.label }}
-        </p>
-      </label>
+    <TestsStatsChartFormWrapper>
+      <TestsStatsChartFormLabel
+        :id="selectId"
+        :title="`${$t('tests.stats.categories.passed')} - ${$t('tests.stats.categories.failed')}`"
+        :label="current.label"
+      />
 
       <Select
-        id="passed-failed-select"
+        :id="selectId"
         :model-value="selected"
-        @update:model-value="(value) => (selected = value)"
+        @update:model-value="
+          (value: string) => updateSelected(value as ChartKey)
+        "
       >
         <SelectTrigger class="w-[180px]">
           <SelectValue />
@@ -48,7 +46,7 @@ const { options, selected, current } = useChart(Chart.PASSEDFAILED, stats);
           </SelectGroup>
         </SelectContent>
       </Select>
-    </div>
+    </TestsStatsChartFormWrapper>
 
     <AreaChart
       :data="current.data"

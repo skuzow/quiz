@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Chart } from '@/constants/chart.constant';
+import { Chart, type ChartKey } from '@/constants/chart.constant';
 
 interface Props {
   stats: UserTestCompleted[];
@@ -7,30 +7,29 @@ interface Props {
 
 const { stats } = defineProps<Props>();
 
-const { options, selected, current } = useChart(Chart.COMPLETED, stats);
+const { options, selected, current, updateSelected } = useChart(
+  Chart.COMPLETED,
+  stats
+);
+
+const selectId: string = 'completed-select';
 </script>
 
 <template>
   <section class="space-y-4">
-    <div
-      class="flex flex-col gap-y-2 md:flex-row md:items-center md:justify-between md:gap-y-0"
-    >
-      <label for="completed-select">
-        <h2 class="text-lg font-semibold">
-          <CommonGradientText direction="bottomTop">
-            {{ $t('tests.stats.categories.completed') }}
-          </CommonGradientText>
-        </h2>
-
-        <p class="sr-only text-sm md:not-sr-only">
-          {{ current.label }}
-        </p>
-      </label>
+    <TestsStatsChartFormWrapper>
+      <TestsStatsChartFormLabel
+        :id="selectId"
+        :title="$t('tests.stats.categories.completed')"
+        :label="current.label"
+      />
 
       <Select
-        id="completed-select"
+        :id="selectId"
         :model-value="selected"
-        @update:model-value="(value) => (selected = value)"
+        @update:model-value="
+          (value: string) => updateSelected(value as ChartKey)
+        "
       >
         <SelectTrigger class="w-[180px]">
           <SelectValue />
@@ -47,7 +46,7 @@ const { options, selected, current } = useChart(Chart.COMPLETED, stats);
           </SelectGroup>
         </SelectContent>
       </Select>
-    </div>
+    </TestsStatsChartFormWrapper>
 
     <AreaChart
       :data="current.data"
