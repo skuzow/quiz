@@ -4,7 +4,8 @@ import type { Prisma } from '@prisma/client';
 import {
   USER_TEST_SELECT,
   USER_TEST_PARTIAL_AUTHOR_SELECT,
-  USER_TEST_PARTIAL_SELECT
+  USER_TEST_PARTIAL_SELECT,
+  USER_TEST_COMPLETED_SELECT
 } from './queries/selects';
 
 import { ImageFolder } from '../constants/image.constant';
@@ -47,6 +48,27 @@ class TestRepository {
     if (!test.published && test.author.id !== authUserId) return null;
 
     return this.transformUserTest(test);
+  }
+
+  async findByIdStats(id: string): Promise<UserTestStats | null> {
+    const oneYearAgo = new Date();
+    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+
+    const testStats = await this.userTestModel.findFirst({
+      where: { id: id },
+      select: {
+        ...USER_TEST_PARTIAL_AUTHOR_SELECT,
+        completed: {
+          where: { completedAt: { gte: oneYearAgo } },
+          orderBy: { completedAt: SortOrder.ASC },
+          select: USER_TEST_COMPLETED_SELECT
+        }
+      }
+    });
+
+    if (!testStats) return null;
+
+    return this.transformUserTestStats(testStats);
   }
 
   async findAll(
@@ -122,12 +144,14 @@ class TestRepository {
     return this.transformUserTestsPartial(tests);
   }
 
-  async complete(id: string) {
+  async complete(id: string, { score }: TestCompletion) {
     await this.userTestModel.update({
       where: { id },
       data: {
         completed: {
-          create: {}
+          create: {
+            score
+          }
         }
       }
     });
@@ -291,9 +315,7 @@ class TestRepository {
   private transformUserTest(test: any): UserTest {
     return {
       ...test,
-      categories: test.categories.map(
-        (category: any) => category.category.name
-      ),
+      categories: this.transformCategories(test.categories),
       questions: test.questions
         .map((question: any) => ({
           ...question,
@@ -305,16 +327,29 @@ class TestRepository {
     };
   }
 
+  private transformUserTestStats(testStats: any): UserTestStats {
+    return {
+      ...testStats,
+      categories: this.transformCategories(testStats.categories),
+      questions: testStats._count.questions,
+      completed: testStats._count.completed,
+      _count: undefined,
+      stats: testStats.completed
+    };
+  }
+
   private transformUserTestsPartial(tests: any): UserTestPartial[] {
     return tests.map((test: any) => ({
       ...test,
-      categories: test.categories.map(
-        (category: any) => category.category.name
-      ),
+      categories: this.transformCategories(test.categories),
       questions: test._count.questions,
       completed: test._count.completed,
       _count: undefined
     }));
+  }
+
+  private transformCategories(categories: any): string[] {
+    return categories.map((category: any) => category.category.name);
   }
 }
 

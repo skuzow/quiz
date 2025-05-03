@@ -4,7 +4,8 @@ import type { UserPartial } from './user.type';
 import type {
   TestCreationSchema,
   TestGenerationSchema,
-  TestSearchSchema
+  TestSearchSchema,
+  TestCompletionSchema
 } from '../schemas/test.schema';
 import type {
   TestCategory,
@@ -51,11 +52,33 @@ export interface UserTestQuestionOption {
   isCorrect: boolean;
 }
 
+export interface UserTestStats {
+  id: string;
+  title: string;
+  description: string;
+  image: string | null;
+  published: boolean;
+  author: UserPartial;
+  categories: TestCategory[];
+  questions: number;
+  completed: number;
+  stats: UserTestCompleted[];
+  createdAt: Date;
+}
+
+export interface UserTestCompleted {
+  id: string;
+  score: number;
+  completedAt: Date;
+}
+
 export type TestCreation = z.infer<typeof TestCreationSchema>;
 
 export type TestGeneration = z.infer<typeof TestGenerationSchema>;
 
 export type TestSearch = z.infer<typeof TestSearchSchema>;
+
+export type TestCompletion = z.infer<typeof TestCompletionSchema>;
 
 export interface TestCorrectionQuestion {
   number: number;

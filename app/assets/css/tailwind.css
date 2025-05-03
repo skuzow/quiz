@@ -49,6 +49,20 @@
 
     --gradient-start: 340, 100%, 65%;
     --gradient-end: 15, 99%, 69%;
+
+    --correct: 142 71.8% 29.2%;
+
+    /* charts */
+    --vis-tooltip-background-color: none !important;
+    --vis-tooltip-border-color: none !important;
+    --vis-tooltip-text-color: none !important;
+    --vis-tooltip-shadow-color: none !important;
+    --vis-tooltip-backdrop-filter: none !important;
+    --vis-tooltip-padding: none !important;
+
+    --vis-primary-color: var(--correct);
+    --vis-secondary-color: var(--destructive);
+    --vis-text-color: var(--muted-foreground);
   }
 
   .dark {

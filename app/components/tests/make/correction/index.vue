@@ -45,7 +45,7 @@ const emit = defineEmits(['retry']);
             <span
               class="text-sm leading-none"
               :class="{
-                'text-green-700': optionCorrection.isCorrect,
+                'text-correct': optionCorrection.isCorrect,
                 'text-destructive':
                   !optionCorrection.isCorrect && optionCorrection.isUserSelected
               }"
@@ -56,7 +56,7 @@ const emit = defineEmits(['retry']);
             <CheckIcon
               v-if="optionCorrection.isCorrect"
               :size="16"
-              class="shrink-0 stroke-green-700"
+              class="shrink-0 stroke-correct"
             />
             <XIcon
               v-else-if="optionCorrection.isUserSelected"

@@ -2,6 +2,8 @@ import { z } from 'zod';
 import { toTypedSchema } from '@vee-validate/zod';
 import { useForm } from 'vee-validate';
 
+import { useToast } from '@/components/ui/toast/use-toast';
+
 import { FormInput } from '@/constants/form.constant';
 import {
   TestQuestionType,
@@ -15,6 +17,7 @@ export const useMake = (test: UserTest) => {
   const { minMessage } = useFormMessage();
 
   const { alert } = useAlert();
+  const { toast } = useToast();
 
   const isLoadingMake: Ref<boolean> = ref(false);
   const makeCorrection: Ref<TestCorrectionQuestion[] | undefined> = ref();
@@ -83,8 +86,8 @@ export const useMake = (test: UserTest) => {
 
     if (isSomeQuestionEmpty(questions)) {
       const response: boolean = await alert({
-        title: $t('alert.emptyQuestions.title'),
-        description: $t('alert.emptyQuestions.description')
+        title: $t('alert.tests.make.empty.title'),
+        description: $t('alert.tests.make.empty.description')
       });
 
       if (!response) return;
@@ -92,15 +95,28 @@ export const useMake = (test: UserTest) => {
 
     isLoadingMake.value = true;
 
-    $api.test.complete(test.id);
+    const correction: TestCorrectionQuestion[] = correctTest(questions);
+    const score: number = scoreTest(correction);
 
-    correctTest(questions);
+    await $api.test.complete(test.id, { score });
+
+    makeCorrection.value = correction;
 
     isLoadingMake.value = false;
+
+    toast({
+      title:
+        score >= 5
+          ? $t('toast.tests.make.score.title.pass')
+          : $t('toast.tests.make.score.title.fail'),
+      description: `${$t('toast.tests.make.score.description')} ${score}/10`
+    });
   });
 
-  const correctTest = (makeQuestions: MakeQuestionForm[]) => {
-    makeCorrection.value = makeQuestions.map(
+  const correctTest = (
+    makeQuestions: MakeQuestionForm[]
+  ): TestCorrectionQuestion[] => {
+    return makeQuestions.map(
       ({ type, options: makeOptions }, indexMakeQuestion) => {
         const question: UserTestQuestion = test.questions[indexMakeQuestion]!;
 
@@ -126,17 +142,62 @@ export const useMake = (test: UserTest) => {
   };
 
   const correctMultipleQuestion = (
-    makeQuestionOption: string[] | undefined,
+    makeQuestionOptions: string[] | undefined,
     question: UserTestQuestion
-  ) => {
+  ): TestCorrectionQuestion => {
     return {
       ...question,
       options: question.options.map((option) => ({
         ...option,
         isUserSelected:
-          makeQuestionOption?.includes(String(option.number)) || false
+          makeQuestionOptions?.includes(String(option.number)) || false
       }))
     };
+  };
+
+  const scoreTest = (correction: TestCorrectionQuestion[]): number => {
+    const scoreQuestions: number = correction.reduce(
+      (sum, { type, options }) => {
+        if (type === TestQuestionType.SINGLE)
+          return sum + scoreSingleQuestion(options);
+
+        return sum + scoreMultipleQuestion(options);
+      },
+      0
+    );
+
+    const average: number = scoreQuestions / correction.length;
+    const score: number = average * 10;
+
+    return roundToTwo(score);
+  };
+
+  const scoreSingleQuestion = (
+    options: TestCorrectionQuestionOption[]
+  ): number => {
+    const score: number = options.some(
+      ({ isUserSelected, isCorrect }) => isUserSelected && isCorrect
+    )
+      ? 1
+      : 0;
+
+    return score;
+  };
+
+  const scoreMultipleQuestion = (
+    options: TestCorrectionQuestionOption[]
+  ): number => {
+    const correctOptions: number = options.filter(
+      ({ isCorrect }) => isCorrect
+    ).length;
+
+    const correctSelectedOptions: number = options.filter(
+      ({ isUserSelected, isCorrect }) => isUserSelected && isCorrect
+    ).length;
+
+    const score: number = correctSelectedOptions / correctOptions;
+
+    return score;
   };
 
   const retryTest = () => {

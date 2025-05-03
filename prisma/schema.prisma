@@ -171,7 +171,8 @@ model TestQuestionType {
 }
 
 model UserTestCompleted {
-  id String @id @default(cuid())
+  id    String @id @default(cuid())
+  score Float
 
   test   UserTest @relation(fields: [testId], references: [id], onDelete: Cascade)
   testId String

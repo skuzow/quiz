@@ -3,7 +3,8 @@ import { describe, it, expect } from 'vitest';
 import {
   TestCreationSchema,
   TestGenerationSchema,
-  TestSearchSchema
+  TestSearchSchema,
+  TestCompletionSchema
 } from '#shared/schemas/test.schema';
 import {
   TestOrder,
@@ -163,5 +164,29 @@ describe('TestSchema', () => {
     expect(issues?.[0]).toBe('Number must be greater than or equal to 0');
     expect(issues?.[1]).contains('Invalid enum value');
     expect(issues?.[2]).contains('Invalid enum value');
+  });
+
+  it('should validate test completion correctly', async () => {
+    const validTestCompletion: TestCompletion = {
+      score: 8.75
+    };
+
+    const result = TestCompletionSchema.safeParse(validTestCompletion);
+
+    expect(result.success).toBe(true);
+    expect(result.error).toBeUndefined();
+  });
+
+  it('should return invalid test completion', async () => {
+    const validTestCompletion: TestCompletion = {
+      score: 3.255
+    };
+
+    const result = TestCompletionSchema.safeParse(validTestCompletion);
+
+    const issues = result.error?.issues.map((issue) => issue.message);
+
+    expect(result.success).toBe(false);
+    expect(issues?.[0]).toBe('Number must be a multiple of 0.01');
   });
 });

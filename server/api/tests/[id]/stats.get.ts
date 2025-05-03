@@ -1,9 +1,16 @@
-import { TestCompletionSchema } from '#shared/schemas/test.schema';
-
 export default defineEventHandler(async (event) => {
-  const { id } = getRouterParams(event);
-
   const authSession = await repository.auth.getSession(event.headers);
+
+  if (!authSession)
+    return sendError(
+      event,
+      createError({
+        statusCode: 401,
+        statusMessage: 'Unauthorized'
+      })
+    );
+
+  const { id } = getRouterParams(event);
 
   const test: UserTest | null = await repository.test.findById(
     authSession?.user.id,
@@ -19,24 +26,22 @@ export default defineEventHandler(async (event) => {
       })
     );
 
-  const body: TestCompletion = await readBody(event);
-
-  const result = TestCompletionSchema.safeParse(body);
-
-  if (!result.success)
+  if (authSession.user.id !== test.author.id)
     return sendError(
       event,
       createError({
-        statusCode: 400,
-        statusMessage: 'Invalid fields',
-        data: result.error?.issues
+        statusCode: 401,
+        statusMessage: 'Unauthorized'
       })
     );
 
-  await repository.test.complete(id, body);
+  const testStats = await repository.test.findByIdStats(id);
 
   return {
-    statusCode: 201,
-    statusMessage: 'Test completed successfully'
+    statusCode: 200,
+    statusMessage: 'Test stats found',
+    body: {
+      test: testStats
+    }
   };
 });

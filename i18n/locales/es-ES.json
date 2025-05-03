@@ -287,9 +287,28 @@
       }
     },
     "make": {
+      "stats": "Estadísticas",
       "edit": "Editar",
       "correct": "Corregir",
       "retry": "Reintentar"
+    },
+    "edit": {
+      "title": "Editar Test",
+      "delete": "Eliminar test"
+    },
+    "stats": {
+      "title": "Estadísticas del Test",
+      "button": "Volver al test",
+      "labels": {
+        "day": "Últimas 24 Horas",
+        "month": "Último Mes",
+        "year": "Último Año"
+      },
+      "categories": {
+        "completed": "Completados",
+        "passed": "Aprobados",
+        "failed": "Suspensos"
+      }
     }
   },
   "login": {
@@ -341,10 +360,6 @@
       "addQuestion": "Añadir pregunta"
     },
     "button": "Crear test"
-  },
-  "edit": {
-    "title": "Editar Test",
-    "delete": "Eliminar test"
   },
   "file": {
     "upload": "Haz Click o Arrastra y Suelta para Cargar",
@@ -398,21 +413,29 @@
       "title": "Se ha enviado un correo electrónico de restablecimiento de contraseña",
       "description": "Por favor, revise su bandeja de entrada y siga las instrucciones para restablecer su contraseña."
     },
-    "overrideTest": {
-      "title": "Ya tienes un test en curso",
-      "description": "Si continúas, se perderá el test actual. ¿Estás seguro de que quieres continuar?"
+    "generate": {
+      "override": {
+        "title": "Ya tienes un test en curso",
+        "description": "Si continúas, se perderá el test actual. ¿Estás seguro de que quieres continuar?"
+      }
     },
-    "resetTest": {
-      "title": "¿Estás seguro de que quieres restablecer esta creación de test?",
-      "description": "Esta acción no se puede deshacer."
+    "create": {
+      "reset": {
+        "title": "¿Estás seguro de que quieres restablecer esta creación de test?",
+        "description": "Esta acción no se puede deshacer."
+      }
     },
-    "emptyQuestions": {
-      "title": "Tienes preguntas sin responder",
-      "description": "¿Estás seguro de que quieres corregir el test?"
-    },
-    "deleteTest": {
-      "title": "¿Estás seguro de que quieres eliminar este test?",
-      "description": "Esta acción no se puede deshacer."
+    "tests": {
+      "make": {
+        "empty": {
+          "title": "Tienes preguntas sin responder",
+          "description": "¿Estás seguro de que quieres corregir el test?"
+        }
+      },
+      "delete": {
+        "title": "¿Estás seguro de que quieres eliminar este test?",
+        "description": "Esta acción no se puede deshacer."
+      }
     }
   },
   "toast": {
@@ -473,12 +496,23 @@
       "title": "✅ Contraseña restablecida con éxito",
       "description": "Ahora puedes iniciar sesión con tu nueva contraseña."
     },
+    "generate": "✅ Test generado con éxito",
+    "create": {
+      "title": "✅ Test creado con éxito",
+      "reset": "✅ Creación de test restablecida con éxito"
+    },
     "tests": {
-      "generate": "✅ Test generado con éxito",
-      "reset": "✅ Creación de test restablecida con éxito",
-      "create": "✅ Test creado con éxito",
       "edit": "✅ Test editado con éxito",
-      "delete": "✅ Test eliminado con éxito"
+      "delete": "✅ Test eliminado con éxito",
+      "make": {
+        "score": {
+          "title": {
+            "pass": "🎉 Enhorabuena por aprobar el examen",
+            "fail": "❌ Has suspendido el examen"
+          },
+          "description": "Puntuación"
+        }
+      }
     },
     "users": {
       "profile": {

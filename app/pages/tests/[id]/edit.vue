@@ -6,7 +6,7 @@ const { t: $t } = useI18n();
 const testStore = useTestStore();
 
 seoMeta({
-  title: `${$t('edit.title')} - ${testStore.editTest?.title}`,
+  title: `${$t('tests.edit.title')} - ${testStore.editTest?.title}`,
   description: testStore.editTest?.description
 });
 </script>
