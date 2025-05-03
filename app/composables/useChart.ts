@@ -9,7 +9,7 @@ import {
   closestTo
 } from 'date-fns';
 
-import type { ChartGroup, ChartOption } from '@/types/chart.type';
+import type { ChartGroup, ChartOption, ChartCurrent } from '@/types/chart.type';
 import { Chart, ChartKey, ChartUnit } from '@/constants/chart.constant';
 
 const groupInits: Record<Chart, (date: Date, name: string) => ChartGroup> = {
@@ -146,17 +146,22 @@ export const useChart = (chart: Chart, stats: UserTestCompleted[]) => {
     }
   ];
 
-  const selected: Ref<string> = ref(ChartKey.DAY);
+  const selected: Ref<ChartKey> = ref(ChartKey.DAY);
 
-  const current = computed(() => {
+  const current: ComputedRef<ChartCurrent> = computed(() => {
     const option = options.find(({ key }) => key === selected.value)!;
 
     return { label: option.label, data: option.data };
   });
 
+  const updateSelected = (value: ChartKey) => {
+    selected.value = value;
+  };
+
   return {
     options,
     selected,
-    current
+    current,
+    updateSelected
   };
 };

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { ChartKey } from '@/constants/chart.constant';
 
 interface ChartGroupCompleted {
@@ -18,6 +19,10 @@ export type ChartGroup = ChartGroupCompleted | ChartGroupPassedFailed;
 export interface ChartOption {
   key: ChartKey;
   label: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any;
+}
+
+export interface ChartCurrent {
+  label: string;
   data: any;
 }
