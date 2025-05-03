@@ -13,7 +13,7 @@ const { path } = defineProps<Props>();
     <FormItem>
       <Select v-bind="componentField">
         <FormControl>
-          <SelectTrigger>
+          <SelectTrigger class="w-28">
             <SelectValue class="mr-2" />
           </SelectTrigger>
         </FormControl>
