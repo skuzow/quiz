@@ -69,7 +69,15 @@ npm install -g pnpm
 pnpm install
 ```
 
-3. Run the development server:
+3. Fill out `.env` file with your own values. Use [`.env.example`](https://github.com/skuzow/quiz/blob/main/.env.example) as a reference.
+
+4. Run prisma generate:
+
+```bash
+pnpm prisma:generate
+```
+
+5. Run the development server:
 
 ```bash
 pnpm dev
