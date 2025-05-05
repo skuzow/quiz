@@ -7,17 +7,17 @@
 <p/>
 
 <div align="center">
-    <a href="https://quiz.skuzow.com" target="_blank">
-        Website
-    </a>
-    <span>&nbsp;·&nbsp;</span>
-    <a href="https://github.com/skuzow/quiz?tab=readme-ov-file#-stack">
-        Stack
-    </a>
-    <span>&nbsp;·&nbsp;</span>
-    <a href="https://github.com/skuzow/quiz?tab=readme-ov-file#-contribute">
-        Contribute
-    </a>
+  <a href="https://quiz.skuzow.com" target="_blank">
+    Website
+  </a>
+  <span>&nbsp;·&nbsp;</span>
+  <a href="https://github.com/skuzow/quiz?tab=readme-ov-file#-stack">
+    Stack
+  </a>
+  <span>&nbsp;·&nbsp;</span>
+  <a href="https://github.com/skuzow/quiz?tab=readme-ov-file#-contribute">
+    Contribute
+  </a>
 </div>
 
 <br/>
@@ -27,6 +27,7 @@
 [![Nuxt Badge](https://img.shields.io/badge/Nuxt-00DC82?&style=flat&logo=nuxt&logoColor=white)](https://nuxt.com)
 [![Vue Badge](https://img.shields.io/badge/Vue-4FC08D?style=flat&logo=vue.js&logoColor=white)](https://vuejs.org)
 [![Vitest Badge](https://img.shields.io/badge/Vitest-FCA12B?style=flat&logo=vitest&logoColor=white)](https://vitest.dev)
+[![Prisma Badge](https://img.shields.io/badge/Prisma-161E31?style=flat&logo=prisma&logoColor=white)](https://www.prisma.io)
 [![Typescript Badge](https://img.shields.io/badge/Typescript-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
 [![Tailwind CSS Badge](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 
@@ -47,9 +48,11 @@
 - [**Nuxt**](https://nuxt.com) - The Progressive Web Framework.
 - [**Vue**](https://vuejs.org) - The Progressive JavaScript Framework.
 - [**Vitest**](https://vitest.dev) - Next Generation Testing Framework.
+- [**Prisma**](https://www.prisma.io) - Next-generation ORM for Node.js and TypeScript.
 - [**Typescript**](https://www.typescriptlang.org) - JavaScript with syntax for types.
 - [**Tailwind CSS**](https://tailwindcss.com) - A utility-first CSS framework for rapidly building custom designs.
-- [**better-auth**](https://www.better-auth.com) - The most comprehensive authentication framework for TypeScript.
+- [**Better Auth**](https://www.better-auth.com) - The most comprehensive authentication framework for TypeScript.
+- [**Pinia**](https://pinia.vuejs.org) - The intuitive store for Vue.js.
 - [**shadcn-vue**](https://www.shadcn-vue.com) - Beautifully designed components for Vue.
 - [**Lucide Icons**](https://lucide.dev) - Beautiful & consistent icons.
 - [**ESLint**](https://eslint.org) - A tool for checking and enforcing code quality.
