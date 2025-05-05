@@ -410,11 +410,11 @@
       }
     },
     "verifyEmail": {
-      "title": "A verification email has been sent",
+      "title": "📩 A verification email has been sent",
       "description": "Please check your inbox and verify your email to access to your account."
     },
     "forgotPassword": {
-      "title": "A password reset email has been sent",
+      "title": "📩 A password reset email has been sent",
       "description": "Please check your inbox and follow the instructions to reset your password."
     },
     "generate": {

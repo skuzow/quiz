@@ -410,11 +410,11 @@
       }
     },
     "verifyEmail": {
-      "title": "Se ha enviado un correo electrónico de verificación",
+      "title": "📩 Se ha enviado un correo electrónico de verificación",
       "description": "Por favor, revise su bandeja de entrada y verifique su correo electrónico para acceder a su cuenta."
     },
     "forgotPassword": {
-      "title": "Se ha enviado un correo electrónico de restablecimiento de contraseña",
+      "title": "📩 Se ha enviado un correo electrónico de restablecimiento de contraseña",
       "description": "Por favor, revise su bandeja de entrada y siga las instrucciones para restablecer su contraseña."
     },
     "generate": {
