@@ -28,7 +28,7 @@ export const useSignup = () => {
   const { alert } = useAlert();
 
   const isLoadingWithEmail: Ref<boolean> = ref(false);
-  const errorMessageWithEmail: Ref<string | undefined> = ref(undefined);
+  const errorMessageWithEmail: Ref<string | undefined> = ref();
 
   const SignupSchema = z.object({
     email: z

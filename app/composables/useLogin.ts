@@ -20,7 +20,7 @@ export const useLogin = () => {
   const { alert } = useAlert();
 
   const isLoadingWithEmail: Ref<boolean> = ref(false);
-  const errorMessageWithEmail: Ref<string | undefined> = ref(undefined);
+  const errorMessageWithEmail: Ref<string | undefined> = ref();
 
   const LoginSchema = z.object({
     email: z

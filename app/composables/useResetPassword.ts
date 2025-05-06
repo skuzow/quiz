@@ -23,7 +23,7 @@ export const useResetPassword = () => {
   const { toast } = useToast();
 
   const isLoadingResetPassword: Ref<boolean> = ref(false);
-  const errorMessageResetPassword: Ref<string | undefined> = ref(undefined);
+  const errorMessageResetPassword: Ref<string | undefined> = ref();
 
   const ResetPasswordSchema = z
     .object({
