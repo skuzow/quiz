@@ -48,14 +48,17 @@ export const useCreate = (edit?: boolean) => {
 
   const imageInput = useTemplateRef<HTMLInputElement>('test-image-input');
 
-  const imageFile: Ref<File | undefined> = ref(undefined);
+  const editImageFile: Ref<File | undefined> = ref();
 
   const image: ComputedRef<string> = computed(() => {
-    if (imageFile.value) return URL.createObjectURL(imageFile.value);
+    if (edit) {
+      if (editImageFile.value) return URL.createObjectURL(editImageFile.value);
+      if (testStore.editTest?.image) return testStore.editTest.image;
+    } else if (testStore.createImageFile) {
+      return URL.createObjectURL(testStore.createImageFile);
+    }
 
-    return edit && testStore.editTest?.image
-      ? testStore.editTest.image
-      : '/images/test.avif';
+    return '/images/test.avif';
   });
 
   const CreateQuestionOptionSchema = z.object({
@@ -264,7 +267,10 @@ export const useCreate = (edit?: boolean) => {
       await navigateTo(localePath(`/tests/${test.id}`));
 
       if (edit) testStore.editTest = undefined;
-      else testStore.createTest = undefined;
+      else {
+        testStore.createTest = undefined;
+        testStore.createImageFile = undefined;
+      }
 
       toast({
         title: edit ? $t('toast.tests.edit') : $t('toast.create.title'),
@@ -288,6 +294,7 @@ export const useCreate = (edit?: boolean) => {
     if (!response) return;
 
     testStore.createTest = undefined;
+    testStore.createImageFile = undefined;
 
     resetForm({ values: initialFormValue });
 
@@ -320,10 +327,13 @@ export const useCreate = (edit?: boolean) => {
   };
 
   const updateImage = async (testId: string) => {
-    if (!imageFile.value) return;
+    if (edit ? !editImageFile.value : !testStore.createImageFile) return;
 
     const formData = new FormData();
-    formData.append('image', imageFile.value);
+    formData.append(
+      'image',
+      edit ? editImageFile.value! : testStore.createImageFile!
+    );
 
     await $api.test.updateImage(testId, formData);
   };
@@ -344,7 +354,8 @@ export const useCreate = (edit?: boolean) => {
       });
     }
 
-    imageFile.value = file;
+    if (edit) editImageFile.value = file;
+    else testStore.createImageFile = file;
   };
 
   return {
