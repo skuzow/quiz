@@ -16,7 +16,7 @@ export const useForgotPassword = () => {
   const { alert } = useAlert();
 
   const isLoadingForgotPassword: Ref<boolean> = ref(false);
-  const errorMessageForgotPassword: Ref<string | undefined> = ref(undefined);
+  const errorMessageForgotPassword: Ref<string | undefined> = ref();
 
   const ForgotPasswordSchema = z.object({
     email: z

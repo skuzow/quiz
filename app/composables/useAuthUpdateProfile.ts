@@ -26,7 +26,7 @@ export const useAuthUpdateProfile = () => {
   const { toast } = useToast();
 
   const isLoadingUpdateProfile: Ref<boolean> = ref(false);
-  const errorMessageUpdateProfile: Ref<string | undefined> = ref(undefined);
+  const errorMessageUpdateProfile: Ref<string | undefined> = ref();
 
   const imageInput = useTemplateRef<HTMLInputElement>('user-image-input');
 

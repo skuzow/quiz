@@ -23,7 +23,7 @@ export const useAuthUpdateUsername = () => {
   const { toast } = useToast();
 
   const isLoadingUpdateUsername: Ref<boolean> = ref(false);
-  const errorMessageUpdateUsername: Ref<string | undefined> = ref(undefined);
+  const errorMessageUpdateUsername: Ref<string | undefined> = ref();
 
   const UpdateUsernameSchema = z.object({
     username: z

@@ -19,7 +19,7 @@ export const useAuthUpdateEmail = () => {
   const { toast } = useToast();
 
   const isLoadingUpdateEmail: Ref<boolean> = ref(false);
-  const errorMessageUpdateEmail: Ref<string | undefined> = ref(undefined);
+  const errorMessageUpdateEmail: Ref<string | undefined> = ref();
 
   const UpdateEmailSchema = z.object({
     email: z

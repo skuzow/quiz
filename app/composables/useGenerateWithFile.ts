@@ -29,7 +29,7 @@ export const useGenerateWithFile = () => {
   const { alert } = useAlert();
   const { toast } = useToast();
 
-  const file: Ref<File | undefined> = ref(undefined);
+  const file: Ref<File | undefined> = ref();
   const requiredFileError: Ref<boolean> = ref(false);
 
   const onFileChange = (inputFile: PreviewFile | null) => {
