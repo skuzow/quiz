@@ -11,12 +11,14 @@ const { categories, class: className } = defineProps<Props>();
 
 <template>
   <ul :class="cn('flex gap-x-2', className)">
-    <li
-      v-for="(category, indexCategory) in categories"
-      :key="indexCategory"
-      class="flex items-center"
-    >
-      <Badge>{{ $t(`categories.${category}`) }}</Badge>
+    <li v-for="(category, indexCategory) in categories" :key="indexCategory">
+      <NuxtLinkLocale
+        :to="{ path: '/tests', query: { filter: category } }"
+        :title="$t(`categories.${category}`)"
+        class="flex items-center"
+      >
+        <Badge>{{ $t(`categories.${category}`) }}</Badge>
+      </NuxtLinkLocale>
     </li>
   </ul>
 </template>
