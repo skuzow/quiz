@@ -52,7 +52,7 @@ const {
         <NuxtLinkLocale to="/login" :title="$t('nav.footer.contact')">
           <Button variant="link" class="gap-x-1">
             <ArrowLeftIcon :size="16" />
-            Back to Log In
+            {{ $t('forgotPassword.login') }}
           </Button>
         </NuxtLinkLocale>
       </div>
