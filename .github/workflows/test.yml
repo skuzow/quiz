@@ -27,8 +27,8 @@ jobs:
         with:
           version: 10
       - name: install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
       - name: install playwright
-        run: pnpm exec playwright-core install --with-deps
+        run: pnpx playwright-core@1.51.1 install chromium
       - name: run tests
         run: pnpm test
