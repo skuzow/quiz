@@ -37,7 +37,7 @@ const groupEnters: Record<
   },
   [Chart.PASSEDFAILED]: (group, stat) => {
     if ('passed' in group && 'failed' in group) {
-      if (stat.score > 5) group.passed++;
+      if (stat.score >= 5) group.passed++;
       else group.failed++;
     }
 
