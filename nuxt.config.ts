@@ -73,7 +73,16 @@ export default defineNuxtConfig({
   },
   vite: {
     optimizeDeps: {
-      exclude: ['vee-validate']
+      exclude: ['vee-validate', 'pdfjs-dist']
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            pdfjs: ['pdfjs-dist']
+          }
+        }
+      }
     }
   },
   nitro: {
