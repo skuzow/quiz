@@ -6,7 +6,7 @@
     </TabsList>
 
     <TabsContent value="file">
-      <GenerateCardFile />
+      <LazyGenerateCardFile />
     </TabsContent>
 
     <TabsContent value="text">

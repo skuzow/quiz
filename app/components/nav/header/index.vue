@@ -15,7 +15,7 @@ const { isAuthenticated } = useAuth();
           <span class="text-xl font-bold">uiz</span>
         </NuxtLinkLocale>
 
-        <NavHeaderMenuDesktop class="hidden md:flex" />
+        <LazyNavHeaderMenuDesktop hydrate-on-visible class="hidden md:flex" />
       </div>
 
       <ul class="flex gap-x-1 md:gap-x-4">
@@ -28,7 +28,7 @@ const { isAuthenticated } = useAuth();
         </li>
 
         <li v-if="isAuthenticated" class="hidden md:flex">
-          <NavHeaderDropdownUser />
+          <LazyNavHeaderDropdownUser hydrate-on-visible />
         </li>
 
         <template v-else>
@@ -50,7 +50,7 @@ const { isAuthenticated } = useAuth();
         </template>
 
         <li class="md:hidden">
-          <NavHeaderMenuMobile />
+          <LazyNavHeaderMenuMobile hydrate-on-visible />
         </li>
       </ul>
     </nav>

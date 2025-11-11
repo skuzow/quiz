@@ -19,8 +19,8 @@ const { test } = defineProps<Props>();
 
     <TestsInfo :test="test" />
 
-    <TestsStatsChartCompleted :stats="test.stats" />
+    <LazyTestsStatsChartCompleted :stats="test.stats" />
 
-    <TestsStatsChartPassedFailed :stats="test.stats" />
+    <LazyTestsStatsChartPassedFailed :stats="test.stats" />
   </div>
 </template>
